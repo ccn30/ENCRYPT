@@ -5,14 +5,12 @@
 ###########################################################################################
 
 #! initialise paths
-MATLABPATH=/applications/matlab/matlab2017b/
-imgdir=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/
+MATLABPATH=/applications/matlab/matlab2017b
+imgdir=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/images
 fsldir=/applications/fsl/fsl-5.0.10
 scriptdir=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts
-submit=${scriptdir}/
-func=${scriptdir}/
 
-mysubjs=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/ENCRYPT_MasterRIScodes.txt
+mysubjs=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/testsubjcode.txt
 
 cd ${scriptdir}/ImagePrep
 
@@ -20,7 +18,7 @@ for subjID in `cat $mysubjs`
 do
 	subject="$(cut -d'/' -f1 <<<"$subjID")"
 	dateID="$(cut -d'/' -f2 <<<"$subjID")"
-	echo "Running image preparation function for:	$subjID"
+	echo "RUNNING IMAGE PREP FOR:	$subjID"
 	"$MATLABPATH"/bin/matlab.nowrap -nodesktop -nosplash -nodisplay -r "try, image_prepare_func('${imgdir}',${subject},'${dateID}'); end ; quit"
 
 done

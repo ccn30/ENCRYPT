@@ -1,0 +1,212 @@
+#!/bin/bash
+###########
+#PSIR script
+# OM 2018
+##########
+
+# Interactive menu to choose the raw MP2RAGE images (nifti files)
+# matlab script (PSIR_MP2RAGE_all.m) to combine the data
+# spm script (spm_seg.m) to correct for inhomogeneity
+# bet command to get the brain mask
+# image combination to get an output XXX_PSIR_skulled ready for freesurfer
+MATLABPATH="/applications/matlab/matlab2016a/"
+
+## Need to be specific per site:
+spm_folder=/applications/spm/spm12_7219
+script_dir=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/gridcellpilot/scripts/mp2rage
+fsldir=/applications/fsl/fsl-5.0.10
+
+
+dflag='';m1flag='';m2flag='';p1flag='';p2flag='';cflag=1;hflag=0;split=1;
+
+while getopts 'cd:m:n:p:q:h' flag; do
+	case "${flag}" in
+		c) cflag=1 ;; # command line input
+		d) dflag="${OPTARG}" ;;
+		m) m1flag="${OPTARG}" ;;
+		n) m2flag="${OPTARG}" ;;
+		p) p1flag="${OPTARG}" ;;
+		q) p2flag="${OPTARG}" ;;
+		h) hflag=1 ;; # help display
+		*) hflag=1 ;;
+	esac
+done
+
+if [[ ${hflag} -eq "1" ]]; then
+	echo -e '\t You are in the PSIR MP2RAGE function, taking input nifti files'
+	echo -e '\t from the scanner, and producing a PSIR image ready for freesurfer.'
+	echo -e '\t If no input is entered, interactive choice'
+	echo -e '\t of files and folder will follow.'
+	echo -e '\t (Please remember to specify the SPM path here)'
+	echo
+	echo -e '\t You can specify one or more options:'
+	echo
+	echo -e '\t\t 	-c : command line input: necessary to specify by hand directory'
+	echo -e '\t\t		  and files input'
+	echo -e '\t\t	-d : directory where the images are'
+	echo -e '\t\t	-m : INV1 modulus file (can contain INV2 modulus as well)'
+	echo -e '\t\t	-n : INV2 modulus file (if files are split)'
+	echo -e '\t\t	-p : INV1 phase file (can contain INV2 phase as well)'
+	echo -e '\t\t	-q : INV2 phase file (if files are split)'
+	echo -e '\t\t	-h : shows this'
+exit -1
+fi
+
+if [[ ${cflag} -eq "1" ]]; then
+	interactive=0
+        if [[ ${dflag} ]]; then dir=${dflag}; fi
+	if [[ ${m1flag} ]]; then INVM1n=${dir}/${m1flag}; fi
+	if [[ ${m2flag} ]]; then INVM2n=${dir}/${m2flag}; split=0; fi
+	if [[ ${p1flag} ]]; then INVP1n=${dir}/${p1flag}; fi
+	if [[ ${p2flag} ]]; then INVP2n=${dir}/${p2flag}; split=0; fi
+else
+        dir=$PWD
+	interactive=1
+fi
+
+
+echo The folder where the PSIR is is $dir 
+echo The script directory is ${script_dir}
+echo The SPM directory is ${spm_folder}
+
+#------------------------------------------------------------------------------
+function Filebrowser()
+{
+# first parameter is Menu Title
+# second parameter is optional dir path to starting folder
+# otherwise current folder is selected
+
+    if [ -z $2 ] ; then
+        dir_list=$(ls -lhp  | awk -F ' ' ' { print $9 " " $5 } ')
+    else
+        cd "$2"
+        dir_list=$(ls -lhp  | awk -F ' ' ' { print $9 " " $5 } ')
+    fi
+
+    curdir=$(pwd)
+    if [ "$curdir" == "/" ] ; then  # Check if you are at root folder
+        selection=$(whiptail --title "$1" \
+                              --menu "PgUp/PgDn/Arrow Enter Selects File/Folder\nor Tab Key\n$curdir" 0 0 0 \
+                              --cancel-button Cancel \
+                              --ok-button Select $dir_list 3>&1 1>&2 2>&3)
+    else   # Not Root Dir so show ../ BACK Selection in Menu
+        selection=$(whiptail --title "$1" \
+                              --menu "PgUp/PgDn/Arrow Enter Selects File/Folder\nor Tab Key\n$curdir" 0 0 0 \
+                              --cancel-button Cancel \
+                              --ok-button Select ../ BACK $dir_list 3>&1 1>&2 2>&3)
+    fi
+
+    RET=$?
+    if [ $RET -eq 1 ]; then  # Check if User Selected Cancel
+       return 1
+    elif [ $RET -eq 0 ]; then
+       if [[ -d "$selection" ]]; then  # Check if Directory Selected
+          Filebrowser "$1" "$selection"
+       elif [[ -f "$selection" ]]; then  # Check if File Selected
+          if echo ${selection} | grep -Eq ${filext[*]} ; then   # Check if selected File has .jpg extension
+            if (whiptail --title "Confirm Selection" --yesno "DirPath : $curdir\nFileName: $selection" 0 0 \
+                         --yes-button "Confirm" \
+                         --no-button "Retry"); then
+                filename="$selection"
+                filepath="$curdir"    # Return full filepath  and filename as selection variables
+            else
+                Filebrowser "$1" "$curdir"
+            fi
+          else   # Not jpg so Inform User and restart
+             whiptail --title "ERROR: File Must have ${filext[*]} Extension" \
+                      --msgbox "$selection\nYou Must Select a ${filext[*]} Image File" 0 0
+             Filebrowser "$1" "$curdir"
+          fi
+       else
+          # Could not detect a file or folder so Try Again
+          whiptail --title "ERROR: Selection Error" \
+                   --msgbox "Error Changing to Path $selection" 0 0
+          Filebrowser "$1" "$curdir"
+       fi
+    fi
+}
+
+function File_selection()
+{
+menutitle=$2#"File Selection Menu"
+startdir=$1#"~/"
+filext=('nii|nii.gz|img|hdr')
+
+echo ${menutitle} is the title of the menu
+echo ${startdir} is the starting directory
+
+Filebrowser "$menutitle" "$startdir"
+
+exitstatus=$?
+if [ $exitstatus -eq 0 ]; then
+    if [ "$selection" == "" ]; then
+        echo "User Pressed Esc with No File Selection"
+	exit -1
+    fi
+else
+    echo "User Pressed Cancel. with No File Selected"
+	exit -1
+fi
+}
+
+if [[ ${interactive} -eq "1" ]]; then
+	File_selection ${dir} "Please select the modulus file (INV1 or INV1+INV2)"
+	INVM1n=$filepath/$filename
+	File_selection $filepath "Please select the phase file (INV1 or INV1+INV2)"
+	INVP1n=$filepath/$filename	
+	if whiptail --yesno "Are the files for INV2 in another volume?" 20 60 ;then
+        	File_selection ${filepath} "Please select the modulus INV2 file"
+        	INVM2n=$filepath/$filename
+		File_selection ${filepath} "Please select the phase INV2 file"
+		INVP2n=$filepath/$filename
+		split=0
+	else
+		split=1
+	fi
+fi
+
+INVM1f=${INVM1n%*.nii*};INVM1f=${INVM1f%*.img};INVM1f=${INVM1f%*.hdr}
+INVP1f=${INVP1n%*.nii*};INVP1f=${INVP1f%*.img};INVP1f=${INVP1f%*.hdr}
+
+if [[ ${split} -eq "1" ]]; then
+	"$FSLDIR"/bin/fslsplit $INVM1f $INVM1f -t; INVM1f=${INVM1f}0000; INVM2f=${INVM1f%*0000}0001;
+	"$FSLDIR"/bin/fslsplit $INVP1f $INVP1f -t; INVP1f=${INVP1f}0000; INVP2f=${INVP1f%*0000}0001;
+else
+	INVM2f=${INVM2n%*.nii*};INVM2f=${INVM2f%*.img};INVM2f=${INVM2f%*.hdr}
+	INVP2f=${INVP2n%*.nii*};INVP2f=${INVP2f%*.img};INVP2f=${INVP2f%*.hdr}
+fi
+
+echo $INVM1f and $INVM2f and $INVP1f and $INVP2f are the files selected	
+
+"$FSLDIR"/bin/fslreorient2std $INVM1f
+"$FSLDIR"/bin/fslreorient2std $INVM2f
+"$FSLDIR"/bin/fslreorient2std $INVP1f
+"$FSLDIR"/bin/fslreorient2std $INVP2f
+
+"$FSLDIR"/bin/fslchfiletype NIFTI_PAIR $INVM1f
+"$FSLDIR"/bin/fslchfiletype NIFTI_PAIR $INVM2f
+"$FSLDIR"/bin/fslchfiletype NIFTI_PAIR $INVP1f
+"$FSLDIR"/bin/fslchfiletype NIFTI_PAIR $INVP2f
+
+cd ${script_dir} 
+
+#Need to have fsl path for read_avw... for PSIR_MP2RAGE_all.m
+"$MATLABPATH"/bin/matlab.nowrap -nodesktop -nosplash -nodisplay -r "try, PSIR_MP2RAGE_all('$INVM1f','$INVM2f','$INVP1f','$INVP2f'); end ; quit"
+# Copy header of INVM1 to PSIR to restore lost sform and qform informations
+"$FSLDIR"/bin/fslcpgeom ${INVM1f} ${INVM1f}_PSIR -d
+#fslmaths ${INVM1f} -mul 0 -add ${INVM1f}_PSIR ${INVM1f}_PSIR
+#Need to have spm directory defined in the spm_seg.m function
+echo $INVM1f
+
+"$MATLABPATH"/bin/matlab.nowrap -nodesktop -nosplash -nodisplay -r "try, spm_seg('$INVM1f.img','$INVM2f.img','${spm_folder}'); end ; quit"
+
+cd ${dir}
+
+"$FSLDIR"/bin/bet ${INVM2f%/*}/m${INVM2f##*/} ${INVM2f}_brain -R -f 0.35 -g 0.1 -m -n -s
+	
+"$FSLDIR"/bin/fslmaths ${INVM2f}_brain_mask -sub 1 -abs ${INVM2f}_skull_mask
+max=(`fslstats ${INVM2f%/*}/m${INVM2f##*/} -r`)
+"$FSLDIR"/bin/fslmaths ${INVM2f%/*}/m${INVM2f##*/} -mas ${INVM2f}_skull_mask -div ${max[1]} ${INVM2f}_skull
+"$FSLDIR"/bin/fslmaths ${INVM1f}_PSIR -mas ${INVM2f}_brain_mask -add ${INVM2f}_skull -mul 100000 -thr 0 ${INVM1f}_PSIR_skulled
+
+exit 0
