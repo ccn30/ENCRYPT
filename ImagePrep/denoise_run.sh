@@ -6,8 +6,7 @@ scriptdir=${pathstem}/scripts/ImagePrep
 submitT1=${scriptdir}/denoiseT1_submit.sh
 submitT2=${scriptdir}/denoiseT2_submit.sh
 
-#!mysubjs=${pathstem}/master_subjsdeflist.txt
-mysubjs=${pathstem}/testsubjcode.txt
+mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 
 # this script must be called from script dir where a slurmoutputs folder must be
 cd slurmoutputs
@@ -17,7 +16,7 @@ do
 	echo "Submitting T1 denoising for:	$subjID"
 	sbatch ${submitT1} ${scriptdir} ${pathstem} ${subjID}
 	
-#!	echo "Submitting T2 N4 and denoising for:	$subjID"
-#!	sbatch ${submitT2} ${scriptdir} ${pathstem} ${subjID}
+	echo "Submitting T2 N4 and denoising for:	$subjID"
+	sbatch ${submitT2} ${scriptdir} ${pathstem} ${subjID}
 
 done

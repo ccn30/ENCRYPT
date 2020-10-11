@@ -29,7 +29,17 @@ cd ${workdir}
 T2=${T2path}/t2.nii
 N4T2=${T2path}/n4_t2.nii
 
-N4BiasFieldCorrection -d 3 -i ${T2} -o ${N4T2}  -r 1 -c [50x50x30x20,1e-6] -b [200];
+if [ -f "${N4T2}" ]; then
+		echo "N4 T2 already exists"
+	else
+		N4BiasFieldCorrection -d 3 -i ${T2} -o ${N4T2}  -r 1 -c [50x50x30x20,1e-6] -b [200];
+fi
+
+if [ -f "${N4T2}" ]; then
+		echo "N4 correction complete"
+	else
+		echo "N4 correction failed"
+fi
 
 #------------------------------------------------------------------------#
 # Denoise T2					 		 #
@@ -46,3 +56,8 @@ if [ -f "${denoiseT2}" ]; then
 		$antsroot/DenoiseImage -d 3 -i $N4T2 -o $denoiseT2 -v 1
 fi
 
+if [ -f "${denoiseT2}" ]; then
+		echo "DenoiseImage complete"
+	else
+		echo "DenoiseImage failed"
+fi

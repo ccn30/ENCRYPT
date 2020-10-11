@@ -22,14 +22,15 @@ echo "T1 is: " ${T1path}
 # using N4 corrected whole brain T1 from mp2rage reconstruction
 
 T1=${T1path}/n4mag0000_PSIR_skulled_std.nii
-T1brainmask=${T1path}/n4mag0000_PSIR_skulled_std_struc_brain_mask.nii
-denoiseT1=${T1path}/denoise_masked_n4mag0000_PSIR_skulled_std.nii
+#!T1brainmask=${T1path}/n4mag0000_PSIR_skulled_std_struc_brain_mask.nii
+denoiseT1=${T1path}/denoise_n4mag0000_PSIR_skulled_std.nii
 
 echo "Running DenoiseImage on: " ${T1path}
 
 if [ -f "${denoiseT1}" ]; then
 		echo $subject "already denoised whole"
 	else
-		$antsroot/DenoiseImage -d 3 -i $T1 -o $denoiseT1 -v 1 -x $T1brainmask
+		$antsroot/DenoiseImage -d 3 -i $T1 -o $denoiseT1 -v 1 
+		#! -x $T1brainmask (not using for now)
 fi
 
