@@ -20,7 +20,7 @@
 #SBATCH --cpus-per-task=1
 #!SBATCH --mem-per-cpu=16384M
 #! How much wallclock time will be required?
-#SBATCH --time=5:00:00
+#SBATCH --time=8:00:00
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=FAIL
 #!SBATCH -p skylake-himem
@@ -97,7 +97,7 @@ subjID=${3}
 
 workdir="$scriptdir/slurmoutputs"
 
-application="${scriptdir}/ASHS_mainfun.sh ${pathstem} ${subjID}"
+application="${scriptdir}/ASHS_mainfun.sh ${pathstem} ${subjID} ${workdir}"
 
 CMD="${application}"
 

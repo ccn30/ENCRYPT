@@ -1,0 +1,841 @@
+Changed directory to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs.
+
+JobID: 5522412
+======
+Time: Wed Oct 14 11:26:40 BST 2020
+Running on master node: wbic-csm-5
+Current directory: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs
+
+Nodes allocated:
+================
+wbic-csm-5
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/ASHS_mainfun.sh /lustre/scratch/wbic-beta/ccn30/ENCRYPT 26040/20200310_U-ID48485 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs
+
+Beginning ASHS for:  26040
+INPUT: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/mp2rage/n4mag0000_PSIR_skulled_std.nii /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/Series_033_Highresolution_TSE_PAT2_100/t2.nii
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/ASHS_mainfun.sh: line 48: cd: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original: No such file or directory
+ASHS started at 11:26:40
+ashs_main execution log
+  timestamp:   Wed Oct 14 11:26:40 BST 2020
+  invocation:  /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_main.sh -I 26040 -a /home/ccn30/ENCRYPT/atlases/magdeburgatlas -g /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/mp2rage/n4mag0000_PSIR_skulled_std.nii -f /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/Series_033_Highresolution_TSE_PAT2_100/t2.nii -w /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original
+  directory:   /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs
+  environment:
+    ASHS_MPRAGE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/mp2rage/n4mag0000_PSIR_skulled_std.nii
+    ASHS_ROOT=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta
+    ASHS_SUBJID=26040
+    ASHS_TSE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/Series_033_Highresolution_TSE_PAT2_100/t2.nii
+    ASHS_WORK=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original
+Atlas    : /home/ccn30/ENCRYPT/atlases/magdeburgatlas
+T1 Image : /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/mp2rage/n4mag0000_PSIR_skulled_std.nii
+T2 Image : /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/Series_033_Highresolution_TSE_PAT2_100/t2.nii
+WorkDir  : /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original
+Not using SGE or GNU parallel
+****************************************
+Starting stage 1: Normalization to T1 population template
+****************************************
+[0;36m
+-------------------  INFO  ---------------------
+Started stage 1: Normalization to T1 population 
+template
+------------------------------------------------
+[0m
++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_lib.sh
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_version.sh
++++ ASHS_VERSION_MAJOR=1
++++ ASHS_VERSION_MINOR=0
++++ ASHS_VERSION_PATCH=0
++++ ASHS_VERSION_NOTE=
++++ ASHS_VERSION_FULL=1.0.0
++++ ASHS_VERSION_DATE=20170915
++++ ASHS_OLDEST_COMPAT_DATE=20170810
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_common_master.sh
++++ [[ ! -n /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta ]]
+++++ uname
++++ ARCH=Linux
++++ ASHS_BIN=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin
++++ ASHS_ANTS=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042
++++ ASHS_FSL=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl
+++++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/c3d -version
+++++ grep Version
++++ [[ ! -n Version 1.1.0 ]]
++++ PATH=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/applications/ANTS/2.2.0/bin:/applications/itksnap/3.6.0/bin-cs:/applications/fsl/fsl-5.0.10/bin:/applications/git/git-2.26.2/bin:/applications/turbovnc/2.1/bin:/applications/virtualgl/2.5.1/bin:/applications/slurm/current/sbin:/applications/slurm/current/bin:/applications/texlive/2016/bin/x86_64-linux:/applications/openmpi/openmpi-3.0.0/bin:/applications/ImageJ/1.50:/applications/spm/spm12_6906:/applications/matlab/matlab2016a/bin:/applications/hphi/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:.
+++ [[ ! /home/ccn30/ENCRYPT/atlases/magdeburgatlas/ashs_user_config.sh == /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_config.sh ]]
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_config.sh
++++ ASHS_SIDES='left right'
++++ ASHS_MPRAGE_DENOISE=0
++++ ASHS_MPRAGE_SRUPSAMPLE=0
++++ ASHS_MPRAGE_SRUPSAMPLE_FACTOR='1 1 1'
++++ ASHS_TSE_DENOISE=0
++++ ASHS_TSE_SRUPSAMPLE=0
++++ ASHS_TSE_SRUPSAMPLE_FACTOR='1 1 1'
++++ ASHS_TSE_ISO_FACTOR=100x100x500%
++++ ASHS_TSE_ISO_REGION_CROP='20x20x0% 60x60x100%'
++++ ASHS_FLIRT_MULTIMODAL_OPTS='-searchrx -5 5 -searchry -5 5 -searchrz -5 5 -coarsesearch 3 -finesearch 1 -searchcost normmi'
++++ ASHS_TEMPLATE_ANTS_ITER=60x20x0
++++ ASHS_TEMPLATE_STAGES_TOTAL=4
++++ ASHS_TEMPLATE_STAGES_RIGID=1
++++ ASHS_TEMPLATE_ROI_DILATION=10x10x10vox
++++ ASHS_TEMPLATE_ROI_MARGIN=4x4x4vox
++++ ASHS_TEMPLATE_TARGET_RESOLUTION=0.4688x0.4688x0.4688mm
++++ ASHS_TEMPLATE_MASK_THRESHOLD=0.5
++++ ASHS_TARGET_ATLAS_FOR_HISTMATCH=0
++++ ASHS_HISTMATCH_CONTROLS=5
++++ ASHS_PAIRWISE_AFFINE_ITER=60x60x0
++++ ASHS_PAIRWISE_DEFORM_ITER=60x60x20
++++ ASHS_PAIRWISE_CROSSCORR_RADIUS=2x2x2
++++ ASHS_PAIRWISE_ANTS_STEPSIZE=0.25
++++ ASHS_PAIRWISE_ANTS_T1_WEIGHT=0
++++ ASHS_LABEL_SMOOTHING=0.24mm
++++ ASHS_MALF_STRATEGY='Joint[0.1,2]'
++++ ASHS_MALF_PATCHRAD=3x3x1
++++ ASHS_MALF_SEARCHRAD=3x3x1
++++ ASHS_MALF_PADDING=0x0x2
++++ ASHS_EC_DILATION=1
++++ ASHS_EC_TARGET_SAMPLES=100000
++++ ASHS_EC_DRYRUN_SAMPLE_RATE=0.01
++++ ASHS_EC_ITERATIONS=500
++++ ASHS_EC_PATCH_RADIUS=6x6x0
++++ ASHS_EC_MINIMUM_SAMPLES=100
++++ ASHS_EC_QSUB_EXTRA_OPTIONS=
+++ source /home/ccn30/ENCRYPT/atlases/magdeburgatlas/ashs_user_config.sh
++++ ASHS_TSE_ISO_FACTOR=100x100x252%
++++ ASHS_TEMPLATE_ANTS_ITER=60x60x20x0
++++ ASHS_TSE_ISO_REGION_CROP='10x10x0% 80x80x100%'
+++ [[ -n '' ]]
++ cat
+Script: ashs_template_qsub.sh
+Root: /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta
+Working directory: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original
+PATH: /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/applications/ANTS/2.2.0/bin:/applications/itksnap/3.6.0/bin-cs:/applications/fsl/fsl-5.0.10/bin:/applications/git/git-2.26.2/bin:/applications/turbovnc/2.1/bin:/applications/virtualgl/2.5.1/bin:/applications/slurm/current/sbin:/applications/slurm/current/bin:/applications/texlive/2016/bin/x86_64-linux:/applications/openmpi/openmpi-3.0.0/bin:/applications/ImageJ/1.50:/applications/spm/spm12_6906:/applications/matlab/matlab2016a/bin:/applications/hphi/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:.
+  Skip Rigid: 
+  Skip Ants: 
++ WFSL=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1
++ WANT=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp
++ WAFF=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template
++ mkdir -p /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template
++ TEMP_T1_FULL=/home/ccn30/ENCRYPT/atlases/magdeburgatlas/template/template.nii.gz
++ TEMP_T1_MASK=/home/ccn30/ENCRYPT/atlases/magdeburgatlas/template/template_bet_mask.nii.gz
++ ashs_subj_vars /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original
++ local WORK=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original
++ local WANT=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp
++ local WAFF=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template
++ local WFSL=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse_raw.nii.gz
++ SUBJ_MPRAGE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage.nii.gz
++ SUBJ_TSE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine_inv.mat /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.mat /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1.mat /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine_inv.mat /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_AFF_T1TEMP_RESLICE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.nii.gz
++ [[ /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/mp2rage/n4mag0000_PSIR_skulled_std.nii -nt /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage_raw.nii.gz ]]
++ c3d /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/mp2rage/n4mag0000_PSIR_skulled_std.nii -type short -o /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage_raw.nii.gz
++ SUBJ_MPRAGE_DENOISE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage_d.nii.gz
++ echo 'ASHS_MPRAGE_DENOISE = 0'
+ASHS_MPRAGE_DENOISE = 0
++ [[ 0 == 1 ]]
++ cp /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage_raw.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage_d.nii.gz
++ [[ 0 == 1 ]]
++ cp /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage_d.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage.nii.gz
++ rm -f /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage_d.nii.gz
++ [[ /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/Series_033_Highresolution_TSE_PAT2_100/t2.nii -nt /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse_raw.nii.gz ]]
++ c3d /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/26040/20200310_U-ID48485/Series_033_Highresolution_TSE_PAT2_100/t2.nii -type short -o /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse_raw.nii.gz
++ SUBJ_TSE_DENOISE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse_d.nii.gz
++ [[ 0 == 1 ]]
++ cp /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse_raw.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse_d.nii.gz
++ [[ 0 == 1 ]]
++ cp /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse_d.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse.nii.gz
++ rm -f /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse_d.nii.gz
++ ashs_align_t1t2 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original
++ local ASHS_WORK=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original
++ local OVERRIDE_MAT=
++ local OVERRIDE_MODE=
++ ashs_subj_vars /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original
++ local WORK=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original
++ local WANT=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp
++ local WAFF=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template
++ local WFSL=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse_raw.nii.gz
++ SUBJ_MPRAGE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage.nii.gz
++ SUBJ_TSE=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine_inv.mat /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.mat /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1.mat /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine_inv.mat /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ [[ -f /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1.mat ]]
++ export FSLOUTPUTTYPE=NIFTI_GZ
++ FSLOUTPUTTYPE=NIFTI_GZ
++ c3d /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/tse.nii.gz -resample 100x100x252% -region 10x10x0% 80x80x100% -type short -o /tmp/ashs.q99otD8s/tse_iso.nii.gz
++ [[ -n '' ]]
++ local INIT_RIGID
++ [[ -n '' ]]
++ INIT_RIGID=-ia-identity
++ greedy -d 3 -a -dof 6 -m MI -n 100x100x10 -i /tmp/ashs.q99otD8s/tse_iso.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage.nii.gz -ia-identity -o /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1.mat
+Executing with the default number of threads: 48
+*************************************************
+  N=6   NUMBER OF CORRECTIONS=5       INITIAL VALUES F= -2257.97   GNORM= 40.0654
+*************************************************
+   I   NFN    FUNC        GNORM       STEPLENGTH
+   1    2     -2288.172      21.702       0.025
+   2    3     -2306.644      16.197       1.000
+   3    4     -2318.200      10.927       1.000
+   4    5     -2326.271       6.065       1.000
+   5    6     -2328.737       3.636       1.000
+   6    7     -2330.294       3.604       1.000
+   7    8     -2330.460       4.721       1.000
+   8    9     -2331.458       2.124       1.000
+   9   10     -2331.500       2.786       1.000
+  10   12     -2331.753       1.494       0.460
+  11   13     -2331.826       1.240       1.000
+  12   14     -2331.878       0.598       1.000
+  13   18     -2332.259       2.918       6.985
+  14   22     -2332.270       2.804       0.000
+  15   23     -2332.274       2.684       1.000
+  16   24     -2332.349       2.680       1.000
+  17   25     -2332.507       3.997       1.000
+  18   26     -2332.693       3.169       1.000
+  19   27     -2332.911       2.325       1.000
+  20   28     -2332.987       0.981       1.000
+  21   29     -2333.061       1.252       1.000
+  22   31     -2333.108       1.987       0.098
+  23   33     -2333.179       1.902       5.000
+  24   36     -2333.351       1.659       1.782
+  25   37     -2333.466       2.104       1.000
+  26   39     -2333.521       2.389       0.494
+  27   40     -2333.774       2.484       1.000
+  28   41     -2333.960       1.205       1.000
+  29   43     -2333.999       0.327       0.407
+  30   44     -2334.004       0.530       1.000
+  31   45     -2334.004       0.312       1.000
+  32   48     -2334.006       0.484       0.499
+  33   50     -2334.006       0.385       0.289
+  34   52     -2334.007       0.268       0.275
+  35   53     -2334.007       0.227       1.000
+  36   54     -2334.007       0.205       1.000
+  37   56     -2334.008       0.543       5.000
+  38   57     -2334.009       0.366       1.000
+  39   59     -2334.010       0.616       0.526
+  40   62     -2334.010       0.558       0.061
+  41   63     -2334.011       0.350       1.000
+  42   64     -2334.011       0.099       1.000
+  43   65     -2334.011       0.090       1.000
+  44   67     -2334.011       0.120       5.000
+  45   68     -2334.011       0.208       1.000
+  46   70     -2334.011       0.075       0.272
+  47   71     -2334.011       0.102       1.000
+  48   73     -2334.011       0.150       0.100
+  49   74     -2334.011       0.098       1.000
+  50   75     -2334.011       0.071       1.000
+  51   77     -2334.011       0.092       0.267
+  52   79     -2334.011       0.104       0.390
+  53   80     -2334.011       0.067       1.000
+  54   81     -2334.011       0.082       1.000
+  55   83     -2334.011       0.094       0.238
+  56   84     -2334.011       0.053       1.000
+  57   85     -2334.011       0.048       1.000
+  58   87     -2334.011       0.069       0.129
+  59   89     -2334.011       0.043       0.365
+  60   91     -2334.011       0.035       0.347
+  61   93     -2334.011       0.038       0.389
+  62   94     -2334.011       0.032       1.000
+  63   97     -2334.011       0.033       0.044
+  64   99     -2334.011       0.040       0.451
+Final RAS Transform: 
+0.995518 -0.0877803 0.03519 1.3435 
+0.0883888 0.995956 -0.0161241 -2.89256 
+-0.0336323 0.0191623 0.999251 -2.98312 
+0 0 0 1 
+
+*************************************************
+  N=6   NUMBER OF CORRECTIONS=5       INITIAL VALUES F= -1928.38   GNORM= 16.8035
+*************************************************
+   I   NFN    FUNC        GNORM       STEPLENGTH
+   1    2     -1938.946      11.983       0.060
+   2    3     -1944.496      13.148       1.000
+   3    4     -1952.373      10.898       1.000
+   4    6     -1962.107      14.992       0.404
+   5    7     -1971.526      20.952       1.000
+   6    8     -1996.483      33.953       1.000
+   7    9     -2021.099      31.329       1.000
+   8   11     -2030.448      17.537       0.369
+   9   12     -2033.754      26.986       1.000
+  10   13     -2039.444      13.059       1.000
+  11   14     -2045.637      11.413       1.000
+  12   15     -2059.079      25.393       1.000
+  13   16     -2065.845      26.172       1.000
+  14   18     -2067.979      22.788       0.168
+  15   19     -2072.582       9.466       1.000
+  16   21     -2073.193       7.709       0.450
+  17   22     -2073.599       5.235       1.000
+  18   23     -2073.893       3.823       1.000
+  19   24     -2074.275       1.135       1.000
+  20   25     -2074.283       0.830       1.000
+  21   26     -2074.288       0.335       1.000
+  22   27     -2074.288       0.109       1.000
+  23   28     -2074.288       0.127       1.000
+  24   29     -2074.288       0.101       1.000
+  25   30     -2074.288       0.072       1.000
+  26   31     -2074.288       0.033       1.000
+  27   32     -2074.288       0.096       1.000
+  28   33     -2074.289       0.058       1.000
+  29   35     -2074.289       0.030       0.441
+  30   36     -2074.289       0.024       1.000
+  31   37     -2074.289       0.048       1.000
+  32   38     -2074.289       0.031       1.000
+  33   39     -2074.289       0.013       1.000
+  34   40     -2074.289       0.036       1.000
+  35   41     -2074.289       0.013       1.000
+  36   42     -2074.289       0.013       1.000
+  37   43     -2074.289       0.009       1.000
+  38   44     -2074.289       0.007       1.000
+  39   45     -2074.289       0.007       1.000
+  40   47     -2074.289       0.008       0.285
+  41   49     -2074.289       0.008       0.110
+  42   50     -2074.289       0.012       1.000
+  43   51     -2074.289       0.007       1.000
+  44   53     -2074.289       0.006       0.265
+  45   54     -2074.289       0.005       1.000
+  46   56     -2074.289       0.006       5.000
+  47   57     -2074.289       0.004       1.000
+  48   58     -2074.289       0.004       1.000
+  49   60     -2074.289       0.003       0.324
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 3 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESvnl_lbfgs: Error. Netlib routine lbfgs failed.
+Final RAS Transform: 
+0.999999 -0.000441982 -0.00143323 -0.204677 
+0.000481868 0.999609 0.02795 -0.291204 
+0.00142032 -0.0279506 0.999608 -0.133419 
+0 0 0 1 
+
+*************************************************
+  N=6   NUMBER OF CORRECTIONS=5       INITIAL VALUES F= -1823.88   GNORM= 92.8565
+*************************************************
+   I   NFN    FUNC        GNORM       STEPLENGTH
+   1    3     -1835.817      23.688       0.003
+   2    4     -1836.932      13.169       1.000
+   3    5     -1837.775      13.571       1.000
+   4    6     -1839.815      23.256       1.000
+   5    7     -1843.495      34.341       1.000
+   6    8     -1847.743      30.730       1.000
+   7   10     -1848.633      26.263       0.228
+   8   11     -1849.927       7.888       1.000
+Final RAS Transform: 
+0.999966 0.00276149 -0.00781538 0.0071514 
+-0.00254234 0.999607 0.0279132 -0.159931 
+0.00788939 -0.0278923 0.99958 -0.280452 
+0 0 0 1 
+
++ c3d_affine_tool /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1.mat -inv -o /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ [[ 0 == 1 ]]
++ [[ 0 == 1 ]]
++ [[ 0 == 1 ]]
++ job_progress 0.25
++ local PROGRESS=0.25
++ local CHUNK_PSTART CHUNK_PEND
++ read CHUNK_PSTART CHUNK_PEND
+++ echo 1
+++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
++ echo 'CHUNK 0.0 0.2'
+CHUNK 0.0 0.2
++ echo 1
++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
+0 0.2
++ echo 'CHUNK 0 0.2 0.25'
+CHUNK 0 0.2 0.25
++ bash /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_default_hook.sh progress 0 0.2 0.25
+====================================
+         PROGRESS: 0               
+====================================
++ [[ -f /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.mat ]]
++ greedy -d 3 -a -dof 6 -m NCC 2x2x2 -i /home/ccn30/ENCRYPT/atlases/magdeburgatlas/template/template.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage.nii.gz -o /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/greedy_t1_to_template_init_rigid.mat -n 400x0x0x0 -ia-image-centers -search 400 5 5
+Executing with the default number of threads: 48
+Noise on image 0 component 0: fixed = 1.06327, moving = 62.71
+Rigid search -> Initial best: -671.061 0 0 0 -9.74846 1.75301 21.9649
+New best: -723.233 -0.0782742 0.0199108 -0.0191854 -9.88019 -3.46403 19.6891
+New best: -751.199 -0.095822 0.00274491 0.0153137 -3.85759 6.08487 21.1016
+New best: -890.217 -0.00809502 0.00133814 -0.00553603 -5.99947 4.59977 12.0628
+New best: -1024.56 0.0215754 -0.0110612 -0.00451291 -7.80961 -3.1405 27.7931
+New best: -1102.97 -0.0695452 0.0781099 -0.00469067 -1.18442 -3.81412 32.2768
+New best: -1129.93 -0.0143559 -0.0642087 0.0118559 -5.2947 1.49337 33.1779
+*************************************************
+  N=6   NUMBER OF CORRECTIONS=5       INITIAL VALUES F= -1129.93   GNORM= 48.2768
+*************************************************
+   I   NFN    FUNC        GNORM       STEPLENGTH
+   1    2     -1176.222      43.954       0.021
+   2    4     -1324.354      62.685       0.352
+   3    5     -1398.185      30.759       1.000
+   4    6     -1425.611      25.415       1.000
+   5    7     -1464.219      27.778       1.000
+   6    8     -1480.007      14.361       1.000
+   7    9     -1486.104       8.308       1.000
+   8   10     -1486.701      14.205       1.000
+   9   11     -1489.798       4.455       1.000
+  10   12     -1490.380       3.689       1.000
+  11   13     -1491.426       2.033       1.000
+  12   17     -1498.617       9.696       4.239
+  13   20     -1498.785       9.003       0.013
+  14   21     -1499.186       7.015       1.000
+  15   22     -1500.034       8.238       1.000
+  16   23     -1501.112       1.857       1.000
+  17   24     -1501.185       6.844       1.000
+  18   28     -1501.257       2.039       0.024
+  19   29     -1501.290       5.523       1.000
+  20   36     -1501.308       7.215       0.005
+  21   38     -1501.312       7.005       0.380
+  22   40     -1501.324       1.366       0.289
+  23   41     -1501.329       1.795       1.000
+  24   43     -1501.331       2.163       0.446
+  25   44     -1501.333       1.666       1.000
+  26   46     -1501.334       0.532       0.448
+  27   47     -1501.334       0.395       1.000
+  28   49     -1501.334       0.397       0.139
+  29   50     -1501.334       0.636       1.000
+  30   52     -1501.334       0.477       0.178
+  31   54     -1501.334       0.338       0.246
+  32   55     -1501.334       0.405       1.000
+  33   56     -1501.334       0.392       1.000
+  34   57     -1501.334       0.337       1.000
+  35   58     -1501.334       0.291       1.000
+  36   59     -1501.334       0.280       1.000
+  37   60     -1501.334       0.262       1.000
+  38   62     -1501.334       0.419       0.328
+  39   63     -1501.334       0.326       1.000
+  40   64     -1501.334       0.408       1.000
+  41   65     -1501.334       0.433       1.000
+  42   66     -1501.334       0.179       1.000
+  43   67     -1501.334       0.175       1.000
+  44   70     -1501.334       0.464       0.018
+  45   71     -1501.334       0.392       1.000
+  46   73     -1501.334       0.261       0.251
+  47   74     -1501.334       0.291       1.000
+  48   76     -1501.334       0.258       0.180
+  49   78     -1501.334       0.215       0.460
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 3 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESvnl_lbfgs: Error. Netlib routine lbfgs failed.
+Final RAS Transform: 
+0.993862 -0.0115954 0.110017 0.916304 
+0.0336334 0.979087 -0.200642 -3.63211 
+-0.10539 0.203111 0.973468 34.4136 
+0 0 0 1 
+
+Final RAS Transform: 
+0.993862 -0.0115954 0.110017 0.916304 
+0.0336334 0.979087 -0.200642 -3.63211 
+-0.10539 0.203111 0.973468 34.4136 
+0 0 0 1 
+
+Final RAS Transform: 
+0.993862 -0.0115954 0.110017 0.916304 
+0.0336334 0.979087 -0.200642 -3.63211 
+-0.10539 0.203111 0.973468 34.4136 
+0 0 0 1 
+
+Final RAS Transform: 
+0.993862 -0.0115954 0.110017 0.916304 
+0.0336334 0.979087 -0.200642 -3.63211 
+-0.10539 0.203111 0.973468 34.4136 
+0 0 0 1 
+
+
+real	1m1.721s
+user	1m31.452s
+sys	0m6.796s
++ greedy -d 3 -a -m NCC 2x2x2 -i /home/ccn30/ENCRYPT/atlases/magdeburgatlas/template/template.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage.nii.gz -o /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/greedy_t1_to_template.mat -n 400x80x40x0 -ia /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/greedy_t1_to_template_init_rigid.mat
+Executing with the default number of threads: 48
+Noise on image 0 component 0: fixed = 1.06327, moving = 62.71
+*************************************************
+  N=12   NUMBER OF CORRECTIONS=5       INITIAL VALUES F= -1501.33   GNORM= 88.3761
+*************************************************
+   I   NFN    FUNC        GNORM       STEPLENGTH
+   1    2     -1569.916      55.803       0.011
+   2    3     -1619.427      33.154       1.000
+   3    4     -1636.356      23.816       1.000
+   4    5     -1655.641      25.117       1.000
+   5    6     -1666.847      23.716       1.000
+   6    7     -1670.558      22.127       1.000
+   7    8     -1675.494       7.413       1.000
+   8    9     -1676.452       5.395       1.000
+   9   10     -1677.570       4.820       1.000
+  10   11     -1678.378       6.351       1.000
+  11   12     -1678.836      11.739       1.000
+  12   13     -1679.622      20.537       1.000
+  13   15     -1681.249      19.980       0.465
+  14   16     -1685.414      11.156       1.000
+  15   17     -1686.622       6.475       1.000
+  16   18     -1687.821       9.079       1.000
+  17   21     -1687.881       8.053       0.008
+  18   22     -1688.029       5.336       1.000
+  19   23     -1688.151       3.109       1.000
+  20   24     -1688.231       2.831       1.000
+  21   25     -1688.266       2.955       1.000
+  22   26     -1688.319       2.307       1.000
+  23   27     -1688.324       2.752       1.000
+  24   28     -1688.361       0.947       1.000
+  25   29     -1688.371       0.929       1.000
+  26   31     -1688.378       0.749       0.167
+  27   32     -1688.379       1.094       1.000
+  28   33     -1688.386       1.090       1.000
+  29   35     -1688.389       0.755       0.086
+  30   36     -1688.391       0.451       1.000
+  31   37     -1688.392       0.391       1.000
+  32   39     -1688.392       0.415       0.152
+  33   40     -1688.393       0.289       1.000
+  34   42     -1688.393       0.379       0.235
+  35   43     -1688.394       0.425       1.000
+  36   45     -1688.394       0.158       0.367
+  37   46     -1688.394       0.308       1.000
+  38   48     -1688.394       0.273       0.389
+  39   50     -1688.394       0.125       0.239
+  40   51     -1688.394       0.083       1.000
+  41   52     -1688.394       0.100       1.000
+  42   53     -1688.394       0.068       1.000
+  43   55     -1688.394       0.125       0.118
+  44   58     -1688.394       0.188       0.084
+  45   59     -1688.394       0.118       1.000
+  46   60     -1688.394       0.311       1.000
+  47   61     -1688.394       0.055       1.000
+  48   62     -1688.394       0.087       1.000
+  49   64     -1688.394       0.110       0.363
+  50   65     -1688.394       0.111       1.000
+  51   67     -1688.394       0.121       0.277
+  52   68     -1688.394       0.307       1.000
+  53   69     -1688.394       0.068       1.000
+  54   70     -1688.394       0.067       1.000
+  55   73     -1688.394       0.084       0.046
+  56   74     -1688.394       0.085       1.000
+  57   75     -1688.394       0.077       1.000
+  58   77     -1688.394       0.037       0.235
+  59   78     -1688.394       0.082       1.000
+  60   79     -1688.394       0.040       1.000
+  61   80     -1688.394       0.033       1.000
+  62   83     -1688.394       0.079       1.828
+  63   84     -1688.394       0.081       1.000
+  64   86     -1688.394       0.040       0.351
+  65   87     -1688.394       0.039       1.000
+  66   89     -1688.394       0.030       0.130
+  67   98     -1688.394       0.029       0.168
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 6 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESvnl_lbfgs: Error. Netlib routine lbfgs failed.
+Final RAS Transform: 
+1.03617 -0.00604685 0.0648093 -0.487576 
+-0.00928737 1.00054 -0.0825812 -5.20304 
+0.00381205 0.187381 0.956615 35.7342 
+0 0 0 1 
+
+*************************************************
+  N=12   NUMBER OF CORRECTIONS=5       INITIAL VALUES F= -781.296   GNORM= 24.858
+*************************************************
+   I   NFN    FUNC        GNORM       STEPLENGTH
+   1    2      -798.330      12.868       0.040
+   2    3      -810.829      12.636       1.000
+   3    5      -819.271      13.497       0.519
+   4    6      -823.096      14.473       1.000
+   5    7      -829.237       5.455       1.000
+   6    8      -831.008       4.908       1.000
+   7    9      -831.566       3.466       1.000
+   8   10      -832.153       1.999       1.000
+   9   11      -832.690       1.640       1.000
+  10   12      -832.919       2.467       1.000
+  11   14      -833.103       2.852       0.140
+  12   16      -833.209       2.108       0.343
+  13   17      -833.332       1.553       1.000
+  14   18      -833.397       1.339       1.000
+  15   19      -833.435       1.497       1.000
+  16   20      -833.456       1.951       1.000
+  17   22      -833.464       1.027       0.257
+  18   23      -833.482       0.665       1.000
+  19   24      -833.490       1.047       1.000
+  20   25      -833.506       1.496       1.000
+  21   27      -833.512       0.966       0.376
+  22   30      -833.514       0.786       0.069
+  23   32      -833.515       0.680       0.172
+  24   35      -833.516       0.533       0.026
+  25   36      -833.516       4.124       1.000
+  26   37      -833.518       0.717       1.000
+  27   38      -833.518       0.804       1.000
+  28   39      -833.519       0.552       1.000
+  29   40      -833.521       0.727       1.000
+  30   42      -833.522       1.105       0.365
+  31   44      -833.522       0.868       0.200
+  32   45      -833.523       0.615       1.000
+  33   46      -833.523       0.558       1.000
+  34   48      -833.523       0.697       0.131
+  35   51      -833.523       0.575       0.263
+  36   54      -833.523       1.211       0.048
+  37   55      -833.524       0.561       1.000
+  38   57      -833.524       0.550       0.110
+  39   61      -833.524       0.516       0.088
+  40   62      -833.524       0.843       1.000
+  41   63      -833.525       0.522       1.000
+  42   64      -833.525       0.382       1.000
+  43   65      -833.526       0.705       1.000
+  44   66      -833.526       0.844       1.000
+  45   67      -833.529       0.892       1.000
+  46   69      -833.529       1.597       0.222
+  47   70      -833.535       2.727       1.000
+  48   72      -833.538       2.355       0.136
+  49   74      -833.539       0.926       0.104
+  50   75      -833.539       0.691       1.000
+  51   76      -833.540       1.659       1.000
+  52   77      -833.540       0.463       1.000
+  53   78      -833.541       0.467       1.000
+  54   79      -833.542       0.304       1.000
+  55   81      -833.543       0.702       0.509
+Final RAS Transform: 
+1.00759 -0.00614854 0.0850994 -1.18898 
+0.00785842 0.987049 -0.0721164 -5.84209 
+0.00132654 0.1847 0.989674 33.6875 
+0 0 0 1 
+
+*************************************************
+  N=12   NUMBER OF CORRECTIONS=5       INITIAL VALUES F= -281.366   GNORM= 5.64169
+*************************************************
+   I   NFN    FUNC        GNORM       STEPLENGTH
+   1    2      -284.373       2.813       0.177
+   2    3      -285.733       2.539       1.000
+   3    5      -287.479       2.862       0.255
+   4    6      -288.219       2.774       1.000
+   5    7      -289.689       5.485       1.000
+   6    9      -290.013       6.668       0.042
+   7   10      -291.307       6.182       1.000
+   8   12      -293.650       6.074       0.481
+   9   13      -296.345       5.801       1.000
+  10   15      -297.902       3.909       0.255
+  11   16      -299.849       4.277       1.000
+  12   17      -301.541       3.260       1.000
+  13   19      -302.161       1.944       0.341
+  14   20      -302.415       1.977       1.000
+  15   21      -302.638       1.493       1.000
+  16   23      -302.863       1.702       0.496
+  17   24      -302.993       2.055       1.000
+  18   25      -303.163       1.566       1.000
+  19   27      -303.259       0.880       0.438
+  20   29      -303.271       1.230       0.390
+  21   31      -303.282       0.828       0.210
+  22   32      -303.307       2.784       1.000
+  23   34      -303.315       0.682       0.194
+  24   37      -303.319       0.522       0.359
+  25   38      -303.321       0.459       1.000
+  26   39      -303.323       0.812       1.000
+  27   41      -303.326       0.635       0.149
+Final RAS Transform: 
+1.02176 0.00728323 0.119603 -0.766596 
+0.0146476 0.996031 -0.0637706 -7.27303 
+0.0234333 0.193927 0.991797 30.4297 
+0 0 0 1 
+
+Final RAS Transform: 
+1.02176 0.00728323 0.119603 -0.766596 
+0.0146476 0.996031 -0.0637706 -7.27303 
+0.0234333 0.193927 0.991797 30.4297 
+0 0 0 1 
+
+
+real	3m23.435s
+user	5m58.936s
+sys	0m19.760s
++ greedy -d 3 -r /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/greedy_t1_to_template.mat -rf /home/ccn30/ENCRYPT/atlases/magdeburgatlas/template/template.nii.gz -rm /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/mprage.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/test_greedy_affine.nii.gz
+Executing with the default number of threads: 48
++ cp -a /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/greedy_t1_to_template.mat /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.mat
++ ln -sf /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/test_greedy_affine.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.nii.gz
++ c3d_affine_tool /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.mat -inv -o /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine_inv.mat
++ [[ 0 == 1 ]]
++ [[ 0 == 1 ]]
++ [[ 0 == 1 ]]
++ job_progress 0.5
++ local PROGRESS=0.5
++ local CHUNK_PSTART CHUNK_PEND
++ read CHUNK_PSTART CHUNK_PEND
+++ echo 1
+++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
++ echo 'CHUNK 0.0 0.2'
+CHUNK 0.0 0.2
++ echo 1
++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
+0 0.2
++ echo 'CHUNK 0 0.2 0.5'
+CHUNK 0 0.2 0.5
++ bash /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_default_hook.sh progress 0 0.2 0.5
+====================================
+         PROGRESS: 0               
+====================================
++ [[ -n '' ]]
++ greedy -d 3 -m NCC 2x2x2 -e 0.5 -n 60x60x20x0 -i /home/ccn30/ENCRYPT/atlases/magdeburgatlas/template/template.nii.gz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/affine_t1_to_template/t1_to_template_affine.nii.gz -o /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz -oinv /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/ASHS/26040/original/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz -gm /home/ccn30/ENCRYPT/atlases/magdeburgatlas/template/template_bet_mask.nii.gz
+Executing with the default number of threads: 48
+Noise on image 0 component 0: fixed = 1.06327, moving = 49.611
+LEVEL 1 of 4
+  Smoothing sigmas: [8.29941, 8.21751, 8.31298], [3.38822, 3.35478, 3.39376]
+Level     0,  Iter     0:    Energy =   0.0074
+Level     0,  Iter     1:    Energy =   0.0099
+Level     0,  Iter     2:    Energy =   0.0130
+Level     0,  Iter     3:    Energy =   0.0154
+Level     0,  Iter     4:    Energy =   0.0177
+Level     0,  Iter     5:    Energy =   0.0200
+Level     0,  Iter     6:    Energy =   0.0214
+Level     0,  Iter     7:    Energy =   0.0228
+Level     0,  Iter     8:    Energy =   0.0240
+Level     0,  Iter     9:    Energy =   0.0250
+Level     0,  Iter    10:    Energy =   0.0260
+Level     0,  Iter    11:    Energy =   0.0269
+Level     0,  Iter    12:    Energy =   0.0276
+Level     0,  Iter    13:    Energy =   0.0282
+Level     0,  Iter    14:    Energy =   0.0288
+Level     0,  Iter    15:    Energy =   0.0294
+Level     0,  Iter    16:    Energy =   0.0298
+Level     0,  Iter    17:    Energy =   0.0302
+Level     0,  Iter    18:    Energy =   0.0306
+Level     0,  Iter    19:    Energy =   0.0308
+Level     0,  Iter    20:    Energy =   0.0309
+Level     0,  Iter    21:    Energy =   0.0312
+Level     0,  Iter    22:    Energy =   0.0316
+Level     0,  Iter    23:    Energy =   0.0321
+Level     0,  Iter    24:    Energy =   0.0325
+Level     0,  Iter    25:    Energy =   0.0329
+Level     0,  Iter    26:    Energy =   0.0333
+Level     0,  Iter    27:    Energy =   0.0335
+Level     0,  Iter    28:    Energy =   0.0339
+Level     0,  Iter    29:    Energy =   0.0341
+Level     0,  Iter    30:    Energy =   0.0343
+Level     0,  Iter    31:    Energy =   0.0344
+Level     0,  Iter    32:    Energy =   0.0346
+Level     0,  Iter    33:    Energy =   0.0348
+Level     0,  Iter    34:    Energy =   0.0351
+Level     0,  Iter    35:    Energy =   0.0354
+Level     0,  Iter    36:    Energy =   0.0356
+Level     0,  Iter    37:    Energy =   0.0357
+Level     0,  Iter    38:    Energy =   0.0359
+Level     0,  Iter    39:    Energy =   0.0359
+Level     0,  Iter    40:    Energy =   0.0361
+Level     0,  Iter    41:    Energy =   0.0361
+Level     0,  Iter    42:    Energy =   0.0363
+Level     0,  Iter    43:    Energy =   0.0364
+Level     0,  Iter    44:    Energy =   0.0365
+Level     0,  Iter    45:    Energy =   0.0366
+Level     0,  Iter    46:    Energy =   0.0368
+Level     0,  Iter    47:    Energy =   0.0369
+Level     0,  Iter    48:    Energy =   0.0370
+Level     0,  Iter    49:    Energy =   0.0370
+Level     0,  Iter    50:    Energy =   0.0371
+Level     0,  Iter    51:    Energy =   0.0372
+Level     0,  Iter    52:    Energy =   0.0373
+Level     0,  Iter    53:    Energy =   0.0375
+Level     0,  Iter    54:    Energy =   0.0376
+Level     0,  Iter    55:    Energy =   0.0377
+Level     0,  Iter    56:    Energy =   0.0379
+Level     0,  Iter    57:    Energy =   0.0380
+Level     0,  Iter    58:    Energy =   0.0381
+Level     0,  Iter    59:    Energy =   0.0381
+END OF LEVEL     0    DetJac Range:   0.0456  to   2.4235 
+  Avg. Gradient Time  : 0.0202s  36.02% 
+  Avg. Gaussian Time  : 0.0264s  47.11% 
+  Avg. Iteration Time : 0.0561s 
+LEVEL 2 of 4
+  Smoothing sigmas: [4.1497, 4.10875, 4.15649], [1.69411, 1.67739, 1.69688]
+Level     1,  Iter     0:    Energy =   0.0164
+Level     1,  Iter     1:    Energy =   0.0182
+Level     1,  Iter     2:    Energy =   0.0198
+Level     1,  Iter     3:    Energy =   0.0214
+Level     1,  Iter     4:    Energy =   0.0232
+Level     1,  Iter     5:    Energy =   0.0248
+Level     1,  Iter     6:    Energy =   0.0262
+Level     1,  Iter     7:    Energy =   0.0273
+Level     1,  Iter     8:    Energy =   0.0282
+Level     1,  Iter     9:    Energy =   0.0290
+Level     1,  Iter    10:    Energy =   0.0297
+Level     1,  Iter    11:    Energy =   0.0305
+Level     1,  Iter    12:    Energy =   0.0312
+Level     1,  Iter    13:    Energy =   0.0320
+Level     1,  Iter    14:    Energy =   0.0325
+Level     1,  Iter    15:    Energy =   0.0329
+Level     1,  Iter    16:    Energy =   0.0333
+Level     1,  Iter    17:    Energy =   0.0334
+Level     1,  Iter    18:    Energy =   0.0335
+Level     1,  Iter    19:    Energy =   0.0335
+Level     1,  Iter    20:    Energy =   0.0336
+Level     1,  Iter    21:    Energy =   0.0336
+Level     1,  Iter    22:    Energy =   0.0338
+Level     1,  Iter    23:    Energy =   0.0339
+Level     1,  Iter    24:    Energy =   0.0340
+Level     1,  Iter    25:    Energy =   0.0342
+Level     1,  Iter    26:    Energy =   0.0343
+Level     1,  Iter    27:    Energy =   0.0344
+Level     1,  Iter    28:    Energy =   0.0345
+Level     1,  Iter    29:    Energy =   0.0345
+Level     1,  Iter    30:    Energy =   0.0345
+Level     1,  Iter    31:    Energy =   0.0345
+Level     1,  Iter    32:    Energy =   0.0345
+Level     1,  Iter    33:    Energy =   0.0344
+Level     1,  Iter    34:    Energy =   0.0344
+Level     1,  Iter    35:    Energy =   0.0343
+Level     1,  Iter    36:    Energy =   0.0342
+Level     1,  Iter    37:    Energy =   0.0341
+Level     1,  Iter    38:    Energy =   0.0340
+Level     1,  Iter    39:    Energy =   0.0340
+Level     1,  Iter    40:    Energy =   0.0339
+Level     1,  Iter    41:    Energy =   0.0338
+Level     1,  Iter    42:    Energy =   0.0338
+Level     1,  Iter    43:    Energy =   0.0337
+Level     1,  Iter    44:    Energy =   0.0336
+Level     1,  Iter    45:    Energy =   0.0336
+Level     1,  Iter    46:    Energy =   0.0335
+Level     1,  Iter    47:    Energy =   0.0335
+Level     1,  Iter    48:    Energy =   0.0334
+Level     1,  Iter    49:    Energy =   0.0334
+Level     1,  Iter    50:    Energy =   0.0334
+Level     1,  Iter    51:    Energy =   0.0333
+Level     1,  Iter    52:    Energy =   0.0333
+Level     1,  Iter    53:    Energy =   0.0332
+Level     1,  Iter    54:    Energy =   0.0332
+Level     1,  Iter    55:    Energy =   0.0331
+Level     1,  Iter    56:    Energy =   0.0331
+Level     1,  Iter    57:    Energy =   0.0331
+Level     1,  Iter    58:    Energy =   0.0331
+Level     1,  Iter    59:    Energy =   0.0331
+END OF LEVEL     1    DetJac Range:   0.0520  to   2.8632 
+  Avg. Gradient Time  : 0.1137s  38.86% 
+  Avg. Gaussian Time  : 0.1416s  48.41% 
+  Avg. Iteration Time : 0.2925s 
+LEVEL 3 of 4
+  Smoothing sigmas: [2.07485, 2.06798, 2.07824], [0.847055, 0.84425, 0.84844]
+Level     2,  Iter     0:    Energy =   0.0166
+Level     2,  Iter     1:    Energy =   0.0180
+Level     2,  Iter     2:    Energy =   0.0193
+Level     2,  Iter     3:    Energy =   0.0204
+Level     2,  Iter     4:    Energy =   0.0212
+Level     2,  Iter     5:    Energy =   0.0219
+Level     2,  Iter     6:    Energy =   0.0227
+Level     2,  Iter     7:    Energy =   0.0236
+Level     2,  Iter     8:    Energy =   0.0244
+Level     2,  Iter     9:    Energy =   0.0250
+Level     2,  Iter    10:    Energy =   0.0255
+Level     2,  Iter    11:    Energy =   0.0260
+Level     2,  Iter    12:    Energy =   0.0265
+Level     2,  Iter    13:    Energy =   0.0269
+Level     2,  Iter    14:    Energy =   0.0272
+Level     2,  Iter    15:    Energy =   0.0273
+Level     2,  Iter    16:    Energy =   0.0274
+Level     2,  Iter    17:    Energy =   0.0275
+Level     2,  Iter    18:    Energy =   0.0276
+Level     2,  Iter    19:    Energy =   0.0278
+END OF LEVEL     2    DetJac Range:   0.0282  to   4.1417 
+  Avg. Gradient Time  : 0.8371s  37.22% 
+  Avg. Gaussian Time  : 1.1905s  52.94% 
+  Avg. Iteration Time : 2.2490s 
+LEVEL 4 of 4
+  Smoothing sigmas: [1.03743, 1.03743, 1.03912], [0.423527, 0.423527, 0.42422]

@@ -8,7 +8,8 @@ scriptdir=${pathstem}/scripts/Segmentation
 submit=${scriptdir}/ASHS_submit.sh
 
 # separate txt file with subject and date IDs
-mysubjs=${pathstem}/testsubjcode.txt
+#!mysubjs=${pathstem}/testsubjcode.txt
+mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 
 cd slurmoutputs
 

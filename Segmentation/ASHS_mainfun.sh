@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# arguments from ASHS_sba.sh
+# arguments from ASHS_submit.sh
 pathstem=${1}
 subjID=${2}
+workdir=${3}
 
 # initialise software roots
 export antsroot=/applications/ANTS/2.2.0/bin
@@ -11,78 +12,121 @@ export atlasdir=/home/ccn30/ENCRYPT/atlases/magdeburgatlas
 
 # initialise subject-wise paths
 subject="$(cut -d'/' -f1 <<<"$subjID")"
-rawpathstem=${pathstem}/raw_data/images/${subjID}
-preprocesspathstem=${pathstem}/preprocessed_data/segmentation/${subject}
-outputdir=${preprocesspathstem}/ASHS
-images=${pathstem}/preprocessed_data/images/${subject}
+rawpathstem=${pathstem}/images/${subjID}
+outputpath=${pathstem}/segmentation/ASHS/${subject}
 
-#------------------------------------------------------------------------#
-# Make N4 bias corrected T2s (= ${N4T2})				 #
-#------------------------------------------------------------------------#
+cd ${rawpathstem}
 
-#!T2path=${rawpathstem}/Series_033_Highresolution_TSE_PAT2_100
-# tried reorient, didn't work:
-#!T2=${T2path}/reorientSeries_033_Highresolution_TSE_PAT2_100_c32.nii <- swpaped z and y axes, not good
-#!T2=${T2path}/Series_033_Highresolution_TSE_PAT2_100_c32.nii
-T2path=${rawpathstem}/Series_039_Highresolution_TSE_PAT2_100_PatSpec
-T2=${T2path}/Series_039_Highresolution_TSE_PAT2_100_PatSpec.nii
+T2dir=$(ls -d Series_???_Highresolution_TSE_PAT2_100)
+T2path=${rawpathstem}/${T2dir}
 
-echo "Running N4BiasFieldCorrection on: " ${T2}
-
-cd ${T2path}
-
-#!N4T2=${T2path}/N4Series_033_Highresolution_TSE_PAT2_100_c32.nii
-N4T2=${T2path}/N4Series_039_Highresolution_TSE_PAT2_100_PatSpec.nii
-$antsroot/N4BiasFieldCorrection -d 3 -i ${T2} -o ${N4T2}
-if [ -f "${N4T2}" ]; then
-		echo ">> N4BiasFieldCorrection SUCCESS"
-	else
-		echo ">> N4BiasFieldCorrection FAIL"
-fi 
+cd ${workdir}
 
 #------------------------------------------------------------------------#
 # Run ASHS					 			 #
 #------------------------------------------------------------------------#
 
-#!T1path=${rawpathstem}/mp2rage
-#!wholeT1=${T1path}/reorientn4mag0000_PSIR_skulled_std.nii
-#!brainT1=${T1path}/reorientn4mag0000_PSIR_skulled_std_struc_brain.nii
-T1path=${pathstem}/preprocessed_data/images/${subject}
+wholeT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std.nii
+brainT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std_struc_brain.nii
+DenoiseWholeT1=${rawpathstem}/mp2rage/denoisen4mag0000_PSIR_skulled_std.nii
 
-# separate denoise script created, output =
-#!denoiseT1brain=${T1path}/denoiseRn4mag0000_PSIR_skulled_std_struc_brain.nii
-#!denoiseT1whole=${T1path}/denoiseRn4mag0000_PSIR_skulled_std.nii
-T1whole=${T1path}/structural.nii
-T1brain=${T1path}/BETstructural_ANTSBrainExtractionBrain.nii.gz
+T2=${T2path}/t2.nii
+N4T2=${T2path}/n4_t2.nii
+DenoiseN4T2=${T2path}/denoise_n4_t2.nii
 
-if [ -f "${outputdir}" ]; then
-		echo "${outputdir} exists"
+if [ -f "${outputpath}" ]; then
+		echo "${outputpath} exists"
 	else
-		mkdir ${outputdir}
+		mkdir ${outputpath}
 fi
 
+# 1. Running for original images (whole brain T1, raw T2)
 echo "Beginning ASHS for: " $subject
-echo "OUTPUT:" $outputdir
-echo "INPUT:" $T1brain $N4T2
+echo "INPUT:" $wholeT1 $T2
 
-cd $outputdir
+originaloutput=${outputpath}/original
+cd $originaloutput
 
 # Set a timer
 SECONDS=0
 start=(`date +%T`)
 echo "ASHS started at $start"
 
-# run ASHS (N4 corrected but not reorientated T2s, skullstripped T1s)
-$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${T1brain} -f ${N4T2} -w ${outputdir}
+# run ASHS
+$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${wholeT1} -f ${T2} -w ${originaloutput}
 
 end=(`date +%T`)
 printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
 
-# previous input tests:
+# 2. Running for N4 T2 (whole T1, N4 T2)
+echo "Beginning ASHS for: " $subject
+echo "INPUT:" $wholeT1 $N4T2
 
-# second ASHS run (corrected inputs, skullstripped T1}
-#!$ASHS_ROOT/bin/ashs_main.sh -I $subject'_2' -a $atlasdir -g ${denoiseT1brain} -f ${N4T2} -w ${outputdir}
- 
-# first ASHS run (non corrected inputs, skullstripped T1}
-#!$ASHS_ROOT/bin/ashs_main.sh -I ${subject} -a $atlasdir -g ${brainT1} -f ${T2} -w $OUTPUT
+N4T2output=${outputpath}/N4T2
+cd $N4T2output
+
+# Set a timer
+SECONDS=0
+start=(`date +%T`)
+echo "ASHS started at $start"
+
+# run ASHS
+$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${wholeT1} -f ${N4T2} -w ${N4T2output}
+
+end=(`date +%T`)
+printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
+
+# 3. Running for brain T1 (brain T1, N4 T2)
+echo "Beginning ASHS for: " $subject
+echo "INPUT:" $wholeT1 $N4T2
+
+brainT1output=${outputpath}/N4T2skullstrippedT1
+cd $brainT1output
+
+# Set a timer
+SECONDS=0
+start=(`date +%T`)
+echo "ASHS started at $start"
+
+# run ASHS
+$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${brainT1} -f ${N4T2} -w ${brainT1output}
+
+end=(`date +%T`)
+printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
+
+# 4. Running for denoised T1 and T2 (denoise whole T1, denoise N4 T2)
+echo "Beginning ASHS for: " $subject
+echo "INPUT:" $wholeT1 $N4T2
+
+denoiseoutput=${outputpath}/DenoiseWhole
+cd $denoiseoutput
+
+# Set a timer
+SECONDS=0
+start=(`date +%T`)
+echo "ASHS started at $start"
+
+# run ASHS
+$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseWholeT1} -f ${DenoiseN4T2} -w ${denoiseoutput}
+
+end=(`date +%T`)
+printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
+
+# 5. Running for original images (brain T1, raw T2)
+echo "Beginning ASHS for: " $subject
+echo "INPUT:" $wholeT1 $T2
+
+originalssoutput=${outputpath}/originalskullstripped
+cd $originalssoutput
+
+# Set a timer
+SECONDS=0
+start=(`date +%T`)
+echo "ASHS started at $start"
+
+# run ASHS
+$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${brainT1} -f ${T2} -w ${originalssoutput}
+
+end=(`date +%T`)
+printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
 
