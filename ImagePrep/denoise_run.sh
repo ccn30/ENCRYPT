@@ -16,7 +16,7 @@ do
 	echo "Submitting T1 denoising for:	$subjID"
 	sbatch ${submitT1} ${scriptdir} ${pathstem} ${subjID}
 	
-	echo "Submitting T2 N4 and denoising for:	$subjID"
-	sbatch ${submitT2} ${scriptdir} ${pathstem} ${subjID}
+#!	echo "Submitting T2 N4 and denoising for:	$subjID"
+#!	sbatch ${submitT2} ${scriptdir} ${pathstem} ${subjID}
 
 done
