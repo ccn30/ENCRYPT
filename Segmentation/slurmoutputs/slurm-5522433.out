@@ -1,0 +1,163 @@
+Changed directory to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs.
+
+JobID: 5522433
+======
+Time: Wed Oct 14 12:50:20 BST 2020
+Running on master node: wbic-csm-4
+Current directory: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs
+
+Nodes allocated:
+================
+wbic-csm-4
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/recon_all.sh /lustre/scratch/wbic-beta/ccn30/ENCRYPT 25774/20191128_U-ID47237 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs
+
+You are in recon_all func
+/applications/freesurfer/freesurfer_7.1.0
+/applications/freesurfer/freesurfer_7.1.0/subjects
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/recon_all.sh: line 37: export: `/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only': not a valid identifier
+Set subject dir to  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only
+Subject Stamp: freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b
+Current Stamp: freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b
+INFO: SUBJECTS_DIR is /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only
+Actual FREESURFER_HOME /applications/freesurfer/freesurfer_7.1.0
+Linux wbic-csm-4 3.16.0-6-amd64 #1 SMP Debian 3.16.57-2 (2018-07-14) x86_64 GNU/Linux
+'/applications/freesurfer/freesurfer_7.1.0/bin/recon-all' -> '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/scripts/recon-all.local-copy'
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774
+
+ mri_convert /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/25774/20191128_U-ID47237/mp2rage/n4mag0000_PSIR_skulled_std.nii /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/orig/001.mgz 
+
+mri_convert /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/25774/20191128_U-ID47237/mp2rage/n4mag0000_PSIR_skulled_std.nii /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/orig/001.mgz 
+reading from /lustre/scratch/wbic-beta/ccn30/ENCRYPT/images/25774/20191128_U-ID47237/mp2rage/n4mag0000_PSIR_skulled_std.nii...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, -0, 0)
+j_ras = (-0, 1, 0)
+k_ras = (0, -0, 1)
+writing to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/orig/001.mgz...
+#--------------------------------------------
+#@# MotionCor Wed Oct 14 12:50:28 BST 2020
+Found 1 runs
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/orig/001.mgz
+Checking for (invalid) multi-frame inputs...
+Only one run found so motion
+correction will not be performed. I'll
+copy the run to rawavg and continue.
+
+ cp /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/orig/001.mgz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/rawavg.mgz 
+
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774
+
+ mri_convert /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/rawavg.mgz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/orig.mgz --conform 
+
+mri_convert /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/rawavg.mgz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/orig.mgz --conform 
+reading from /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/rawavg.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, -0, 0)
+j_ras = (-0, 1, 0)
+k_ras = (0, -0, 1)
+changing data type from float to uchar (noscale = 0)...
+MRIchangeType: Building histogram 0 294821 1000, flo=0, fhi=0.999, dest_type=0
+Reslicing using trilinear interpolation 
+writing to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/orig.mgz...
+
+ mri_add_xform_to_header -c /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/transforms/talairach.xfm /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/orig.mgz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/orig.mgz 
+
+INFO: extension is mgz
+#--------------------------------------------
+#@# Talairach Wed Oct 14 12:50:39 BST 2020
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri
+
+ mri_nu_correct.mni --no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50 
+
+/usr/bin/bc
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri
+/applications/freesurfer/freesurfer_7.1.0/bin/mri_nu_correct.mni
+--no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50
+nIters 1
+mri_nu_correct.mni 7.1.0
+Linux wbic-csm-4 3.16.0-6-amd64 #1 SMP Debian 3.16.57-2 (2018-07-14) x86_64 GNU/Linux
+Wed Oct 14 12:50:39 BST 2020
+Found /dev/shm , will use for temp dir
+tmpdir is /dev/shm/tmp.mri_nu_correct.mni.38696
+cd /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri
+AntsN4BiasFieldCorrectionFs -i orig.mgz -o /dev/shm/tmp.mri_nu_correct.mni.38696/nu0.mgz
+Using shrink factor: 4
+mri_convert /dev/shm/tmp.mri_nu_correct.mni.38696/nu0.mgz orig_nu.mgz --like orig.mgz --conform
+mri_convert /dev/shm/tmp.mri_nu_correct.mni.38696/nu0.mgz orig_nu.mgz --like orig.mgz --conform 
+reading from /dev/shm/tmp.mri_nu_correct.mni.38696/nu0.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+INFO: transform src into the like-volume: orig.mgz
+writing to orig_nu.mgz...
+ 
+ 
+Wed Oct 14 12:54:31 BST 2020
+mri_nu_correct.mni done
+
+ talairach_avi --i orig_nu.mgz --xfm transforms/talairach.auto.xfm 
+
+talairach_avi log file is transforms/talairach_avi.log...
+Started at Wed Oct 14 12:54:31 BST 2020
+Ended   at Wed Oct 14 12:55:11 BST 2020
+talairach_avi done
+
+ cp transforms/talairach.auto.xfm transforms/talairach.xfm 
+
+lta_convert --src orig.mgz --trg /applications/freesurfer/freesurfer_7.1.0/average/mni305.cor.mgz --inxfm transforms/talairach.xfm --outlta transforms/talairach.xfm.lta --subject fsaverage --ltavox2vox
+7.1.0
+
+--src: orig.mgz src image (geometry).
+--trg: /applications/freesurfer/freesurfer_7.1.0/average/mni305.cor.mgz trg image (geometry).
+--inmni: transforms/talairach.xfm input MNI/XFM transform.
+--outlta: transforms/talairach.xfm.lta output LTA.
+--s: fsaverage subject name
+--ltavox2vox: output LTA as VOX_TO_VOX transform.
+ LTA read, type : 1
+ 1.06209  -0.00441   0.02126  -1.08975;
+ 0.01078   0.97885   0.15605  -54.14418;
+-0.03962  -0.18049   1.02564   0.99603;
+ 0.00000   0.00000   0.00000   1.00000;
+setting subject to fsaverage
+Writing  LTA to file transforms/talairach.xfm.lta...
+lta_convert successful.
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/transforms /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri 
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri 
+#--------------------------------------------
+#@# Talairach Failure Detection Wed Oct 14 12:55:13 BST 2020
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri
+
+ talairach_afd -T 0.005 -xfm transforms/talairach.xfm 
+
+talairach_afd: Talairach Transform: transforms/talairach.xfm OK (p=0.7129, pval=0.4932 >= threshold=0.0050)
+
+ awk -f /applications/freesurfer/freesurfer_7.1.0/bin/extract_talairach_avi_QA.awk /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/transforms/talairach_avi.log 
+
+
+ tal_QC_AZS /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri/transforms/talairach_avi.log 
+
+TalAviQA: 0.97187
+z-score: -1
+#--------------------------------------------
+#@# Nu Intensity Correction Wed Oct 14 12:55:13 BST 2020
+
+ mri_nu_correct.mni --i orig.mgz --o nu.mgz --uchar transforms/talairach.xfm --n 2 --ants-n4 
+
+/usr/bin/bc
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri
+/applications/freesurfer/freesurfer_7.1.0/bin/mri_nu_correct.mni
+--i orig.mgz --o nu.mgz --uchar transforms/talairach.xfm --n 2 --ants-n4
+nIters 2
+mri_nu_correct.mni 7.1.0
+Linux wbic-csm-4 3.16.0-6-amd64 #1 SMP Debian 3.16.57-2 (2018-07-14) x86_64 GNU/Linux
+Wed Oct 14 12:55:13 BST 2020
+Found /dev/shm , will use for temp dir
+tmpdir is /dev/shm/tmp.mri_nu_correct.mni.15703
+cd /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/25774/mri
+AntsN4BiasFieldCorrectionFs -i orig.mgz -o /dev/shm/tmp.mri_nu_correct.mni.15703/nu0.mgz
+Using shrink factor: 4
