@@ -6,6 +6,7 @@
 pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
 scriptdir=${pathstem}/scripts/Segmentation
 submit=${scriptdir}/ASHS_submit.sh
+func=${scriptdir}/ASHS_mainfun_nonslurm.sh
 
 # separate txt file with subject and date IDs
 #!mysubjs=${pathstem}/testsubjcode.txt
@@ -17,5 +18,9 @@ for subjID in `cat $mysubjs`
 do
 	echo "Submitting ASHS segmentation of:	$subjID"
 	sbatch ${submit} ${scriptdir} ${pathstem} ${subjID}
+
+	#!echo "Running ASHS segmentation of:	$subjID"
+	#!${func} ${scriptdir} ${pathstem} ${subjID}
+
 done
 

@@ -28,7 +28,8 @@ cd ${workdir}
 
 wholeT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std.nii
 brainT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std_struc_brain.nii
-DenoiseWholeT1=${rawpathstem}/mp2rage/denoisen4mag0000_PSIR_skulled_std.nii
+DenoiseWholeT1=${rawpathstem}/mp2rage/denoise_n4mag0000_PSIR_skulled_std.nii
+DenoiseBrainT1=${rawpathstem}/mp2rage/denoise_n4mag0000_PSIR_skulled_std_struc_brain_mask.nii
 
 T2=${T2path}/t2.nii
 N4T2=${T2path}/n4_t2.nii
@@ -40,6 +41,7 @@ if [ -f "${outputpath}" ]; then
 		mkdir ${outputpath}
 fi
 
+#######################################################
 # 1. Running for original images (whole brain T1, raw T2)
 echo "Beginning ASHS for: " $subject
 echo "INPUT:" $wholeT1 $T2
@@ -53,11 +55,12 @@ start=(`date +%T`)
 echo "ASHS started at $start"
 
 # run ASHS
-$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${wholeT1} -f ${T2} -w ${originaloutput}
+#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${wholeT1} -f ${T2} -w ${originaloutput}
 
 end=(`date +%T`)
 printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
 
+#######################################################
 # 2. Running for N4 T2 (whole T1, N4 T2)
 echo "Beginning ASHS for: " $subject
 echo "INPUT:" $wholeT1 $N4T2
@@ -71,11 +74,12 @@ start=(`date +%T`)
 echo "ASHS started at $start"
 
 # run ASHS
-$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${wholeT1} -f ${N4T2} -w ${N4T2output}
+#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${wholeT1} -f ${N4T2} -w ${N4T2output}
 
 end=(`date +%T`)
 printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
 
+#######################################################
 # 3. Running for brain T1 (brain T1, N4 T2)
 echo "Beginning ASHS for: " $subject
 echo "INPUT:" $wholeT1 $N4T2
@@ -89,11 +93,12 @@ start=(`date +%T`)
 echo "ASHS started at $start"
 
 # run ASHS
-$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${brainT1} -f ${N4T2} -w ${brainT1output}
+#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${brainT1} -f ${N4T2} -w ${brainT1output}
 
 end=(`date +%T`)
 printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
 
+#######################################################
 # 4. Running for denoised T1 and T2 (denoise whole T1, denoise N4 T2)
 echo "Beginning ASHS for: " $subject
 echo "INPUT:" $wholeT1 $N4T2
@@ -107,11 +112,12 @@ start=(`date +%T`)
 echo "ASHS started at $start"
 
 # run ASHS
-$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseWholeT1} -f ${DenoiseN4T2} -w ${denoiseoutput}
+#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseWholeT1} -f ${DenoiseN4T2} -w ${denoiseoutput}
 
 end=(`date +%T`)
 printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
 
+#######################################################
 # 5. Running for original images (brain T1, raw T2)
 echo "Beginning ASHS for: " $subject
 echo "INPUT:" $wholeT1 $T2
@@ -125,8 +131,43 @@ start=(`date +%T`)
 echo "ASHS started at $start"
 
 # run ASHS
-$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${brainT1} -f ${T2} -w ${originalssoutput}
+#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${brainT1} -f ${T2} -w ${originalssoutput}
 
 end=(`date +%T`)
 printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
 
+#######################################################
+# 6. Running for denoised T1 and T2 (denoise brain T1, denoise N4 T2)
+echo "Beginning ASHS for: " $subject
+
+denoisebrainoutput=${outputpath}/DenoiseBrain
+cd $denoisebrainoutput
+
+# Set a timer
+SECONDS=0
+start=(`date +%T`)
+echo "ASHS started at $start"
+
+# run ASHS
+#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseBrainT1} -f ${DenoiseN4T2} -w ${denoisebrainoutput}
+
+end=(`date +%T`)
+printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
+
+#######################################################
+# 7. Running for denoised T1 and normal T2 (denoise brain T1, N4 T2)
+echo "Beginning ASHS for: " $subject
+
+denoiseT1N4T2output=${outputpath}/DenoiseT1N4T2
+cd $denoiseT1N4T2output
+
+# Set a timer
+SECONDS=0
+start=(`date +%T`)
+echo "ASHS started at $start"
+
+# run ASHS
+$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseBrainT1} -f ${N4T2} -w ${denoiseT1N4T2output}
+
+end=(`date +%T`)
+printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"

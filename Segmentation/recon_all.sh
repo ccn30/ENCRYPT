@@ -44,15 +44,15 @@ fi
 recon-all -s $subject -i $wholeT1 -qcache -all
 
 # 2. whole T1 and T2
-SUBJECTS_DIR=${pathstem}/segmentation/Freesurfer/T1T2both
-export $SUBJECTS_DIR
+#!SUBJECTS_DIR=${pathstem}/segmentation/Freesurfer/T1T2both
+#!export $SUBJECTS_DIR
 echo "Set subject dir to  $SUBJECTS_DIR"
 if [ -f "${SUBJECTS_DIR}" ]; then
 		echo "${SUBJECTS_DIR} exists"
 	else
 		mkdir ${SUBJECTS_DIR}
 fi
-recon-all -s $subject -i $wholeT1 -T2 $N4T2 -T2pial -qcache -all
+#!recon-all -s $subject -i $wholeT1 -T2 $N4T2 -T2pial -qcache -all
 
 echo "DONE"
 
