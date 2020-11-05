@@ -20,7 +20,7 @@ echo "******** starting $subject ********"
 ## 1. fixed epi, moving T1
 
 #movingImage=${pathstem}/images/${subjID}/mp2rage/n4mag0000_PSIR_skulled_std.nii
-movingImage=${pathstem}/images/${subjID}/mp2rage/n4mag0000_PSIR_skulled_std_struc_brain.nii
+movingImage=${pathstem}/images/${subjID}/mp2rage/denoise_n4mag0000_PSIR_skulled_std_struc_brain_mask.nii
 fixedImage=${pathstem}/fMRI/${subject}/meantopup_Run_1.nii
 
 ## or 2. fixed T1, moving EPI
@@ -36,21 +36,29 @@ else
 	mkdir ${regDir}
 fi
 
-maskImage=${regDir}/fixedEpiMask_newANTs.nii
-
 cd ${regDir}
 echo "working on subject ${subject} in ${pwd}"
 
+## bias field correct EPI
 
-## make padded EPI image with 25 voxels
+N4correctedEPI=${pathstem}/fMRI/${subject}/N4_meantopup_Run_1.nii
+
+N4BiasFieldCorrection -d 3 -i ${fixedImage} -o ${N4correctedEPI} -b [100] -c [200x200x200x200,0] -v 1 -s 4
+
+fixedImage=${N4correctedEPI}
+
+## pad EPI with 25 voxels
 
 #fixedImagePadded=${pathstem}/fMRI/${subject}/meantopup_Run_1_padded25.nii
 #movingImagePadded=${pathstem}/fMRI/${subject}/meantopup_Run_1_padded25.nii
 #maskImagePadded=${regDir}/fixedEpiMaskPadded25.nii
+
 #ImageMath 3 ${fixedImagePadded} PadImage ${fixedImage} 25
 
 
 ## make mask of slab image
+
+maskImage=${regDir}/N4fixedEpiMask.nii
 
 ThresholdImage 3 ${fixedImage} ${maskImage} 1100 Inf
 #ThresholdImage 3 ${fixedImagePadded} ${maskImagePadded} 1100 Inf
@@ -62,10 +70,12 @@ ThresholdImage 3 ${fixedImage} ${maskImage} 1100 Inf
 #outputPrefix=${regDir}/T1brainxEpiSlab
 #outputPrefix=${regDir}/T1brainxEpiSlabPadded25
 #outputPrefix=${regDir}/EpiSlabxT1brain
-outputPrefix=${regDir}/T1brainxEpiSlab_newANTs
+#outputPrefix=${regDir}/T1brainxEpiSlab_newANTs
+outputPrefix=${regDir}/T1brainxEpiSlab_DenoiseN4Update_
 
 ## insert ants command here
 # switched mask around for EPI to T1 and removed 'padded' inputs
+# updated command from Nick Tustison email
 
 antsRegistration --verbose 1 \
                  --dimensionality 3 \
@@ -75,17 +85,17 @@ antsRegistration --verbose 1 \
                  --winsorize-image-intensities [0.005,0.995] \
                  --output [${outputPrefix},${outputPrefix}Warped.nii.gz,${outputPrefix}InverseWarped.nii.gz] \
                  --initial-moving-transform [${fixedImage},${movingImage},1] \
-                 --transform translation[0.1] \
-                   --metric MI[${fixedImage},${movingImage},1,32,Random,0.25] \
-                   --convergence [50,1e-6,10] \
-                   --shrink-factors 1 \
-                   --smoothing-sigmas 0vox \
+                 --transform translation[0.2] \
+                   --metric MI[${fixedImage},${movingImage},1,32,Random,0.5] \
+                   --convergence [400x200x100,1e-6,10] \
+                   --shrink-factors 8x4x2 \
+                   --smoothing-sigmas 0x0x0vox \
                    --masks [${maskImage},NULL] \
-                 --transform Rigid[0.1] \
-                   --metric MI[${fixedImage},${movingImage},1,32,Random,0.25] \
-                   --convergence [500x250x50,1e-6,10] \
-                   --shrink-factors 2x2x1 \
-                   --smoothing-sigmas 2x1x0vox \
+                 --transform Rigid[0.2] \
+                   --metric MI[${fixedImage},${movingImage},1,32,Random,0.5] \
+                   --convergence [500x500x250x50,1e-6,10] \
+                   --shrink-factors 6x4x2x1 \
+                   --smoothing-sigmas 2x1x0x0vox \
                    --masks [${maskImage},NULL]
 
 #antsApplyTransforms -d 3 -i ${movingImage} -o ${outputPrefix}Transformed.nii -r ${fixedImage} -t T1brainxEpiSlab0GenericAffine.mat
