@@ -4922,3 +4922,1091 @@ cp: cannot stat ‘./*.cfg’: No such file or directory
     Job 5576747 is in state RUNNING
   (Thu Nov  5 16:01:39 GMT 2020) Still waiting for 1 jobs
 
+slurm_load_jobs error: Invalid job id specified
+  No more jobs in queue
+
+shapeupdatetotemplate()
+
+--------------------------------------------------------------------------------------
+ shapeupdatetotemplate---voxel-wise averaging of the warped images to the current template
+Thu Nov  5 16:11:40 GMT 2020
+--------------------------------------------------------------------------------------
+ bigimage 4 maxSize [224, 320, 320]
+ Setting physcal space of output average image based on largest image 
+ Averaging 18 images with dim = 3 vector components 1
+ reading para01_template025739_t10WarpedToTemplate.nii.gz
+ reading para01_template025773_t11WarpedToTemplate.nii.gz
+ reading para01_template025774_t12WarpedToTemplate.nii.gz
+ reading para01_template025846_t13WarpedToTemplate.nii.gz
+ reading para01_template025869_t14WarpedToTemplate.nii.gz
+ reading para01_template025974_t15WarpedToTemplate.nii.gz
+ reading para01_template026001_t16WarpedToTemplate.nii.gz
+ reading para01_template026040_t17WarpedToTemplate.nii.gz
+ reading para01_template026041_t18WarpedToTemplate.nii.gz
+ reading para01_template026069_t19WarpedToTemplate.nii.gz
+ reading para01_template026228_t110WarpedToTemplate.nii.gz
+ reading para01_template026371_t111WarpedToTemplate.nii.gz
+ reading para01_template026395_t112WarpedToTemplate.nii.gz
+ reading para01_template026795_t113WarpedToTemplate.nii.gz
+ reading para01_template027136_t114WarpedToTemplate.nii.gz
+ reading para01_template027137_t115WarpedToTemplate.nii.gz
+ reading para01_template027241_t116WarpedToTemplate.nii.gz
+ reading para01_template027532_t117WarpedToTemplate.nii.gz
+ applying Laplacian sharpening 
+ writing output 
+number of warps = 18
+para01_25739_t101Warp.nii.gz
+18 does not equal 0
+
+--------------------------------------------------------------------------------------
+ shapeupdatetotemplate---voxel-wise averaging of the inverse warp fields (from subject to template)
+   /applications/ANTS/ANTs-2.3.4/install/bin//AverageImages 3 para01_template0warp.nii.gz 0 para01_25739_t101Warp.nii.gz
+para01_25773_t111Warp.nii.gz
+para01_25774_t121Warp.nii.gz
+para01_25846_t131Warp.nii.gz
+para01_25869_t141Warp.nii.gz
+para01_25974_t151Warp.nii.gz
+para01_26001_t161Warp.nii.gz
+para01_26040_t171Warp.nii.gz
+para01_26041_t181Warp.nii.gz
+para01_26069_t191Warp.nii.gz
+para01_26228_t1101Warp.nii.gz
+para01_26371_t1111Warp.nii.gz
+para01_26395_t1121Warp.nii.gz
+para01_26795_t1131Warp.nii.gz
+para01_27136_t1141Warp.nii.gz
+para01_27137_t1151Warp.nii.gz
+para01_27241_t1161Warp.nii.gz
+para01_27532_t1171Warp.nii.gz
+Thu Nov  5 16:12:19 GMT 2020
+--------------------------------------------------------------------------------------
+ fn para01_25739_t101Warp.nii.gz 3 3
+ bigimage 4 size [224, 320, 320]
+ bigimage 4 size [224, 320, 320]
+ bigimage 4 size [224, 320, 320]
+ fn para01_25773_t111Warp.nii.gz 3 3
+ fn para01_25774_t121Warp.nii.gz 3 3
+ fn para01_25846_t131Warp.nii.gz 3 3
+ fn para01_25869_t141Warp.nii.gz 3 3
+ fn para01_25974_t151Warp.nii.gz 3 3
+ fn para01_26001_t161Warp.nii.gz 3 3
+ fn para01_26040_t171Warp.nii.gz 3 3
+ fn para01_26041_t181Warp.nii.gz 3 3
+ fn para01_26069_t191Warp.nii.gz 3 3
+ fn para01_26228_t1101Warp.nii.gz 3 3
+ fn para01_26371_t1111Warp.nii.gz 3 3
+ fn para01_26395_t1121Warp.nii.gz 3 3
+ fn para01_26795_t1131Warp.nii.gz 3 3
+ fn para01_27136_t1141Warp.nii.gz 3 3
+ fn para01_27137_t1151Warp.nii.gz 3 3
+ fn para01_27241_t1161Warp.nii.gz 3 3
+ fn para01_27532_t1171Warp.nii.gz 3 3
+ largest image [224, 320, 320]
+ Averaging 18 images with dim = 3 vector components 3
+ reading para01_25739_t101Warp.nii.gz for average 
+ reading para01_25773_t111Warp.nii.gz for average 
+ reading para01_25774_t121Warp.nii.gz for average 
+ reading para01_25846_t131Warp.nii.gz for average 
+ reading para01_25869_t141Warp.nii.gz for average 
+ reading para01_25974_t151Warp.nii.gz for average 
+ reading para01_26001_t161Warp.nii.gz for average 
+ reading para01_26040_t171Warp.nii.gz for average 
+ reading para01_26041_t181Warp.nii.gz for average 
+ reading para01_26069_t191Warp.nii.gz for average 
+ reading para01_26228_t1101Warp.nii.gz for average 
+ reading para01_26371_t1111Warp.nii.gz for average 
+ reading para01_26395_t1121Warp.nii.gz for average 
+ reading para01_26795_t1131Warp.nii.gz for average 
+ reading para01_27136_t1141Warp.nii.gz for average 
+ reading para01_27137_t1151Warp.nii.gz for average 
+ reading para01_27241_t1161Warp.nii.gz for average 
+ reading para01_27532_t1171Warp.nii.gz for average 
+
+--------------------------------------------------------------------------------------
+ shapeupdatetotemplate---scale the averaged inverse warp field by the gradient step
+   /applications/ANTS/ANTs-2.3.4/install/bin//MultiplyImages 3 para01_template0warp.nii.gz -0.25 para01_template0warp.nii.gz
+Thu Nov  5 16:13:42 GMT 2020
+--------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------
+ shapeupdatetotemplate---average the affine transforms (template <-> subject)
+                      ---transform the inverse field by the resulting average affine transform
+   /applications/ANTS/ANTs-2.3.4/install/bin//AverageAffineTransform 3 para01_template0GenericAffine.mat para01_*GenericAffine.mat
+   /applications/ANTS/ANTs-2.3.4/install/bin//antsApplyTransforms -d 3 -e vector -i para01_template0warp.nii.gz -o para01_template0warp.nii.gz -t [ para01_template0GenericAffine.mat,1 ] -r para01_template0.nii.gz --verbose 1
+--------------------------------------------------------------------------------------
+output_transform_filename: para01_template0GenericAffine.mat
+reference_transform_filename: NULL
+[0/18]: AFFINE: para01_25739_t100GenericAffine.mat
+[1/18]: AFFINE: para01_25773_t110GenericAffine.mat
+[2/18]: AFFINE: para01_25774_t120GenericAffine.mat
+[3/18]: AFFINE: para01_25846_t130GenericAffine.mat
+[4/18]: AFFINE: para01_25869_t140GenericAffine.mat
+[5/18]: AFFINE: para01_25974_t150GenericAffine.mat
+[6/18]: AFFINE: para01_26001_t160GenericAffine.mat
+[7/18]: AFFINE: para01_26040_t170GenericAffine.mat
+[8/18]: AFFINE: para01_26041_t180GenericAffine.mat
+[9/18]: AFFINE: para01_26069_t190GenericAffine.mat
+[10/18]: AFFINE: para01_26228_t1100GenericAffine.mat
+[11/18]: AFFINE: para01_26371_t1110GenericAffine.mat
+[12/18]: AFFINE: para01_26395_t1120GenericAffine.mat
+[13/18]: AFFINE: para01_26795_t1130GenericAffine.mat
+[14/18]: AFFINE: para01_27136_t1140GenericAffine.mat
+[15/18]: AFFINE: para01_27137_t1150GenericAffine.mat
+[16/18]: AFFINE: para01_27241_t1160GenericAffine.mat
+[17/18]: AFFINE: para01_27532_t1170GenericAffine.mat
+the reference affine file for center is selected as the first affine!
+new center is : [-1.51261, -28.8462, 6.67482]
+A=0.992517 -0.0225745 0.00793142
+0.0610116 0.99515 -0.0189935
+0.0052563 0.0330957 0.997891
+
+rotation R0.998102 -0.0614966 -0.00324522
+0.0613549 0.99756 -0.0333119
+0.00528587 0.0330496 0.99944
+
+upper R0.994405 0.0387006 0.0120258
+0 0.995204 0.013545
+0 0 0.997939
+
+s=0.250153 u=0.0166005 v=-0.00213408 w0.0307317 r=0.999388
+m_Rotation from vnl0.0166005 -0.00213408 0.0307317 0.999388
+internal_transform: ANTSAffine3DTransform (0x3a11080)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 809
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.992517 -0.0225745 0.00793142 
+    0.0610116 0.99515 -0.0189935 
+    0.0052563 0.0330957 0.997891 
+  Offset: [0.454931, -0.987703, -8.00673]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [1.17038, -1.06687, -8.98344]
+  Inverse: 
+    1.00616 0.0230756 -0.00755794 
+    -0.0617487 1.00282 0.0195781 
+    -0.00325192 -0.0333807 1.0015 
+  Singular: 0
+  Rotation:    0.0166005 -0.00213408 0.0307317 0.999388
+  S1, S2, S3: 0.994405, 0.995204, 0.997939
+  K1, K2, K3: 0.0389183, 0.0120934, 0.0136103
+
+A=0.919647 -0.0122635 0.0568882
+0.00930783 0.936532 0.0390081
+-0.0499764 -0.00495865 0.933831
+
+rotation R0.998476 -0.010416 0.0542014
+0.0101057 0.999931 0.00599656
+-0.0542601 -0.00543968 0.998512
+
+upper R0.921051 -0.00251145 0.00652589
+0 0.936622 0.0333332
+0 0 0.935759
+
+s=0.250096 u=-0.00286016 v=0.0271258 w0.00513239 r=0.999615
+m_Rotation from vnl-0.00286016 0.0271258 0.00513239 0.999615
+internal_transform: ANTSAffine3DTransform (0x3a115a0)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 816
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.919647 -0.0122635 0.0568882 
+    0.00930783 0.936532 0.0390081 
+    -0.0499764 -0.00495865 0.933831 
+  Offset: [-2.11698, 2.85653, 6.30149]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-1.26197, 4.93365, 6.07845]
+  Inverse: 
+    1.08361 0.0138369 -0.0665909 
+    -0.0131822 1.06737 -0.0437831 
+    0.0579224 0.00640824 1.06706 
+  Singular: 0
+  Rotation:    -0.00286016 0.0271258 0.00513239 0.999615
+  S1, S2, S3: 0.921051, 0.936622, 0.935759
+  K1, K2, K3: -0.00272672, 0.00708526, 0.0355887
+
+A=1.03189 -0.00293061 0.0212932
+-0.00596569 1.0762 -0.0570763
+-0.00801221 0.0144132 1.02903
+
+rotation R0.999953 0.00588419 0.00768639
+-0.00578107 0.999894 -0.0133701
+-0.00776425 0.0133251 0.999881
+
+upper R1.03194 -0.00926397 0.0136325
+0 1.07626 -0.0432331
+0 0 1.02983
+
+s=0.250008 u=0.00667402 v=0.00386279 w-0.00291641 r=0.999966
+m_Rotation from vnl0.00667402 0.00386279 -0.00291641 0.999966
+internal_transform: ANTSAffine3DTransform (0x3a118b0)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 823
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    1.03189 -0.00293061 0.0212932 
+    -0.00596569 1.0762 -0.0570763 
+    -0.00801221 0.0144132 1.02903 
+  Offset: [-0.717423, -5.59467, -11.4414]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-0.538993, -8.16474, -11.6513]
+  Inverse: 
+    0.96896 0.00290494 -0.0198891 
+    0.00576706 0.928522 0.0513823 
+    0.00746374 -0.0129828 0.970918 
+  Singular: 0
+  Rotation:    0.00667402 0.00386279 -0.00291641 0.999966
+  S1, S2, S3: 1.03194, 1.07626, 1.02983
+  K1, K2, K3: -0.00897726, 0.0132106, -0.0401697
+
+A=0.997179 -0.056751 0.0351707
+0.0672679 1.03324 -0.0453028
+-0.0288635 0.0140338 1.00944
+
+rotation R0.997317 -0.0668979 0.0297359
+0.0672772 0.997663 -0.0119421
+-0.0288675 0.0139106 0.999486
+
+upper R0.999862 0.0125095 0.00288845
+0 1.03481 -0.0335078
+0 0 1.01051
+
+s=0.250173 u=0.00646765 v=0.014661 w0.033567 r=0.999308
+m_Rotation from vnl0.00646765 0.014661 0.033567 0.999308
+internal_transform: ANTSAffine3DTransform (0x3a11bc0)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 830
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.997179 -0.056751 0.0351707 
+    0.0672679 1.03324 -0.0453028 
+    -0.0288635 0.0140338 1.00944 
+  Offset: [-2.19502, 2.50451, -4.87175]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-0.318948, 1.1416, -5.16987]
+  Inverse: 
+    0.998166 0.0552634 -0.0322976 
+    -0.0636944 0.963716 0.0454698 
+    0.0294265 -0.0118179 0.989089 
+  Singular: 0
+  Rotation:    0.00646765 0.014661 0.033567 0.999308
+  S1, S2, S3: 0.999862, 1.03481, 1.01051
+  K1, K2, K3: 0.0125112, 0.00288884, -0.0323805
+
+A=0.93201 0.0993055 0.0102931
+-0.097259 0.979564 -0.0607168
+-0.0163297 0.021954 0.978359
+
+rotation R0.994448 0.10415 0.0150172
+-0.103775 0.994313 -0.0239254
+-0.0174237 0.0222342 0.999601
+
+upper R0.937214 -0.00328235 -0.000509804
+0 0.984825 -0.0375465
+0 0 0.979576
+
+s=0.250364 u=0.0115567 v=0.00812206 w-0.052057 r=0.998544
+m_Rotation from vnl0.0115567 0.00812206 -0.052057 0.998544
+internal_transform: ANTSAffine3DTransform (0x3a11ed0)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 837
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.93201 0.0993055 0.0102931 
+    -0.097259 0.979564 -0.0607168 
+    -0.0163297 0.021954 0.978359 
+  Offset: [0.56788, -0.0747826, 5.64206]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-2.12516, 0.256546, 4.88902]
+  Inverse: 
+    1.06145 -0.107207 -0.0178205 
+    0.106339 1.0087 0.0614812 
+    0.0153304 -0.0244243 1.02044 
+  Singular: 0
+  Rotation:    0.0115567 0.00812206 -0.052057 0.998544
+  S1, S2, S3: 0.937214, 0.984825, 0.979576
+  K1, K2, K3: -0.00350224, -0.000543957, -0.0381251
+
+A=1.02306 -0.0186261 0.00578587
+-0.0113634 0.985842 0.0698308
+-0.0107642 -0.0751567 0.977079
+
+rotation R0.999883 0.0102711 0.0113369
+-0.011106 0.997029 0.0762236
+-0.0105204 -0.0763405 0.997026
+
+upper R1.02318 -0.0287821 -0.00526957
+0 0.988459 -0.00490799
+0 0 0.979562
+
+s=0.25019 u=-0.03817 v=0.00546847 w-0.00534834 r=0.999242
+m_Rotation from vnl-0.03817 0.00546847 -0.00534834 0.999242
+internal_transform: ANTSAffine3DTransform (0x3a121e0)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 844
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    1.02306 -0.0186261 0.00578587 
+    -0.0113634 0.985842 0.0698308 
+    -0.0107642 -0.0751567 0.977079 
+  Offset: [-1.06986, -1.10924, -3.45559]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-0.528819, -0.21753, -1.42431]
+  Inverse: 
+    0.977587 0.0179311 -0.0070704 
+    0.0104485 1.00906 -0.0721781 
+    0.0115735 0.0778139 1.01783 
+  Singular: 0
+  Rotation:    -0.03817 0.00546847 -0.00534834 0.999242
+  S1, S2, S3: 1.02318, 0.988459, 0.979562
+  K1, K2, K3: -0.0281301, -0.0051502, -0.00496529
+
+A=1.06154 0.0318024 -0.0137277
+0.0101666 0.944697 -0.0580859
+0.0195567 0.0910836 1.023
+
+rotation R0.999785 -0.0112868 -0.0174228
+0.00957523 0.995395 -0.0953749
+0.018419 0.0951875 0.995289
+
+upper R1.06177 0.0425189 0.00456176
+0 0.948658 0.0397137
+0 0 1.02396
+
+s=0.250298 u=0.0476975 v=-0.00897115 w0.00522174 r=0.998808
+m_Rotation from vnl0.0476975 -0.00897115 0.00522174 0.998808
+internal_transform: ANTSAffine3DTransform (0x3a124f0)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 851
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    1.06154 0.0318024 -0.0137277 
+    0.0101666 0.944697 -0.0580859 
+    0.0195567 0.0910836 1.023 
+  Offset: [-0.276333, 2.12209, 19.2768]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-1.37842, 3.31428, 16.7733]
+  Inverse: 
+    0.942146 -0.0327562 0.0107828 
+    -0.0111854 1.05317 0.0596484 
+    -0.017015 -0.0931429 0.971997 
+  Singular: 0
+  Rotation:    0.0476975 -0.00897115 0.00522174 0.998808
+  S1, S2, S3: 1.06177, 0.948658, 1.02396
+  K1, K2, K3: 0.0400455, 0.0042964, 0.041863
+
+A=1.05072 -0.00810481 -0.0187789
+-0.022303 1.01328 0.0592599
+0.0166888 -0.0647068 1.0746
+
+rotation R0.999649 0.0221837 -0.0144993
+-0.021219 0.997749 0.063607
+0.0158777 -0.063277 0.99787
+
+upper R1.05109 -0.03063 -0.00296758
+0 1.01491 -0.00928762
+0 0 1.07635
+
+s=0.250148 u=-0.0317398 v=-0.00759873 w-0.0108571 r=0.999408
+m_Rotation from vnl-0.0317398 -0.00759873 -0.0108571 0.999408
+internal_transform: ANTSAffine3DTransform (0x3a12800)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 858
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    1.05072 -0.00810481 -0.0187789 
+    -0.022303 1.01328 0.0592599 
+    0.0166888 -0.0647068 1.0746 
+  Offset: [4.8651, -2.72012, -11.1239]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [4.89683, -2.67379, -8.7846]
+  Inverse: 
+    0.951656 0.0086435 0.0161538 
+    0.0217345 0.983632 -0.0538635 
+    -0.0134707 0.0590948 0.927083 
+  Singular: 0
+  Rotation:    -0.0317398 -0.00759873 -0.0108571 0.999408
+  S1, S2, S3: 1.05109, 1.01491, 1.07635
+  K1, K2, K3: -0.0291413, -0.00282335, -0.00915117
+
+A=1.07408 0.0738132 -0.00264058
+0.0127155 1.07323 0.066822
+-0.0157142 -0.0797838 1.10202
+
+rotation R0.999823 -0.0128741 0.0137233
+0.0118363 0.997248 0.0731898
+-0.0146278 -0.0730144 0.997224
+
+upper R1.07427 0.0876703 -0.0179693
+0 1.07515 -0.0137911
+0 0 1.10381
+
+s=0.250178 u=-0.0365771 v=0.00709283 w0.00618202 r=0.999287
+m_Rotation from vnl-0.0365771 0.00709283 0.00618202 0.999287
+internal_transform: ANTSAffine3DTransform (0x3a12dd0)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 865
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    1.07408 0.0738132 -0.00264058 
+    0.0127155 1.07323 0.066822 
+    -0.0157142 -0.0797838 1.10202 
+  Offset: [0.633994, -5.81528, -21.1696]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-1.62492, -7.50085, -18.1635]
+  Inverse: 
+    0.931868 -0.063638 0.00609164 
+    -0.0118148 0.928394 -0.0563224 
+    0.0124326 0.0663064 0.903436 
+  Singular: 0
+  Rotation:    -0.0365771 0.00709283 0.00618202 0.999287
+  S1, S2, S3: 1.07427, 1.07515, 1.10381
+  K1, K2, K3: 0.0816088, -0.0167269, -0.0128272
+
+A=0.916359 -0.0196161 -0.00975617
+9.21566e-05 0.987087 0.00950443
+0.00764599 0.0112436 0.972638
+
+rotation R0.999965 -0.000196968 -0.00834188
+0.000100565 0.999933 -0.0115553
+0.00834359 0.0115541 0.999898
+
+upper R0.916391 -0.0194224 -0.00163958
+0 0.987155 0.0207437
+0 0 0.972511
+
+s=0.250006 u=0.0057775 v=-0.00417147 w7.4385e-05 r=0.999975
+m_Rotation from vnl0.0057775 -0.00417147 7.4385e-05 0.999975
+internal_transform: ANTSAffine3DTransform (0x3a12fe0)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 872
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.916359 -0.0196161 -0.00975617 
+    9.21566e-05 0.987087 0.00950443 
+    0.00764599 0.0112436 0.972638 
+  Offset: [2.68624, 0.658663, 11.2378]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [3.31348, 1.09444, 10.7192]
+  Inverse: 
+    1.09118 0.0215626 0.0107346 
+    -1.9283e-05 1.01319 -0.00990092 
+    -0.00857767 -0.011882 1.02816 
+  Singular: 0
+  Rotation:    0.0057775 -0.00417147 7.4385e-05 0.999975
+  S1, S2, S3: 0.916391, 0.987155, 0.972511
+  K1, K2, K3: -0.0211944, -0.00178917, 0.0210136
+
+A=0.993243 0.0279612 0.00681929
+-0.024878 1.07487 0.0340607
+0.0118702 -0.0525554 1.00193
+
+rotation R0.999615 0.0255927 -0.0107057
+-0.0250376 0.998479 0.0491113
+0.0119463 -0.0488244 0.998736
+
+upper R0.993625 0.000410431 0.0179332
+0 1.07652 -0.0147352
+0 0 1.00226
+
+s=0.250099 u=-0.0244936 v=-0.00566525 w-0.0126626 r=0.999604
+m_Rotation from vnl-0.0244936 -0.00566525 -0.0126626 0.999604
+internal_transform: ANTSAffine3DTransform (0x3a132f0)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 879
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.993243 0.0279612 0.00681929 
+    -0.024878 1.07487 0.0340607 
+    0.0118702 -0.0525554 1.00193 
+  Offset: [3.36576, -0.139489, -4.3658]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [2.61492, -2.03422, -2.85485]
+  Inverse: 
+    1.00621 -0.0264661 -0.00594872 
+    0.0236274 0.92818 -0.0317144 
+    -0.0106815 0.0490004 0.996481 
+  Singular: 0
+  Rotation:    -0.0244936 -0.00566525 -0.0126626 0.999604
+  S1, S2, S3: 0.993625, 1.07652, 1.00226
+  K1, K2, K3: 0.000413064, 0.0180483, -0.0136878
+
+A=0.994945 -0.0114346 -0.0157593
+-0.0103573 1.02584 0.0214004
+-0.00995704 -0.0102043 0.993147
+
+rotation R0.999896 0.0103071 0.0101113
+-0.0104088 0.999895 0.010059
+-0.0100066 -0.0101632 0.999898
+
+upper R0.995049 -0.022009 -0.0259184
+0 1.02571 0.0111422
+0 0 0.993102
+
+s=0.25001 u=-0.00505574 v=0.00502967 w-0.00517918 r=0.999961
+m_Rotation from vnl-0.00505574 0.00502967 -0.00517918 0.999961
+internal_transform: ANTSAffine3DTransform (0x3a13600)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 886
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.994945 -0.0114346 -0.0157593 
+    -0.0103573 1.02584 0.0214004 
+    -0.00995704 -0.0102043 0.993147 
+  Offset: [0.732675, -1.95995, 0.895138]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [0.964975, -2.54672, 1.15881]
+  Inverse: 
+    1.00536 0.0113625 0.0157082 
+    0.0099381 0.974718 -0.0208456 
+    0.0101816 0.0101289 1.00684 
+  Singular: 0
+  Rotation:    -0.00505574 0.00502967 -0.00517918 0.999961
+  S1, S2, S3: 0.995049, 1.02571, 0.993102
+  K1, K2, K3: -0.0221185, -0.0260474, 0.0108629
+
+A=1.04378 -0.0129637 -0.0644818
+-0.0184679 1.02542 -0.207387
+0.0503192 0.166316 0.99937
+
+rotation R0.998684 0.00968998 -0.0503614
+-0.0176699 0.986875 -0.160517
+0.048145 0.161196 0.985747
+
+upper R1.04516 -0.0230585 -0.0126178
+0 1.03865 -0.0441951
+0 0 1.02166
+
+s=0.250902 u=0.0807183 v=-0.0247154 w-0.00686464 r=0.996407
+m_Rotation from vnl0.0807183 -0.0247154 -0.00686464 0.996407
+internal_transform: ANTSAffine3DTransform (0x3a13910)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 893
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    1.04378 -0.0129637 -0.0644818 
+    -0.0184679 1.02542 -0.207387 
+    0.0503192 0.166316 0.99937 
+  Offset: [-1.24329, -1.24461, 16.6028]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-1.36597, -3.33431, 11.7249]
+  Inverse: 
+    0.955096 0.00201176 0.0620426 
+    0.00723195 0.943468 0.196252 
+    -0.0492935 -0.157114 0.964846 
+  Singular: 0
+  Rotation:    0.0807183 -0.0247154 -0.00686464 0.996407
+  S1, S2, S3: 1.04516, 1.03865, 1.02166
+  K1, K2, K3: -0.0220622, -0.0120726, -0.0425506
+
+A=1.04417 0.00599883 -0.0365648
+-0.00763484 0.97538 0.0892352
+0.0309614 -0.0783265 1.00921
+
+rotation R0.999534 0.00965854 -0.0289575
+-0.0073085 0.996753 0.0801892
+0.029638 -0.0799402 0.996359
+
+upper R1.04465 -0.00345397 -0.00728906
+0 0.978532 0.0079159
+0 0 1.01375
+
+s=0.25023 u=-0.0400692 v=-0.0146623 w-0.00424566 r=0.99908
+m_Rotation from vnl-0.0400692 -0.0146623 -0.00424566 0.99908
+internal_transform: ANTSAffine3DTransform (0x3a13c20)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 900
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    1.04417 0.00599883 -0.0365648 
+    -0.00763484 0.97538 0.0892352 
+    0.0309614 -0.0783265 1.00921 
+  Offset: [-0.795406, -5.46506, 0.223097]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-1.27932, -4.14769, 2.49715]
+  Inverse: 
+    0.956644 -0.0030784 0.0349325 
+    0.0101015 1.01798 -0.0896448 
+    -0.0285648 0.0791017 0.982847 
+  Singular: 0
+  Rotation:    -0.0400692 -0.0146623 -0.00424566 0.99908
+  S1, S2, S3: 1.04465, 0.978532, 1.01375
+  K1, K2, K3: -0.00330633, -0.0069775, 0.00808957
+
+A=1.00828 -0.0016433 0.0156645
+-0.0163945 1.02323 0.0815343
+-0.00700688 -0.0640511 0.979339
+
+rotation R0.999844 0.0157909 0.00795155
+-0.0162573 0.997913 0.0624852
+-0.00694826 -0.0626047 0.998014
+
+upper R1.00844 -0.0178331 0.00753186
+0 1.02508 0.0203004
+0 0 0.982613
+
+s=0.250132 u=-0.031289 v=0.00372692 w-0.0080163 r=0.999471
+m_Rotation from vnl-0.031289 0.00372692 -0.0080163 0.999471
+internal_transform: ANTSAffine3DTransform (0x3a13f30)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 907
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    1.00828 -0.0016433 0.0156645 
+    -0.0163945 1.02323 0.0815343 
+    -0.00700688 -0.0640511 0.979339 
+  Offset: [-1.34009, -4.31653, -0.960626]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-1.20065, -4.4177, 0.759692]
+  Inverse: 
+    0.991688 0.000596612 -0.0159118 
+    0.0152443 0.972237 -0.0811869 
+    0.00809225 0.0635909 1.01567 
+  Singular: 0
+  Rotation:    -0.031289 0.00372692 -0.0080163 0.999471
+  S1, S2, S3: 1.00844, 1.02508, 0.982613
+  K1, K2, K3: -0.0176839, 0.00746886, 0.0198036
+
+A=0.974188 -0.0373466 0.0432513
+0.0554335 0.957703 -0.0657855
+-0.0436922 0.0407118 0.938424
+
+rotation R0.997386 -0.054828 0.0470729
+0.0567535 0.997563 -0.040592
+-0.0447326 0.0431575 0.998066
+
+upper R0.976742 0.0152829 -0.00257349
+0 0.959173 -0.0274965
+0 0 0.941316
+
+s=0.250219 u=0.0209557 v=0.0229714 w0.0279198 r=0.999126
+m_Rotation from vnl0.0209557 0.0229714 0.0279198 0.999126
+internal_transform: ANTSAffine3DTransform (0x3a14240)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 914
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.974188 -0.0373466 0.0432513 
+    0.0554335 0.957703 -0.0657855 
+    -0.0436922 0.0407118 0.938424 
+  Offset: [-0.908709, 2.59136, -6.51218]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [0.496335, 3.28852, -8.03148]
+  Inverse: 
+    1.02214 0.0417376 -0.0441837 
+    -0.0557282 1.03879 0.0753896 
+    0.0500075 -0.0431226 1.06029 
+  Singular: 0
+  Rotation:    0.0209557 0.0229714 0.0279198 0.999126
+  S1, S2, S3: 0.976742, 0.959173, 0.941316
+  K1, K2, K3: 0.0156469, -0.00263477, -0.0286669
+
+A=0.931839 0.0467514 -0.0392632
+-0.0371191 0.970673 -0.1519
+0.0346756 0.17452 0.960712
+
+rotation R0.998518 0.0326314 -0.0435647
+-0.0397752 0.983808 -0.174754
+0.0371569 0.176228 0.983648
+
+upper R0.933222 0.014558 0.00253387
+0 0.987237 0.0185826
+0 0 0.973258
+
+s=0.25107 u=0.0881212 v=-0.0202668 w-0.0181791 r=0.995738
+m_Rotation from vnl0.0881212 -0.0202668 -0.0181791 0.995738
+internal_transform: ANTSAffine3DTransform (0x3a14550)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 921
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.931839 0.0467514 -0.0392632 
+    -0.0371191 0.970673 -0.1519 
+    0.0346756 0.17452 0.960712 
+  Offset: [1.02843, 6.77277, 22.4296]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-0.479147, 6.66098, 17.0807]
+  Inverse: 
+    1.06956 -0.0577321 0.0345836 
+    0.0338958 0.999907 0.159482 
+    -0.0447618 -0.179556 1.01068 
+  Singular: 0
+  Rotation:    0.0881212 -0.0202668 -0.0181791 0.995738
+  S1, S2, S3: 0.933222, 0.987237, 0.973258
+  K1, K2, K3: 0.0155997, 0.00271519, 0.0188229
+
+A=0.954326 -0.0532131 -0.00267962
+0.0191118 0.872234 0.212958
+0.00674003 -0.169414 0.972475
+
+rotation R0.999775 -0.0183143 -0.010739
+0.020022 0.981575 0.190024
+0.00706102 -0.190196 0.981721
+
+upper R0.954541 -0.0369335 0.00845148
+0 0.889359 0.0241217
+0 0 0.995194
+
+s=0.251162 u=-0.095497 v=-0.0044707 w0.00962862 r=0.995373
+m_Rotation from vnl-0.095497 -0.0044707 0.00962862 0.995373
+internal_transform: ANTSAffine3DTransform (0x3a14860)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 3
+  Modified Time: 928
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.954326 -0.0532131 -0.00267962 
+    0.0191118 0.872234 0.212958 
+    0.00674003 -0.169414 0.972475 
+  Offset: [-2.43012, 9.18676, -8.20136]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [-0.843927, 14.2649, -3.50834]
+  Inverse: 
+    1.0467 0.0617889 -0.0106467 
+    -0.0203 1.09851 -0.240613 
+    -0.0107909 0.190942 0.986461 
+  Singular: 0
+  Rotation:    -0.095497 -0.0044707 0.00962862 0.995373
+  S1, S2, S3: 0.954541, 0.889359, 0.995194
+  K1, K2, K3: -0.0386924, 0.00885398, 0.0271226
+
+average 3D scale parameter 
+[0]:1	0.994405 0.995204 0.997939 
+[1]:1	0.921051 0.936622 0.935759 
+[2]:1	1.03194 1.07626 1.02983 
+[3]:1	0.999862 1.03481 1.01051 
+[4]:1	0.937214 0.984825 0.979576 
+[5]:1	1.02318 0.988459 0.979562 
+[6]:1	1.06177 0.948658 1.02396 
+[7]:1	1.05109 1.01491 1.07635 
+[8]:1	1.07427 1.07515 1.10381 
+[9]:1	0.916391 0.987155 0.972511 
+[10]:1	0.993625 1.07652 1.00226 
+[11]:1	0.995049 1.02571 0.993102 
+[12]:1	1.04516 1.03865 1.02166 
+[13]:1	1.04465 0.978532 1.01375 
+[14]:1	1.00844 1.02508 0.982613 
+[15]:1	0.976742 0.959173 0.941316 
+[16]:1	0.933222 0.987237 0.973258 
+[17]:1	0.954541 0.889359 0.995194 
+sum:w=18	17.9626 18.0223 18.033 
+average	0.997922 1.00124 1.00183 
+average 3D shearing parameter 
+[0]:1	0.0389183 0.0120934 0.0136103 
+[1]:1	-0.00272672 0.00708526 0.0355887 
+[2]:1	-0.00897726 0.0132106 -0.0401697 
+[3]:1	0.0125112 0.00288884 -0.0323805 
+[4]:1	-0.00350224 -0.000543957 -0.0381251 
+[5]:1	-0.0281301 -0.0051502 -0.00496529 
+[6]:1	0.0400455 0.0042964 0.041863 
+[7]:1	-0.0291413 -0.00282335 -0.00915117 
+[8]:1	0.0816088 -0.0167269 -0.0128272 
+[9]:1	-0.0211944 -0.00178917 0.0210136 
+[10]:1	0.000413064 0.0180483 -0.0136878 
+[11]:1	-0.0221185 -0.0260474 0.0108629 
+[12]:1	-0.0220622 -0.0120726 -0.0425506 
+[13]:1	-0.00330633 -0.0069775 0.00808957 
+[14]:1	-0.0176839 0.00746886 0.0198036 
+[15]:1	0.0156469 -0.00263477 -0.0286669 
+[16]:1	0.0155997 0.00271519 0.0188229 
+[17]:1	-0.0386924 0.00885398 0.0271226 
+sum:w=18	0.00720821 0.00189513 -0.0257471 
+average	0.000400456 0.000105285 -0.00143039 
+average 3D rotation parameter 
+[0]:1	0.0166005 -0.00213408 0.0307317 0.999388 
+[1]:1	-0.00286016 0.0271258 0.00513239 0.999615 
+[2]:1	0.00667402 0.00386279 -0.00291641 0.999966 
+[3]:1	0.00646765 0.014661 0.033567 0.999308 
+[4]:1	0.0115567 0.00812206 -0.052057 0.998544 
+[5]:1	-0.03817 0.00546847 -0.00534834 0.999242 
+[6]:1	0.0476975 -0.00897115 0.00522174 0.998808 
+[7]:1	-0.0317398 -0.00759873 -0.0108571 0.999408 
+[8]:1	-0.0365771 0.00709283 0.00618202 0.999287 
+[9]:1	0.0057775 -0.00417147 7.4385e-05 0.999975 
+[10]:1	-0.0244936 -0.00566525 -0.0126626 0.999604 
+[11]:1	-0.00505574 0.00502967 -0.00517918 0.999961 
+[12]:1	0.0807183 -0.0247154 -0.00686464 0.996407 
+[13]:1	-0.0400692 -0.0146623 -0.00424566 0.99908 
+[14]:1	-0.031289 0.00372692 -0.0080163 0.999471 
+[15]:1	0.0209557 0.0229714 0.0279198 0.999126 
+[16]:1	0.0881212 -0.0202668 -0.0181791 0.995738 
+[17]:1	-0.095497 -0.0044707 0.00962862 0.995373 
+sum:w=18	-0.0211826 0.00540508 -0.00786875 17.9783 
+average	-0.00117681 0.000300282 -0.000437153 0.998794 
+average 3D translation parameter 
+[0]:1	1.17038 -1.06687 -8.98344 
+[1]:1	-1.26197 4.93365 6.07845 
+[2]:1	-0.538993 -8.16474 -11.6513 
+[3]:1	-0.318948 1.1416 -5.16987 
+[4]:1	-2.12516 0.256546 4.88902 
+[5]:1	-0.528819 -0.21753 -1.42431 
+[6]:1	-1.37842 3.31428 16.7733 
+[7]:1	4.89683 -2.67379 -8.7846 
+[8]:1	-1.62492 -7.50085 -18.1635 
+[9]:1	3.31348 1.09444 10.7192 
+[10]:1	2.61492 -2.03422 -2.85485 
+[11]:1	0.964975 -2.54672 1.15881 
+[12]:1	-1.36597 -3.33431 11.7249 
+[13]:1	-1.27932 -4.14769 2.49715 
+[14]:1	-1.20065 -4.4177 0.759692 
+[15]:1	0.496335 3.28852 -8.03148 
+[16]:1	-0.479147 6.66098 17.0807 
+[17]:1	-0.843927 14.2649 -3.50834 
+sum:w=18	0.51068 -1.14952 3.10962 
+average	0.0283711 -0.0638621 0.172757 
+average_iaffANTSAffine3DTransform (0x3a10dc0)
+  RTTI typeinfo:   itk::ANTSAffine3DTransform<double>
+  Reference Count: 2
+  Modified Time: 931
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.997921 0.00127536 0.000707236 
+    -0.000874248 1.00124 0.00092826 
+    -0.000599009 -0.00235989 1.00183 
+  Offset: [0.0572953, -0.0357079, 0.0915461]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [0.0283711, -0.0638621, 0.172757]
+  Inverse: 
+    1.00208 -0.0012781 -0.000706228 
+    0.000874428 0.998762 -0.000926032 
+    0.000601218 0.00235189 0.998168 
+  Singular: 0
+  Rotation:    -0.00117823 0.000300644 -0.00043768 0.999999
+  S1, S2, S3: 0.997922, 1.00124, 1.00183
+  K1, K2, K3: 0.000400456, 0.000105285, -0.00143039
+
+affine_outputMatrixOffsetTransformBase (0x3a10c00)
+  RTTI typeinfo:   itk::MatrixOffsetTransformBase<double, 3u, 3u>
+  Reference Count: 2
+  Modified Time: 935
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    0.997921 0.00127536 0.000707236 
+    -0.000874248 1.00124 0.00092826 
+    -0.000599009 -0.00235989 1.00183 
+  Offset: [0.0572953, -0.0357079, 0.0915461]
+  Center: [-1.51261, -28.8462, 6.67482]
+  Translation: [0.0283711, -0.0638621, 0.172757]
+  Inverse: 
+    1.00208 -0.0012781 -0.000706228 
+    0.000874428 0.998762 -0.000926032 
+    0.000601218 0.00235189 0.998168 
+  Singular: 0
+
+wrote file to : para01_template0GenericAffine.mat
+Using double precision for computations.
+Input vector image: para01_template0warp.nii.gz
+Reference image: para01_template0.nii.gz
+=============================================================================
+The composite transform comprises the following transforms (in order): 
+  1. inverse of para01_template0GenericAffine.mat (type = MatrixOffsetTransformBase)
+=============================================================================
+Default pixel value: 0
+Interpolation type: LinearInterpolateImageFunction
+Output warped image: para01_template0warp.nii.gz
+para01_template0warp.nii.gz Max : [0.295948, 0.33116, 0.288243] Min : [0, 0, 0] Mean : [0.0228922, 0.0322212, 0.0417738] Var : 0.00360906 SD : 0.0600754
+--------------------------------------------------------------------------------------
+ shapeupdatetotemplate---warp each template by the resulting transforms
+   /applications/ANTS/ANTs-2.3.4/install/bin//antsApplyTransforms -d 3 --float 1 --verbose 1 -i para01_template0.nii.gz -o para01_template0.nii.gz -t [ para01_template0GenericAffine.mat,1 ] -t para01_template0warp.nii.gz -t para01_template0warp.nii.gz -t para01_template0warp.nii.gz -t para01_template0warp.nii.gz -r para01_template0.nii.gz
+--------------------------------------------------------------------------------------
+Using single precision for computations.
+Input scalar image: para01_template0.nii.gz
+Reference image: para01_template0.nii.gz
+=============================================================================
+The composite transform comprises the following transforms (in order): 
+  1. para01_template0warp.nii.gz (type = DisplacementFieldTransform)
+  2. para01_template0warp.nii.gz (type = DisplacementFieldTransform)
+  3. para01_template0warp.nii.gz (type = DisplacementFieldTransform)
+  4. para01_template0warp.nii.gz (type = DisplacementFieldTransform)
+  5. inverse of para01_template0GenericAffine.mat (type = MatrixOffsetTransformBase)
+=============================================================================
+Default pixel value: 0
+Interpolation type: LinearInterpolateImageFunction
+Output warped image: para01_template0.nii.gz
+
+--------------------------------------------------------------------------------------
+ Backing up results from iteration 3
+--------------------------------------------------------------------------------------
+cp: cannot stat ‘para01_template1warplog.txt’: No such file or directory
+cp: cannot stat ‘./*.cfg’: No such file or directory
+
+--------------------------------------------------------------------------------------
+ Starting ANTS registration on SLURM cluster. Submitted 18 jobs 
+--------------------------------------------------------------------------------------
+  Waiting for 18 jobs: 5576866 5576867 5576868 5576869 5576870 5576871 5576872 5576873 5576874 5576875 5576876 5576877 5576878 5576879 5576880 5576881 5576882 5576883
+    Job 5576883 is in state PENDING
+    Job 5576866 is in state RUNNING
+    Job 5576868 is in state RUNNING
+    Job 5576870 is in state RUNNING
+    Job 5576867 is in state RUNNING
+    Job 5576881 is in state RUNNING
+    Job 5576872 is in state RUNNING
+    Job 5576882 is in state RUNNING
+    Job 5576879 is in state RUNNING
+    Job 5576875 is in state RUNNING
+    Job 5576876 is in state RUNNING
+    Job 5576873 is in state RUNNING
+    Job 5576877 is in state RUNNING
+    Job 5576869 is in state RUNNING
+    Job 5576871 is in state RUNNING
+    Job 5576874 is in state RUNNING
+    Job 5576878 is in state RUNNING
+    Job 5576880 is in state RUNNING
+  (Thu Nov  5 16:16:34 GMT 2020) Still waiting for 18 jobs
+
+    Job 5576883 is in state RUNNING
+    Job 5576866 is in state RUNNING
+    Job 5576868 is in state RUNNING
+    Job 5576870 is in state RUNNING
+    Job 5576867 is in state RUNNING
+    Job 5576881 is in state RUNNING
+    Job 5576872 is in state RUNNING
+    Job 5576882 is in state RUNNING
+    Job 5576879 is in state RUNNING
+    Job 5576875 is in state RUNNING
+    Job 5576876 is in state RUNNING
+    Job 5576873 is in state RUNNING
+    Job 5576877 is in state RUNNING
+    Job 5576869 is in state RUNNING
+    Job 5576871 is in state RUNNING
+    Job 5576874 is in state RUNNING
+    Job 5576878 is in state RUNNING
+    Job 5576880 is in state RUNNING
+  (Thu Nov  5 16:26:34 GMT 2020) Still waiting for 18 jobs
+
+    Job 5576872 is in state RUNNING
+    Job 5576881 is in state RUNNING
+    Job 5576875 is in state RUNNING
+    Job 5576882 is in state RUNNING
+    Job 5576879 is in state RUNNING
+    Job 5576866 is in state RUNNING
+    Job 5576883 is in state RUNNING
+    Job 5576867 is in state RUNNING
+    Job 5576870 is in state RUNNING
+    Job 5576868 is in state RUNNING
+    Job 5576874 is in state RUNNING
+    Job 5576871 is in state RUNNING
+    Job 5576880 is in state RUNNING
+    Job 5576878 is in state RUNNING
+    Job 5576876 is in state RUNNING
+    Job 5576869 is in state RUNNING
+    Job 5576877 is in state RUNNING
+    Job 5576873 is in state RUNNING
+  (Thu Nov  5 16:36:34 GMT 2020) Still waiting for 18 jobs
+
+    Job 5576868 is in state RUNNING
+    Job 5576870 is in state RUNNING
+    Job 5576867 is in state RUNNING
+    Job 5576883 is in state RUNNING
+    Job 5576866 is in state RUNNING
+    Job 5576882 is in state RUNNING
+    Job 5576879 is in state RUNNING
+    Job 5576875 is in state RUNNING
+    Job 5576881 is in state RUNNING
+    Job 5576872 is in state RUNNING
+    Job 5576873 is in state RUNNING
+    Job 5576877 is in state RUNNING
+    Job 5576869 is in state RUNNING
+    Job 5576876 is in state RUNNING
+    Job 5576878 is in state RUNNING
+    Job 5576880 is in state RUNNING
+    Job 5576871 is in state RUNNING
+    Job 5576874 is in state RUNNING
+  (Thu Nov  5 16:46:34 GMT 2020) Still waiting for 18 jobs
+
+    Job 5576871 is in state RUNNING
+    Job 5576874 is in state RUNNING
+    Job 5576880 is in state RUNNING
+    Job 5576878 is in state RUNNING
+    Job 5576876 is in state RUNNING
+    Job 5576877 is in state RUNNING
+    Job 5576869 is in state RUNNING
+    Job 5576873 is in state RUNNING
+    Job 5576872 is in state RUNNING
+    Job 5576881 is in state RUNNING
+    Job 5576879 is in state RUNNING
+    Job 5576882 is in state RUNNING
+    Job 5576875 is in state RUNNING
+    Job 5576883 is in state RUNNING
+    Job 5576866 is in state RUNNING
+    Job 5576867 is in state RUNNING
+    Job 5576868 is in state RUNNING
+    Job 5576870 is in state RUNNING
+  (Thu Nov  5 16:56:34 GMT 2020) Still waiting for 18 jobs
+
