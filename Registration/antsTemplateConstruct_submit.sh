@@ -63,7 +63,7 @@ mpi_tasks_per_node=$(echo "$SLURM_TASKS_PER_NODE" | sed -e  's/^\([0-9][0-9]*\).
 . /etc/profile.d/modules.sh                # Leave this line (enables the module command)
 module purge                               # Removes all modules still loaded
 module load default-wbic                   # REQUIRED - loads the basic environment
-module load ANTS/2.2.0
+module load ANTS/2.3.4
 
 
 #! Are you using OpenMP (NB this is unrelated to OpenMPI)? If so increase this
