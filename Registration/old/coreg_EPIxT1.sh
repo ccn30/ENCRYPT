@@ -12,8 +12,8 @@ pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
 
 ## separate txt file with subject and date IDs
 
-mysubjs=${pathstem}/testsubjcode.txt
-#!mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+#!mysubjs=${pathstem}/testsubjcode.txt
+mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 
 for subjID in `cat $mysubjs`
 do

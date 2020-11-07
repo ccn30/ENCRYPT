@@ -19,12 +19,13 @@ echo "******** starting $subject ********"
 ## set paths
 
 rawpathstem=${pathstem}/images/${subjID}
-regDir=${pathstem}/registrations/${subject}/T2xT1
-if [ -f "${regDir}" ]; then
-	echo "${regDir} exists"
-else
-	mkdir ${regDir}
-fi
+regDir=${pathstem}/registrations/6.11.20/${subject}/T2xT1 #now old
+#if [ -f "${regDir}" ]; then
+#	echo "${regDir} exists"
+#else
+#	mkdir ${regDir}
+#fi
+newRegDir=${pathstem}/registrations/${subject}
 
 cd ${rawpathstem}
 
@@ -50,15 +51,21 @@ DenoiseN4T2=${T2path}/denoise_n4_t2.nii
 
 ## ANTs commands
 
-antsRegistrationSyNQuick.sh -d 3 -f ${N4T2} -m ${wholeT1} -o T1xT2_ANTs_
+#antsRegistrationSyNQuick.sh -d 3 -f ${N4T2} -m ${wholeT1} -o T1xT2_ANTs_
 
-antsApplyTransforms -d 3 \
-			-i ${N4T2} \
-			-r ${wholeT1} \
-			-o T2xT1Warped_affine.nii.gz \
-			-n Linear \
-			-t [T1xT2_ANTS_0GenericAffine.mat,1] \
-			-v
+#antsApplyTransforms -d 3 \
+#			-i ${N4T2} \
+#			-r ${wholeT1} \
+#			-o T2xT1Warped_affine.nii.gz \
+#			-n Linear \
+#			-t [T1xT2_ANTs_0GenericAffine.mat,1] \
+#			-v
+
+# quick script to copy images from old dir to new dir
+
+files=${regDir}/T1xT2_ANTs_*
+
+cp ${files} ${newRegDir}
 
 
 done
