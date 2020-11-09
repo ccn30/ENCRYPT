@@ -1,0 +1,67 @@
+cmdModule.c(567):ERROR:50: Cannot open file '/home/ccn30/privatemodules/ASHS_1.0.0' for 'reading'
+Changed directory to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/slurmoutputs.
+
+JobID: 5581753
+======
+Time: Mon Nov  9 09:17:48 GMT 2020
+Running on master node: wbic-cs-2
+Current directory: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/slurmoutputs
+
+Nodes allocated:
+================
+wbic-cs-2
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/PIT_raw2table_run.sh /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/PIT_raw2table.m /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/PIT/raw_data /lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/PIT CB045
+
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/slurmoutputs
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> Matlab submitting the following command: PIT_raw2table('CB045','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/PIT/raw_data','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/PIT')
+>> ** Inside function, starting CB045 **
+Extracting xml data, converting to structure..
+{Error using xmlread (line 112)
+Java exception occurred:
+java.io.FileNotFoundException:
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/slurmoutputs/built-in
+(/applications/matlab/matlab2019a/toolbox/matlab/ops/@char/mrdivide) (No such
+file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at
+        sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+        	at
+        sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+        	at
+        org.apache.xerces.impl.XMLEntityManager.setupCurrentEntity(Unknown
+        Source)
+	at
+        org.apache.xerces.impl.XMLVersionDetector.determineDocVersion(Unknown
+        Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.DOMParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.DocumentBuilderImpl.parse(Unknown Source)
+	at javax.xml.parsers.DocumentBuilder.parse(DocumentBuilder.java:205)
+
+Error in xml2struct_custom (line 53)
+        xDoc = xmlread(file);
+
+Error in PIT_raw2table (line 37)
+[full_data] = xml2struct_custom([Block3xml.folder '/' Block3xml.name]);
+} 
+>> 

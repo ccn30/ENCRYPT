@@ -1,0 +1,41 @@
+cmdModule.c(567):ERROR:50: Cannot open file '/home/ccn30/privatemodules/ASHS_1.0.0' for 'reading'
+Changed directory to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/slurmoutputs.
+
+JobID: 5581756
+======
+Time: Mon Nov  9 09:17:49 GMT 2020
+Running on master node: wbic-cs-3
+Current directory: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/slurmoutputs
+
+Nodes allocated:
+================
+wbic-cs-3
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/PIT_raw2table_run.sh /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/PIT_raw2table.m /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/PIT/raw_data /lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/PIT CB053
+
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/slurmoutputs
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> Matlab submitting the following command: PIT_raw2table('CB053','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/PIT/raw_data','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/PIT')
+>> ** Inside function, starting CB053 **
+Extracting xml data, converting to structure..
+Looping through trials...
+{Index in position 2 exceeds array bounds (must not exceed 12).
+
+Error in PIT_raw2table (line 76)
+    Type(triali, 1) = str2double(coded_full_data.Block.Trials.Trial{1,
+    triali}.Info.InwardType.Text);
+} 
+>> 

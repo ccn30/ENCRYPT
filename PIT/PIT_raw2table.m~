@@ -20,22 +20,21 @@ addpath('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT')
 %    * <ReachedOutOfBounds> = logical TRUE (1) / FALSE (0)                   *
 %    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-disp(' ');
-disp(['** Inside function, starting ' CBcode ' **']);
-
 %% Load in block 3 (global) xml file
 % catch subjects with only 2 blocks and set nTrials/Block labels accordingly
 
-Block3xml=dir([xmlDir '/' CBcode '*Trial1_Block_3.xml']);
+disp(['** Inside function, starting ' CBcode ' **']);
 
-if ~isempty(Block3xml)
-    nTrials = 36;
-    b = [1 2 3]; Block = repelem(b,12)'; % make column of 1's,2's,3's to label blocks
-else
-    Block3xml=dir([xmlDir '/' CBcode '*Trial1_Block_2.xml']);
-    nTrials=24;
-    b = [1 2]; Block = repelem(b,12)';
-end 
+
+Block3xml=dir([xmlDir '/' CBcode '*Trial1_Block_3.xml']);
+if isempty(Block3
+nTrials = 36;
+b = [1 2 3]; Block = repelem(b,12)';
+
+Block3xml=dir([xmlDir '/' CBcode '*Trial1_Block_2.xml']);
+nTrials=24;
+b = [1 2]; Block = repelem(b,12)';
+
 
 % DEBUG MODE: comment out below, and load in [coded_full_data]
 % load('coded_full_data_DEBUG.mat');
@@ -154,9 +153,9 @@ disp('Errors Calculated...')
 
 TInfo = table(Block, TrialNo, Type, Env, OoB, OoBPos, Flag1, Flag2, Flag3, Trig, ADerror, PDerror, AAerror, PAerror);
 
-writetable(TInfo,[resultsDir '/PIT_RawResults_ ' CBcode '.xlsx']);
-disp(' ');
-disp(['New results-table: PIT_RawResults_' CBcode '.xlsx made in ' resultsDir]); 
+%writetable(TInfo,[resultsDir '/PIT_RawResults_ ' CBcode '.xlsx']);
+%disp(' ');
+%disp(['New results-table: PIT_RawResults_' CBcode '.xlsx made in ' resultsDir]); 
 
 %% 5. Extract trajectories in XY coordinates from all trials into cell array TrackedPositionX/Y, using nested for loops
 % Inner loop iterates through timepoints of each trial
