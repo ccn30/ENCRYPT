@@ -154,7 +154,7 @@ disp('Errors Calculated...')
 
 TInfo = table(Block, TrialNo, Type, Env, OoB, OoBPos, Flag1, Flag2, Flag3, Trig, ADerror, PDerror, AAerror, PAerror);
 
-writetable(TInfo,[resultsDir '/PIT_RawResults_ ' CBcode '.xlsx']);
+writetable(TInfo,[resultsDir '/PIT_RawResults_' CBcode '.xlsx']);
 disp(' ');
 disp(['New results-table: PIT_RawResults_' CBcode '.xlsx made in ' resultsDir]); 
 
@@ -215,7 +215,7 @@ for triali = 1:nTrials
 %    savefig([resultsDir '/Plots/' CBcode '_B' num2str(TInfo.Block(triali)) 'T' ,num2str(TInfo.TrialNo(triali))]);
     figfile = [resultsDir '/Plots/' CBcode '_B' num2str(TInfo.Block(triali)) 'T' ,num2str(TInfo.TrialNo(triali)) '.jpg'];
     print(thisfig, '-djpeg', figfile);
-    disp(['Saved plot for Block ' num2str(TInfo.Block(triali)) 'Trial ' ,num2str(TInfo.TrialNo(triali))]);
+    disp(['Saved plot for Block ' num2str(TInfo.Block(triali)) ' Trial ' ,num2str(TInfo.TrialNo(triali))]);
 end
 
 disp('Finished')
