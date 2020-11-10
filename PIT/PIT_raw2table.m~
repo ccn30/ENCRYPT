@@ -38,21 +38,21 @@ else
 end 
 
 % DEBUG MODE: comment out below, and load in [coded_full_data]
-%load('coded_full_data_DEBUG.mat');
-
-disp('Extracting xml data, converting to structure..');
-[full_data] = xml2struct_custom([Block3xml.folder '/' Block3xml.name]);
-
-% Replace strings with numbers for trial type and out of bounds info
-
-coded_full_data1 = struct_string_replace(full_data, 'NoChange', '1');
-coded_full_data2 = struct_string_replace(coded_full_data1, 'NoOpticFlow', '2');
-coded_full_data3 = struct_string_replace(coded_full_data2, 'NoDistalClues', '3');
-
-coded_full_data4 = struct_string_replace(coded_full_data3, 'true', '1');
-coded_full_data = struct_string_replace(coded_full_data4, 'false', '0');
-
-clear('full_data', 'coded_full_data1','coded_full_data2','coded_full_data3','coded_full_data4');
+load('coded_full_data_DEBUG.mat');
+% 
+% disp('Extracting xml data, converting to structure..');
+% [full_data] = xml2struct_custom([Block3xml.folder '/' Block3xml.name]);
+% 
+% % Replace strings with numbers for trial type and out of bounds info
+% 
+% coded_full_data1 = struct_string_replace(full_data, 'NoChange', '1');
+% coded_full_data2 = struct_string_replace(coded_full_data1, 'NoOpticFlow', '2');
+% coded_full_data3 = struct_string_replace(coded_full_data2, 'NoDistalClues', '3');
+% 
+% coded_full_data4 = struct_string_replace(coded_full_data3, 'true', '1');
+% coded_full_data = struct_string_replace(coded_full_data4, 'false', '0');
+% 
+% clear('full_data', 'coded_full_data1','coded_full_data2','coded_full_data3','coded_full_data4');
 
 %% 2. Extract trial information from all trials 
 % Create variables (Data entry number, Trial number, Trial type, Environment type, Out of Bounds info, Flag positions, Trigger position)
@@ -154,7 +154,7 @@ disp('Errors Calculated...')
 
 TInfo = table(Code, Block, TrialNo, Type, Env, OoB, OoBPos, Flag1, Flag2, Flag3, Trig, ADerror, PDerror, AAerror, PAerror);
 
-writetable(TInfo,[resultsDir '/PIT_RawResults_' CBcode '.csv']);
+writetable(TInfo,[resultsDir '/PIT_RawResults_' CBcode '.xlsx']);
 disp(' ');
 disp(['New results-table: PIT_RawResults_' CBcode '.xlsx made in ' resultsDir]); 
 
