@@ -1,26 +1,42 @@
 #!/bin/bash
-#
-#PBS -N Matlab
-#PBS -m be 
-#PBS -k oe
+# call by gridsubmit.sh
 
-subject=${1}
-func=${2}
+data2table=${1}
+taskDir=${2}
+subject=${3}
+mainfunc=${4}
+fmriDir=${5}
+regDir=${6}
+
+# call matlab
 
 matlab -nodesktop -nosplash <<EOF
-[pa,af,~]=fileparts('${func}');
+
+% extract data into event tables
+[pa,af,~]=fileparts('${data2table}');
+disp('You are inside gridcatprepare');
+disp(['Subject is ${subject}']);
 addpath(pa);
-disp(['Subject is ${subject}'])
+addpath(pwd);
+dofunc=sprintf('%s(%s,%s)',af,'''${subject}''','''${taskDir}''');
+disp(['Submitting the following command: ' dofunc])
+eval(dofunc)
+disp('Done.')
+disp(' ')
+
+% call main GridCAT function
+[pa,af,~]=fileparts('${mainfunc}')
+addpath(pa);
 addpath(pwd);
 addpath('/home/ccn30/GridCAT')
 addpath('/applications/spm/spm12_6906')
 addpath('/home/ccn30/Documents/MATLAB/Add-Ons/Collections/Circular Statistics Toolbox (Directional Statistics)/code')
 
-% what type of mask to use - affine or SyN or control?
-warp_flag = 'control'
+% what type of mask to use - main or control?
+warp_flag = 'main'
 
-% use original [left,right,both] EC ROI or [pmLeft,pmRight,pmBoth] new posteromedial EC ROI mask or control [PosHipp,alRight,alLeft] ROI mask?
-ROI_flag = 'alRight'
+% use with main above pmLeft,pmRight or control above PosHipp,alRight,alLeft- ROI mask?
+ROI_flag = 'pmRight'
 
 % 4,5,6,7 or 8 fold symmetry?
 xFold = '6'
@@ -36,14 +52,12 @@ mask_thresh = '0.5'
     %                                     or a negative peak (for misaligned events) in the BOLD signal is expected
 regressor_flag = 'pmod'
 
-% Name of output directory
-outdirname = 'gridCAT_final_alRight6'
+% Name of output file
+outfilename = 'gridCAT_pmRight6'
 
-preprocesspathstem = '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/gridcellpilot/preprocessed_data';
-taskpathstem = '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/gridcellpilot/raw_data/task_data';
-
-dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s,%s,%s,%s)',af,'''${subject}''','preprocesspathstem','taskpathstem','outdirname','ROI_flag','warp_flag','xFold','mask_thresh','regressor_flag');
+dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',af,'''${subject}''','''${fmriDir}''','''${taskDir}''','''${regDir}''','outfilename','ROI_flag','warp_flag','xFold','mask_thresh','regressor_flag');
 disp(['Submitting the following command: ' dofunc])
 eval(dofunc)
+disp('Done')
 ;exit
 EOF

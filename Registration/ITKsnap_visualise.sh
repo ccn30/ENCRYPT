@@ -11,7 +11,7 @@ echo "******** starting $subject ********"
 ## set paths to images
 
 #regDir=${pathstem}/registrations/6.11.20/${subject}/T2xT1
-#regDir=${pathstem}/registrations/${subject}
+regDir=${pathstem}/registrations/${subject}
 templateDir=${pathstem}/images/template02
 
 rawpathstem=${pathstem}/images/${subjID}
@@ -43,9 +43,17 @@ n4EPI=${regDir}/N4meanEPI.nii
 template=${templateDir}/para01_template0.nii.gz
 warpedSubjT1=${templateDir}/para01_template0${subject}_t*.nii.gz
 echo ${warpedSubjT1}
+
+# masks to EPI space
+warpedTemplate=${regDir}/studyBrainxEPI_Warped.nii.gz
+alEC_left=${regDir}/alEC_leftxEPI.nii.gz
+pmEC_right=${regDir}/pmEC_rightxEPI.nii.gz
+
 ## command
 
 #vglrun itksnap -g ${wholeT1} -o ${affine} &
 #vglrun itksnap -g ${n4EPI} -o ${warpedT1} &
-vglrun itksnap -g ${template} -o ${warpedSubjT1} &
+#vglrun itksnap -g ${template} -o ${warpedSubjT1} &
+vglrun itksnap -g ${n4EPI} -o ${warpedTemplate} -o ${warpedT1} -s ${pmEC_right} &
+
 done

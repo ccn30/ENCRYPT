@@ -10,8 +10,8 @@ studyTemplateDir=~/ENCRYPT/atlases/templates/ECtemplatemasks2015
 
 ## separate txt file with subject and date IDs
 
-#mysubjs=${pathstem}/testsubjcode.txt
-mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+mysubjs=${pathstem}/testsubjcode.txt
+#mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 
 
 for subjID in `cat $mysubjs`
@@ -44,7 +44,7 @@ T1xTempInvWarp=${groupTemplateDir}/para01_${subject}_t1*1InverseWarp.nii.gz
 
 ## Perform mask x EPI transformation
 
-#ANTs_templateMasksxEPI.sh ${regDir} ${groupTemplateDir} ${studyTemplateDir} ${T1xTempAffine} ${T1xTempInvWarp} ${T1}
+ANTs_templateMasksxEPI.sh ${regDir} ${groupTemplateDir} ${studyTemplateDir} ${T1xTempAffine} ${T1xTempInvWarp} ${T1}
 test_coreg.sh ${regDir} ${groupTemplateDir} ${studyTemplateDir} ${T1xTempAffine} ${T1xTempInvWarp}
 
 done

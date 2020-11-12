@@ -17,6 +17,7 @@ alEC_left=${studyTemplateDir}/alEC_PRCpref_left.nii
 alEC_right=${studyTemplateDir}/alEC_PRCpref_right.nii
 pmEC_left=${studyTemplateDir}/pmEC_PHCpref_left.nii
 pmEC_right=${studyTemplateDir}/pmEC_PHCpref_right.nii
+t1xepi=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations/6.11.20/26795/T1brainxEpiSlab0GenericAffine.mat
 
 ## Perform mask x EPI transformation
 
@@ -26,7 +27,7 @@ pmEC_right=${studyTemplateDir}/pmEC_PHCpref_right.nii
 				-r ${regDir}/N4meanEPI.nii \
 				-o ${regDir}/alEC_leftxEPI.nii.gz \
 				-n GenericLabel \
-				-t ${regDir}/T1xepiSlab0GenericAffine.mat \
+				-t ${t1xepi} \
 				-t [${T1xTempAffine},1] \
 				-t ${T1xTempInvWarp} \
 				-t [${groupTemplateDir}/para01_template0xStudyTemplate_0GenericAffine.mat,1] \
@@ -39,7 +40,7 @@ pmEC_right=${studyTemplateDir}/pmEC_PHCpref_right.nii
 				-r ${regDir}/N4meanEPI.nii \
 				-o ${regDir}/alEC_rightxEPI.nii.gz \
 				-n GenericLabel \
-				-t ${regDir}/T1xepiSlab0GenericAffine.mat \
+				-t ${t1xepi} \
 				-t [${T1xTempAffine},1] \
 				-t ${T1xTempInvWarp} \
 				-t [${groupTemplateDir}/para01_template0xStudyTemplate_0GenericAffine.mat,1] \
@@ -52,7 +53,7 @@ pmEC_right=${studyTemplateDir}/pmEC_PHCpref_right.nii
 				-r ${regDir}/N4meanEPI.nii \
 				-o ${regDir}/pmEC_rightxEPI.nii.gz \
 				-n GenericLabel \
-				-t ${regDir}/T1xepiSlab0GenericAffine.mat \
+				-t ${t1xepi} \
 				-t [${T1xTempAffine},1] \
 				-t ${T1xTempInvWarp} \
 				-t [${groupTemplateDir}/para01_template0xStudyTemplate_0GenericAffine.mat,1] \
@@ -65,7 +66,7 @@ pmEC_right=${studyTemplateDir}/pmEC_PHCpref_right.nii
 				-r ${regDir}/N4meanEPI.nii \
 				-o ${regDir}/pmEC_leftxEPI.nii.gz \
 				-n GenericLabel \
-				-t ${regDir}/T1xepiSlab0GenericAffine.mat \
+				-t ${t1xepi} \
 				-t [${T1xTempAffine},1] \
 				-t ${T1xTempInvWarp} \
 				-t [${groupTemplateDir}/para01_template0xStudyTemplate_0GenericAffine.mat,1] \
