@@ -1,0 +1,833 @@
+cmdModule.c(567):ERROR:50: Cannot open file '/home/ccn30/privatemodules/ASHS_1.0.0' for 'reading'
+/var/spool/slurm/slurmd/job5587047/slurm_script: line 107: cd: /slurmoutputs: No such file or directory
+Changed directory to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/slurmoutputs.
+
+JobID: 5587047
+======
+Time: Fri Nov 13 16:33:11 GMT 2020
+Running on master node: wbic-cs-14
+Current directory: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/slurmoutputs
+
+Nodes allocated:
+================
+wbic-cs-14
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/gridcatprepare.sh /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/GCAP_logfile2eventTable.m /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask 26371 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/GridCAT_mainfunc.m /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI /lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations
+
+You are inside gridcatprepare
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017b (9.3.0.713579) 64-bit (glnxa64)
+                             September 14, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> 
+pa =
+
+    '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT'
+
+
+af =
+
+    'GridCAT_mainfunc'
+
+>> >> >> >> >> >> >> >> 
+warp_flag =
+
+    'control'
+
+>> >> >> 
+ROI_flag =
+
+    'alLeft'
+
+>> >> >> 
+xFold =
+
+    '6'
+
+>> >> >> 
+mask_thresh =
+
+    '0.5'
+
+>> >> >> >> >> >> >> >> 
+regressor_flag =
+
+    'pmod'
+
+>> >> >> 
+outfilename =
+
+    'gridCAT_alLeft6'
+
+>> >> >> Submitting the following command: GridCAT_mainfunc('26371','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations',outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
+>> You are inside GridCAT_mainfunc, subject 26371
+
+
+------------------------------------------------------------------------
+Running job #1
+------------------------------------------------------------------------
+Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v5183)                     16:34:21 - 13/11/2020
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v6088)                     16:34:22 - 13/11/2020
+========================================================================
+Mapping files                           :                        ...done
+
+** The images do not all have same orientation and/or voxel sizes. **
+The function assumes that a voxel in one image  corresponds exactly
+with  the same voxel in another.   This is not a safe assumption if
+the orientation information  in the headers or .mat files says that
+the images are oriented differently. Please ensure that you process
+all data correctly. For example, you may have realigned the images,
+but not actually resliced them to be in voxel-wise alignment.
+Here are the orientation matrices of the image volumes.   This list
+can be used to determine which file(s) are causing the problem.
+
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0000.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0001.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0002.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0003.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0004.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0005.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0006.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0007.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0008.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0009.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0010.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0011.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0012.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0013.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0014.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0015.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0016.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0017.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0018.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0019.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0020.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0021.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0022.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0023.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0024.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0025.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0026.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0027.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0028.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0029.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0030.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0031.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0032.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0033.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0034.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0035.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0036.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0037.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0038.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0039.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0040.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0041.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0042.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0043.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0044.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0045.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0046.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0047.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0048.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0049.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0050.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0051.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0052.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0053.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0054.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0055.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0056.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0057.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0058.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0059.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0060.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0061.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0062.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0063.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0064.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0065.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0066.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0067.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0068.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0069.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0070.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0071.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0072.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0073.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0074.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0075.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0076.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0077.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0078.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0079.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0080.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0081.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0082.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0083.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0084.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0085.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0086.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0087.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0088.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0089.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0090.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0091.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0092.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0093.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0094.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0095.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0096.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0097.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0098.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0099.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0100.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0101.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0102.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0103.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0104.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0105.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0106.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0107.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0108.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0109.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0110.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0111.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0112.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0113.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0114.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0115.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0116.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0117.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0118.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0119.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0120.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0121.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0122.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0123.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0124.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0125.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0126.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0127.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0128.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0129.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0130.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0131.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0132.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0133.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0134.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0135.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0136.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0137.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0138.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0139.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0140.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0141.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0142.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0143.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0144.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0145.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0146.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0147.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0148.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0149.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0150.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0151.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0152.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0153.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0154.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0155.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0156.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0157.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0158.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0159.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0160.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0161.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0162.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0163.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0164.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0165.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0166.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0167.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0168.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0169.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0170.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0171.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0172.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0173.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0174.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0175.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0176.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0177.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0178.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0179.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0180.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0181.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0182.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0183.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0184.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0185.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0186.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0187.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0188.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0189.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0190.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0191.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0192.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0193.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0194.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0195.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0196.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0197.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0198.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0199.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0200.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0201.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0202.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0203.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0204.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0205.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0206.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0207.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0208.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0209.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0210.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0211.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0212.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0213.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0214.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0215.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0216.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0217.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0218.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0219.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0220.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0221.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0222.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0223.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0224.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0225.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0226.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0227.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0228.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0229.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0230.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0231.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0232.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0233.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0234.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0235.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0236.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_1_split0237.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0000.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0001.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0002.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0003.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0004.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0005.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0006.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0007.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0008.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0009.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0010.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0011.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0012.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0013.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0014.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0015.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0016.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0017.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0018.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0019.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0020.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0021.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0022.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0023.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0024.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0025.nii
+[-1.5 0 0 768; 0 1.5 0 26880; 0 0 1 -12643]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0026.img
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0027.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0028.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0029.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0030.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0031.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0032.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0033.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0034.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0035.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0036.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0037.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0038.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0039.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0040.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0041.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0042.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0043.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0044.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0045.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0046.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0047.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0048.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0049.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0050.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0051.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0052.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0053.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0054.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0055.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0056.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0057.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0058.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0059.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0060.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0061.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0062.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0063.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0064.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0065.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0066.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0067.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0068.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0069.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0070.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0071.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0072.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0073.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0074.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0075.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0076.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0077.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0078.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0079.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0080.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0081.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0082.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0083.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0084.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0085.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0086.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0087.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0088.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0089.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0090.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0091.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0092.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0093.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0094.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0095.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0096.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0097.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0098.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0099.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0100.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0101.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0102.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0103.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0104.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0105.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0106.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0107.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0108.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0109.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0110.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0111.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0112.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0113.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0114.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0115.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0116.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0117.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0118.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0119.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0120.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0121.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0122.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0123.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0124.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0125.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0126.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0127.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0128.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0129.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0130.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0131.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0132.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0133.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0134.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0135.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0136.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0137.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0138.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0139.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0140.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0141.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0142.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0143.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0144.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0145.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0146.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0147.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0148.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0149.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0150.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0151.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0152.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0153.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0154.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0155.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0156.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0157.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0158.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0159.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0160.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0161.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0162.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0163.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0164.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0165.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0166.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0167.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0168.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0169.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0170.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0171.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0172.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0173.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0174.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0175.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0176.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0177.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0178.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0179.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0180.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0181.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0182.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0183.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0184.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0185.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0186.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0187.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0188.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0189.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0190.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0191.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0192.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0193.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0194.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0195.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0196.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0197.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0198.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0199.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0200.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0201.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0202.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0203.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0204.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0205.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0206.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0207.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0208.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0209.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0210.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0211.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0212.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0213.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0214.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0215.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0216.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0217.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0218.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0219.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0220.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0221.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0222.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0223.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0224.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0225.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0226.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0227.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0228.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0229.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0230.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0231.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0232.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0233.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0234.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0235.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0236.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_2_split0237.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0000.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0001.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0002.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0003.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0004.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0005.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0006.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0007.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0008.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0009.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0010.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0011.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0012.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0013.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0014.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0015.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0016.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0017.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0018.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0019.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0020.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0021.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0022.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0023.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0024.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0025.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0026.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0027.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0028.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0029.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0030.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0031.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0032.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0033.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0034.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0035.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0036.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0037.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0038.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0039.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0040.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0041.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0042.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0043.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0044.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0045.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0046.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0047.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0048.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0049.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0050.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0051.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0052.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0053.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0054.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0055.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0056.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0057.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0058.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0059.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0060.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0061.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0062.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0063.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0064.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0065.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0066.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0067.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0068.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0069.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0070.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0071.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0072.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0073.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0074.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0075.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0076.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0077.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0078.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0079.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0080.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0081.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0082.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0083.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0084.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0085.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0086.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0087.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0088.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0089.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0090.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0091.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0092.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0093.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0094.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0095.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0096.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0097.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0098.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0099.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0100.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0101.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0102.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0103.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0104.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0105.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0106.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0107.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0108.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0109.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0110.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0111.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0112.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0113.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0114.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0115.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0116.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0117.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0118.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0119.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0120.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0121.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0122.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0123.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0124.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0125.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0126.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0127.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0128.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0129.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0130.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0131.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0132.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0133.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0134.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0135.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0136.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0137.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0138.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0139.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0140.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0141.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0142.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0143.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0144.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0145.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0146.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0147.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0148.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0149.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0150.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0151.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0152.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0153.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0154.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0155.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0156.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0157.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0158.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0159.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0160.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0161.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0162.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0163.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0164.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0165.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0166.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0167.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0168.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0169.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0170.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0171.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0172.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0173.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0174.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0175.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0176.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0177.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0178.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0179.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0180.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0181.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0182.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0183.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0184.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0185.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0186.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0187.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0188.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0189.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0190.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0191.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0192.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0193.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0194.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0195.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0196.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0197.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0198.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0199.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0200.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0201.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0202.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0203.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0204.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0205.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0206.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0207.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0208.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0209.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0210.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0211.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0212.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0213.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0214.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0215.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0216.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0217.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0218.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0219.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0220.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0221.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0222.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0223.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0224.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0225.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0226.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0227.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0228.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0229.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0230.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0231.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0232.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0233.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0234.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0235.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0236.nii
+[-1.4992 0 -0.0326064 98.7266; -0.016013 1.41733 0.327228 -77.3596; -0.0462139 -0.491103 0.944383 22.516]  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/26371/rtopup_Run_3_split0237.nii
+
+Failed  'fMRI model specification'
+Error using spm_check_orientations (line 65)
+The orientations etc must be identical for this procedure.
+In file "/applications/spm/spm12_6906/spm_check_orientations.m" (v6894), function "spm_check_orientations" at line 65.
+In file "/applications/spm/spm12_6906/spm_fmri_spm_ui.m" (v6088), function "spm_fmri_spm_ui" at line 311.
+In file "/applications/spm/spm12_6906/config/spm_run_fmri_spec.m" (v6562), function "spm_run_fmri_spec" at line 386.
+
+The following modules did not run:
+Failed: fMRI model specification
+
+{Error using MATLABbatch system
+Job execution failed. The full log of this run can be found in MATLAB command
+window, starting with the lines (look for the line showing the exact #job as
+displayed in this error message)
+------------------
+Running job #1
+------------------
+} 
+>> Done
+>> 

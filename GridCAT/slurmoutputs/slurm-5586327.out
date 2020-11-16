@@ -1,0 +1,136 @@
+cmdModule.c(567):ERROR:50: Cannot open file '/home/ccn30/privatemodules/ASHS_1.0.0' for 'reading'
+/var/spool/slurm/slurmd/job5586327/slurm_script: line 107: cd: /slurmoutputs: No such file or directory
+Changed directory to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/slurmoutputs.
+
+JobID: 5586327
+======
+Time: Thu Nov 12 18:22:23 GMT 2020
+Running on master node: wbic-cs-16
+Current directory: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/slurmoutputs
+
+Nodes allocated:
+================
+wbic-cs-16
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/gridcatprepare.sh /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/GCAP_logfile2eventTable.m /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask 26795 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/GridCAT_mainfunc.m /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI /lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations
+
+You are inside gridcatprepare
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017b (9.3.0.713579) 64-bit (glnxa64)
+                             September 14, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> Subject is 26795
+>> >> >> >> Submitting the following command: GCAP_logfile2eventTable('26795','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask')
+>> You are inside GCAP_logfile2eventTable
+ 
+ 
+New event-table: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask/26795/BlockA/eventTable_movemenEventData.txt
+ 
+Logfile: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask/26795/BlockA/movemenEventData.csv
+ 
+New event-table: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask/26795/BlockB/eventTable_movemenEventData.txt
+ 
+Logfile: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask/26795/BlockB/movemenEventData.csv
+ 
+New event-table: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask/26795/BlockC/eventTable_movemenEventData.txt
+ 
+Logfile: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask/26795/BlockC/movemenEventData.csv
+>> Done.
+>>  
+>> >> >> 
+pa =
+
+    '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT'
+
+
+af =
+
+    'GridCAT_mainfunc'
+
+>> >> >> >> >> >> >> >> 
+warp_flag =
+
+    'main'
+
+>> >> >> 
+ROI_flag =
+
+    'pmRight'
+
+>> >> >> 
+xFold =
+
+    '6'
+
+>> >> >> 
+mask_thresh =
+
+    '0.5'
+
+>> >> >> >> >> >> >> >> 
+regressor_flag =
+
+    'pmod'
+
+>> >> >> 
+outfilename =
+
+    'gridCAT_pmRight6'
+
+>> >> >> Submitting the following command: GridCAT_mainfunc('26795','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations',outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
+>> You are inside GridCAT_mainfunc, subject 26795
+
+
+------------------------------------------------------------------------
+Running job #1
+------------------------------------------------------------------------
+Running 'fMRI model specification'
+[Warning: dialog is no longer supported when MATLAB is started with the
+-nodisplay or -noFigureWindows option or there is no display. For more
+information, see "Changes to -nodisplay and -noFigureWindows Startup Options"
+in the MATLAB Release Notes. To view the release note in your system browser,
+run web('www.mathworks.com/help/matlab/release-notes.html#br5ktrh-3',
+'-browser')] 
+[> In warnfiguredialog (line 21)
+  In dialog (line 35)
+  In questdlg (line 142)
+  In spm_input (line 1040)
+  In spm_run_fmri_spec (line 34)
+  In cfg_run_cm (line 29)
+  In cfg_util>local_runcj (line 1688)
+  In cfg_util (line 959)
+  In spm_jobman>fill_run_job (line 458)
+  In spm_jobman (line 247)
+  In spmModel_spec (line 66)
+  In specifyGLM (line 49)
+  In GridCAT_mainfunc (line 113)] 
+[Warning: uiwait is no longer supported when MATLAB is started with the
+-nodisplay or -noFigureWindows option or there is no display. For more
+information, see "Changes to -nodisplay and -noFigureWindows Startup Options"
+in the MATLAB Release Notes. To view the release note in your system browser,
+run web('www.mathworks.com/help/matlab/release-notes.html#br5ktrh-3',
+'-browser')] 
+[> In warnfiguredialog (line 21)
+  In uiwait (line 40)
+  In questdlg (line 407)
+  In spm_input (line 1040)
+  In spm_run_fmri_spec (line 34)
+  In cfg_run_cm (line 29)
+  In cfg_util>local_runcj (line 1688)
+  In cfg_util (line 959)
+  In spm_jobman>fill_run_job (line 458)
+  In spm_jobman (line 247)
+  In spmModel_spec (line 66)
+  In specifyGLM (line 49)
+  In GridCAT_mainfunc (line 113)] 
+slurmstepd: error: *** JOB 5586327 ON wbic-cs-16 CANCELLED AT 2020-11-12T19:22:45 DUE TO TIME LIMIT ***

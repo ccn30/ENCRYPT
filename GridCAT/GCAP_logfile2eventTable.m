@@ -1,7 +1,7 @@
 function GCAP_logfile2eventTable(subject,taskDir)
 % setAllDurationsToZero_flag, includeRotation_flag, minActiveTranslDur_sec)
 
-includeRotation_flag = 1;
+includeRotation_flag = 0;
 setAllDurationsToZero_flag = 0;
 minActiveTranslDur_sec = 0.01;
 blocks = {'BlockA','BlockB','BlockC'};
@@ -13,7 +13,7 @@ for b = 1:3
     
     % open new event table file
     [fpath, fname, ~] = fileparts(logfile);
-    newFilename = [fpath filesep 'eventTable_' fname '.txt'];
+    newFilename = [fpath filesep 'eventTable_nr_' fname '.txt'];
     disp(' ');
     disp(['New event-table: ' newFilename]);
     fp_eventTable = fopen(newFilename, 'w+');

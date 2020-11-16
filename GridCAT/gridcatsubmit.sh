@@ -83,14 +83,14 @@ export I_MPI_PIN_ORDER=scatter # Adjacent domains have minimal sharing of caches
 #! 3. I_MPI_PIN_PROCESSOR_LIST is ignored if I_MPI_PIN_DOMAIN is set.
 #! 4. If MPI tasks perform better when sharing caches/sockets, try I_MPI_PIN_ORDER=compact.
 
-${prepare}=${1} 
-${data2table}=${2}
-${taskDir} =${3}
-${subject}=${4} 
-${mainfunc}=${5} 
-${scriptDir}=${6}
-${fmriDir}=${7}
-${regDir}=${8}
+prepare=${1} 
+data2table=${2}
+taskDir=${3}
+subject=${4} 
+mainfunc=${5} 
+scriptDir=${6}
+fmriDir=${7}
+regDir=${8}
 
 
 #! Work directory (i.e. where the job will run):

@@ -1,0 +1,111 @@
+cmdModule.c(567):ERROR:50: Cannot open file '/home/ccn30/privatemodules/ASHS_1.0.0' for 'reading'
+/var/spool/slurm/slurmd/job5587044/slurm_script: line 107: cd: /slurmoutputs: No such file or directory
+Changed directory to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/slurmoutputs.
+
+JobID: 5587044
+======
+Time: Fri Nov 13 16:33:11 GMT 2020
+Running on master node: wbic-cs-14
+Current directory: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/slurmoutputs
+
+Nodes allocated:
+================
+wbic-cs-14
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/gridcatprepare.sh /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/GCAP_logfile2eventTable.m /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask 25774 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/GridCAT_mainfunc.m /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI /lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations
+
+You are inside gridcatprepare
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017b (9.3.0.713579) 64-bit (glnxa64)
+                             September 14, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> 
+pa =
+
+    '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT'
+
+
+af =
+
+    'GridCAT_mainfunc'
+
+>> >> >> >> >> >> >> >> 
+warp_flag =
+
+    'control'
+
+>> >> >> 
+ROI_flag =
+
+    'alLeft'
+
+>> >> >> 
+xFold =
+
+    '6'
+
+>> >> >> 
+mask_thresh =
+
+    '0.5'
+
+>> >> >> >> >> >> >> >> 
+regressor_flag =
+
+    'pmod'
+
+>> >> >> 
+outfilename =
+
+    'gridCAT_alLeft6'
+
+>> >> >> Submitting the following command: GridCAT_mainfunc('25774','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations',outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
+>> You are inside GridCAT_mainfunc, subject 25774
+
+
+------------------------------------------------------------------------
+Running job #1
+------------------------------------------------------------------------
+Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v5183)                     16:34:25 - 13/11/2020
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v6088)                     16:34:25 - 13/11/2020
+========================================================================
+Mapping files                           : Failed  'fMRI model specification'
+Error using read_hdr (line 32)
+Error reading header file "/lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/25774/rtopup_Run_2_split0011.nii".
+In file "/applications/spm/spm12_6906/@nifti/private/read_hdr.m" (v4967), function "read_hdr" at line 32.
+In file "/applications/spm/spm12_6906/@nifti/nifti.m" (v4986), function "nifti" at line 26.
+In file "/applications/spm/spm12_6906/spm_vol_nifti.m" (v6079), function "spm_vol_nifti" at line 19.
+In file "/applications/spm/spm12_6906/spm_vol.m" (v5958), function "spm_vol_hdr" at line 128.
+In file "/applications/spm/spm12_6906/spm_vol.m" (v5958), function "spm_vol" at line 61.
+In file "/applications/spm/spm12_6906/spm_data_hdr_read.m" (v4940), function "spm_data_hdr_read" at line 40.
+In file "/applications/spm/spm12_6906/spm_fmri_spm_ui.m" (v6088), function "spm_fmri_spm_ui" at line 306.
+In file "/applications/spm/spm12_6906/config/spm_run_fmri_spec.m" (v6562), function "spm_run_fmri_spec" at line 386.
+
+The following modules did not run:
+Failed: fMRI model specification
+
+{Error using MATLABbatch system
+Job execution failed. The full log of this run can be found in MATLAB command
+window, starting with the lines (look for the line showing the exact #job as
+displayed in this error message)
+------------------
+Running job #1
+------------------
+} 
+>> Done
+>> 

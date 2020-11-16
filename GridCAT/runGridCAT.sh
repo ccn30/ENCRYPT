@@ -15,17 +15,20 @@ prepare=${scriptDir}/gridcatprepare.sh
 mainfunc=${scriptDir}/GridCAT_mainfunc.m
 
 # set subjects
-#mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
-mysubjs=${pathstem}/testsubjcode.txt
-
-cd slurmoutputs
+mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+#mysubjs=${pathstem}/testsubjcode.txt
 
 for subjID in `cat $mysubjs`
 do
 	subject="$(cut -d'/' -f1 <<<"$subjID")"
 	echo "**** starting $subject ****"
+	
+	# unzip masks
+#	cd ${regDir}/${subject}	
+#	gunzip *
+	cd ${scriptDir}/slurmoutputs
 
 	# run gridCAT
-	#sbatch ${submit} ${prepare} ${data2table} ${taskDir} ${subject} ${mainfunc} ${scriptDir} ${fmriDir} ${regDir}
-	${prepare} ${data2table} ${taskDir} ${subject} ${mainfunc} ${scriptDir} ${fmriDir} ${regDir}
+	sbatch ${submit} ${prepare} ${data2table} ${taskDir} ${subject} ${mainfunc} ${scriptDir} ${fmriDir} ${regDir}
+
 done	

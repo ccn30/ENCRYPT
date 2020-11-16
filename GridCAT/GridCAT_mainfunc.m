@@ -9,8 +9,14 @@
 
 function GridCAT_mainfunc(subject,fmriDir,taskDir,regDir,outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
 
-outpathstem = ['/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT' subject '/' outfilename];
+outpathstem = ['/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/' subject '/' outfilename];
 
+% remove existing SPM.mat
+if exist(outpathstem,'dir') ~= 0
+    rmdir(outpathstem,'s')
+    warning(['removed existing dir for ' outpathstem]);
+end
+    
 blocks = {'BlockA','BlockB','BlockC'};
 TR = 2.53;
 xfold = str2double(xFold); %taken from input - xFold = str, xfold = numeric
@@ -32,17 +38,17 @@ for run = 1:length(blocks)
     
     % specify functional scans
     % split scans
-    fsldir='/applications/fsl/fsl-5.0.10/bin/';
-    FOURDfile = [fmriDir '/' subject '/rtopup_Run_' num2str(run) '.nii'];
-    cmd = [fsldir 'fslsplit ' FOURDfile ' ' FOURDfile(1:end-4) '_split -t'];
-    system(cmd);
+%    fsldir='/applications/fsl/fsl-5.0.10/bin/';
+%    FOURDfile = [fmriDir '/' subject '/rtopup_Run_' num2str(run) '.nii'];
+%    cmd = [fsldir 'fslsplit ' FOURDfile ' ' FOURDfile(1:end-4) '_split -t'];
+%    system(cmd);
     
     for scan = 1:nScans
         cfg.rawData.run(run).functionalScans(scan,1) = {[fmriDir '/' subject '/rtopup_Run_' num2str(run) '_split' sprintf('%04d',scan-1) '.nii']};
     end
     
-    % specify event-table
-    cfg.rawData.run(run).eventTable_file = [taskDir '/' subject '/' blocks{run} '/eventTable_movemenEventData.txt'] ;
+    % specify event-table (_nr_ for no rotation events version)
+    cfg.rawData.run(run).eventTable_file = [taskDir '/' subject '/' blocks{run} '/eventTable_nr_movemenEventData.txt'] ;
     
     % specify regressors file - need to combine rp.txt with phys regressors
     if strcmp(nuisance_flag,'phys') == 1
@@ -155,17 +161,17 @@ if strcmp(warp_flag, 'main')
     if strcmp(ROI_flag, 'both')
 %       cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[]};
     elseif strcmp(ROI_flag, 'pmRight')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_rightxEPI.nii.gz']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_rightxEPI.nii']};
     elseif strcmp(ROI_flag, 'pmLeft')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_leftxEPI.nii.gz']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_leftxEPI.nii']};
     end
 elseif strcmp(warp_flag,'control')
     if strcmp(ROI_flag,'PosHipp')
 %        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[]};
     elseif strcmp(ROI_flag,'alRight')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_rightxEPI.nii.gz']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_rightxEPI.nii']};
     elseif strcmp(ROI_flag,'alLeft')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_leftxEPI.nii.gz']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_leftxEPI.nii']};
     end
 end
 
@@ -199,19 +205,19 @@ estimateGLM(cfg);
 % Specify ROI masks, for which the grid metrics are calculated and exported
 if strcmp(warp_flag, 'main')
     if strcmp(ROI_flag, 'both')
-%       cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[]};
+%       ROI_masks = {[]};
     elseif strcmp(ROI_flag, 'pmRight')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_rightxEPI.nii.gz']};
+        ROI_masks = {[regDir '/' subject '/pmEC_rightxEPI.nii']};
     elseif strcmp(ROI_flag, 'pmLeft')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_leftxEPI.nii.gz']};
+        ROI_masks = {[regDir '/' subject '/pmEC_leftxEPI.nii']};
     end
 elseif strcmp(warp_flag,'control')
     if strcmp(ROI_flag,'PosHipp')
-%        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[]};
+%        ROI_masks = {[]};
     elseif strcmp(ROI_flag,'alRight')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_rightxEPI.nii.gz']};
+        ROI_masks = {[regDir '/' subject '/alEC_rightxEPI.nii']};
     elseif strcmp(ROI_flag,'alLeft')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_leftxEPI.nii.gz']};
+        ROI_masks = {[regDir '/' subject '/alEC_leftxEPI.nii']};
     end
 end
 
