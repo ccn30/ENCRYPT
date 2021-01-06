@@ -28,12 +28,15 @@ cd ${workdir}
 #------------------------------------------------------------------------#
 T2=${T2path}/t2.nii
 N4T2=${T2path}/n4_t2.nii
+newN4T2=${T2path}/n42_t2.nii
 
-if [ -f "${N4T2}" ]; then
-		echo "N4 T2 already exists"
-	else
-		N4BiasFieldCorrection -d 3 -i ${T2} -o ${N4T2}  -r 1 -c [50x50x30x20,1e-6] -b [200];
-fi
+N4BiasFieldCorrection -d 3 -i ${T2} -o ${newN4T2}
+
+#!if [ -f "${N4T2}" ]; then
+#!		echo "N4 T2 already exists"
+#!	else
+#!		N4BiasFieldCorrection -d 3 -i ${T2} -o ${N4T2}  -r 1 -c [50x50x30x20,1e-6] -b [200];
+#!fi
 
 if [ -f "${N4T2}" ]; then
 		echo "N4 correction complete"
@@ -47,14 +50,17 @@ fi
 # using N4 corrected T2
 
 denoiseT2=${T2path}/denoise_n4_t2.nii
+newdenoiseT2=${T2path}/denoise_n42_t2.nii
 
 echo "Running DenoiseImage on: " ${T2path}
 
-if [ -f "${denoiseT2}" ]; then
-		echo $subject "already denoised"
-	else
-		$antsroot/DenoiseImage -d 3 -i $N4T2 -o $denoiseT2 -v 1
-fi
+$antsroot/DenoiseImage -d 3 -i $newN4T2 -o $newdenoiseT2 -v 1
+
+#!if [ -f "${denoiseT2}" ]; then
+#!		echo $subject "already denoised"
+#!	else
+#!		$antsroot/DenoiseImage -d 3 -i $N4T2 -o $denoiseT2 -v 1
+#!fi
 
 if [ -f "${denoiseT2}" ]; then
 		echo "DenoiseImage complete"

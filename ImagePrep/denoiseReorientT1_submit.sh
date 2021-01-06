@@ -64,7 +64,7 @@ mpi_tasks_per_node=$(echo "$SLURM_TASKS_PER_NODE" | sed -e  's/^\([0-9][0-9]*\).
 module purge                               # Removes all modules still loaded
 module load default-wbic                   # REQUIRED - loads the basic environment
 module unload fsl
-module load fsl/5.0.10
+module load fsl/6.0.3
 module load itksnap-nowrap/3.6.0
 module load ANTS/2.2.0
 
@@ -96,7 +96,7 @@ subjID=${3}
 
 workdir="$scriptdir/slurmoutputs"
 
-application="${scriptdir}/denoiseT1.sh ${pathstem} ${subjID} ${workdir}"
+application="${scriptdir}/denoiseReorientT1.sh ${pathstem} ${subjID} ${workdir}"
 
 CMD="${application}"
 

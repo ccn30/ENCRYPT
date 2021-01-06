@@ -67,7 +67,7 @@ module unload fsl
 module load fsl/5.0.10
 module load itksnap-nowrap/3.6.0
 #!module load ASHS_FASTB
-module load ANTS/2.2.0
+module load ANTS/2.3.4
 
 
 #! Are you using OpenMP (NB this is unrelated to OpenMPI)? If so increase this

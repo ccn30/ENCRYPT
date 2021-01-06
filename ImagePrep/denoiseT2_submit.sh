@@ -22,7 +22,7 @@
 #! How much wallclock time will be required?
 #SBATCH --time=7:00:00
 #! What types of email messages do you wish to receive?
-#SBATCH --mail-type=FAIL
+#!SBATCH --mail-type=FAIL
 #!SBATCH -p skylake-himem
 #SBATCH --qos short.q
 #SBATCH --mem=6000
@@ -66,7 +66,7 @@ module load default-wbic                   # REQUIRED - loads the basic environm
 module unload fsl
 module load fsl/5.0.10
 module load itksnap-nowrap/3.6.0
-module load ANTS/2.2.0
+module load ANTS/2.3.4
 
 
 #! Are you using OpenMP (NB this is unrelated to OpenMPI)? If so increase this

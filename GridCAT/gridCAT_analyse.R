@@ -7,8 +7,8 @@ require(tidyr)
 require(RColorBrewer)
 require(ggthemes)
 require(lme4)
-
-# load in data
+####################################
+# load in non-rotation analysed data
 csvImport = read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/gridCAT_X_results_global.csv')
 csvImport[1] <- lapply(csvImport[1],factor)
 
@@ -44,10 +44,11 @@ ggplot(gridmag.allRuns, aes(ROI,Grid_Magnitude)) +
   scale_x_discrete(labels = c("Anterolateral EC","Posteromedial EC", "Anterolateral EC","Posteromedial EC")) +
   labs(title = "Grid cell like signals at 7T fMRI collapsed across runs", x = "Region", y = "Magnitude of Grid-like Signal")
 
+#########################################
 # read in new data
 
 csvImportNR= read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/gridCAT_X_nr_results_global.csv')
-csvImportNR[1] <- lapply(csvImportNR[1],factor)
+csvImportNR[1:2] <- lapply(csvImportNR[1:2],factor)
 
 # tidy data
 gridmagNR.untidy <- csvImportNR %>% select(Subject,starts_with("GCmagnitude")) 
@@ -65,7 +66,7 @@ ggplot(gridmagNR.pmEC, aes(Side,Grid_Magnitude)) +
   labs(title = "Grid cell like signals at 7T fMRI", x = "Side", y = "Magnitude of Grid-like Signal")
 
 ggplot(gridmagNR, aes(ROI,Grid_Magnitude)) +
-  geom_boxplot(aes(fill=Run),outlier.shape = NA,alpha=0.6, show.legend = TRUE) +
+  geom_boxplot(aes(fill=Run),alpha=0.6, show.legend = TRUE) +
   facet_grid(~Side,scales = "free") +
   scale_fill_brewer(palette="YlGnBu") +
   scale_x_discrete(labels = c("Anterolateral EC","Posteromedial EC", "Anterolateral EC","Posteromedial EC")) +

@@ -3,7 +3,7 @@
 
 pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
 scriptdir=${pathstem}/scripts/ImagePrep
-submitT1=${scriptdir}/denoiseT1_submit.sh
+submitT1=${scriptdir}/denoiseReorientT1_submit.sh
 submitT2=${scriptdir}/denoiseT2_submit.sh
 
 mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
@@ -13,10 +13,10 @@ cd slurmoutputs
 
 for subjID in `cat $mysubjs`
 do
-	echo "Submitting T1 denoising for:	$subjID"
-	sbatch ${submitT1} ${scriptdir} ${pathstem} ${subjID}
+#!	echo "Submitting T1 denoising for:	$subjID"
+#!	sbatch ${submitT1} ${scriptdir} ${pathstem} ${subjID}
 	
-#!	echo "Submitting T2 N4 and denoising for:	$subjID"
-#!	sbatch ${submitT2} ${scriptdir} ${pathstem} ${subjID}
+	echo "Submitting T2 N4 and denoising for:	$subjID"
+	sbatch ${submitT2} ${scriptdir} ${pathstem} ${subjID}
 
 done
