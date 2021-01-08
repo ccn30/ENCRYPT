@@ -6,9 +6,10 @@ subjID=${2}
 workdir=${3}
 
 # initialise software roots
-export antsroot=/applications/ANTS/2.2.0/bin
+export antsroot=/applications/ANTS/2.3.4/bin
 export ASHS_ROOT=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta
-export atlasdir=/home/ccn30/ENCRYPT/atlases/magdeburgatlas
+#export atlasdir=/home/ccn30/ENCRYPT/atlases/magdeburgatlas
+export atlasdir=/home/ccn30/ENCRYPT/atlases/utrechtatlas
 
 # initialise subject-wise paths
 subject="$(cut -d'/' -f1 <<<"$subjID")"
@@ -25,15 +26,16 @@ cd ${workdir}
 #------------------------------------------------------------------------#
 # Run ASHS					 			 #
 #------------------------------------------------------------------------#
+# changing to reorientated T1s and updated N4 T2s after poor performance first batch ASHS
 
-wholeT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std.nii
+wholeT1=${rawpathstem}/mp2rage/Rn4mag0000_PSIR_skulled_std.nii
 brainT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std_struc_brain.nii
-DenoiseWholeT1=${rawpathstem}/mp2rage/denoise_n4mag0000_PSIR_skulled_std.nii
-DenoiseBrainT1=${rawpathstem}/mp2rage/denoise_n4mag0000_PSIR_skulled_std_struc_brain_mask.nii
+DenoiseWholeT1=${rawpathstem}/mp2rage/Rdenoise_n4mag0000_PSIR_skulled_std.nii
+DenoiseBrainT1=${rawpathstem}/mp2rage/Rdenoise_n4mag0000_PSIR_skulled_std_struc_brain_mask.nii
 
 T2=${T2path}/t2.nii
-N4T2=${T2path}/n4_t2.nii
-DenoiseN4T2=${T2path}/denoise_n4_t2.nii
+N4T2=${T2path}/n42_t2.nii
+DenoiseN4T2=${T2path}/denoise_n42_t2.nii
 
 if [ -f "${outputpath}" ]; then
 		echo "${outputpath} exists"
@@ -155,10 +157,10 @@ end=(`date +%T`)
 printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
 
 #######################################################
-# 7. Running for denoised T1 and normal T2 (denoise brain T1, N4 T2)
+# 7. Running for denoised T1 and normal T2 (denoise brain T1, N4 T2) - NEW UTRECHT ATLAS
 echo "Beginning ASHS for: " $subject
 
-denoiseT1N4T2output=${outputpath}/DenoiseT1N4T2
+denoiseT1N4T2output=${outputpath}/DenoiseT1N4T2Utrecht
 cd $denoiseT1N4T2output
 
 # Set a timer
@@ -167,7 +169,25 @@ start=(`date +%T`)
 echo "ASHS started at $start"
 
 # run ASHS
-$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseBrainT1} -f ${N4T2} -w ${denoiseT1N4T2output}
+#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseBrainT1} -f ${N4T2} -w ${denoiseT1N4T2output}
+
+end=(`date +%T`)
+printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
+
+#######################################################
+# 8. Running for denoised whole T1 and normal T2 (denoise whole T1, N4 T2)
+echo "Beginning ASHS for: " $subject
+
+denoiseWholeT1N4T2output=${outputpath}/DenoiseWholeT1N4T2Utrecht
+cd $denoiseT1N4T2output
+
+# Set a timer
+SECONDS=0
+start=(`date +%T`)
+echo "ASHS started at $start"
+
+# run ASHS
+$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseWholeT1} -f ${N4T2} -w ${denoiseWholeT1N4T2output} -N
 
 end=(`date +%T`)
 printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"

@@ -1,5 +1,6 @@
 #!/bin/bash
-# script to coregister EPIs (mean topup corrected image run 1) to T1
+# wrapper script to coregister EPIs (mean topup corrected image run 1) to T1
+# calls ANTs_T1xEPI.sh
 
 module unload ANTS
 module load ANTS/2.3.4

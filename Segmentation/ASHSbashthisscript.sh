@@ -9,8 +9,8 @@ submit=${scriptdir}/ASHS_submit.sh
 func=${scriptdir}/ASHS_mainfun_nonslurm.sh
 
 # separate txt file with subject and date IDs
-#!mysubjs=${pathstem}/testsubjcode.txt
-mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+mysubjs=${pathstem}/testsubjcode.txt
+#!mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 
 cd slurmoutputs
 

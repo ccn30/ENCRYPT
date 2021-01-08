@@ -1,5 +1,6 @@
 #!/bin/bash
-#stand alone script to coregister T1 and T2
+# coregister subject T1 to Utrecht template (for ASHS input)
+
 module unload fsl
 module load fsl/6.0.3
 module unload ANTS
@@ -9,8 +10,8 @@ pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
 
 ## separate txt file with subject and date IDs
 
-#!mysubjs=${pathstem}/testsubjcode.txt
-mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+mysubjs=${pathstem}/testsubjcode.txt
+#mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 
 for subjID in `cat $mysubjs`
 do
@@ -20,12 +21,6 @@ echo "******** starting $subject ********"
 ## set paths
 
 rawpathstem=${pathstem}/images/${subjID}
-regDir=${pathstem}/registrations/6.11.20/${subject}/T2xT1 #now old
-#if [ -f "${regDir}" ]; then
-#	echo "${regDir} exists"
-#else
-#	mkdir ${regDir}
-#fi
 newRegDir=${pathstem}/registrations/${subject}
 
 cd ${rawpathstem}
@@ -35,15 +30,13 @@ T2path=${rawpathstem}/${T2dir}
 
 cd ${regDir}
 
-wholeT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std.nii
+wholeT1=${rawpathstem}/mp2rage/Rn4mag0000_PSIR_skulled_std.nii
 brainT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std_struc_brain.nii
-DenoiseWholeT1=${rawpathstem}/mp2rage/denoise_n4mag0000_PSIR_skulled_std.nii
-DenoiseBrainT1=${rawpathstem}/mp2rage/denoise_n4mag0000_PSIR_skulled_std_struc_brain_mask.nii
-wm=${rawpathstem}/mp2rage/c2n4mag0000_PSIR_skulled_std.nii
+DenoiseWholeT1=${rawpathstem}/mp2rage/Rdenoise_n4mag0000_PSIR_skulled_std.nii
+DenoiseBrainT1=${rawpathstem}/mp2rage/Rdenoise_n4mag0000_PSIR_skulled_std_struc_brain_mask.nii
 
-T2=${T2path}/t2.nii
-N4T2=${T2path}/n4_t2.nii
-DenoiseN4T2=${T2path}/denoise_n4_t2.nii
+
+UtrechtTemplate=
 
 ## FSL commands
 
