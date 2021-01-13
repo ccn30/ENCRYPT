@@ -105,7 +105,7 @@ printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) da
 echo "Beginning ASHS for: " $subject
 echo "INPUT:" $wholeT1 $N4T2
 
-denoiseoutput=${outputpath}/DenoiseWhole
+denoiseoutput=${outputpath}/DenoiseWT1DenoiseT2Utrecht
 cd $denoiseoutput
 
 # Set a timer
@@ -114,7 +114,7 @@ start=(`date +%T`)
 echo "ASHS started at $start"
 
 # run ASHS
-#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseWholeT1} -f ${DenoiseN4T2} -w ${denoiseoutput}
+$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseWholeT1} -f ${DenoiseN4T2} -w ${denoiseoutput} -N
 
 end=(`date +%T`)
 printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
@@ -175,7 +175,7 @@ end=(`date +%T`)
 printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
 
 #######################################################
-# 8. Running for denoised whole T1 and normal T2 (denoise whole T1, N4 T2)
+# 8. Running for denoised whole T1 and normal T2 (denoise whole T1, N4 T2) - new utrecht atlas
 echo "Beginning ASHS for: " $subject
 
 denoiseWholeT1N4T2output=${outputpath}/DenoiseWholeT1N4T2Utrecht
@@ -187,7 +187,7 @@ start=(`date +%T`)
 echo "ASHS started at $start"
 
 # run ASHS
-$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseWholeT1} -f ${N4T2} -w ${denoiseWholeT1N4T2output} -N
+#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseWholeT1} -f ${N4T2} -w ${denoiseWholeT1N4T2output} -N
 
 end=(`date +%T`)
 printf "\n\n ASHS completed for $subject at $end, it took $(($SECONDS/86400)) days $(($SECONDS/3600)) hours $(($SECONDS%3600/60)) minutes and $(($SECONDS%60)) seconds to complete \n\n"
