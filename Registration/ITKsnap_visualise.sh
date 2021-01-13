@@ -54,8 +54,10 @@ alEC_left=${regDir}/alEC_leftxEPI.nii.gz
 pmEC_right=${regDir}/pmEC_rightxEPI.nii.gz
 
 # T1 to Utrecht atlas ASHS
-warpedT1Utrecht=${regDir}/UtrechtTempxT1_ANTs_InvWarped.nii.gz
-utrechtTemp=${utrechtAtlasDir}/template.nii.gz
+warpedT1BrainUtrecht=${regDir}/UtrechtTempxT1_ANTs_InvWarped.nii.gz
+utrechtTempBrain=${utrechtAtlasDir}/template_bet.nii.gz
+warpedT1WholeUtrecht=${regDir}?UtrechtTempWholexT1Whole_ANTs_InvWarped.nii.gz
+utrechtTempWhole=${utrechtAtlasDir}/template.nii.gz
 
 ## command
 
@@ -63,6 +65,6 @@ utrechtTemp=${utrechtAtlasDir}/template.nii.gz
 #vglrun itksnap -g ${n4EPI} -o ${warpedT1} &
 #vglrun itksnap -g ${template} -o ${warpedSubjT1} &
 #vglrun itksnap -g ${n4EPI} -o ${warpedTemplate} -o ${warpedT1} -s ${pmEC_right} &
-vglrun itksnap -g ${utrechtTemp} -o ${warpedT1Utrecht} &
+vglrun itksnap -g ${utrechtTempBrain} -o ${warpedT1BrainUtrecht} &
 
 done

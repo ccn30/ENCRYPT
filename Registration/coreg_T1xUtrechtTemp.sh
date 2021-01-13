@@ -1,5 +1,6 @@
 #!/bin/bash
 # standalone script to coregister subject T1 to Utrecht template (for ASHS input)
+# c3d tool to make itk compatible
 
 module unload fsl
 module load fsl/6.0.3
@@ -44,31 +45,27 @@ UtrechtTempBrain=/home/ccn30/ENCRYPT/atlases/utrechtatlas/template/template_bet.
 
 #antsRegistrationSyNQuick.sh -d 3 -f ${UtrechtTemplate} -m ${DenoiseWholeT1} -o T1xUtrechtTemp_ANTsQuickSyN_
 
-antsRegistration -d 3 \
--o [UtrechtTempWholexT1Whole_ANTs_,UtrechtTemWholexT1Whole_ANTs_Warped.nii.gz,UtrechtTempWholexT1Whole_ANTs_InvWarped.nii.gz] \
--n Linear \
--w [0.005,0.995] \
--u 1 \
--r [${DenoiseWholeT1},${UtrechtTemplate},1] \
--t Rigid[0.1] \
--m MI[${DenoiseWholeT1},${UtrechtTemplate},1,32,Regular,0.25] \
--c [1000x500x250x100,1e-6,10] \
--f 8x4x2x1 \
--s 3x2x1x0vox \
--t Affine[0.1] \
--m MI[${DenoiseWholeT1},${UtrechtTemplate},1,32,Regular,0.25] \
--c [1000x500x250x100,1e-6,10] \
--f 8x4x2x1 \
--s 3x2x1x0vox \
--v
+#antsRegistration -d 3 \
+#-o [UtrechtTempWholexT1Whole_ANTs_,UtrechtTemWholexT1Whole_ANTs_Warped.nii.gz,UtrechtTempWholexT1Whole_ANTs_InvWarped.nii.gz] \
+#-n Linear \
+#-w [0.005,0.995] \
+#-u 1 \
+#-r [${DenoiseWholeT1},${UtrechtTemplate},1] \
+#-t Rigid[0.1] \
+#-m MI[${DenoiseWholeT1},${UtrechtTemplate},1,32,Regular,0.25] \
+#-c [1000x500x250x100,1e-6,10] \
+#-f 8x4x2x1 \
+#-s 3x2x1x0vox \
+#-t Affine[0.1] \
+#-m MI[${DenoiseWholeT1},${UtrechtTemplate},1,32,Regular,0.25] \
+#-c [1000x500x250x100,1e-6,10] \
+#-f 8x4x2x1 \
+#-s 3x2x1x0vox \
+#-v
 
-        
-
-# quick script to copy images from old dir to new dir
-
-#files=${regDir}/T1xT2_ANTs_*
-
-#cp ${files} ${newRegDir}
-
+## c3d tool to invert, make itk ASHS compatible and rename (for brain only images)
+/home/ccn30/privatemodules/c3d/bin/c3d_affine_tool -itk UtrechtTempxT1_ANTs_0GenericAffine.mat -o t1_to_template_affine_inv.mat
+/home/ccn30/privatemodules/c3d/bin/c3d_affine_tool t1_to_template_affine_inv.mat -inv -o t1_to_template_affine.mat
+rm core
 
 done
