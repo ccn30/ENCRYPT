@@ -8,13 +8,14 @@ workdir=${3}
 # initialise software roots
 export antsroot=/applications/ANTS/2.3.4/bin
 export ASHS_ROOT=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta
-#export atlasdir=/home/ccn30/ENCRYPT/atlases/magdeburgatlas
+export Magdeburgatlasdir=/home/ccn30/ENCRYPT/atlases/magdeburgatlas
 export atlasdir=/home/ccn30/ENCRYPT/atlases/utrechtatlas
 
-# initialise subject-wise paths
+# initialise subject-wise paths (CHECK ATLAS)
 subject="$(cut -d'/' -f1 <<<"$subjID")"
 rawpathstem=${pathstem}/images/${subjID}
-outputpath=${pathstem}/segmentation/ASHS_Utrecht/${subject}
+#outputpath=${pathstem}/segmentation/ASHS_Utrecht/${subject}
+outputpath=${pathstem}/segmentation/ASHS_Magdeburg2/${subject}
 coregDir=${pathstem}/registrations/${subject}
 
 cd ${rawpathstem}
@@ -36,7 +37,7 @@ DenoiseN4T2=${T2path}/denoise_n42_t2.nii
 if [ -f "${outputpath}" ]; then
 		echo "${outputpath} exists"
 	else
-		mkdir ${outputpath}
+		mkdir -p ${outputpath}
 fi
 
 
@@ -72,11 +73,18 @@ cd $N4T2output
 echo "Beginning ASHS for: " $subject
 echo "INPUT:" $wholeT1 $N4T2
 
-brainT1output=${outputpath}/N4T2skullstrippedT1
+brainT1output=${outputpath}/T1BrainN4T2
+mkdir -p $brainT1output
 cd $brainT1output
+mkdir affine_t1_to_template
+cd affine_t1_to_template
+cp ${coregDir}/t1_to_template_affineMAG.mat t1_to_template_affine.mat
+cp ${coregDir}/t1_to_template_affine_invMAG.mat t1_to_template_affine_inv.mat
+cp ${coregDir}/T1WholexMagdeburgTempWhole_ANTs_Warped.nii.gz t1_to_template_affine.nii.gz
+cd ..
 
 # run ASHS
-#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${brainT1} -f ${N4T2} -w ${brainT1output}
+$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $Magdeburgatlasdir -g ${brainT1} -f ${N4T2} -w ${brainT1output} -N
 
 #######################################################
 # 4. Running for denoised T1 and T2 (denoise whole T1, denoise N4 T2)
@@ -84,16 +92,17 @@ echo "Beginning ASHS for: " $subject
 echo "INPUT:" $wholeT1 $N4T2
 
 denoiseoutput=${outputpath}/DenoiseWT1DenoiseT2
+mkdir -p $denoiseoutput
 cd $denoiseoutput
 mkdir affine_t1_to_template
 cd affine_t1_to_template
-cp ${coregDir}/t1_to_template_affine.mat t1_to_template_affine.mat
-cp ${coregDir}/t1_to_template_affine_inv.mat t1_to_template_affine_inv.mat
-cp ${coregDir}/UtrechtTempxT1_ANTs_InvWarped.nii.gz t1_to_template_affine.nii.gz
+cp ${coregDir}/t1_to_template_affineMAG.mat t1_to_template_affine.mat
+cp ${coregDir}/t1_to_template_affine_invMAG.mat t1_to_template_affine_inv.mat
+cp ${coregDir}/T1WholexMagdeburgTempWhole_ANTs_Warped.nii.gz t1_to_template_affine.nii.gz
 cd ..
 
 # run ASHS
-#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseWholeT1} -f ${DenoiseN4T2} -w ${denoiseoutput} -N
+$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $Magdeburgatlasdir -g ${DenoiseWholeT1} -f ${DenoiseN4T2} -w ${denoiseoutput} -N
 
 #######################################################
 # 5. Running for original images (brain T1, raw T2)
@@ -111,19 +120,20 @@ cd $originalssoutput
 echo "Beginning ASHS for: " $subject
 
 denoisebrainoutput=${outputpath}/DenoiseBrainT1DenoiseT2
-cd $denoisebrainoutput
-mkdir affine_t1_to_template
-cd affine_t1_to_template
-cp ${coregDir}/t1_to_template_affine.mat t1_to_template_affine.mat
-cp ${coregDir}/t1_to_template_affine_inv.mat t1_to_template_affine_inv.mat
-cp ${coregDir}/UtrechtTempxT1_ANTs_InvWarped.nii.gz t1_to_template_affine.nii.gz
-cd ..
+#mkdir -p ${denoisebrainoutput}
+#cd $denoisebrainoutput
+#mkdir affine_t1_to_template
+#cd affine_t1_to_template
+#cp ${coregDir}/t1_to_template_affine.mat t1_to_template_affine.mat
+#cp ${coregDir}/t1_to_template_affine_inv.mat t1_to_template_affine_inv.mat
+#cp ${coregDir}/UtrechtTempxT1_ANTs_InvWarped.nii.gz t1_to_template_affine.nii.gz
+#cd ..
 
 # run ASHS
-#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseBrainT1} -f ${DenoiseN4T2} -w ${denoisebrainoutput} -N
+#$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${DenoiseBrainT1} -f ${DenoiseN4T2} -w ${denoisebrainoutput} -N
 
 #######################################################
-# 7. Running for denoised T1 and normal T2 (denoise brain T1, N4 T2) - NEW UTRECHT ATLAS
+# 7. Running for denoised brain T1 and normal T2 (denoise brain T1, N4 T2)
 echo "Beginning ASHS for: " $subject
 
 denoiseT1N4T2output=${outputpath}/DenoiseT1N4T2Utrecht
