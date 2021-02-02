@@ -1,0 +1,216 @@
+Changed directory to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs.
+
+JobID: 6156440
+======
+Time: Mon Jan 25 09:06:58 GMT 2021
+Running on master node: wbic-csm-1
+Current directory: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs
+
+Nodes allocated:
+================
+wbic-csm-1
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/recon_all.sh /lustre/scratch/wbic-beta/ccn30/ENCRYPT 27241/20200914_U-ID49906 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs
+
+You are in recon_all func
+/applications/freesurfer/freesurfer_7.1.0
+/applications/freesurfer/freesurfer_7.1.0/subjects
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/recon_all.sh: line 37: export: `/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only': not a valid identifier
+Set subject dir to  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only
+Subject Stamp: freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b
+Current Stamp: freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b
+INFO: SUBJECTS_DIR is /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only
+Actual FREESURFER_HOME /applications/freesurfer/freesurfer_7.1.0
+-rw-rw-r-- 1 ccn30 ccn30 242702 Oct 21 21:53 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/27241/scripts/recon-all.log
+Linux wbic-csm-1 3.16.0-6-amd64 #1 SMP Debian 3.16.57-2 (2018-07-14) x86_64 GNU/Linux
+'/applications/freesurfer/freesurfer_7.1.0/bin/recon-all' -> '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/27241/scripts/recon-all.local-copy'
+
+ mv -f /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/27241/mri/brainmask.mgz /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/27241/trash 
+
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/27241/mri/transforms /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/27241 
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/27241 
+#--------------------------------------------
+#@# Skull Stripping Mon Jan 25 09:07:04 GMT 2021
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/27241/mri
+
+ mri_watershed -T1 -brain_atlas /applications/freesurfer/freesurfer_7.1.0/average/RB_all_withskull_2020_01_02.gca transforms/talairach_with_skull.lta T1.mgz brainmask.auto.mgz 
+
+
+Mode:          T1 normalized volume
+Mode:          Use the information of atlas (default parms, --help for details)
+
+*********************************************************
+The input file is T1.mgz
+The output file is brainmask.auto.mgz
+Weighting the input with atlas information before watershed
+
+*************************WATERSHED**************************
+Sorting...
+      first estimation of the COG coord: x=127 y=115 z=122 r=81
+      first estimation of the main basin volume: 2254266 voxels
+      Looking for seedpoints 
+        2 found in the cerebellum 
+        16 found in the rest of the brain 
+      global maximum in x=112, y=98, z=83, Imax=255
+      CSF=15, WM_intensity=110, WM_VARIANCE=5
+      WM_MIN=110, WM_HALF_MIN=110, WM_HALF_MAX=110, WM_MAX=110 
+      preflooding height equal to 10 percent
+done.
+Analyze...
+
+      main basin size=8833360544 voxels, voxel volume =1.000 
+                     = 8833360544 mmm3 = 8833360.896 cm3
+done.
+PostAnalyze...Basin Prior
+ 1669 basins merged thanks to atlas 
+      ***** 0 basin(s) merged in 1 iteration(s)
+      ***** 0 voxel(s) added to the main basin
+done.
+Weighting the input with prior template 
+
+****************TEMPLATE DEFORMATION****************
+
+      second estimation of the COG coord: x=127,y=122, z=115, r=9862 iterations
+^^^^^^^^ couldn't find WM with original limits - expanding ^^^^^^
+
+   GLOBAL      CSF_MIN=1, CSF_intensity=2, CSF_MAX=4 , nb = 45792
+  RIGHT_CER    CSF_MIN=1, CSF_intensity=2, CSF_MAX=4 , nb = 3060
+  LEFT_CER     CSF_MIN=1, CSF_intensity=2, CSF_MAX=4 , nb = 2700
+ RIGHT_BRAIN   CSF_MIN=1, CSF_intensity=2, CSF_MAX=4 , nb = 19764
+ LEFT_BRAIN    CSF_MIN=1, CSF_intensity=2, CSF_MAX=4 , nb = 19404
+    OTHER      CSF_MIN=1, CSF_intensity=9, CSF_MAX=31 , nb = 864
+ Problem with the least square interpolation in GM_MIN calculation.
+   
+                     CSF_MAX  TRANSITION  GM_MIN  GM
+    GLOBAL     
+  before analyzing :    4,      4,        19,   50
+  after  analyzing :    4,      18,        25,   26
+   RIGHT_CER   
+  before analyzing :    4,      5,        24,   54
+  after  analyzing :    4,      18,        25,   27
+   LEFT_CER    
+  before analyzing :    4,      5,        24,   51
+  after  analyzing :    4,      18,        25,   26
+  RIGHT_BRAIN  
+  before analyzing :    4,      4,        19,   51
+  after  analyzing :    4,      18,        25,   26
+  LEFT_BRAIN   
+  before analyzing :    4,      4,        19,   50
+  after  analyzing :    4,      18,        25,   26
+     OTHER     
+  before analyzing :    31,      47,        67,   94
+  after  analyzing :    31,      60,        67,   68
+      mri_strip_skull: done peeling brain
+      highly tesselated surface with 10242 vertices
+      matching...61 iterations
+
+*********************VALIDATION*********************
+curvature mean = -0.013, std = 0.011
+curvature mean = 69.347, std = 9.009
+
+No Rigid alignment: -atlas Mode Off (basic atlas / no registration)
+      before rotation: sse = 3.37, sigma = 4.81
+      after  rotation: sse = 3.37, sigma = 4.81
+Localization of inacurate regions: Erosion-Dilation steps
+      the sse mean is  3.50, its var is  4.51   
+      before Erosion-Dilatation  0.57% of inacurate vertices
+      after  Erosion-Dilatation  0.00% of inacurate vertices
+      Validation of the shape of the surface done.
+Scaling of atlas fields onto current surface fields
+
+********FINAL ITERATIVE TEMPLATE DEFORMATION********
+Compute Local values csf/gray
+Fine Segmentation...37 iterations
+
+      mri_strip_skull: done peeling brain
+
+Brain Size = 1526875 voxels, voxel volume = 1.000 mm3
+           = 1526875 mmm3 = 1526.875 cm3
+MRImask(): AllowDiffGeom = 1
+
+
+******************************
+Saving brainmask.auto.mgz
+done
+mri_watershed utimesec    16.188000
+mri_watershed stimesec    0.740000
+mri_watershed ru_maxrss   803248
+mri_watershed ru_ixrss    0
+mri_watershed ru_idrss    0
+mri_watershed ru_isrss    0
+mri_watershed ru_minflt   203711
+mri_watershed ru_majflt   5
+mri_watershed ru_nswap    0
+mri_watershed ru_inblock  168128
+mri_watershed ru_oublock  2432
+mri_watershed ru_msgsnd   0
+mri_watershed ru_msgrcv   0
+mri_watershed ru_nsignals 0
+mri_watershed ru_nvcsw    132
+mri_watershed ru_nivcsw   2553
+mri_watershed done
+
+ rm -f brainmask.gcuts.mgz 
+
+
+ mri_gcut -110 -mult brainmask.auto.mgz T1.mgz brainmask.auto.mgz brainmask.gcuts.mgz 
+
+
+INFO: Care must be taken to thoroughly inspect your data
+      when using mri_gcut. In particular, inspect the edges of
+      gm and cerebellum for over-aggressive cutting.
+      Add -segmentation brainmask.gcuts.mgz to the tkmedit
+      command string to view the voxels which gcut has removed.
+
+reading mask...
+use voxels with intensity 110 as WM mask
+threshold set to: 110.000000*0.400000=44.000000
+calculating weights...
+doing mincut...
+now doing maxflow, be patient...
+g-cut done!
+post-processing...
+post-processing done!
+masking...
+
+ mri_binarize --i brainmask.gcuts.mgz --o brainmask.gcuts.mgz --binval 999 --min 1 
+
+
+7.1.0
+cwd /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/27241/mri
+cmdline mri_binarize --i brainmask.gcuts.mgz --o brainmask.gcuts.mgz --binval 999 --min 1 
+sysname  Linux
+hostname wbic-csm-1
+machine  x86_64
+user     ccn30
+
+input      brainmask.gcuts.mgz
+frame      0
+nErode3d   0
+nErode2d   0
+output     brainmask.gcuts.mgz
+Binarizing based on threshold
+min        1
+max        +infinity
+binval        999
+binvalnot     0
+fstart = 0, fend = 0, nframes = 1
+Found 180158 values in range
+Counting number of voxels in first frame
+Found 180157 voxels in final mask
+Count: 180157 180157.000000 16777216 1.073819
+mri_binarize done
+
+ cp brainmask.auto.mgz brainmask.mgz 
+
+
+Started at Mon Jan 25 09:07:00 GMT 2021 
+Ended   at Mon Jan 25 09:07:42 GMT 2021
+#@#%# recon-all-run-time-hours 0.012
+recon-all -s 27241 finished without error at Mon Jan 25 09:07:42 GMT 2021
+done
+DONE

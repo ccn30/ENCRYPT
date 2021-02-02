@@ -28,7 +28,7 @@
 #SBATCH --mem=10000
 
 # CHANGE ME IF YOU WANT TO BE EMAILED
-#SBATCH --mail-user=ccn30
+#!SBATCH --mail-user=ccn30
 #! Uncomment this to prevent the job from being requeued (e.g. if
 #! interrupted by node failure or system downtime):
 #SBATCH --no-requeue
@@ -86,8 +86,7 @@ export I_MPI_PIN_ORDER=scatter # Adjacent domains have minimal sharing of caches
 #! 4. If MPI tasks perform better when sharing caches/sockets, try I_MPI_PIN_ORDER=compact.
 
 
-# ASHS DIRECTIVES START HERE
-# import $subjID, $pathstem and $rawpathstem from ASHS_complete.sh
+# import $subjID, $pathstem and $rawpathstem from freesurferbashthisscript
 
 scriptdir=${1}
 pathstem=${2}

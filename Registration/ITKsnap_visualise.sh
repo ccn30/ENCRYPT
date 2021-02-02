@@ -63,7 +63,7 @@ warpedT1WholeUtrecht=${regDir}?UtrechtTempWholexT1Whole_ANTs_InvWarped.nii.gz
 utrechtTempWhole=${utrechtAtlasDir}/template/template.nii.gz
 
 # T1 to Magdeburg atlas ASHS
-warpedT1mag=${regDir}/T1WholexMagdeburgTempWhole_ANTs_Warped.nii.gz
+warpedT1Mag=${regDir}/T1WholexMagdeburgTempWhole_ANTs_Warped.nii.gz
 MagTemp=${magAtlasDir}/template/template.nii.gz
 
 # check ASHS segmentation
@@ -81,6 +81,7 @@ usegrayRight=${ASHSUtrechtDir}/DenoiseWT1DenoiseT2/final/${subject}_right_lfseg_
 #vglrun itksnap -g ${n4EPI} -o ${warpedTemplate} -o ${warpedT1} -s ${pmEC_right} &
 #vglrun itksnap -g ${utrechtTempBrain} -o ${warpedT1BrainUtrecht} &
 #vglrun itksnap -g ${DenoiseN4T2} -s ${usegrayLeft} -l ${utrechtTextLabs} &
-vglrun itksnap -g ${MagTemp} -o ${warpedT1Mag} &
+#vglrun itksnap -g ${MagTemp} -o ${warpedT1Mag} &
+#vglrun itksnap -g ${DenoiseN4T2} -s ${usegrayLeft} -l ${utrechtTextLabs} &
 
 done

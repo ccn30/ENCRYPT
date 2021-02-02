@@ -29,29 +29,65 @@ N4T2=${T2path}/n4_t2.nii
 DenoiseN4T2=${T2path}/denoise_n4_t2.nii
 
 #------------------------------------------------------------------------#
-# Run recon-all					 			 #
+# Run recon-all					 			 							 #
 #------------------------------------------------------------------------#
 
-# 1. Just whole T1
+## WHOLE T1 ALONE ##
 SUBJECTS_DIR=${pathstem}/segmentation/Freesurfer/T1only
 export $SUBJECTS_DIR
 echo "Set subject dir to  $SUBJECTS_DIR"
 if [ -f "${SUBJECTS_DIR}" ]; then
 		echo "${SUBJECTS_DIR} exists"
 	else
-		mkdir ${SUBJECTS_DIR}
+		mkdir -p ${SUBJECTS_DIR}
 fi
-recon-all -s $subject -i $wholeT1 -qcache -all
 
-# 2. whole T1 and T2
+## COMMAND ##
+
+################################################
+
+#!recon-all -s $subject -i $wholeT1 -qcache -all
+
+################################################
+
+
+## CORRECTIONS ##
+
+## correction of pial surface - could add remove script/IsRunning command? ##
+
+#!recon-all -skullstrip -clean-bm -gcut -subjid $subject
+
+
+## rerun pial step after gcut (but this doesn't regenerate wm.mgz which needs to happen) ##
+
+#!recon-all -s $subject -autorecon-pial
+
+
+## rerun from wherever edits automatically detected (didn't regenerate surfaces) ##
+
+#!recon-all -make all -subjid $subject
+
+
+## rerun from beginning using edits ##
+
+#!recon-all -all -subjid $subject
+
+
+## rerun skullstrip using watershed adjustment ##
+
+recon-all -skullstrip -wsthresh 5 -clean-bm -subjid $subject
+
+
+## WHOLE T1 AND T2 ## (failed)
+
 #!SUBJECTS_DIR=${pathstem}/segmentation/Freesurfer/T1T2both
 #!export $SUBJECTS_DIR
-echo "Set subject dir to  $SUBJECTS_DIR"
-if [ -f "${SUBJECTS_DIR}" ]; then
-		echo "${SUBJECTS_DIR} exists"
-	else
-		mkdir ${SUBJECTS_DIR}
-fi
+#!echo "Set subject dir to  $SUBJECTS_DIR"
+#!if [ -f "${SUBJECTS_DIR}" ]; then
+#!		echo "${SUBJECTS_DIR} exists"
+#!	else
+#!		mkdir -p ${SUBJECTS_DIR}
+#!fi
 #!recon-all -s $subject -i $wholeT1 -T2 $N4T2 -T2pial -qcache -all
 
 echo "DONE"

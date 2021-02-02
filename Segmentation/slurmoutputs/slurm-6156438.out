@@ -1,0 +1,55 @@
+Changed directory to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs.
+
+JobID: 6156438
+======
+Time: Mon Jan 25 09:06:58 GMT 2021
+Running on master node: wbic-cs-39
+Current directory: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs
+
+Nodes allocated:
+================
+wbic-cs-39
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/recon_all.sh /lustre/scratch/wbic-beta/ccn30/ENCRYPT 26069/20200221_U-ID48187 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/slurmoutputs
+
+You are in recon_all func
+/applications/freesurfer/freesurfer_7.1.0
+/applications/freesurfer/freesurfer_7.1.0/subjects
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/Segmentation/recon_all.sh: line 37: export: `/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only': not a valid identifier
+Set subject dir to  /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only
+Subject Stamp: freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b
+Current Stamp: freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b
+INFO: SUBJECTS_DIR is /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only
+Actual FREESURFER_HOME /applications/freesurfer/freesurfer_7.1.0
+-rw-rw-r-- 1 ccn30 ccn30 236225 Oct 22 06:01 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/26069/scripts/recon-all.log
+Linux wbic-cs-39 3.16.0-6-amd64 #1 SMP Debian 3.16.57-2 (2018-07-14) x86_64 GNU/Linux
+
+ERROR: it appears that recon-all is already running
+for 26069 based on the presence of /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/26069/scripts/IsRunning.lh+rh. It could
+also be that recon-all was running at one point but
+died in an unexpected way. If it is the case that there
+is a process running, you can kill it and start over or
+just let it run. If the process has died, you should type:
+
+ rm /lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/26069/scripts/IsRunning.lh+rh
+
+and re-run. Or you can add -no-isrunning to the recon-all
+command-line. The contents of this file are:
+----------------------------------------------------------
+------------------------------
+SUBJECT 26069
+HEMI    lh rh
+DATE Wed Oct 21 16:21:16 BST 2020
+USER ccn30
+HOST wbic-cs-30
+PROCESSID 12106 
+PROCESSOR x86_64
+OS Linux
+Linux wbic-cs-30 3.16.0-6-amd64 #1 SMP Debian 3.16.57-2 (2018-07-14) x86_64 GNU/Linux
+7.1.0 (freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b)
+----------------------------------------------------------
+DONE
