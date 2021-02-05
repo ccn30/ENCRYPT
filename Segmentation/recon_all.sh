@@ -70,12 +70,12 @@ fi
 
 ## rerun from beginning using edits ##
 
-#!recon-all -all -subjid $subject
+recon-all -all -subjid $subject
 
 
 ## rerun skullstrip using watershed adjustment ##
 
-recon-all -skullstrip -wsthresh 5 -clean-bm -subjid $subject
+#!recon-all -skullstrip -wsthresh 5 -clean-bm -subjid $subject
 
 
 ## WHOLE T1 AND T2 ## (failed)
