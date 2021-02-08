@@ -1,5 +1,5 @@
 #!/bin/bash
-# corgeister templates masks to subject EPIs
+# corgeister templates masks to subject EPIs, calls ANTS script in cd
 
 pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
 
@@ -10,8 +10,8 @@ studyTemplateDir=~/ENCRYPT/atlases/templates/ECtemplatemasks2015
 
 ## separate txt file with subject and date IDs
 
-mysubjs=${pathstem}/testsubjcode.txt
-#mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+#mysubjs=${pathstem}/testsubjcode.txt
+mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 
 
 for subjID in `cat $mysubjs`
@@ -23,10 +23,6 @@ echo "******** starting $subject ********"
 ## set subject specific paths
 
 regDir=${pathstem}/registrations/${subject}
-
-
-## set images
-
 groupTemplate=${groupTemplateDir}/para01_template0.nii.gz
 studyTemplate=${studyTemplateDir}/Study_template_wholeBrain.nii
 T1=${groupTemplateDir}/${subject}_t1.nii
@@ -42,10 +38,11 @@ T1xTempInvWarp=${groupTemplateDir}/para01_${subject}_t1*1InverseWarp.nii.gz
 #antsRegistrationSyN.sh -f ${studyTemplate} -m ${groupTemplate} -o ${groupTemplateDir}/para01_template0xStudyTemplate_ -t s
 
 
-## Perform mask x EPI transformation
+## Perform mask x EPI/T1 transformation
 
-ANTs_templateMasksxEPI.sh ${regDir} ${groupTemplateDir} ${studyTemplateDir} ${T1xTempAffine} ${T1xTempInvWarp} ${T1}
-test_coreg.sh ${regDir} ${groupTemplateDir} ${studyTemplateDir} ${T1xTempAffine} ${T1xTempInvWarp}
+ANTs_templateMasksxSubjectSpace.sh ${regDir} ${groupTemplateDir} ${studyTemplateDir} ${T1xTempAffine} ${T1xTempInvWarp} ${T1}
+
+#test_coreg.sh ${regDir} ${groupTemplateDir} ${studyTemplateDir} ${T1xTempAffine} ${T1xTempInvWarp}
 
 done
 
