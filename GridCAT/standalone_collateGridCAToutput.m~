@@ -126,7 +126,10 @@ for subjIdx = 1:length(subjDirList)
                     else
                         ROI_gridMetricMask = cellData{1}; % to change with new masks
                     end
-                                        
+                    
+                    % get number of voxels used
+                    Vo
+                    
                     if strncmp(ROI_gridMetricMask, ROI_GLM2meanGridOriCalc, 6)
 
                         cellData = strsplit(lineData{5}, {'-','_'});
@@ -139,7 +142,7 @@ for subjIdx = 1:length(subjDirList)
                             metricName = ['GCmagnitude_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' thresh];
                             [metricIdx, metricNameList] = getMetricIdx(metricName, metricNameList);
                             output_cArray{subjIdx, metricIdx} = GCmagnitude;
-                                                                                
+
                         end
                     end
 

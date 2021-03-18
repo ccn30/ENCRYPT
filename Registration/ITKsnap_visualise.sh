@@ -51,7 +51,7 @@ n4EPI=${regDir}/N4meanEPI.nii
 template=${templateDir}/para01_template0.nii.gz
 warpedSubjT1=${templateDir}/para01_template0${subject}_t*.nii.gz
 
-# masks to EPI space
+# Maass masks to EPI space
 warpedTemplate=${regDir}/studyBrainxEPI_Warped.nii.gz
 alEC_left=${regDir}/alEC_leftxEPI.nii.gz
 pmEC_right=${regDir}/pmEC_rightxEPI.nii.gz
@@ -68,10 +68,17 @@ MagTemp=${magAtlasDir}/template/template.nii.gz
 
 # check ASHS segmentation
 utrechtTextLabs=${utrechtAtlasDir}/snap/snaplabels.txt
-#magdeburgTextLabs
-# change according to labels needed
-usegrayLeft=${ASHSUtrechtDir}/DenoiseWT1DenoiseT2/final/${subject}_left_lfseg_corr_usegray.nii.gz
-usegrayRight=${ASHSUtrechtDir}/DenoiseWT1DenoiseT2/final/${subject}_right_lfseg_corr_usegray.nii.gz
+magdeburgTextLabs=${magAtlasDir}/snap/snaplabels.txt
+magdeburgTextLabsECsub=${magAtlasDir}/snap/snaplabels_ECsubdivisions.txt
+usegrayLeftUtrecht=${ASHSUtrechtDir}/DenoiseWT1DenoiseT2/final/${subject}_left_lfseg_corr_usegray.nii.gz
+usegrayRightUtrecht=${ASHSUtrechtDir}/DenoiseWT1DenoiseT2/final/${subject}_right_lfseg_corr_usegray.nii.gz
+usegrayLeftMag=${ASHSMagDir}/DenoiseWT1DenoiseT2/final/${subject}_left_lfseg_corr_usegray.nii.gz
+usegrayRightMag=${ASHSMagDir}/DenoiseWT1DenoiseT2/final/${subject}_right_lfseg_corr_usegray.nii.gz
+
+# Maass masks to T2 space
+rightECMaassMaskxT2=${regDir}/rightEC_MaassMasksxT2.nii.gz
+leftECMaassMaskxT2=${regDir}/leftEC_MaassMasksxT2.nii.gz
+MaassTemplateBrainxT2=${regDir}/MaassTemplateBrainxT2.nii.gz
 
 ## command
 
@@ -83,5 +90,26 @@ usegrayRight=${ASHSUtrechtDir}/DenoiseWT1DenoiseT2/final/${subject}_right_lfseg_
 #vglrun itksnap -g ${DenoiseN4T2} -s ${usegrayLeft} -l ${utrechtTextLabs} &
 #vglrun itksnap -g ${MagTemp} -o ${warpedT1Mag} &
 #vglrun itksnap -g ${DenoiseN4T2} -s ${usegrayLeft} -l ${utrechtTextLabs} &
+#vglrun itksnap -g $DenoiseN4T2 -o $MaassTemplateBrainxT2
+#vglrun itksnap -g $N4T2 -o $rightECMaassMaskxT2 -s $usegrayRightMag -l $magdeburgTextLabsECsub
+
+## copy images into dir for scp to local 
+scpdir=/home/ccn30/Downloads/T2masks/$subject/
+
+if [ -f "${scpdir}" ]; then
+		echo "${scpdir} exists"
+	else
+		mkdir -p ${scpdir}
+fi
+
+#cp $N4T2 $scpdir
+#cp $rightECMaassMaskxT2 $scpdir
+#cp $leftECMaassMaskxT2 $scpdir
+cp $usegrayRightUtrecht /home/ccn30/Downloads/T2masks/$subject/${subject}_right_lfseg_corr_usegray_utrecht.nii.gz
+cp $usegrayLeftUtrecht /home/ccn30/Downloads/T2masks/$subject/${subject}_left_lfseg_corr_usegray_utrecht.nii.gz
+cp $usegrayRightMag /home/ccn30/Downloads/T2masks/$subject/${subject}_right_lfseg_corr_usegray_magdeburg.nii.gz
+cp $usegrayLeftMag /home/ccn30/Downloads/T2masks/$subject/${subject}_left_lfseg_corr_usegray_magdeburg.nii.gz
+#cp $utrechtTextLabs $scpdir"snaplabels_Utrecht.txt"
+#cp $magdeburgTextLabsECsub $scpdir"snaplabels_Magdeburg_ECsubdivisions.txt"
 
 done

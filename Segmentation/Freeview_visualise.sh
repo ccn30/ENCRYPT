@@ -3,8 +3,8 @@
 # needs to be called from graphics window sith source command run
 
 pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
-mysubjs=${pathstem}/testsubjcode.txt
-#mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+#mysubjs=${pathstem}/testsubjcode.txt
+mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 
 for subjID in `cat $mysubjs`
 do
@@ -47,7 +47,7 @@ ${FreeSurfT1Dir}/mri/T1.mgz \
 -f ${FreeSurfT1Dir}/surf/lh.white:edgecolor=blue \
 ${FreeSurfT1Dir}/surf/lh.pial:edgecolor=red \
 ${FreeSurfT1Dir}/surf/rh.white:edgecolor=blue \
-${FreeSurfT1Dir}/surf/rh.pial:edgecolor=red &
+${FreeSurfT1Dir}/surf/rh.pial:edgecolor=red
 
 
 done

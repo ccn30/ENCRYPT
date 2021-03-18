@@ -58,19 +58,28 @@ fi
 #!recon-all -skullstrip -clean-bm -gcut -subjid $subject
 
 
-## rerun pial step after gcut (but this doesn't regenerate wm.mgz which needs to happen) ##
+## rerun pial step after gcut or manual edits ##
 
 #!recon-all -s $subject -autorecon-pial
 
 
+## rerun WM seg after manual edits ##
+
+if [ "$subject" == "26069" ]; then
+	recon-all -s $subject -autorecon2-wm -autorecon3
+else
+	recon-all -s $subject -autorecon-pial
+fi
+
+
 ## rerun from wherever edits automatically detected (didn't regenerate surfaces) ##
 
-#!recon-all -make all -subjid $subject
+#recon-all -make all -subjid $subject
 
 
 ## rerun from beginning using edits ##
 
-recon-all -all -subjid $subject
+#!recon-all -all -subjid $subject
 
 
 ## rerun skullstrip using watershed adjustment ##

@@ -1,0 +1,97 @@
+---
+title: "GridCAT Analysis Global"
+author: "C Newton"
+date: "3/10/2021"
+output: pdf_document
+---
+
+## Grid Cell fMRI signal analysis in PREVENT
+This document provides a full pipeline to running GridCAT toolbox functions on preprocessed EPIs, raw grid cell task data with pre-generated ROI masks.  
+  
+GridCAT scripts:  
+1. runGridCAT.sh >  
+2. gridcatsubmit.sh to submit to SLURM >  
+3. gridcatprepare.sh which first calls GCAP_logfile2eventtable.m and then GridCAT_mainfunc.m with ROI/SPM threshold flags etc.    
+Output = individual subject .txt files on gridCAT metrics per ROI, which are collated via standalone_collateGridCAToutput.m run manually in Matlab in case mask names/paths/indexing needs altering) to make .csv file for all subjects with all outputs.  
+Must define filepaths within runGridCAT.sh and .txt file with subjects to run  
+Must define mask filepaths to use within GridCAT_mainfunc.m  
+
+##### Run GridCAT and load in output
+Manually collate with standalone_collageGridCAToutput.m into .csv file and add in CB codes to corresponding RIS
+```{bash}
+#pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT
+#./runGridCAT.sh
+```
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+
+# load environment
+require(ggplot2)
+library(tidyverse)
+require(readxl)
+require(RColorBrewer)
+require(ggthemes)
+require(RColorBrewer)
+require(ggthemes)
+require(lme4)
+
+# load in data
+GC.hybrid.7_in = read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/gridCAT_X_hybrid_results_global.csv')
+PREVENTmeta.35_in = read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/PREVENT/PREVENTdata_ENCRYPTn35.csv')
+
+# tidy GridCAT data into tibbles for magnitude, tStability (% stable voxels across runs), sStability (Rayliegh's test z and p values) and mean orientation per ROI per run
+GC.hybrid.7_Mag <- GC.hybrid.7_in %>% select(Subject,Code,starts_with("GCmag")) %>% gather(Model_Magnitude,Grid_Magnitude,starts_with("GCmag")) %>% separate(Model_Magnitude,sep="_",into=(c(NA,"Run","ROI","Side","xFold")))
+
+GC.hybrid.7_tStab <- GC.hybrid.7_in %>% select(Subject,Code,starts_with("tStab")) %>% gather(Model_tStab,tStability,starts_with("tStab")) %>% separate(Model_tStab,sep="_",into=(c(NA,NA,"Run_Comparison","ROI","Side","xFold")))
+
+GC.hybrid.7_sStabz <- GC.hybrid.7_in %>% select(Subject,Code,starts_with("sStability_z")) %>% gather(Model_sStabz,sStability_z,starts_with("sStability_z")) %>% separate(Model_sStabz,sep="_",into=(c(NA,NA,"Run","ROI","Side","xFold")))
+
+GC.hybrid.7_sStabp <- GC.hybrid.7_in %>% select(Subject,Code,starts_with("sStability_p")) %>% gather(Model_sStabp,sStability_p,starts_with("sStability_p")) %>% 
+separate(Model_sStabp,sep="_",into=(c(NA,NA,"Run","ROI","Side","xFold")))
+
+GC.hybrid.7_sStab <- left_join(GC.hybrid.7_sStabz,GC.hybrid.7_sStabp) # combine z and p values
+
+GC.hybrid.7_meanOri <- GC.hybrid.7_in %>% select(Subject,Code,starts_with("Mean")) %>% gather(ROIo,Mean_Orientation,starts_with("Mean")) %>%
+separate(ROIo,sep="_",into=(c(NA,"Run","ROI","Side","xFold")))
+
+# combine tibbles with PREVENT metadata
+PREVENT.GChybrid7.mag = inner_join(GC.hybrid.7_Mag,PREVENTmeta.35_in, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
+PREVENT.GChybrid7.sStab = inner_join(GC.hybrid.7_sStab,PREVENTmeta.35_in, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
+PREVENT.GChybrid7.tStab = inner_join(GC.hybrid.7_tStab,PREVENTmeta.35_in, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
+PREVENT.GChybrid7.meanOri = inner_join(GC.hybrid.7_meanOri,PREVENTmeta.35_in, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
+
+```
+
+##### Visualising results
+###### Magnitude
+####### Average across runs
+```{r}
+pd <- position_dodge(0.2)
+PREVENT.GChybrid7.mag.allRuns <- PREVENT.GChybrid7.mag %>% filter(Run %in% "allRuns")
+ggplot(PREVENT.GChybrid7.mag.allRuns, aes(ROI,Grid_Magnitude)) +
+  geom_boxplot(aes(fill=ROI),outlier.shape = NA,alpha=0.6) +
+  geom_point() +
+  scale_fill_brewer(palette="Blues") +
+  facet_wrap(~Side)
+  
+```
+
+####### Across individual runs
+```{r}
+PREVENT.GChybrid7.mag.runs <- PREVENT.GChybrid7.mag %>% filter(!Run %in% "allRuns")
+ggplot(PREVENT.GChybrid7.mag.runs, aes(ROI,Grid_Magnitude,fill=Side)) +
+  geom_boxplot(aes(fill=Side),outlier.shape = NA,alpha=0.6) +
+  geom_point(position=position_jitterdodge()) +
+  scale_fill_brewer(palette="Blues") +
+  facet_wrap(~Run)
+```
+
+####### Association with age
+```{r}
+ggplot(PREVENT.GChybrid7.mag.allRuns, aes(Age,Grid_Magnitude)) +
+  geom_point(aes(color=Side)) +
+  scale_fill_brewer(palette="Blues") +
+  facet_grid(Side ~ ROI)
+```
+

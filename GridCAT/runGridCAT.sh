@@ -15,8 +15,8 @@ prepare=${scriptDir}/gridcatprepare.sh
 mainfunc=${scriptDir}/GridCAT_mainfunc.m
 
 # set subjects
-mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
-#mysubjs=${pathstem}/testsubjcode.txt
+#mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+mysubjs=${pathstem}/testsubjcode.txt
 
 for subjID in `cat $mysubjs`
 do
@@ -24,8 +24,8 @@ do
 	echo "**** starting $subject ****"
 	
 	# unzip masks
-#	cd ${regDir}/${subject}	
-#	gunzip *
+	cd ${regDir}/${subject}	
+	gunzip *
 	cd ${scriptDir}/slurmoutputs
 
 	# run gridCAT

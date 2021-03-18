@@ -20,7 +20,7 @@
 #SBATCH --cpus-per-task=1
 #!SBATCH --mem-per-cpu=15000M
 #! How much wallclock time will be required?
-#SBATCH --time=01:00:00
+#SBATCH --time=02:30:00
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=FAIL
 #!SBATCH -p skylake-himem

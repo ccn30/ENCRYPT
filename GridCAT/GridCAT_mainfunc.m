@@ -1,11 +1,8 @@
 %% GridCAT function for batch script
-%called from gridcatprepare.sh on command line
+%called from gridcatprepare.sh
 
 % input images, event table and regressors to generate grid cell metrics
 % CCNewton adapted from GridCAT demo script 22/08/19
-% out01 = both EC, 6 fold
-% out02 = both EC, 7 fold, 03 = left EC 6 fold, 04 = right EC 6 fold, 05 =
-% both EC 4 fold, 06 = both posterior HC 6 fold
 
 function GridCAT_mainfunc(subject,fmriDir,taskDir,regDir,outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
 
@@ -161,17 +158,17 @@ if strcmp(warp_flag, 'main')
     if strcmp(ROI_flag, 'both')
 %       cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[]};
     elseif strcmp(ROI_flag, 'pmRight')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_rightxEPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_right_Magdeburg_HybridMaskT2xEPI.nii']};
     elseif strcmp(ROI_flag, 'pmLeft')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_leftxEPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_left_Magdeburg_HybridMaskT2xEPI.nii']};
     end
 elseif strcmp(warp_flag,'control')
     if strcmp(ROI_flag,'PosHipp')
 %        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[]};
     elseif strcmp(ROI_flag,'alRight')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_rightxEPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_right_Magdeburg_HybridMaskT2xEPI.nii']};
     elseif strcmp(ROI_flag,'alLeft')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_leftxEPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_left_Magdeburg_HybridMaskT2xEPI.nii']};
     end
 end
 
@@ -207,17 +204,17 @@ if strcmp(warp_flag, 'main')
     if strcmp(ROI_flag, 'both')
 %       ROI_masks = {[]};
     elseif strcmp(ROI_flag, 'pmRight')
-        ROI_masks = {[regDir '/' subject '/pmEC_rightxEPI.nii']};
+        ROI_masks = {[regDir '/' subject '/pmEC_right_Magdeburg_HybridMaskT2xEPI.nii']};
     elseif strcmp(ROI_flag, 'pmLeft')
-        ROI_masks = {[regDir '/' subject '/pmEC_leftxEPI.nii']};
+        ROI_masks = {[regDir '/' subject '/pmEC_left_Magdeburg_HybridMaskT2xEPI.nii']};
     end
 elseif strcmp(warp_flag,'control')
     if strcmp(ROI_flag,'PosHipp')
 %        ROI_masks = {[]};
     elseif strcmp(ROI_flag,'alRight')
-        ROI_masks = {[regDir '/' subject '/alEC_rightxEPI.nii']};
+        ROI_masks = {[regDir '/' subject '/alEC_right_Magdeburg_HybridMaskT2xEPI.nii']};
     elseif strcmp(ROI_flag,'alLeft')
-        ROI_masks = {[regDir '/' subject '/alEC_leftxEPI.nii']};
+        ROI_masks = {[regDir '/' subject '/alEC_left_Magdeburg_HybridMaskT2xEPI.nii']};
     end
 end
 

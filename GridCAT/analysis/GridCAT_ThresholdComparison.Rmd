@@ -1,0 +1,80 @@
+---
+title: "GridCAT Threshold Comparison"
+author: "C Newton"
+date: "3/11/2021"
+output: pdf_document
+---
+
+##### Analysis of effect of SPM thresholds on gridCAT 
+Looking at 0.1,0.2,0.3,0.4,0.5 levels of amplitude threshold in SPM fMRI estimation models
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# load environment
+require(ggplot2)
+library(tidyverse)
+require(readxl)
+require(RColorBrewer)
+require(ggthemes)
+require(lme4)
+
+# load in data
+GC.pmRight_thresh_in = read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/gridCAT_X_threshX_results_global.csv')
+GC.hybrid.7_in = read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/gridCAT_X_hybrid_results_global.csv')
+
+GC.pmRight_thresh0.1_mag = GC.hybrid.7_in %>% select(Subject,Code,(contains("pmEC_right")&starts_with("GCmag"))) %>% gather(Model_Magnitude,Grid_Magnitude,starts_with("GCmag")) %>% separate(Model_Magnitude,sep="_",into=(c(NA,"Run","ROI","Side",NA))) %>% add_column(thresh = "0.1")
+
+GC.pmRight_thresh_voxels = GC.pmRight_thresh_in %>% select(Subject,Code,starts_with("Voxels")) %>% gather(threshv,nVoxels,starts_with("Vox")) %>% separate(threshv,sep="_",into=(c(NA,"thresh")))
+
+GC.pmRight_thresh_mag = GC.pmRight_thresh_in %>% select(Subject,Code,(contains("pmEC_right")&starts_with("GCmag"))) %>% gather(Model_Magnitude,Grid_Magnitude,starts_with("GCmag")) %>% separate(Model_Magnitude,sep="_",into=(c(NA,"Run","ROI","Side","thresh")))
+
+# join together tidied tables into single output for analysis
+GC.pmRight.thresh.mag.vox <- left_join(filter(GC.pmRight_thresh_voxels,!thresh=="0.1"),GC.pmRight_thresh_mag)
+GC.pmRight.thresh0.1.mag.vox <- left_join(filter(GC.pmRight_thresh_voxels,thresh=="0.1"),GC.pmRight_thresh0.1_mag)
+GC.pmRight.mag <- bind_rows(GC.pmRight.thresh.mag.vox,GC.pmRight.thresh0.1.mag.vox)
+GC.pmRight.mag <- GC.pmRight.mag %>% modify_if(is.character,as.factor)
+```
+
+##### Effect of SPM threshold on grid magnitude for right pmEC xFold model
+```{r}
+ggplot(data=GC.pmRight.mag,aes(thresh,Grid_Magnitude)) +
+  geom_boxplot(aes(fill=thresh),alpha=0.3) +
+  geom_point(aes(colour=thresh),position=position_jitterdodge()) +
+  scale_colour_manual(values=c("#003366","#003366","#003366","#003366","#003366")) +
+  scale_fill_brewer(palette = "Blues")
+```
+
+
+On a subject level basis (shows runs1-3 and allRuns average per subject)
+```{r}
+ggplot(data=GC.pmRight.mag,aes(thresh,Grid_Magnitude)) +
+  geom_boxplot(alpha=0.3) +
+  geom_point(aes(colour=Code),position=position_jitterdodge()) 
+  #scale_colour_manual(values=c("#003366","#003366","#003366","#003366","#003366")) +
+  #scale_fill_brewer(palette = "Blues")
+```
+
+
+
+###### Effect of nVoxels included in mask per threshold
+Higher threshold = fewer voxels kept in mask for estimation  
+
+```{r}
+ggplot(filter(GC.pmRight.mag,Run=="allRuns"),aes(thresh,nVoxels)) +
+  geom_point(aes(colour=Code))
+```
+
+How number of voxels in mask associates with grid magnitude for each threshold and per run (so data point in each graph will change accoridng to number of voxels and grid magnitude)
+```{r}
+ggplot(GC.pmRight.mag,aes(nVoxels,Grid_Magnitude)) +
+  geom_point(aes(colour=Code)) +
+  facet_grid(Run~thresh)
+```
+
+For just all runs averaged
+```{r}
+ggplot(filter(GC.pmRight.mag,Run=="allRuns"),aes(nVoxels,Grid_Magnitude)) +
+  geom_point(aes(colour=Code)) +
+  facet_wrap(~thresh)
+```
+

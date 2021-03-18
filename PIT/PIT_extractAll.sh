@@ -1,5 +1,5 @@
 #!/bin/bash
-# wrapper script to call PIT_data2table.m
+# wrapper script to call PIT_raw2table.m
 cd slurmoutputs
 pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
 
