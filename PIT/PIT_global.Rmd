@@ -1,57 +1,66 @@
-## PIT analysis
+---
+title: "PIT_global"
+author: "C Newton"
+date: "3/26/2021"
+output: pdf_document
+---
+## Record of analysis of PIT data
+
+### KEY INFO
+* 12 Trials repeated in 3 blocks, with different return con/env type      
+* <Trial><Info> = 3 levels: NoChange (1) NoOpticFlow (2) NoDistalCue (3)  
+* <EnvironmentNumber> = 3 levels: 0 / 1 / 2                                
+* <ReachedOutOfBounds> = logical TRUE (1) / FALSE (0)                     
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# load environment
 require(ggplot2)
-require(dplyr)
-require(tibble)
-require(readr)
-require(tidyr)
+library(tidyverse)
+require(readxl)
 require(RColorBrewer)
 require(ggthemes)
-require(lme4)
 require(ggsignif)
+require(lme4)
+require(knitr)
+# make custom colour palettes
+myOrange = brewer.pal(n=9,"Oranges")[3:6]
+```
 
-#* * * * * * * * * * * * * * * * KEY INFO * * * * * * * * * * * * * * *  *  
-#* 12 Trials repeated in 3 blocks, with different return con/env type    *
-#* <Trial><Info> = 3 levels: NoChange (1) NoOpticFlow (2) NoDistalCue (3)*
-#* <EnvironmentNumber> = 3 levels: 0 / 1 / 2                             *
-#* <ReachedOutOfBounds> = logical TRUE (1) / FALSE (0)                   *
-#* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+### Load in global PIT csv file + PREVENT demographics
+```{r}
+PITall <- read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/PIT/Global_Results/PITall.csv')
+PITall <- PITall %>% mutate(across(c(1:6,21:23),as_factor))
 
-## import PIT data
+PREVENTmeta.35_in = read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/PREVENT/PREVENTdata_ENCRYPTn35.csv')
+APOEin <- read_excel('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/PREVENT/APOE_Baseline_CB.xlsx')
 
-resultsDir <- '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/PIT'
-scriptDir <- '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/slurmoutputs'
-setwd(scriptDir)
-csvFiles <- list.files(resultsDir,pattern="*.csv",full.names=1)
+## TIDY
+PREVENTmeta.35 <- left_join(PREVENTmeta.35_in,APOEin)
+# make new variables
+PREVENTmeta.35 <- PREVENTmeta.35 %>% mutate(FH = case_when(risk_demf == 1 ~ 1,risk_demm == 1 ~ 1, risk_demf == 0 ~ 0, risk_demm == 0 ~ 0))
+PREVENTmeta.35 <- PREVENTmeta.35 %>% mutate(across(c(1,3,56,568,572,707,708,709),as_factor))
 
-# make master table
-filesList=lapply(csvFiles,read_csv)
-PITall <- bind_rows(filesList[2:36])
-PITall[1:6] <- lapply(PITall[1:6],factor)
+## COMBINE
+PITall.PREVENTmeta <- left_join(PITall,PREVENTmeta.35,by = c("Code"="subjectID"))
 
-# make distance error factor variable
-MeanADerror <- mean(PITall$ADerror)
-PITall <- PITall %>% mutate(Mean_AD_error=cut(ADerror,breaks = c(-Inf, MeanADerror, Inf), labels = c("Low distance error","High distance error")))
-PITall <- PITall %>% mutate(PDist=cut(PDerror,breaks = c(-Inf,1,Inf), labels = c("Under","Over")))
-PITall <- PITall %>% mutate(PAng=cut(PAerror,breaks = c(-Inf,1,Inf), labels = c("Under","Over")))
-
-
-###########################################################################
 # some summary stats
-
 MeanRoterror <- mean(PITall$AAerror)
 MeanADerror <- mean(PITall$ADerror)
 table(PITall$Block,PITall$Env) # check randomisation of environment order
+```
 
+```{r}
 # summary table
-sumPITall <- PITall %>% 
+table.summary <- PITall %>% 
   group_by(Code,Env,Type) %>% 
   summarize(ADerrorMEAN = mean(ADerror),ADerrorSE = sd(ADerror)/sqrt(n()), n_samples = n())
+head(table.summary)
+```
 
-sumPITall_CB <- PITall %>% 
-  group_by(Code,Type) %>% 
-  summarize(ADerrorMEAN = mean(ADerror),ADerrorSE = sd(ADerror)/sqrt(n()), n_samples = n())
-
-
+## Absolute distance error
+```{r}
 # plot ADerror by environment type and trial type
 pd <- position_dodge2(0.4)
 ggplot(data=PITall,aes(x=Type,y=ADerror,colour=Type)) +
@@ -60,30 +69,10 @@ ggplot(data=PITall,aes(x=Type,y=ADerror,colour=Type)) +
   geom_point(aes(colour=Type),position=pd,alpha=0.8,show.legend=FALSE) +
   scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
   labs(title='Absolute distance error by environment and trial type',x='Trial type',y='Euclidean distance error')
+```
 
-# plot roational error by environment type and trial type
-pd <- position_dodge2(0.4)
-ggplot(data=PITall,aes(x=Type,y=PAerror,colour=Type)) +
-  facet_grid(~Env) +
-  geom_boxplot(outlier.shape = NA,show.legend=FALSE) +
-  geom_point(aes(colour=Type),position=pd,alpha=0.8,show.legend=FALSE) +
-  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
-  ylim(0,3) +
-  labs(title='Relative rotation error by environment and trial type',x='Trial type',y='Relative rotation error')
-
-# check for staitsical difference between trial type and environment type
-# distance error
-PIT_ADerr_aov <- aov(data=PITall, ADerror ~ Env * Type)
-summary(PIT_ADerr_aov) # there is a main effect of type
-PIT_ADerr_tukey <- TukeyHSD(PIT_ADerr_aov) # significant difference 3vs1
-#angular error
-PIT_AAerr_aov <- aov(data=PITall,AAerror ~ Env * Type)
-summary(PIT_AAerr_aov)
-PIT_AAerr_tukey <- TukeyHSD(PIT_AAerr_aov)
-
-
-# plot AD error across trial type
-
+### AD error across trial type
+```{r}
 # with boxplot
 pd <- position_dodge2(0.3)
 ggplot(data=PITall,aes(x=Type,y=ADerror,colour=Type)) +
@@ -93,23 +82,144 @@ ggplot(data=PITall,aes(x=Type,y=ADerror,colour=Type)) +
   scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
   labs(title='Euclidean distance error by trial type',x='Trial type',y='Euclidean distance error') +
   geom_signif(comparisons=list(c("1","3")),map_signif_level=TRUE,colour='black')
+```
 
-# with violin
-ggplot(data=PITall,aes(x=Type,y=ADerror,colour=Type)) +
-  geom_violin(aes(fill=Type,alpha=0.5),show.legend=FALSE) +
-  geom_jitter(height=0,width=0.3,show.legend = FALSE) +
-  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
-  labs(title='Euclidean distance error by trial type',x='Trial type',y='Euclidean distance error')
+### AD error by environment type
+```{r}
+ggplot(data=PITall,aes(x=Env,y=ADerror,colour=Env)) +
+  geom_boxplot(outlier.shape = NA,show.legend=FALSE,width=0.8) +
+  geom_jitter(aes(colour=Env),width=0.2,alpha=0.8,show.legend=FALSE) +
+  scale_colour_manual(values = c("#FF6600", "#CCCC00", "#99CC00")) +
+  scale_x_discrete(labels = c("One","Two", "Three")) +
+  labs(title='Euclidean distance error by environment type',x='Enviornment type',y='Euclidean distance error') 
+ # geom_signif(comparisons=list(c("3","2")),map_signif_level=TRUE,colour='black')
+```
 
-# split by under or over rotation
+
+### without out of bounds trials
+```{r}
+# split by OoB
 ggplot(data=PITall,aes(x=Type,y=ADerror,colour=OoB)) +
   geom_boxplot() +
   scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
-  labs(title='Distance error by trial type',x='Trial type',y='Euclidean distance error',colour="Type of distance error")
+  labs(title='Distance error differences for out of bounds trials',x='Trial type',y='Euclidean distance error',colour="Out of Bounds")
+```
 
+```{r}
+PITall.noOoB <- PITall %>% filter(OoB == 0)
+ggplot(data=PITall.noOoB,aes(x=Type,y=ADerror,colour=Type)) +
+  geom_boxplot(outlier.shape = NA,show.legend=FALSE,width=0.8) +
+  geom_jitter(aes(colour=Type),width=0.2,alpha=0.8,show.legend=FALSE) +
+  scale_colour_manual(values = c("#008000", "#008B8B", "#66CDAA")) +
+  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
+  labs(title='Euclidean distance error by trial type, OoB trials excluded',x='Trial type',y='Euclidean distance error') +
+  geom_signif(comparisons=list(c("1","3")),map_signif_level=TRUE,colour='black')
+```
+
+## Absolute distance error associations with demographics and AD Risk
+
+### Family history
+```{r}
+# summary table
+table.summary.demo <- PITall.PREVENTmeta %>% 
+  group_by(FH,Type) %>% 
+  summarize(ADerrorMEAN = mean(ADerror),ADerrorSE = sd(ADerror)/sqrt(n()), n_samples = n())
+head(table.summary.demo)
+```
+
+
+```{r}
+ggplot(data=PITall.PREVENTmeta,aes(x=Type,y=ADerror,colour=FH)) +
+  geom_boxplot() +
+  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
+  scale_colour_manual(values=myOrange) +
+  labs(title='Distance error family history group differences',x='Trial type',y='Euclidean distance error',colour="Family History (M + P)")
+```
+
+```{r}
+PITall.PREVENTmeta %>% filter(OoB == 0) %>%
+ggplot(aes(x=Type,y=ADerror,colour=FH)) +
+  geom_boxplot() +
+  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
+  labs(title='Distance error family history group differences, OoB excluded',x='Trial type',y='Euclidean distance error',colour="Family History (M + P)")
+```
+```{r}
+table(PITall.PREVENTmeta$OoB, PITall.PREVENTmeta$FH)
+```
+
+
+### APOE
+```{r}
+# summary table
+table.summary.demo2 <- PITall.PREVENTmeta %>% 
+  group_by(apoe4,Type) %>% 
+  summarize(ADerrorMEAN = mean(ADerror),ADerrorSE = sd(ADerror)/sqrt(n()), n_samples = n())
+head(table.summary.demo2)
+```
+
+## Angular error
+```{r}
+# plot roational error by environment type and trial type
+pd <- position_dodge2(0.4)
+ggplot(data=PITall,aes(x=Type,y=PAerror,colour=Type)) +
+  facet_grid(~Env) +
+  geom_boxplot(outlier.shape = NA,show.legend=FALSE) +
+  geom_point(aes(colour=Type),position=pd,alpha=0.8,show.legend=FALSE) +
+  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
+  ylim(0,3) +
+  labs(title='Relative rotation error by environment and trial type',x='Trial type',y='Relative rotation error')
+```
+
+
+## Statistics
+```{r}
+# distance error all trials
+PIT_ADerr_aov <- aov(data=PITall, ADerror ~ Env * Type)
+summary(PIT_ADerr_aov) # there is a main effect of type
+PIT_ADerr_tukey <- TukeyHSD(PIT_ADerr_aov) # significant difference 3vs1
+PIT_ADerr_tukey
+```
+
+```{r}
+# distance error excluding OoB trials
+PIT.noOoB_ADerr_aov <- aov(data=PITall.noOoB, ADerror ~ Env * Type)
+summary(PIT.noOoB_ADerr_aov) # there is a main effect of type
+PIT.noOoB_ADerr_tukey <- TukeyHSD(PIT.noOoB_ADerr_aov) # significant difference 3vs1
+PIT.noOoB_ADerr_tukey
+```
+
+```{r}
+#angular error
+PIT_AAerr_aov <- aov(data=PITall,AAerror ~ Env * Type)
+summary(PIT_AAerr_aov)
+PIT_AAerr_tukey <- TukeyHSD(PIT_AAerr_aov)
+```
+
+############################################################################
+## additional code/plots
+
+```{r}
+# with violin
+ggplot(data=PITall,aes(x=Type,y=ADerror,colour=Type)) +
+  geom_violin(show.legend=FALSE) +
+  geom_jitter(height=0,width=0.3,show.legend = FALSE) +
+  geom_boxplot(width=0.1, colour="black", outlier.shape = NA, alpha = 0.6) +
+  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
+  labs(title='Euclidean distance error by trial type',x='Trial type',y='Euclidean distance error') +
+  scale_colour_manual(values = c("#008000", "#008B8B", "#66CDAA")) +
+  geom_signif(comparisons=list(c("1","3")),map_signif_level=TRUE,colour='black')
+```
+
+```{r}
+# split by OoB
+ggplot(data=PITall,aes(x=Type,y=ADerror,colour=OoB)) +
+  geom_boxplot() +
+  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
+  labs(title='Distance error by trial type',x='Trial type',y='Euclidean distance error',colour="Out of Bounds")
+```
 
 # Plot AA error across trial type
-
+```{r}
 # with boxplot
 pd <- position_dodge2(0.3)
 ggplot(data=PITall,aes(x=Type,y=AAerror,colour=Type)) +
@@ -119,17 +229,21 @@ ggplot(data=PITall,aes(x=Type,y=AAerror,colour=Type)) +
   scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
   labs(title='Angular error by trial type',x='Trial type',y='Angular error') +
   geom_signif(comparisons=list(c("1","3")),map_signif_level=TRUE,colour='black')
+```
 
+```{r}
 # split by under or over rotation
 ggplot(data=PITall,aes(x=Type,y=AAerror,colour=PAng)) +
   geom_boxplot() +
   scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
   labs(title='Angular error by trial type',x='Trial type',y='Angular error',colour="Type of rotation error")
-
+```
 
 ###############################################################
-# plot all triggered positions
-
+# Plot spatial maps of data
+  
+  
+```{r}
 ggplot(PITall,aes(Flag1_1, Flag1_2)) + 
   geom_point(size=6,colour='green') +
   geom_point(aes(Trig_1,Trig_2,colour=Mean_AD_error),alpha=0.9) +
@@ -148,7 +262,9 @@ ggplot(PITall,aes(Flag1_1, Flag1_2)) +
         legend.title = element_text(colour="white"),
         legend.text = element_text(colour="white")
         )
+```
 
+```{r}
 # plot triggered positions just for one cone 1 location
 PITall.c1ex <- PITall %>% filter(Flag1_1 > 1.5 & Flag1_2 > 1.5)
 PITall.c1c3.ex <- PITall.c1ex %>% filter(Flag3_1 < 0 & Flag3_2 > 0)
@@ -173,9 +289,11 @@ ggplot(PITall.c1c3.ex,aes(Flag1_1, Flag1_2)) +
         legend.title = element_text(colour="white"),
         legend.text = element_text(colour="white")
   )
+```
 
 # plot above with lines
 
+```{r}
 ggplot(PITall.c1c3.ex,aes(Flag1_1, Flag1_2)) + 
   geom_point(size=6,colour='white') +
 #  geom_point(aes(Flag2_1,Flag2_2),colour='white') +
@@ -200,8 +318,9 @@ ggplot(PITall.c1c3.ex,aes(Flag1_1, Flag1_2)) +
         legend.text = element_text(colour="white"),
         strip.background = element_rect(colour='white',fill='white')
   )
+```
 
-
+```{r}
 # plot example triangle
 PITex <- PITall.c1c3.ex[1,]
 ggplot(PITex) +
@@ -226,4 +345,4 @@ ggplot(PITex) +
         legend.text = element_text(colour="white"),
         strip.background = element_rect(colour='white',fill='white')
   )
-
+```

@@ -46,7 +46,7 @@ ROI_flag = 'pmRight'
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.2'
+mask_thresh = '0.1'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -57,7 +57,7 @@ mask_thresh = '0.2'
 regressor_flag = 'pmod'
 
 % Name of output file
-outfilename = 'gridCAT_pmRight6_thresh2'
+outfilename = 'gridCAT_pmRight6_hybrid'
 
 dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',af,'''${subject}''','''${fmriDir}''','''${taskDir}''','''${regDir}''','outfilename','ROI_flag','warp_flag','xFold','mask_thresh','regressor_flag');
 disp(['Submitting the following command: ' dofunc]);
@@ -71,13 +71,13 @@ disp('Done');
 warp_flag = 'main'
 
 % use with main above pmLeft,pmRight or control above PosHipp,alRight,alLeft- ROI mask?
-ROI_flag = 'pmRight'
+ROI_flag = 'pmLeft'
 
 % 4,5,6,7 or 8 fold symmetry?
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.3'
+mask_thresh = '0.1'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -88,7 +88,7 @@ mask_thresh = '0.3'
 regressor_flag = 'pmod'
 
 % Name of output file
-outfilename = 'gridCAT_pmRight6_thresh3'
+outfilename = 'gridCAT_pmLeft6_hybrid'
 
 dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',af,'''${subject}''','''${fmriDir}''','''${taskDir}''','''${regDir}''','outfilename','ROI_flag','warp_flag','xFold','mask_thresh','regressor_flag');
 disp(['Submitting the following command: ' dofunc]);
@@ -99,16 +99,16 @@ disp('Done');
 % 3RD ITERATION
 
 % what type of mask to use - main or control?
-warp_flag = 'main'
+warp_flag = 'control'
 
 % use with main above pmLeft,pmRight or control above PosHipp,alRight,alLeft- ROI mask?
-ROI_flag = 'pmRight'
+ROI_flag = 'alRight'
 
 % 4,5,6,7 or 8 fold symmetry?
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.4'
+mask_thresh = '0.1'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -119,7 +119,7 @@ mask_thresh = '0.4'
 regressor_flag = 'pmod'
 
 % Name of output file
-outfilename = 'gridCAT_pmRight6_thresh4'
+outfilename = 'gridCAT_alRight6_hybrid'
 
 dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',af,'''${subject}''','''${fmriDir}''','''${taskDir}''','''${regDir}''','outfilename','ROI_flag','warp_flag','xFold','mask_thresh','regressor_flag');
 disp(['Submitting the following command: ' dofunc]);
@@ -130,16 +130,16 @@ disp('Done');
 % 4TH ITERATION
 
 % what type of mask to use - main or control?
-warp_flag = 'main'
+warp_flag = 'control'
 
 % use with main above pmLeft,pmRight or control above PosHipp,alRight,alLeft- ROI mask?
-ROI_flag = 'pmRight'
+ROI_flag = 'alLeft'
 
 % 4,5,6,7 or 8 fold symmetry?
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.5'
+mask_thresh = '0.1'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -150,7 +150,7 @@ mask_thresh = '0.5'
 regressor_flag = 'pmod'
 
 % Name of output file
-outfilename = 'gridCAT_pmRight6_thresh5'
+outfilename = 'gridCAT_alLeft6_hybrid'
 
 dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',af,'''${subject}''','''${fmriDir}''','''${taskDir}''','''${regDir}''','outfilename','ROI_flag','warp_flag','xFold','mask_thresh','regressor_flag');
 disp(['Submitting the following command: ' dofunc]);

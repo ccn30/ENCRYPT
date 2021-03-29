@@ -1,0 +1,138 @@
+---
+title: "PREVENT demographics in ENCRYPT"
+output: 
+  pdf_document 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(ggplot2)
+library(tidyverse)
+require(readxl)
+require(RColorBrewer)
+require(ggthemes)
+require(lme4)
+require(knitr)
+
+# function to calculate mode
+getmode <- function(v) {
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+```
+
+
+## For n=38 in ENCRYPT
+
+```{r, message = FALSE}
+# load in data
+PREVENTmeta_in <- read_csv('/Users/ccnewton/scp/PREVENTdata_ENCRYPTn39.csv')
+APOEin <- read_excel('/Users/ccnewton/scp/APOE_Baseline_CB.xlsx')
+MRIgroup <- c("CB001","CB004","CB006","CB011","CB015","CB021",
+              "CB022","CB023","CB025","CB026","CB027","CB029",
+              "CB033","CB045","CB046","CB049","CB051","CB053",
+              "CB060","CB063","CB064","CB073","CB079","CB086",
+              "CB088","CB090","CB093")
+
+# combine + tidy
+PREVENTmeta <- left_join(PREVENTmeta_in,APOEin)
+PREVENTmeta <- PREVENTmeta %>% modify_at(c(1,3,56,707,708),as.factor)
+```
+
+#### Overall characteristics
+  
+ 
+```{r, echo = FALSE}
+# Gender (1 = male, 2= female) 
+options(digits = 4)
+t <- PREVENTmeta %>% summarise(n=n(),nFemale=sum(as.logical(gender==2)),
+                               Mean_Age=mean(Age), Min_Age=min(Age), 
+                               Max_Age=max(Age), Mean_Edu=mean(nbeduc))
+kable(t)
+```
+
+##### Education  
+
+educ = highest level completed  
+(1=no/2=primary/3=secondary/4=uni/5=trade/6=postgrad/9=refused)
+```{r, echo = FALSE}
+t1 <- PREVENTmeta %>% count(educ)
+kable(t1,col.names = c('Education Level','N'),valign='t')
+```
+```{r, echo = FALSE}
+t2 <- PREVENTmeta %>% summarise(modal_edu=getmode(educ), min_yrs=min(nbeduc),max_yrs=max(nbeduc))
+kable(t2,col.names = c('Modal eduction type','Min Yrs Education','Max Yrs Education'), valign='t')
+```
+
+#### APOE groups
+
+```{r, echo = FALSE}
+t <- PREVENTmeta %>% group_by(apoe) %>% summarise(n=n(),nFemale=sum(as.logical(gender==2)),Mean_Age=mean(Age))
+kable(t)
+```
+  
+apoe4 = 1 means any copy number, 0 means no copy
+```{r, echo = FALSE}
+t <- PREVENTmeta %>% group_by(apoe4) %>% summarise(n=n(),nFemale=sum(as.logical(gender==2)),Mean_Age=mean(Age),Min_Age=min(Age),Max_Age=max(Age),Mean_Edu=mean(nbeduc))
+kable(t)
+```
+
+#### Family History
+
+##### Maternal history (risk_demf)  
+9 = unknown, 0 = no, 1 = yes  
+subtypes listed include AD (5), mixed (1), lewy bodies (1), unknown remainder
+```{r, echo = FALSE}
+t <- PREVENTmeta %>% group_by(risk_demf) %>% summarise(n=n(),nFemale=sum(as.logical(gender==2)),Mean_Age=mean(Age),Min_Age=min(Age),Max_Age=max(Age),Mean_Edu=mean(nbeduc))
+kable(t)
+```
+
+##### Paternal history (risk_demm)  
+subtypes include AD (5), mixed (4), vascular (3)
+```{r, echo = FALSE}
+t <- PREVENTmeta %>% group_by(risk_demm) %>% summarise(n=n(),nFemale=sum(as.logical(gender==2)),Mean_Age=mean(Age),Min_Age=min(Age),Max_Age=max(Age),Mean_Edu=mean(nbeduc))
+kable(t)
+```
+
+##### Combined parental history
+```{r, echo = FALSE}
+t <- PREVENTmeta %>% group_by(risk_demf,risk_demm) %>% summarise(n=n(),nFemale=sum(as.logical(gender==2)),Mean_Age=mean(Age),Min_Age=min(Age),Max_Age=max(Age),Mean_Edu=mean(nbeduc))
+kable(t)
+```
+
+#### Family history x APOE
+
+```{r, echo = FALSE}
+t <- PREVENTmeta %>% group_by(apoe4,risk_demf,risk_demm) %>% summarise(n = n(),nFemale=sum(as.logical(gender==2)),Mean_Age = mean(Age))
+kable(t)
+```
+
+## Overview n=27 for 7T
+  
+#### Overall characteristics
+```{r, echo = FALSE}
+# get 7T subset
+MRImeta <- subset(PREVENTmeta, subjectID %in% MRIgroup)
+
+t <- MRImeta %>% summarise(n=n(),nFemale=sum(as.logical(gender==2)),Mean_Age=mean(Age),Min_Age=min(Age),Max_Age=max(Age),Mean_Edu=mean(nbeduc))
+kable(t)
+```
+
+#### APOE
+```{r, echo = FALSE}
+t <- MRImeta %>% group_by(apoe4) %>% summarise(n=n(),nFemale=sum(as.logical(gender==2)),Mean_Age=mean(Age),Min_Age=min(Age),Max_Age=max(Age),Mean_Edu=mean(nbeduc))
+kable(t)
+```
+ 
+#### Family history
+```{r, echo = FALSE}
+t <- MRImeta %>% group_by(risk_demf,risk_demm) %>% summarise(n=n(),nFemale=sum(as.logical(gender==2)),Mean_Age=mean(Age),Min_Age=min(Age),Max_Age=max(Age),Mean_Edu=mean(nbeduc))
+kable(t)
+```
+
+#### APOE x FH breakdown
+```{r, echo = FALSE}
+t <- MRImeta %>% group_by(apoe4,risk_demf,risk_demm) %>% summarise(n = n(),nFemale=sum(as.logical(gender==2)),Mean_Age = mean(Age),Mean_Edu =mean(nbeduc))
+kable(t)
+```
+

@@ -17,8 +17,8 @@ allSubjGridcatData_dir = '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCA
 %GLM2findStr = 'gridCAT_thresh*';
 %GLM2findStr = 'gridCAT_pmEC*';
 %GLM2findStr = 'gridCAT_*_nr';
-%GLM2findStr = 'gridCAT_*_hybrid';
-GLM2findStr = 'gridCAT_*_thresh*';
+GLM2findStr = 'gridCAT_*_hybrid';
+%GLM2findStr = 'gridCAT_*_thresh*';
 
 
 get_magnitude = 1;
@@ -135,8 +135,8 @@ for subjIdx = 1:length(subjDirList)
                         if ~magnitude_showOnlyAllRunsAvg || (magnitude_showOnlyAllRunsAvg && ~contains(run_str, 'allRuns'))
 
                             GCmagnitude = lineData{6};                    
-                            %metricName = ['GCmagnitude_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' lineData{2}];                    
-                            metricName = ['GCmagnitude_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' thresh];
+                            metricName = ['GCmagnitude_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' lineData{2}];                    
+                            %metricName = ['GCmagnitude_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' thresh];
                             [metricIdx, metricNameList] = getMetricIdx(metricName, metricNameList);
                             output_cArray{subjIdx, metricIdx} = GCmagnitude;
                                                                                 
@@ -162,14 +162,14 @@ for subjIdx = 1:length(subjDirList)
                         run_str = cellData{3};
 
                         zRayleigh = lineData{5};
-                        %metricName = ['sStability_zRay_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' lineData{2}];                    
-                        metricName = ['sStability_zRay_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' thresh];
+                        metricName = ['sStability_zRay_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' lineData{2}];                    
+                        %metricName = ['sStability_zRay_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' thresh];
                         [metricIdx, metricNameList] = getMetricIdx(metricName, metricNameList);
                         output_cArray{subjIdx, metricIdx} = zRayleigh;
 
                         pRayleigh = lineData{6};
-                        %metricName = ['sStability_pRay_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' lineData{2}];                    
-                        metricName = ['sStability_pRay_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' thresh];
+                        metricName = ['sStability_pRay_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' lineData{2}];                    
+                        %metricName = ['sStability_pRay_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' thresh];
                         [metricIdx, metricNameList] = getMetricIdx(metricName, metricNameList);
                         output_cArray{subjIdx, metricIdx} = pRayleigh;
                     end
@@ -194,8 +194,8 @@ for subjIdx = 1:length(subjDirList)
                         runB_str = cellData{3};
                         
                         pcntStableVox = lineData{6};
-                        %metricName = ['tStability_pcntStableVox_' runA_str 'VS' runB_str '_' ROI_gridMetricMask(1:4) '_' side '_' lineData{2}];
-                        metricName = ['tStability_pcntStableVox_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' thresh];
+                        metricName = ['tStability_pcntStableVox_' runA_str 'VS' runB_str '_' ROI_gridMetricMask(1:4) '_' side '_' lineData{2}];
+                        %metricName = ['tStability_pcntStableVox_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' thresh];
                         [metricIdx, metricNameList] = getMetricIdx(metricName, metricNameList);
                         output_cArray{subjIdx, metricIdx} = pcntStableVox;
                         
@@ -214,8 +214,8 @@ for subjIdx = 1:length(subjDirList)
                     if strncmp(ROI_gridMetricMask, ROI_GLM2meanGridOriCalc, 6)
 
                             meanOriWeighted = lineData{6};
-                            %metricName = ['MeanOrientation_allRuns_' ROI_gridMetricMask(1:4) '_' side '_' lineData{2}];                    
-                            metricName = ['MeanOrientation_allRuns_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' thresh];
+                            metricName = ['MeanOrientation_allRuns_' ROI_gridMetricMask(1:4) '_' side '_' lineData{2}];                    
+                            %metricName = ['MeanOrientation_allRuns_' run_str '_' ROI_gridMetricMask(1:4) '_' side '_' thresh];
                             [metricIdx, metricNameList] = getMetricIdx(metricName, metricNameList);
                             output_cArray{subjIdx, metricIdx} = meanOriWeighted;
 
@@ -237,7 +237,7 @@ end
 disp(' ');
 output_cArray = [['Subject' subjNameList]' [metricNameList; output_cArray]];
 
-filename = [GLM2findStr '_results_global'];
+filename = [GLM2findStr '_results2_global'];
 filename(filename=='*')='X';
 
 cell2csv([allSubjGridcatData_dir filesep filename '.csv'], output_cArray);

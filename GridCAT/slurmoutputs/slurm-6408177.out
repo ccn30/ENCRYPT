@@ -1,0 +1,208 @@
+/var/spool/slurm/slurmd/job6408177/slurm_script: line 107: cd: /slurmoutputs: No such file or directory
+Changed directory to /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/slurmoutputs.
+
+JobID: 6408177
+======
+Time: Mon Mar 22 17:02:35 GMT 2021
+Running on master node: wbic-csm-6
+Current directory: /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/slurmoutputs
+
+Nodes allocated:
+================
+wbic-csm-6
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/gridcatprepare.sh /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/GCAP_logfile2eventTable.m /lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask 27532 /lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT/GridCAT_mainfunc.m /lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI /lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations
+
+You are inside gridcatprepare
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017b (9.3.0.713579) 64-bit (glnxa64)
+                             September 14, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> >> Subject is 27532
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> 
+warp_flag =
+
+    'main'
+
+>> >> >> 
+ROI_flag =
+
+    'pmRight'
+
+>> >> >> 
+xFold =
+
+    '6'
+
+>> >> >> 
+mask_thresh =
+
+    '0.1'
+
+>> >> >> >> >> >> >> >> 
+regressor_flag =
+
+    'pmod'
+
+>> >> >> 
+outfilename =
+
+    'gridCAT_pmRight6_hybrid'
+
+>> >> >> Submitting the following command: GridCAT_mainfunc('27532','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations',outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
+>> You are inside GridCAT_mainfunc, subject 27532
+{Error using readEventTable (line 81)
+The following event-table seems to have a wrong format and could not be read:
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask/27532/BlockC/eventTable_nr_movemenEventData.txt
+
+Error in specifyGLM (line 28)
+    cfg.eventInfo.run(runIdx) =
+    readEventTable(cfg.rawData.run(runIdx).eventTable_file);
+
+Error in GridCAT_mainfunc (line 116)
+specifyGLM(cfg);
+} 
+>> Done
+>> >> >> >> >> >> 
+warp_flag =
+
+    'main'
+
+>> >> >> 
+ROI_flag =
+
+    'pmLeft'
+
+>> >> >> 
+xFold =
+
+    '6'
+
+>> >> >> 
+mask_thresh =
+
+    '0.1'
+
+>> >> >> >> >> >> >> >> 
+regressor_flag =
+
+    'pmod'
+
+>> >> >> 
+outfilename =
+
+    'gridCAT_pmLeft6_hybrid'
+
+>> >> >> Submitting the following command: GridCAT_mainfunc('27532','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations',outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
+>> You are inside GridCAT_mainfunc, subject 27532
+{Error using readEventTable (line 81)
+The following event-table seems to have a wrong format and could not be read:
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask/27532/BlockC/eventTable_nr_movemenEventData.txt
+
+Error in specifyGLM (line 28)
+    cfg.eventInfo.run(runIdx) =
+    readEventTable(cfg.rawData.run(runIdx).eventTable_file);
+
+Error in GridCAT_mainfunc (line 116)
+specifyGLM(cfg);
+} 
+>> Done
+>> >> >> >> >> >> 
+warp_flag =
+
+    'control'
+
+>> >> >> 
+ROI_flag =
+
+    'alRight'
+
+>> >> >> 
+xFold =
+
+    '6'
+
+>> >> >> 
+mask_thresh =
+
+    '0.1'
+
+>> >> >> >> >> >> >> >> 
+regressor_flag =
+
+    'pmod'
+
+>> >> >> 
+outfilename =
+
+    'gridCAT_alRight6_hybrid'
+
+>> >> >> Submitting the following command: GridCAT_mainfunc('27532','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations',outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
+>> You are inside GridCAT_mainfunc, subject 27532
+{Error using readEventTable (line 81)
+The following event-table seems to have a wrong format and could not be read:
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask/27532/BlockC/eventTable_nr_movemenEventData.txt
+
+Error in specifyGLM (line 28)
+    cfg.eventInfo.run(runIdx) =
+    readEventTable(cfg.rawData.run(runIdx).eventTable_file);
+
+Error in GridCAT_mainfunc (line 116)
+specifyGLM(cfg);
+} 
+>> Done
+>> >> >> >> >> >> 
+warp_flag =
+
+    'control'
+
+>> >> >> 
+ROI_flag =
+
+    'alLeft'
+
+>> >> >> 
+xFold =
+
+    '6'
+
+>> >> >> 
+mask_thresh =
+
+    '0.1'
+
+>> >> >> >> >> >> >> >> 
+regressor_flag =
+
+    'pmod'
+
+>> >> >> 
+outfilename =
+
+    'gridCAT_alLeft6_hybrid'
+
+>> >> >> Submitting the following command: GridCAT_mainfunc('27532','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask','/lustre/scratch/wbic-beta/ccn30/ENCRYPT/registrations',outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
+>> You are inside GridCAT_mainfunc, subject 27532
+{Error using readEventTable (line 81)
+The following event-table seems to have a wrong format and could not be read:
+/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask/27532/BlockC/eventTable_nr_movemenEventData.txt
+
+Error in specifyGLM (line 28)
+    cfg.eventInfo.run(runIdx) =
+    readEventTable(cfg.rawData.run(runIdx).eventTable_file);
+
+Error in GridCAT_mainfunc (line 116)
+specifyGLM(cfg);
+} 
+>> Done
+>> 

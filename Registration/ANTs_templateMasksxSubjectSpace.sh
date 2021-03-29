@@ -28,12 +28,12 @@ studyTemplate=${studyTemplateDir}/Study_template_wholeBrain.nii
 
 workdir=$(pwd)
 cd ${regDir}
-#rm core
+rm core
 #rm pmEC_leftxT1.nii
-mv pmEC_left_Maass_xEPI.nii pmEC_left_MaassMaskxEPI.nii
-mv pmEC_right_Maass_xEPI.nii pmEC_right_MaassMaskxEPI.nii
-mv alEC_left_Maass_xEPI.nii alEC_left_MaassMaskxEPI.nii
-mv alEC_right_Maass_xEPI.nii alEC_right_MaassMaskxEPI.nii
+#mv pmEC_left_Maass_xEPI.nii pmEC_left_MaassMaskxEPI.nii
+#mv pmEC_right_Maass_xEPI.nii pmEC_right_MaassMaskxEPI.nii
+#mv alEC_left_Maass_xEPI.nii alEC_left_MaassMaskxEPI.nii
+#mv alEC_right_Maass_xEPI.nii alEC_right_MaassMaskxEPI.nii
 
 cd ${workdir}
 

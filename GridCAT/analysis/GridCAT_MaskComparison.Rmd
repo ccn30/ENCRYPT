@@ -45,7 +45,8 @@ gridmag <- rbind(gridmag.Orig.main, gridmag.Maass)
 gridmag <- gridmag %>% modify_if(is.character,as.factor)
 gridmag
 ```
-# Plot grid cell magnitude per mask type
+## Pilot comparison
+### Plot grid cell magnitude per mask type
 ```{r}
 pd <- position_dodge(0.2)
 gridmag.allruns <- gridmag %>% filter(Run %in% "allRuns")

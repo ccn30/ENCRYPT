@@ -51,7 +51,7 @@ fi
 ################################################
 
 
-## CORRECTIONS ##
+## CORRECTIONS IN CASE ORIGINAL COMMAND DOESN@T WORK ##
 
 ## correction of pial surface - could add remove script/IsRunning command? ##
 

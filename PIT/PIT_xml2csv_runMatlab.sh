@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# arguments from PIT_submit.sh
+# arguments from PIT_submit.sh, from PIT_xml2csv_runAll
 
 func=${1}
 xmlDir=${2}

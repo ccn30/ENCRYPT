@@ -36,62 +36,168 @@ require(RColorBrewer)
 require(ggthemes)
 require(lme4)
 
-# load in data
-GC.hybrid.7_in = read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/gridCAT_X_hybrid_results_global.csv')
+## LOAD IN
+#GC.hybrid.7_in = read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/gridCAT_X_hybrid_results_global.csv')
+GC.hybrid.14_in = read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/gridCAT_X_hybrid_results2_global.csv')
 PREVENTmeta.35_in = read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/PREVENT/PREVENTdata_ENCRYPTn35.csv')
+APOEin <- read_excel('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/PREVENT/APOE_Baseline_CB.xlsx')
+
+## TIDY
+PREVENTmeta.35 <- left_join(PREVENTmeta.35_in,APOEin)
+PREVENTmeta.35 <- PREVENTmeta.35 %>% modify_at(c(1,3,56,568,572,707,708),as.factor)
+# make new variables
+PREVENTmeta.35 <- PREVENTmeta.35 %>% mutate(FH = case_when(risk_demf == 1 ~ 1,risk_demm == 1 ~ 1, risk_demf == 0 ~ 0, risk_demm == 0 ~ 0))
 
 # tidy GridCAT data into tibbles for magnitude, tStability (% stable voxels across runs), sStability (Rayliegh's test z and p values) and mean orientation per ROI per run
-GC.hybrid.7_Mag <- GC.hybrid.7_in %>% select(Subject,Code,starts_with("GCmag")) %>% gather(Model_Magnitude,Grid_Magnitude,starts_with("GCmag")) %>% separate(Model_Magnitude,sep="_",into=(c(NA,"Run","ROI","Side","xFold")))
+GC.hybrid.14_Mag <- GC.hybrid.14_in %>% select(Subject,Code,starts_with("GCmag")) %>% gather(Model_Magnitude,Grid_Magnitude,starts_with("GCmag")) %>% separate(Model_Magnitude,sep="_",into=(c(NA,"Run","ROI","Side","xFold")))
 
-GC.hybrid.7_tStab <- GC.hybrid.7_in %>% select(Subject,Code,starts_with("tStab")) %>% gather(Model_tStab,tStability,starts_with("tStab")) %>% separate(Model_tStab,sep="_",into=(c(NA,NA,"Run_Comparison","ROI","Side","xFold")))
+GC.hybrid.14_tStab <- GC.hybrid.14_in %>% select(Subject,Code,starts_with("tStab")) %>% gather(Model_tStab,tStability,starts_with("tStab")) %>% separate(Model_tStab,sep="_",into=(c(NA,NA,"Run_Comparison","ROI","Side","xFold")))
 
-GC.hybrid.7_sStabz <- GC.hybrid.7_in %>% select(Subject,Code,starts_with("sStability_z")) %>% gather(Model_sStabz,sStability_z,starts_with("sStability_z")) %>% separate(Model_sStabz,sep="_",into=(c(NA,NA,"Run","ROI","Side","xFold")))
+GC.hybrid.14_sStabz <- GC.hybrid.14_in %>% select(Subject,Code,starts_with("sStability_z")) %>% gather(Model_sStabz,sStability_z,starts_with("sStability_z")) %>% separate(Model_sStabz,sep="_",into=(c(NA,NA,"Run","ROI","Side","xFold")))
 
-GC.hybrid.7_sStabp <- GC.hybrid.7_in %>% select(Subject,Code,starts_with("sStability_p")) %>% gather(Model_sStabp,sStability_p,starts_with("sStability_p")) %>% 
+GC.hybrid.14_sStabp <- GC.hybrid.14_in %>% select(Subject,Code,starts_with("sStability_p")) %>% gather(Model_sStabp,sStability_p,starts_with("sStability_p")) %>% 
 separate(Model_sStabp,sep="_",into=(c(NA,NA,"Run","ROI","Side","xFold")))
 
-GC.hybrid.7_sStab <- left_join(GC.hybrid.7_sStabz,GC.hybrid.7_sStabp) # combine z and p values
+GC.hybrid.14_sStab <- left_join(GC.hybrid.14_sStabz,GC.hybrid.14_sStabp) # combine z and p values
 
-GC.hybrid.7_meanOri <- GC.hybrid.7_in %>% select(Subject,Code,starts_with("Mean")) %>% gather(ROIo,Mean_Orientation,starts_with("Mean")) %>%
+GC.hybrid.14_meanOri <- GC.hybrid.14_in %>% select(Subject,Code,starts_with("Mean")) %>% gather(ROIo,Mean_Orientation,starts_with("Mean")) %>%
 separate(ROIo,sep="_",into=(c(NA,"Run","ROI","Side","xFold")))
 
 # combine tibbles with PREVENT metadata
-PREVENT.GChybrid7.mag = inner_join(GC.hybrid.7_Mag,PREVENTmeta.35_in, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
-PREVENT.GChybrid7.sStab = inner_join(GC.hybrid.7_sStab,PREVENTmeta.35_in, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
-PREVENT.GChybrid7.tStab = inner_join(GC.hybrid.7_tStab,PREVENTmeta.35_in, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
-PREVENT.GChybrid7.meanOri = inner_join(GC.hybrid.7_meanOri,PREVENTmeta.35_in, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
+PREVENT.GChybrid14.mag = inner_join(GC.hybrid.14_Mag,PREVENTmeta.35, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
+PREVENT.GChybrid14.sStab = inner_join(GC.hybrid.14_sStab,PREVENTmeta.35, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
+PREVENT.GChybrid14.tStab = inner_join(GC.hybrid.14_tStab,PREVENTmeta.35, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
+PREVENT.GChybrid14.meanOri = inner_join(GC.hybrid.14_meanOri,PREVENTmeta.35, by = c("Code"="subjectID")) %>% modify_at(1:6,as.factor)
+
+# list of filtered variables used in script
+#PREVENT.GChybrid14.mag.runs.pmRight <- PREVENT.GChybrid14.mag.runs %>% filter(ROI == "pmEC") %>% filter(Side == "right")
+#PREVENT.GChybrid14.mag.allRuns <- PREVENT.GChybrid14.mag %>% filter(Run %in% "allRuns")
+#PREVENT.GChybrid14.mag.runs <- PREVENT.GChybrid14.mag %>% filter(!Run %in% "allRuns")
+#PREVENT.GChybrid14.mag.pmRight <- PREVENT.GChybrid14.mag %>% filter(ROI == "pmEC") %>% filter(Side == "right")
 
 ```
 
-##### Visualising results
-###### Magnitude
-####### Average across runs
+### Visualising results
+##### Magnitude
 ```{r}
 pd <- position_dodge(0.2)
-PREVENT.GChybrid7.mag.allRuns <- PREVENT.GChybrid7.mag %>% filter(Run %in% "allRuns")
-ggplot(PREVENT.GChybrid7.mag.allRuns, aes(ROI,Grid_Magnitude)) +
+PREVENT.GChybrid14.mag.allRuns <- PREVENT.GChybrid14.mag %>% filter(Run %in% "allRuns")
+ggplot(PREVENT.GChybrid14.mag.allRuns, aes(ROI,Grid_Magnitude)) +
   geom_boxplot(aes(fill=ROI),outlier.shape = NA,alpha=0.6) +
-  geom_point() +
+  geom_point(aes(fill=Side), position = position_jitterdodge()) +
   scale_fill_brewer(palette="Blues") +
-  facet_wrap(~Side)
+  facet_wrap(~Side) +
+  labs(title = "Grid magnitude (global) by EC region")
   
 ```
 
-####### Across individual runs
+#### Magnitude across individual runs for different EC regions
 ```{r}
-PREVENT.GChybrid7.mag.runs <- PREVENT.GChybrid7.mag %>% filter(!Run %in% "allRuns")
-ggplot(PREVENT.GChybrid7.mag.runs, aes(ROI,Grid_Magnitude,fill=Side)) +
+PREVENT.GChybrid14.mag.runs <- PREVENT.GChybrid14.mag %>% filter(!Run %in% "allRuns")
+ggplot(PREVENT.GChybrid14.mag.runs, aes(ROI,Grid_Magnitude,fill=Side)) +
   geom_boxplot(aes(fill=Side),outlier.shape = NA,alpha=0.6) +
   geom_point(position=position_jitterdodge()) +
   scale_fill_brewer(palette="Blues") +
-  facet_wrap(~Run)
+  facet_wrap(~Run) +
+  labs(title = "Grid magnitude per run by EC region")
 ```
 
-####### Association with age
+### AGE
 ```{r}
-ggplot(PREVENT.GChybrid7.mag.allRuns, aes(Age,Grid_Magnitude)) +
+ggplot(PREVENT.GChybrid14.mag.allRuns, aes(Age,Grid_Magnitude)) +
   geom_point(aes(color=Side)) +
   scale_fill_brewer(palette="Blues") +
-  facet_grid(Side ~ ROI)
+  facet_grid(Side ~ ROI) +
+  labs(title = "Grid magnitude (global) X age, across EC regions")
+```
+
+
+```{r}
+PREVENT.GChybrid14.mag.pmRight <- PREVENT.GChybrid14.mag %>% filter(ROI == "pmEC") %>% filter(Side == "right")
+ggplot(PREVENT.GChybrid14.mag.pmRight, aes(Age,Grid_Magnitude)) +
+  geom_point(aes(color=Side), show.legend = FALSE) +
+  scale_fill_brewer(palette="Blues") +
+  facet_grid(~Run) +
+  labs(title = "Right posteromedial EC grid magnitude x Age, per run")
+```
+
+### FAMILY HISTORY
+```{r}
+count(PREVENT.GChybrid14.mag.pmRight %>% filter(Run == "Run1") %>% filter(risk_demf != -9)) # 13
+PREVENT.GChybrid14.mag.pmRight %>% 
+  filter(risk_demf != -9) %>% 
+  ggplot(aes(as.factor(risk_demf),Grid_Magnitude)) +
+  geom_boxplot(aes(group=risk_demf),outlier.shape = NA,alpha=0.6) +
+  geom_point(aes(colour=Run),position=position_jitterdodge(),show.legend=FALSE) +
+  scale_fill_brewer(palette="Blues") +
+  facet_grid(~Run) +
+  labs(title = "Grid magnitude x maternal family history")
+```
+
+```{r}
+count(PREVENT.GChybrid14.mag.pmRight %>% filter(Run == "Run1") %>% filter(risk_demm != -9)) # 13
+PREVENT.GChybrid14.mag.pmRight %>% 
+  filter(risk_demm != -9) %>% 
+  ggplot(aes(as.factor(risk_demm),Grid_Magnitude)) +
+  geom_boxplot(aes(group=risk_demm),outlier.shape = NA,alpha=0.6) +
+  geom_point(aes(colour=Run),position=position_jitterdodge(),show.legend=FALSE) +
+  scale_fill_brewer(palette="Blues") +
+  facet_grid(~Run) +
+  labs(title = "Grid magnitude x paternal family history")
+```
+
+```{r}
+count(PREVENT.GChybrid14.mag.pmRight %>% filter(Run == "Run1") %>% filter(FH == 1)) # 13
+PREVENT.GChybrid14.mag.pmRight %>%  
+  ggplot(aes(as.factor(FH),Grid_Magnitude)) +
+  geom_boxplot(aes(group=FH),outlier.shape = NA,alpha=0.6) +
+  geom_point(aes(colour=Run),position=position_jitterdodge(),show.legend=FALSE) +
+  scale_fill_brewer(palette="Blues") +
+  facet_grid(~Run) +
+  labs(title = "Grid magnitude in right pmEC x paternal + maternal family history")
+```
+```{r}
+PREVENT.GChybrid14.mag %>%  
+  filter(Side == "right") %>%
+  ggplot(aes(as.factor(FH),Grid_Magnitude)) +
+  geom_boxplot(aes(group=FH),outlier.shape = NA,alpha=0.6) +
+  geom_point(aes(colour=ROI),position=position_jitterdodge(),show.legend=FALSE) +
+  scale_fill_brewer(palette="Blues") +
+  facet_grid(ROI~Run) +
+  labs(title = "Grid magnitude in Right EC subregions x paternal + maternal family history")
+```
+
+```{r}
+PREVENT.GChybrid14.mag %>%  
+  filter(Side == "left") %>%
+  ggplot(aes(as.factor(FH),Grid_Magnitude)) +
+  geom_boxplot(aes(group=FH),outlier.shape = NA,alpha=0.6) +
+  geom_point(aes(colour=ROI),position=position_jitterdodge(),show.legend=FALSE) +
+  scale_fill_brewer(palette="Blues") +
+  facet_grid(ROI~Run) +
+  labs(title = "Grid magnitude in Left EC subregions x paternal + maternal family history")
+```
+
+### APOE
+```{r}
+count(PREVENT.GChybrid14.mag.pmRight %>% filter(Run == "Run1") %>% filter(apoe4 == 0))
+PREVENT.GChybrid14.mag.pmRight %>% 
+  ggplot(aes(as.factor(apoe),Grid_Magnitude)) +
+  geom_boxplot(aes(group=apoe),outlier.shape = NA,alpha=0.6) +
+  geom_point(aes(colour=Run),position=position_jitterdodge(),show.legend=FALSE) +
+  scale_fill_brewer(palette="Blues") +
+  facet_grid(~Run) +
+  labs(title = "Grid magnitude in right pmEC x APOE status")
+```
+
+```{r}
+PREVENT.GChybrid14.mag %>% 
+  filter(Side == "right") %>%
+  ggplot(aes(as.factor(apoe),Grid_Magnitude)) +
+  geom_boxplot(aes(group=apoe),outlier.shape = NA,alpha=0.6) +
+  geom_point(aes(colour=Run),position=position_jitterdodge(),show.legend=FALSE) +
+  scale_fill_brewer(palette="Blues") +
+  facet_grid(ROI~Run) +
+  labs(title = "Grid magnitude in right EC subregions x APOE status")
 ```
 

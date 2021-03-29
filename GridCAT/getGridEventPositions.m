@@ -1,4 +1,4 @@
-function getBoundaryDistance()
+function getGridEventPositions()
 % iterate through movementEventData and get each subject position/facing
 % direction, estimate boundary positions, could get trajectories and
 % positions of objects
