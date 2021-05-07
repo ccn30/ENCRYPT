@@ -49,7 +49,7 @@ On a subject level basis (shows runs1-3 and allRuns average per subject)
 ```{r}
 ggplot(data=GC.pmRight.mag,aes(thresh,Grid_Magnitude)) +
   geom_boxplot(alpha=0.3) +
-  geom_point(aes(colour=Code),position=position_jitterdodge()) 
+  geom_point(aes(colour=Code)) 
   #scale_colour_manual(values=c("#003366","#003366","#003366","#003366","#003366")) +
   #scale_fill_brewer(palette = "Blues")
 ```

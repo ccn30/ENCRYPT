@@ -1,0 +1,581 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={GridCAT Analysis Global},
+            pdfauthor={C Newton},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{GridCAT Analysis Global}
+\author{C Newton}
+\date{3/10/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{grid-cell-fmri-signal-analysis-in-prevent}{%
+\subsection{Grid Cell fMRI signal analysis in
+PREVENT}\label{grid-cell-fmri-signal-analysis-in-prevent}}
+
+This document provides a full pipeline to running GridCAT toolbox
+functions on preprocessed EPIs, raw grid cell task data with
+pre-generated ROI masks.
+
+GridCAT scripts:\\
+1. runGridCAT.sh \textgreater{}\\
+2. gridcatsubmit.sh to submit to SLURM \textgreater{}\\
+3. gridcatprepare.sh which first calls GCAP\_logfile2eventtable.m and
+then GridCAT\_mainfunc.m with ROI/SPM threshold flags etc.\\
+Output = individual subject .txt files on gridCAT metrics per ROI, which
+are collated via standalone\_collateGridCAToutput.m run manually in
+Matlab in case mask names/paths/indexing needs altering) to make .csv
+file for all subjects with all outputs.\\
+Must define filepaths within runGridCAT.sh and .txt file with subjects
+to run\\
+Must define mask filepaths to use within GridCAT\_mainfunc.m
+
+\hypertarget{run-gridcat-and-load-in-output}{%
+\subparagraph{Run GridCAT and load in
+output}\label{run-gridcat-and-load-in-output}}
+
+Manually collate with standalone\_collageGridCAToutput.m into .csv file
+and add in CB codes to corresponding RIS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/GridCAT}
+\CommentTok{#./runGridCAT.sh}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{echo =} \OtherTok{TRUE}\NormalTok{)}
+
+\CommentTok{# load environment}
+\KeywordTok{require}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ── Attaching packages ────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
+\end{verbatim}
+
+\begin{verbatim}
+## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
+## ✓ tidyr   1.0.0     ✓ stringr 1.4.0
+## ✓ readr   1.3.1     ✓ forcats 0.5.0
+## ✓ purrr   0.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## ── Conflicts ───────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(readxl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: readxl
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(RColorBrewer)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: RColorBrewer
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(ggthemes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ggthemes
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(RColorBrewer)}
+\KeywordTok{require}\NormalTok{(ggthemes)}
+\KeywordTok{require}\NormalTok{(lme4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: lme4
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: Matrix
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'Matrix'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:tidyr':
+## 
+##     expand, pack, unpack
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## LOAD IN}
+\CommentTok{#GC.hybrid.7_in = read_csv('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/gridCAT_X_hybrid_results_global.csv')}
+\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_in =}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{'/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/gridCAT_X_hybrid_results2_global.csv'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   Code = col_character()
+## )
+\end{verbatim}
+
+\begin{verbatim}
+## See spec(...) for full column specifications.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PREVENTmeta}\FloatTok{.35}\NormalTok{_in =}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{'/lustre/scratch/wbic-beta/ccn30/ENCRYPT/PREVENT/PREVENTdata_ENCRYPTn35.csv'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   subjectID = col_character(),
+##   date_vi = col_datetime(format = ""),
+##   ses_cat = col_character(),
+##   medclot_dated = col_logical(),
+##   medclot_act = col_logical(),
+##   medclot_datee = col_logical(),
+##   medclot_hosp = col_logical(),
+##   medane_dated = col_datetime(format = ""),
+##   medane_datee = col_datetime(format = ""),
+##   medang_dated = col_logical(),
+##   medang_act = col_logical(),
+##   medang_datee = col_logical(),
+##   medang_hosp = col_logical(),
+##   medinf_dated = col_logical(),
+##   medinf_act = col_logical(),
+##   medinf_datee = col_logical(),
+##   medinf_hosp = col_logical(),
+##   medheart_dated = col_logical(),
+##   medheart_act = col_logical(),
+##   medheart_datee = col_logical()
+##   # ... with 369 more columns
+## )
+## See spec(...) for full column specifications.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{APOEin <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{'/lustre/scratch/wbic-beta/ccn30/ENCRYPT/PREVENT/APOE_Baseline_CB.xlsx'}\NormalTok{)}
+
+\CommentTok{## TIDY}
+\NormalTok{PREVENTmeta}\FloatTok{.35}\NormalTok{ <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(PREVENTmeta}\FloatTok{.35}\NormalTok{_in,APOEin)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "subjectID"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PREVENTmeta}\FloatTok{.35}\NormalTok{ <-}\StringTok{ }\NormalTok{PREVENTmeta}\FloatTok{.35} \OperatorTok{%>%}\StringTok{ }\KeywordTok{modify_at}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{56}\NormalTok{,}\DecValTok{568}\NormalTok{,}\DecValTok{572}\NormalTok{,}\DecValTok{707}\NormalTok{,}\DecValTok{708}\NormalTok{),as.factor)}
+\CommentTok{# make new variables}
+\NormalTok{PREVENTmeta}\FloatTok{.35}\NormalTok{ <-}\StringTok{ }\NormalTok{PREVENTmeta}\FloatTok{.35} \OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{FH =} \KeywordTok{case_when}\NormalTok{(risk_demf }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ }\DecValTok{1}\NormalTok{,risk_demm }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ }\DecValTok{1}\NormalTok{, risk_demf }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{~}\StringTok{ }\DecValTok{0}\NormalTok{, risk_demm }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{~}\StringTok{ }\DecValTok{0}\NormalTok{))}
+
+\CommentTok{# tidy GridCAT data into tibbles for magnitude, tStability (% stable voxels across runs), sStability (Rayliegh's test z and p values) and mean orientation per ROI per run}
+\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_Mag <-}\StringTok{ }\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_in }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(Subject,Code,}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"GCmag"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{gather}\NormalTok{(Model_Magnitude,Grid_Magnitude,}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"GCmag"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{separate}\NormalTok{(Model_Magnitude,}\DataTypeTok{sep=}\StringTok{"_"}\NormalTok{,}\DataTypeTok{into=}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{,}\StringTok{"Run"}\NormalTok{,}\StringTok{"ROI"}\NormalTok{,}\StringTok{"Side"}\NormalTok{,}\StringTok{"xFold"}\NormalTok{)))}
+
+\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_tStab <-}\StringTok{ }\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_in }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(Subject,Code,}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"tStab"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{gather}\NormalTok{(Model_tStab,tStability,}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"tStab"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{separate}\NormalTok{(Model_tStab,}\DataTypeTok{sep=}\StringTok{"_"}\NormalTok{,}\DataTypeTok{into=}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{,}\OtherTok{NA}\NormalTok{,}\StringTok{"Run_Comparison"}\NormalTok{,}\StringTok{"ROI"}\NormalTok{,}\StringTok{"Side"}\NormalTok{,}\StringTok{"xFold"}\NormalTok{)))}
+
+\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_sStabz <-}\StringTok{ }\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_in }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(Subject,Code,}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"sStability_z"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{gather}\NormalTok{(Model_sStabz,sStability_z,}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"sStability_z"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{separate}\NormalTok{(Model_sStabz,}\DataTypeTok{sep=}\StringTok{"_"}\NormalTok{,}\DataTypeTok{into=}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{,}\OtherTok{NA}\NormalTok{,}\StringTok{"Run"}\NormalTok{,}\StringTok{"ROI"}\NormalTok{,}\StringTok{"Side"}\NormalTok{,}\StringTok{"xFold"}\NormalTok{)))}
+
+\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_sStabp <-}\StringTok{ }\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_in }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(Subject,Code,}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"sStability_p"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{gather}\NormalTok{(Model_sStabp,sStability_p,}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"sStability_p"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\KeywordTok{separate}\NormalTok{(Model_sStabp,}\DataTypeTok{sep=}\StringTok{"_"}\NormalTok{,}\DataTypeTok{into=}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{,}\OtherTok{NA}\NormalTok{,}\StringTok{"Run"}\NormalTok{,}\StringTok{"ROI"}\NormalTok{,}\StringTok{"Side"}\NormalTok{,}\StringTok{"xFold"}\NormalTok{)))}
+
+\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_sStab <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(GC.hybrid}\FloatTok{.14}\NormalTok{_sStabz,GC.hybrid}\FloatTok{.14}\NormalTok{_sStabp) }\CommentTok{# combine z and p values}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = c("Subject", "Code", "Run", "ROI", "Side", "xFold")
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_meanOri <-}\StringTok{ }\NormalTok{GC.hybrid}\FloatTok{.14}\NormalTok{_in }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(Subject,Code,}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"Mean"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{gather}\NormalTok{(ROIo,Mean_Orientation,}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"Mean"}\NormalTok{)) }\OperatorTok{%>%}
+\KeywordTok{separate}\NormalTok{(ROIo,}\DataTypeTok{sep=}\StringTok{"_"}\NormalTok{,}\DataTypeTok{into=}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{,}\StringTok{"Run"}\NormalTok{,}\StringTok{"ROI"}\NormalTok{,}\StringTok{"Side"}\NormalTok{,}\StringTok{"xFold"}\NormalTok{)))}
+
+\CommentTok{# combine tibbles with PREVENT metadata}
+\NormalTok{PREVENT.GChybrid14.mag =}\StringTok{ }\KeywordTok{inner_join}\NormalTok{(GC.hybrid}\FloatTok{.14}\NormalTok{_Mag,PREVENTmeta}\FloatTok{.35}\NormalTok{, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"Code"}\NormalTok{=}\StringTok{"subjectID"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{modify_at}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{,as.factor)}
+\NormalTok{PREVENT.GChybrid14.sStab =}\StringTok{ }\KeywordTok{inner_join}\NormalTok{(GC.hybrid}\FloatTok{.14}\NormalTok{_sStab,PREVENTmeta}\FloatTok{.35}\NormalTok{, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"Code"}\NormalTok{=}\StringTok{"subjectID"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{modify_at}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{,as.factor)}
+\NormalTok{PREVENT.GChybrid14.tStab =}\StringTok{ }\KeywordTok{inner_join}\NormalTok{(GC.hybrid}\FloatTok{.14}\NormalTok{_tStab,PREVENTmeta}\FloatTok{.35}\NormalTok{, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"Code"}\NormalTok{=}\StringTok{"subjectID"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{modify_at}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{,as.factor)}
+\NormalTok{PREVENT.GChybrid14.meanOri =}\StringTok{ }\KeywordTok{inner_join}\NormalTok{(GC.hybrid}\FloatTok{.14}\NormalTok{_meanOri,PREVENTmeta}\FloatTok{.35}\NormalTok{, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"Code"}\NormalTok{=}\StringTok{"subjectID"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{modify_at}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{,as.factor)}
+
+\CommentTok{# list of filtered variables used in script}
+\CommentTok{#PREVENT.GChybrid14.mag.runs.pmRight <- PREVENT.GChybrid14.mag.runs %>% filter(ROI == "pmEC") %>% filter(Side == "right")}
+\CommentTok{#PREVENT.GChybrid14.mag.allRuns <- PREVENT.GChybrid14.mag %>% filter(Run %in% "allRuns")}
+\CommentTok{#PREVENT.GChybrid14.mag.runs <- PREVENT.GChybrid14.mag %>% filter(!Run %in% "allRuns")}
+\CommentTok{#PREVENT.GChybrid14.mag.pmRight <- PREVENT.GChybrid14.mag %>% filter(ROI == "pmEC") %>% filter(Side == "right")}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{visualising-results}{%
+\subsubsection{Visualising results}\label{visualising-results}}
+
+\hypertarget{magnitude}{%
+\subparagraph{Magnitude}\label{magnitude}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pd <-}\StringTok{ }\KeywordTok{position_dodge}\NormalTok{(}\FloatTok{0.2}\NormalTok{)}
+\NormalTok{PREVENT.GChybrid14.mag.allRuns <-}\StringTok{ }\NormalTok{PREVENT.GChybrid14.mag }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Run }\OperatorTok{%in%}\StringTok{ "allRuns"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(PREVENT.GChybrid14.mag.allRuns, }\KeywordTok{aes}\NormalTok{(ROI,Grid_Magnitude)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\NormalTok{ROI),}\DataTypeTok{outlier.shape =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{alpha=}\FloatTok{0.6}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\NormalTok{Side), }\DataTypeTok{position =} \KeywordTok{position_jitterdodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Blues"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{Side) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Grid magnitude (global) by EC region"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GridCAT_global_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\hypertarget{magnitude-across-individual-runs-for-different-ec-regions}{%
+\paragraph{Magnitude across individual runs for different EC
+regions}\label{magnitude-across-individual-runs-for-different-ec-regions}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PREVENT.GChybrid14.mag.runs <-}\StringTok{ }\NormalTok{PREVENT.GChybrid14.mag }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{Run }\OperatorTok{%in%}\StringTok{ "allRuns"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(PREVENT.GChybrid14.mag.runs, }\KeywordTok{aes}\NormalTok{(ROI,Grid_Magnitude,}\DataTypeTok{fill=}\NormalTok{Side)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\NormalTok{Side),}\DataTypeTok{outlier.shape =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{alpha=}\FloatTok{0.6}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position=}\KeywordTok{position_jitterdodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Blues"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{Run) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Grid magnitude per run by EC region"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GridCAT_global_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\hypertarget{age}{%
+\subsubsection{AGE}\label{age}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(PREVENT.GChybrid14.mag.allRuns, }\KeywordTok{aes}\NormalTok{(Age,Grid_Magnitude)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color=}\NormalTok{Side)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Blues"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(Side }\OperatorTok{~}\StringTok{ }\NormalTok{ROI) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Grid magnitude (global) X age, across EC regions"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GridCAT_global_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PREVENT.GChybrid14.mag.pmRight <-}\StringTok{ }\NormalTok{PREVENT.GChybrid14.mag }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(ROI }\OperatorTok{==}\StringTok{ "pmEC"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Side }\OperatorTok{==}\StringTok{ "right"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(PREVENT.GChybrid14.mag.pmRight, }\KeywordTok{aes}\NormalTok{(Age,Grid_Magnitude)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color=}\NormalTok{Side), }\DataTypeTok{show.legend =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Blues"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\NormalTok{Run) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Right posteromedial EC grid magnitude x Age, per run"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GridCAT_global_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\hypertarget{family-history}{%
+\subsubsection{FAMILY HISTORY}\label{family-history}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{count}\NormalTok{(PREVENT.GChybrid14.mag.pmRight }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Run }\OperatorTok{==}\StringTok{ "Run1"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(risk_demf }\OperatorTok{!=}\StringTok{ }\DecValTok{-9}\NormalTok{)) }\CommentTok{# 13}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1    13
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PREVENT.GChybrid14.mag.pmRight }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(risk_demf }\OperatorTok{!=}\StringTok{ }\DecValTok{-9}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(risk_demf),Grid_Magnitude)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group=}\NormalTok{risk_demf),}\DataTypeTok{outlier.shape =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{alpha=}\FloatTok{0.6}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{Run),}\DataTypeTok{position=}\KeywordTok{position_jitterdodge}\NormalTok{(),}\DataTypeTok{show.legend=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Blues"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\NormalTok{Run) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Grid magnitude x maternal family history"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GridCAT_global_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{count}\NormalTok{(PREVENT.GChybrid14.mag.pmRight }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Run }\OperatorTok{==}\StringTok{ "Run1"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(risk_demm }\OperatorTok{!=}\StringTok{ }\DecValTok{-9}\NormalTok{)) }\CommentTok{# 13}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1    14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PREVENT.GChybrid14.mag.pmRight }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(risk_demm }\OperatorTok{!=}\StringTok{ }\DecValTok{-9}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(risk_demm),Grid_Magnitude)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group=}\NormalTok{risk_demm),}\DataTypeTok{outlier.shape =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{alpha=}\FloatTok{0.6}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{Run),}\DataTypeTok{position=}\KeywordTok{position_jitterdodge}\NormalTok{(),}\DataTypeTok{show.legend=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Blues"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\NormalTok{Run) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Grid magnitude x paternal family history"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GridCAT_global_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{count}\NormalTok{(PREVENT.GChybrid14.mag.pmRight }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Run }\OperatorTok{==}\StringTok{ "Run1"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(FH }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)) }\CommentTok{# 13}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1    10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PREVENT.GChybrid14.mag.pmRight }\OperatorTok{%>%}\StringTok{  }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(FH),Grid_Magnitude)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group=}\NormalTok{FH),}\DataTypeTok{outlier.shape =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{alpha=}\FloatTok{0.6}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{Run),}\DataTypeTok{position=}\KeywordTok{position_jitterdodge}\NormalTok{(),}\DataTypeTok{show.legend=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Blues"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\NormalTok{Run) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Grid magnitude in right pmEC x paternal + maternal family history"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GridCAT_global_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PREVENT.GChybrid14.mag }\OperatorTok{%>%}\StringTok{  }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Side }\OperatorTok{==}\StringTok{ "right"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(FH),Grid_Magnitude)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group=}\NormalTok{FH),}\DataTypeTok{outlier.shape =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{alpha=}\FloatTok{0.6}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{ROI),}\DataTypeTok{position=}\KeywordTok{position_jitterdodge}\NormalTok{(),}\DataTypeTok{show.legend=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Blues"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(ROI}\OperatorTok{~}\NormalTok{Run) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Grid magnitude in Right EC subregions x paternal + maternal family history"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GridCAT_global_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PREVENT.GChybrid14.mag }\OperatorTok{%>%}\StringTok{  }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Side }\OperatorTok{==}\StringTok{ "left"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(FH),Grid_Magnitude)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group=}\NormalTok{FH),}\DataTypeTok{outlier.shape =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{alpha=}\FloatTok{0.6}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{ROI),}\DataTypeTok{position=}\KeywordTok{position_jitterdodge}\NormalTok{(),}\DataTypeTok{show.legend=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Blues"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(ROI}\OperatorTok{~}\NormalTok{Run) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Grid magnitude in Left EC subregions x paternal + maternal family history"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GridCAT_global_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\hypertarget{apoe}{%
+\subsubsection{APOE}\label{apoe}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{count}\NormalTok{(PREVENT.GChybrid14.mag.pmRight }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Run }\OperatorTok{==}\StringTok{ "Run1"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(apoe4 }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1    10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PREVENT.GChybrid14.mag.pmRight }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(apoe),Grid_Magnitude)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group=}\NormalTok{apoe),}\DataTypeTok{outlier.shape =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{alpha=}\FloatTok{0.6}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{Run),}\DataTypeTok{position=}\KeywordTok{position_jitterdodge}\NormalTok{(),}\DataTypeTok{show.legend=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Blues"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\NormalTok{Run) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Grid magnitude in right pmEC x APOE status"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GridCAT_global_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PREVENT.GChybrid14.mag }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Side }\OperatorTok{==}\StringTok{ "right"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(apoe),Grid_Magnitude)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group=}\NormalTok{apoe),}\DataTypeTok{outlier.shape =} \OtherTok{NA}\NormalTok{,}\DataTypeTok{alpha=}\FloatTok{0.6}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\NormalTok{Run),}\DataTypeTok{position=}\KeywordTok{position_jitterdodge}\NormalTok{(),}\DataTypeTok{show.legend=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Blues"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(ROI}\OperatorTok{~}\NormalTok{Run) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Grid magnitude in right EC subregions x APOE status"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GridCAT_global_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\end{document}

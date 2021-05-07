@@ -1,5 +1,6 @@
 #!/bin/bash
 # corgeister templates/masks to subject EPIs, calls ANTS script in cd
+# also copies images
 
 pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
 
@@ -12,8 +13,8 @@ hybridmaskT2dir=/home/ccn30/ENCRYPT/segmentation/ECsubdivisions_Mag
 
 ## separate txt file with subject and date IDs
 
-mysubjs=${pathstem}/testsubjcode.txt
-#mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+#mysubjs=${pathstem}/testsubjcode.txt
+mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 
 
 for subjID in `cat $mysubjs`
@@ -34,6 +35,7 @@ cd ${rawpathstem}
 T2dir=$(ls -d Series_???_Highresolution_TSE_PAT2_100)
 T2path=${rawpathstem}/${T2dir}
 T2=${T2path}/denoise_n42_t2.nii
+EPI=${regDir}/N4meanEPI.nii
 cd ${regscriptdir}
 
 
@@ -41,6 +43,7 @@ cd ${regscriptdir}
 
 T1xTempAffine=${groupTemplateDir}/para01_${subject}_t1*0GenericAffine.mat
 T1xTempInvWarp=${groupTemplateDir}/para01_${subject}_t1*1InverseWarp.nii.gz
+T1xTempWarp=${groupTemplateDir}/para01_${subject}_t1*1Warp.nii.gz
 T1xT2affine=${regDir}/T1xT2_ANTs_0GenericAffine.mat
 T1xEPIaffine=${regDir}/T1xepiSlab0GenericAffine.mat
 
@@ -58,7 +61,25 @@ T1xEPIaffine=${regDir}/T1xepiSlab0GenericAffine.mat
 
 ## Perform T2 hybrid mask x T2 registration
 
-ANTs_HybridMasksT2xEPI.sh ${subject} ${regDir} ${hybridmaskT2dir} ${T1xT2affine} ${T1xEPIaffine}
+#ANTs_HybridMasksT2xEPI.sh ${subject} ${regDir} ${hybridmaskT2dir} ${T1xT2affine} ${T1xEPIaffine}
+
+
+## Perform copy images
+target=/group/p00500/Masks/images/${subject}
+mkdir -p $target
+cp $T2 $target/denoise_n42_t2.nii
+cp $EPI $target/N4meanEPI.nii
+cp $T1 $target/T1.nii
+targetreg=/group/p00500/Masks/registrations/${subject}
+mkdir -p $targetreg
+cp $T1xT2affine $targetreg/T1xT2_ANTs_0GenericAffine.mat
+# need extra line for copying T1-T2 regs for 3 subjects that failed ANTs when done
+cp $T1xTempAffine $targetreg/para01_${subject}_t1*0GenericAffine.mat
+cp $T1xTempInvWarp $targetreg/para01_${subject}_t1*1InverseWarp.nii.gz
+cp $T1xTempWarp $targetreg/para01_${subject}_t1*1Warp.nii.gz
+cp $T1xEPIaffine $targetreg/T1xepiSlab0GenericAffine.mat
+
+
 
 done
 

@@ -116,7 +116,7 @@ alECR_Maass_tSNR=$tSNRdir/tSNR_alEC_right_Maassmask.nii
 #fslmaths $EPI_tSNR -mas $rightalMaassxEPI $alECR_Maass_tSNR
 
 # use subshell to output multiple fslstats commands per mask per subject into single output file, converting spaces to commas to output as csv, use >> to append not overwrite
-(fslstats $pmECR_hybridMag_tSNR -V -M -S -R | tr " " ",";fslstats $alECR_hybridMag_tSNR -V -M -S -R | tr " " ",";fslstats $pmECR_Maass_tSNR -V -M -S -R | tr " " ",";fslstats $alECR_Maass_tSNR -V -M -S -R | tr " " ",") >> ${pathstem}/results/tSNR/tSNR_output.csv
+#(fslstats $pmECR_hybridMag_tSNR -V -M -S -R | tr " " ",";fslstats $alECR_hybridMag_tSNR -V -M -S -R | tr " " ",";fslstats $pmECR_Maass_tSNR -V -M -S -R | tr " " ",";fslstats $alECR_Maass_tSNR -V -M -S -R | tr " " ",") >> ${pathstem}/results/tSNR/tSNR_output.csv
 # did manual adjustments to csv file to add subjects and mask types, find way to automate
 done 
 ```
@@ -125,6 +125,7 @@ done
 ```{r}
 tSNR_in <- read_csv("/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/tSNR/tSNR_output.csv")
 tSNR_in <- tSNR_in %>% modify_if(is.character,as.factor)
+tSNR_in <- tSNR_in[-c(17:36),]
 
 # plot mean tSNR
 ggplot(tSNR_in, aes(mask,mean_tSNR)) +
