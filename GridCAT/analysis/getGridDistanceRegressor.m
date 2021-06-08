@@ -1,11 +1,12 @@
-function getGridDistanceRegressor(subject,taskDir)
+function distanceRegressorcsv = getGridDistanceRegressor(subject,taskDir)
 % function to get xy/angle position per TR from grid cell task movemenEventData.csv logfile to make
 % parametric distance regressor for boundary analysis
 % output = csv file 'distanceRegressor_subject_block.csv' in each taskdata block dir
 % CN 18.03.21
 
 subject='25739';
-taskDir='/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask';
+%taskDir='/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/gridtask';
+taskDir='/rds/user/ccn30/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask';
 
 % preamble
 blocks = {'BlockA','BlockB','BlockC'};
@@ -124,10 +125,10 @@ for b = 1:3
         end
         
         % print current row data to results file
-        fprintf(fp_Table, '%.3f,%.3f,%s,%.3f,%.3f,%.3f,%.3f,%.3f,%.3f\n',TRvec(row),time,phase,PositionX,PositionY,orientation,distance,NrstWall,facingNrst);
+       fprintf(fp_Table, '%.3f,%.3f,%s,%.3f,%.3f,%.3f,%.3f,%.3f,%.3f\n',TRvec(row),time,phase,PositionX,PositionY,orientation,distance,NrstWall,facingNrst);
     
     end % for row
     
 end % for block
-
+ distanceRegressorcsv = newFilename;
 end
