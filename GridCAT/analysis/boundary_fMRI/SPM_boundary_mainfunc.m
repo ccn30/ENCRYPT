@@ -1,6 +1,6 @@
 function SPM_boundary_mainfunc(step,prevStep,clusterid,preprocessedpathstem,rawpathstem,subjects,subjcnt,fullid,basedir,blocksin,blocksin_folders,blocksout,minvols,dates,group)
 % A mainfunction for preprocessing 7T MRI data and running analysis modules
-% e.g. PPI, SPM univariate GLMs
+% e.g. PPI, SPM univariate GLM
 
 % Designed to run in a modular fashion and in parallel - i.e. pass this function a single step and single subject number (derived from
 % SPMuni_subjects_parameters.m, and paths derived from parent bash script SPMuni_prepare.sh)
