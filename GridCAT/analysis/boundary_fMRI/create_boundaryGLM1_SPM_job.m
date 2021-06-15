@@ -1,4 +1,4 @@
-function jobfile = create_boundaryGLM1_SPM_job(TR,subject,outpath,minvols,filestoanalyse,TransAligned,TransMisaligned,Rotation,rpfiles)
+function jobfile = create_boundaryGLM1_SPM_job(JFlocation,TR,subject,outpath,minvols,filestoanalyse,TransAligned,TransMisaligned,Rotation,dist,rpfiles)
 %-----------------------------------------------------------------------
 % Job saved on 30-Sep-2019 12:01:11 by cfg_util (rev $Rev: 6460 $)
 % spm SPM - SPM12 (6906)
@@ -6,7 +6,7 @@ function jobfile = create_boundaryGLM1_SPM_job(TR,subject,outpath,minvols,filest
 %-----------------------------------------------------------------------
 
 % create file to write to
-jobfile = ['/lustre/scratch/wbic-beta/ccn30/ENCRYPT/fMRI/gridcellpilot/scripts/SPM_univariate/SPM_jobfiles/SPM_GLM1_' num2str(subject) '_job.m'];
+jobfile = [JFlocation 'SPM_boundaryGLM1_' num2str(subject) '_job.m'];
 fileID = fopen(jobfile,'w');
 
 %-----file contents start-----%
@@ -66,7 +66,9 @@ for run = 1:3
     fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').multi = {''''};\n']);
     
     % Regressors
-    fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').regress = struct(''name'', {}, ''val'', {});\n']);
+    distances = sprintf('%f; ',dist{run});
+    distances = distances(1:end-2);
+    fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').regress = struct(''name'', {''Dist''}, ''val'', {[' distances ']});\n']);
     fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').multi_reg = {''' rpfiles{run} '''};\n']); 
     fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').hpf = 128;\n']);
     
@@ -93,9 +95,12 @@ fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{1}.tcon.sessrep = ''none'';
 fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{2}.tcon.name = ''Translation_Aligned>Translation_Misaligned'';\n');
 fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{2}.tcon.weights = [0 1 -1 0 0 0 0 0 0 0 1 -1 0 0 0 0 0 0 0 1 -1 0 0 0 0 0 0];\n');
 fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{2}.tcon.sessrep = ''none'';\n');
-fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{3}.fcon.name = ''AllEffectsOfInterest'';\n');
-fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{3}.fcon.weights = kron(eye(3),[eye(3) zeros(3,6)]);\n');
-fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{3}.fcon.sessrep = ''none'';\n');
+fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{3}.tcon.name = ''DistanceRegressor'';\n');
+fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{3}.tcon.weights = [0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0];\n');
+fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{3}.tcon.sessrep = ''none'';\n');
+fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.fcon.name = ''AllEffectsOfInterest'';\n');
+fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.fcon.weights = kron(eye(3),[eye(3) zeros(3,6)]);\n');
+fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.fcon.sessrep = ''none'';\n');
 fprintf(fileID,'matlabbatch{3}.spm.stats.con.delete = 0;\n');
 
 %-----end of file contents-----%
