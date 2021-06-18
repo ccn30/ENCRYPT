@@ -6,7 +6,7 @@ function SPM_boundary_mainfunc(clusterid,pathstem,subjects,subjcnt,blocksout,min
 % use these to debug (change steps in command)
 % run ENCRYPT_subjects_parameters.m
 % pathstem ='/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT';
-% SPM_boundary_mainfunc('HPC',pathstem,subjects,2,blocksout,minvols)
+% SPM_boundary_mainfunc('HPC',pathstem,subjects,10,blocksout,minvols)
 
 % Coco Newton June 2021
 
@@ -19,7 +19,7 @@ TR = 2.53;
 JFlocation = [pathstem '/scripts/GridCAT/analysis/boundary_fMRI/SPMjobfiles/'];
 
 global spmpath fsldir toolboxdir
-switch clusterid % only runing on HPHI, ignore for no
+switch clusterid 
     
     case 'HPHI'
         spmpath = '/applications/spm/spm12_6906/';
@@ -42,9 +42,9 @@ nrun = 1;
 disp('running SPM boundary analysis')
 
 for crun = subjcnt
-    
-    %% preallocate variables
-    % temp
+
+    % preallocate variables
+    % temporary
     theseepis = find(strncmp(blocksout{crun},'Run',3));
     rawEventType = cell(1,length(theseepis));
     onsets = cell(1,length(theseepis));
@@ -76,11 +76,11 @@ for crun = subjcnt
             for crun = subjcnt
                 filestosmooth = {};
                 filestosmooth_list = [];
-                outpath = [pathstem '/fMRI/' subjects{crun} '/'];
+                
                 for i = 1:length(theseepis)
                     for j = 1:minvols(subjcnt)
                         %filestosmooth = spm_select('ExtFPList',outpath,['^' prevStep blocksout{crun}{theseepis(i)} '.nii'],1:minvols(crun));
-                        filestosmooth{j,1} = [outpath 'rtopup_' blocksout{crun}{theseepis(i)} '.nii,' num2str(j)];
+                        filestosmooth{j,1} = [scansfilepath 'rtopup_' blocksout{crun}{theseepis(i)} '.nii,' num2str(j)];
                     end
                     filestosmooth_list = [filestosmooth_list;filestosmooth];
                 end
@@ -104,8 +104,8 @@ for crun = subjcnt
     
     %% load in all data from each session (3 total)
     
-    for sess = 1:length(theseepis)
-        
+    for sess = 1:length(theseepis)         
+            
         % MOVEMENT REGRESSORS
         rpfiles{sess} = [scansfilepath 'rp_topup_' blocksout{crun}{theseepis(sess)} '.txt'];
         
@@ -171,10 +171,10 @@ for crun = subjcnt
         Rotation.onset{sess}(Rotation.onset{sess}==0)=[];
         Rotation.duration{sess}(Rotation.duration{sess}==0)=[];
         
-        %% CONVOLVE DISTANCE USER SPECIFIED REGRESSOR
+        %% CONVOLVE DISTANCE USER SPECIFIED REGRESSOR + DEMEAN
         d = distRaw.DistNrstWall; % extract distance column from distRaw table loaded in
         distTemp = conv(d, spm_hrf(TR)); % do convolution distances with HRF
-        dist{sess} = distTemp(1:238); % make into nScansx1 vector and add to dist variable 
+        dist{sess} = zscore(distTemp(1:238)); % demean, scale by SD, make into nScansx1 vector and add to dist variable session    
         
     end % of run loop
     
@@ -182,15 +182,16 @@ for crun = subjcnt
     %jobfile = '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/gridcellpilot/scripts/SPM_univariate/SPM_jobfiles/test_job.m';
     spm('defaults', 'fMRI');
     spm_jobman('initcfg')
-    SPMworkedcorrectly = zeros(1,nrun);
+    
     try
+        disp(['Running GLM1 for subject ' subjects{crun}]);
         spm_jobman('run', jobfile);
-        SPMworkedcorrectly(crun) = 1;
+        SPMworkedcorrectly = 1;
     catch
-        SPMworkedcorrectly(crun) = 0;
+        SPMworkedcorrectly = 0;
     end
-    if ~all(SPMworkedcorrectly)
-        error('failed at boundary model specification');
+    if ~SPMworkedcorrectly
+        warning(['failed at boundary model specification for ' subjects{crun}]);
     end
 end % of subject loop
 
