@@ -10,6 +10,8 @@ func=$1
 subjs_def=$2
 nSubjects=$3
 
+cd slurmoutputs
+
 echo "inside remote MATLAB call for $nSubjects subjects"
 
 #INCLUDE MATLAB CALL
@@ -24,17 +26,17 @@ matlab -nodesktop -nosplash -nodisplay <<EOF
 addpath(pa);
 disp(['Path is ' pa])
 disp(['Function is ' af])
-do_definition_func=sprintf('%s','${subjs_def}')
+do_definition_func=sprintf('%s','${subjs_def}');
 [pa2,af2,~] = fileparts(do_definition_func);
-addpath(pa2)
-eval(af2)
-addpath(pwd)
+addpath(pa2);
+run(af2);
+addpath(pa);
 pathstem ='/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT';
 taskDir='~/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask';
-dofunc=sprintf('%s(%s,%s,%s)',af,'''${pathstem}''','''${taskDir}''','''${nSubjects}''');
-disp(['Submitting the following command: ' dofunc])
-eval(dofunc)
+dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s)',af,'pathstem','taskDir','''${nSubjects}''','subjects','blocksout','minvols');
+disp(['Submitting the following command: ' dofunc]);
+eval(dofunc);
 ;exit
 EOF
-fi
+
 

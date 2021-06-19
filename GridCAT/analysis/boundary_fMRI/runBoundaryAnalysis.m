@@ -1,7 +1,7 @@
 %% Run distance regressor and boundary fMRI analysis
 % called from SLURMsubmit_BoundaryAnalysis.sh
 % calls getDistanceRegressor, SPM_boundary_mainfunc and createGLM1SPMjob
-function runBoundaryAnalysis(pathstem,taskDir,nSubjects)
+function runBoundaryAnalysis(pathstem,taskDir,nSubjects,subjects,blocksout,minvols)
 
 nSubjects = str2double(nSubjects);
 
@@ -12,7 +12,7 @@ nSubjects = str2double(nSubjects);
 %run('ENCRYPT_subjects_parameters.m')
 
 %% loop through subjects
-for i = 1:nSubjects
+for i = 15:nSubjects
     subj = subjects{i};
  
 %     % run distance regressor creation
