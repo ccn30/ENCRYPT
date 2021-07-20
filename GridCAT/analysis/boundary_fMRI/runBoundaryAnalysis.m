@@ -9,7 +9,7 @@ nSubjects = str2double(nSubjects);
 %pathstem ='/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT';
 %taskDir='~/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask';
 % first run ENNCRYPT_subjects_parameters
-%run('ENCRYPT_subjects_parameters.m')
+run('ENCRYPT_subjects_parameters.m')
 
 %% loop through subjects
 for i = 15:nSubjects
@@ -24,7 +24,7 @@ for i = 15:nSubjects
 
     % run main function
     try
-        SPM_boundary_mainfunc('HPC',pathstem,subjects,i,blocksout,minvols);
+        SPM_boundary_mainfunc('HPC',pathstem,subjects,14,blocksout,minvols);
     catch
         warning(['main function failed at subject ' subj]);
     end

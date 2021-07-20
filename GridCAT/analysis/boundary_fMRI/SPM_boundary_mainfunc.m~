@@ -209,8 +209,8 @@ for crun = subjcnt
             S.Datafiles(1)= {[outpath '/con_0003.nii']};
             MTLmaskR = gunzip([MTLmaskdir '/' subjects{crun} '_right_lfseg_corr_usegray_ECsubdivisions_EPI.nii.gz']);
             MTLmaskL = gunzip([MTLmaskdir '/' subjects{crun} '_left_lfseg_corr_usegray_ECsubdivisions_EPI.nii.gz']);
-            S.ROIfiles(1) = MTLmaskR(1);
-            S.ROIfiles(2) = MTLmaskL(1);
+            S.ROIfiles(1) = {MTLmaskR{1}};
+            S.ROIfiles(2) = {MTLmaskL{1}};
             S.output_raw = 1;
             ROI = roi_extract(S);
             
