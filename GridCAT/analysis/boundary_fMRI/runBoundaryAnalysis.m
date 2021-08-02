@@ -27,7 +27,7 @@ for i = 1:nSubjects
 
     % 2. run main function - either 'GLM1' or 'roi_extract' step
     try
-        SPM_boundary_mainfunc('HPC',pathstem,subjects,14,blocksout,minvols,'roi_extract');
+        SPM_boundary_mainfunc('HPC',pathstem,subjects,i,blocksout,minvols,'roi_extract');
     catch
         warning(['main function failed at subject ' subj]);
     end
