@@ -88,9 +88,9 @@ ROI = struct();
 for s=1:length(Datafiles)
     fprintf('Doing Subject %d/%d \n',s,length(Datafiles));
     
-    fl = Datafiles{s}; %  fl = Datafiles{s}'
+    fl = Datafiles{s}';
     VY = spm_vol(fl);
-    %VY = [VY{:}];
+    VY = [VY{:}];
     
     [~,yXYZmm] = spm_read_vols(VY(1)); % Assume all data in same space!
     % Get inverse transform (assumes all data files are aligned)

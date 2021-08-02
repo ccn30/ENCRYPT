@@ -18,21 +18,21 @@ run('ENCRYPT_subjects_parameters.m')
 for i = 1:nSubjects
     subj = subjects{i};
  
-%     % 1. run distance regressor creation
+%     % run distance regressor creation
 %     try        
 %         getGridDistanceRegressor(subj,taskDir);
 %     catch
 %         warning(['getGridDistanceRegressor failed for subject ' subj]);
 %     end
 
-    % 2. run main function - either 'GLM1' or 'roi_extract' step
+    % run main function - either 'GLM1' or 'roi_extract' step
     try
         SPM_boundary_mainfunc('HPC',pathstem,subjects,14,blocksout,minvols,'roi_extract');
     catch
         warning(['main function failed at subject ' subj]);
     end
     
-    % 3. load in roi.mat per subject to extract mean model fit values per ROI
+    % load in roi.
 
 end % of for loop
 

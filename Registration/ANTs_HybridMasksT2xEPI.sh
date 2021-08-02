@@ -1,6 +1,7 @@
 #!/bin/sh
 # called by GridCAT_MaskComparison.Rmd and coreg_MasksxSubjectSpace.sh
-# coreg MTL in T2 space to EPI space in /home/ENCRYPT/segmentation, then extract pm/alEC and put in /lustre/scratch subject registration dir
+# coreg MTL in T2 space to EPI space in /home/ENCRYPT/segmentation, then extract pm/alEC and put in /lustre/scratch subject registration dir - March 2021
+
 
 echo "You are inside ANTs call"
 which antsRegistration

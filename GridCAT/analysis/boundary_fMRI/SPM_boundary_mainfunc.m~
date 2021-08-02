@@ -1,8 +1,9 @@
 function SPM_boundary_mainfunc(clusterid,pathstem,subjects,subjcnt,blocksout,minvols,step)
-% creates and runs SPM jobfile per subject: specifies gridCAT task events and distance regressor (step = 'GLM1')
-% also runs ROI_extract.m to derive metrics (step = 'roi_extract')
+% Two part script
+% 1. creates and runs SPM jobfile per subject: specifies gridCAT task events and distance regressor (step = 'GLM1')
+% 2. runs ROI_extract.m to derive metrics (step = 'roi_extract')
 
-% derived from SPMuni_subjects_parameters.m, and paths derived from parent bash script SPMuni_prepare.sh
+% derived from parent SPMuni_subjects_parameters.m, and paths derived from parent bash script SPMuni_prepare.sh
 
 % use these to debug (change steps in command)
 % run ENCRYPT_subjects_parameters.m
@@ -37,6 +38,8 @@ switch clusterid
         addpath(spmpath)
         addpath('/home/ccn30/rds/hpc-work/WBIC_home/GridCAT/');
         MTLmaskdir = '/home/ccn30/rds/hpc-work/WBIC_home/ENCRYPT/segmentation/ECsubdivisions_Mag';
+        MTLmaskWholedir = '/home/ccn30/rds/hpc-work/WBIC_home/ENCRYPT/segmentation/EPI_ASHSMTL_masks';
+        ROIresultsDir = '/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/boundary_fMRI/GLM1_MTL_ROIs';
         spm fmri
 end
 
@@ -174,12 +177,14 @@ for crun = subjcnt
         Rotation.onset{sess}(Rotation.onset{sess}==0)=[];
         Rotation.duration{sess}(Rotation.duration{sess}==0)=[];
         
-        %% CONVOLVE DISTANCE USER SPECIFIED REGRESSOR + DEMEAN
+        % CONVOLVE DISTANCE USER SPECIFIED REGRESSOR + DEMEAN
         d = distRaw.DistNrstWall; % extract distance column from distRaw table loaded in
         distTemp = conv(d, spm_hrf(TR)); % do convolution distances with HRF
         dist{sess} = zscore(distTemp(1:238)); % demean, scale by SD, make into nScansx1 vector and add to dist variable session
         
     end % of run loop
+    
+    %% RUN STEP 1 OR 2
     
     switch step
         
@@ -205,14 +210,21 @@ for crun = subjcnt
         case 'roi_extract'
             
             % define S
-            S = {};
-            S.Datafiles(1)= {[outpath '/con_0003.nii']};
+            % include binary versions of MTL masks
+            S = [];
+            S.Datafiles= {{[outpath '/con_0003.nii']}};
             MTLmaskR = gunzip([MTLmaskdir '/' subjects{crun} '_right_lfseg_corr_usegray_ECsubdivisions_EPI.nii.gz']);
             MTLmaskL = gunzip([MTLmaskdir '/' subjects{crun} '_left_lfseg_corr_usegray_ECsubdivisions_EPI.nii.gz']);
-            S.ROIfiles(1) = {MTLmaskR{1}};
-            S.ROIfiles(2) = {MTLmaskL{1}};
+            %MTLmaskRwhole = gunzip([MTLmaskWholedir '/' subjects{crun} '_right_ASHSMTL_EPI_nocyst_bin.nii.gz']);
+            %MTLmaskLwhole = gunzip([MTLmaskWholedir '/' subjects{crun} '_left_ASHSMTL_EPI_nocyst_bin.nii.gz']);
+            S.ROIfiles{1} = MTLmaskR{1};
+            S.ROIfiles{2} = MTLmaskL{1};
             S.output_raw = 1;
+            S.zero_rel_tol = 0.8;  % This is what you can increase if you have lots of missing data in some ROIs
             ROI = roi_extract(S);
+            filename = [subjects{crun} '_
+            
+            % code to save ROI info
             
     end % of switch step
     
