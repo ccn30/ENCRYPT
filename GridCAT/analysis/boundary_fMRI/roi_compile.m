@@ -1,9 +1,12 @@
 %% Compile all subjects extracted ROIs from GLM1 and put into .csv file
 % roiDir = '/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/boundary_fMRI/GLM1_MTL_ROIs';
 % nLabels = 12;
-% resultsDir = '/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/boundary_fMRI/';
+% resultsDir = '/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/boundary_fMRI';
+% Coco Newton August 2021
+
 function roi_compile(roiDir,nLabels,resultsDir)
 addpath('/home/ccn30/rds/hpc-work/WBIC_home/Documents/MATLAB/');
+
 % get list of subjects in results dir
 subjDirList = dir(roiDir);
 
@@ -17,24 +20,27 @@ cd(subjDirList(1).folder); % cd into results dir
 for subjIdx = 1:length(subjDirList)
     
     subjROI = char(subjDirList(subjIdx).name);
-    roiList.(['s' subjROI(1:5)]) = load(subjDirList(subjIdx).name); % dynamic field names per subject starting with letter
+    dyFieldName = ['s' subjROI(1:5)]; % dynamic field names per subject starting with letter
+    
+    roiList.(dyFieldName) = load(subjDirList(subjIdx).name); 
     subjNameList{subjIdx} = subjROI(1:5);
     
     % extract means per subject per label
+
     % right
     for labIdx = 1:nLabels
-        if contains(roiList.(['s' subjROI(1:5)]).ROI(labIdx).ROIfile, 'right')
+        if contains(roiList.(dyFieldName).ROI(labIdx).ROIfile, 'right')
             metricNameRight{labIdx} = ['right_' sprintf('%d',labIdx)];
-            metricRight{subjIdx,labIdx} = roiList.(['s' subjROI(1:5)]).ROI(labIdx).mean;
+            metricRight{subjIdx,labIdx} = roiList.(dyFieldName).ROI(labIdx).mean;
         end
     end
     
     % left
     for labIdx = 1:nLabels
         labIdxMetric = labIdx + 12;
-        if contains(roiList.(['s' subjROI(1:5)]).ROI(labIdxMetric).ROIfile, 'left')
+        if contains(roiList.(dyFieldName).ROI(labIdxMetric).ROIfile, 'left')
             metricNameLeft{labIdx} = ['left_' sprintf('%d',labIdx)];
-            metricLeft{subjIdx,labIdx} = roiList.(['s' subjROI(1:5)]).ROI(labIdxMetric).mean;
+            metricLeft{subjIdx,labIdx} = roiList.(dyFieldName).ROI(labIdxMetric).mean;
         end
     end
     

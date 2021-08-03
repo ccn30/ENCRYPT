@@ -8,7 +8,7 @@ function SPM_boundary_mainfunc(clusterid,pathstem,subjects,subjcnt,blocksout,min
 % use these to debug (change steps in command)
 % run ENCRYPT_subjects_parameters.m
 % pathstem ='/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT';
-% SPM_boundary_mainfunc('HPC',pathstem,subjects,10,blocksout,minvols,'roi_extract')
+% SPM_boundary_mainfunc('HPC',pathstem,subjects,14,blocksout,minvols,'roi_extract')
 
 % Coco Newton June 2021
 
@@ -40,13 +40,15 @@ switch clusterid
         MTLmaskdir = '/home/ccn30/rds/hpc-work/WBIC_home/ENCRYPT/segmentation/ECsubdivisions_Mag';
         MTLmaskWholedir = '/home/ccn30/rds/hpc-work/WBIC_home/ENCRYPT/segmentation/EPI_ASHSMTL_masks';
         ROIresultsDir = '/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/boundary_fMRI/GLM1_MTL_ROIs';
-        spm fmri
+        
 end
 
 nrun = 1;
-disp('running SPM boundary analysis')
+
 
 for crun = subjcnt
+    
+    fprintf(['\n Running SPM boundary analysis for subject ' subjects{crun} ' \n'])
     
     %% preallocate variables
     % temporary
@@ -96,7 +98,7 @@ for crun = subjcnt
                 smooth.matlabbatch{1}.spm.spatial.smooth.dtype = 0;
                 smooth.matlabbatch{1}.spm.spatial.smooth.im = 0;
                 smooth.matlabbatch{1}.spm.spatial.smooth.prefix = 's';
-                % Run
+                % Run                
                 spm('defaults','fmri');
                 spm_jobman('initcfg');
                 spm_jobman('run',smooth.matlabbatch);
@@ -223,6 +225,16 @@ for crun = subjcnt
             S.zero_rel_tol = 0.8;  % This is what you can increase if you have lots of missing data in some ROIs
             ROI = roi_extract(S);
             
+            % check for and remove erroneous label 9
+            indx = find([ROI.ROIval] == 9);
+            if length(ROI) > 24
+                try
+                    ROI(indx) = [];
+                catch
+                    warning(['Issue removing label 9 from mask for subject' subjects{crun}]);
+                end
+            end
+            
             filename = [ROIresultsDir '/' subjects{crun} '_bilatMTLregions_con03.mat'];
             save(filename,'ROI');
             
@@ -233,6 +245,7 @@ for crun = subjcnt
 end % of subject loop
 
 end % of function
+
 
 % function distRaw = importCSV(filepath)
 % opts = detectImportOptions(filepath); %create import option object
