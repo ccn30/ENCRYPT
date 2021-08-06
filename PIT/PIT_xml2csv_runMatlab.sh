@@ -3,11 +3,16 @@
 # arguments from PIT_submit.sh, from PIT_xml2csv_runAll
 
 func=${1}
-xmlDir=${2}
-resultsDir=${3}
-CBcode=${4}
-pwd
+subjects=${2} 
+subjIdx=${3}  
+xmlDir=${4} 
+resultsDir=${5}
 
+mysubjs=($(<${subjects}))
+CBcode=${mysubjs[${subjIdx}]}
+
+pwd
+echo $CBcode
 # matlab call
 
 matlab -nodesktop -nosplash -nodisplay <<EOF

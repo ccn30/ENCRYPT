@@ -1,15 +1,10 @@
 #!/bin/bash
-# SLURM job array submission 
-
-#pathstem=$1
-#script=$2
-#func=$3
-#subjs_def=$4
-#subjectNo=$5
+# SLURM job array submission - suceeds combination of runAll.sh and PIT_submit.sh
+# NB CALL IN TERMINAL WITH SBATCH COMMAND
 
 #! Make sure you only have comments and #SBATCH directives between here and the end of the #SBATCH directives, or things will break
 #! Name of the job:
-#SBATCH -J boundaryAnalysiss
+#SBATCH -J PITall
 #! Account name for group, use SL2 for paying queue:
 #SBATCH -A OBRIEN-SL3-CPU
 #! Output filename:
@@ -48,6 +43,7 @@
 . /etc/profile.d/modules.sh                # This line enables the module command
 module purge                               # Removes all modules still loaded
 module load rhel7/default-peta4            # REQUIRED - loads the basic environment
+module load matlab/r2019a
 
 #! The variable $SLURM_ARRAY_TASK_ID contains the array index for each job.
 #! In this example, each job will be passed its index, so each output file will contain a different value
@@ -56,21 +52,48 @@ echo "Time: `date`"
 echo "Running on master node: `hostname`"
 echo "Current directory: `pwd`"
 
-#workdir=
 
 #! Command line that we want to run for each job $SLURM_ARRAY_TASK_ID (i.e.0,1,2,3...)
-subjIdx=$SLURM_ARRAY_TASK_ID
+subjIdx=$(($SLURM_ARRAY_TASK_ID+1))
 
-pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI
-script=$pathstem/runMatlab_BoundaryAnalysis.sh
-func=$pathstem/runBoundaryAnalysis.m
-subjs_def=$pathstem/ENCRYPT_subjects_parameters.m
+#! Set paths
+pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
+subjects=${pathstem}/ENCRYPT_MasterCBcodes.txt
+xmlDir=${pathstem}/task_data/PIT/raw_data
+resultsDir=${pathstem}/results/PIT
+scriptDir=${pathstem}/scripts/PIT
+run=${scriptDir}/PIT_xml2csv_runMatlab.sh
+func=${scriptDir}/PIT_xml2csv.m
 
-#mysubjs=($(</home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/ENCRYPT_MasterCBcodes.txt))
-#subject=${mysubjs[${index}]}
+workdir=$scriptDir/slurmoutputs
 
-CMD="$script $func $subjs_def $subjIdx"
-eval $CMD
-# then rewrite child script to take subjIdx e.g.0 and use that to index ENCRYPT_subject_parameters, may haveto +1 in matlab because starts with 0
+# child script takes subjIdx e.g. 0 and indexes $subjects in childscript 
+CMD="$run $func $subjects $subjIdx $xmlDir $resultsDir"
 
+###############################################################
+### You should not have to change anything below this line ####
+###############################################################
 
+cd $workdir
+echo -e "Changed directory to `pwd`.\n"
+
+JOBID=$SLURM_JOB_ID
+
+echo -e "JobID: $JOBID\n======"
+echo "Time: `date`"
+echo "Running on master node: `hostname`"
+echo "Current directory: `pwd`"
+
+if [ "$SLURM_JOB_NODELIST" ]; then
+        #! Create a machine file:
+        export NODEFILE=`generate_pbs_nodefile`
+        cat $NODEFILE | uniq > machine.file.$JOBID
+        echo -e "\nNodes allocated:\n================"
+        echo `cat machine.file.$JOBID | sed -e 's/\..*$//g'`
+fi
+
+echo -e "\nnumtasks=$numtasks, numnodes=$numnodes, mpi_tasks_per_node=$mpi_tasks_per_node (OMP_NUM_THREADS=$OMP_NUM_THREADS)"
+
+echo -e "\nExecuting command:\n==================\n$CMD\n"
+
+eval $CMD 

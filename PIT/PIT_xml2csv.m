@@ -9,7 +9,7 @@ function PIT_xml2csv(CBcode, xmlDir, resultsDir)
 % Coco Newton 9/11/20
 
 % function dependencies - xml2struct_custom.m and struct_string_replace.m
-addpath('/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT')
+addpath('/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/PIT')
 
 %    * * * * * * * * * * * * * * * * KEY INFO * * * * * * * * * * * * * * *  *  
 %    * z coordinates == 'y' coordinates in data (y=height)                   *
@@ -187,38 +187,39 @@ end
 
 disp(' ')
 disp('Now extracting trajectories');
+
 %% 6. Plot all trials and examine out of border info
 
 %set(0,'DefaultFigureWindowStyle','docked');
 
-% for triali = 1:nTrials
-%     thisfig = figure('Name', ['Trajectory_ ' num2str(triali) '_' CBcode], 'visible', 'off');                                
-%     fig = plot(TrackedPositionX{triali}, TrackedPositionY{triali}, 'k-*', 'linewidth',1); 
-%     hold on;
-%     title(['Block ' num2str(TInfo.Block(triali)) ',Trial ' ,num2str(TInfo.TrialNo(triali)), ' Trial Type ' ,num2str(TInfo.Type(triali)), ' Environment Type ' ,num2str(TInfo.Env(triali))]);
-%     
-%     scatter(TInfo.Flag1(triali,1), TInfo.Flag1(triali,2),100, 'go', 'filled');
-%     scatter(TInfo.Flag2(triali,1), TInfo.Flag2(triali,2),100, 'bo','filled');  
-%     scatter(TInfo.Flag3(triali,1), TInfo.Flag3(triali,2),100, 'mo','filled');
-%     scatter(TInfo.Trig(triali,1), TInfo.Trig(triali,2),200, 'r*');
-%     plot([TInfo.Trig(triali,1), TInfo.Flag1(triali,1)], [TInfo.Trig(triali,2), TInfo.Flag1(triali,2)], 'r-');
-%     legend({'Trajectory','Flag 1','Flag 2','Flag3','Triggered Position','Distance Error'},'Location','best');    
-%     grid on
-%     
-%         if TInfo.OoB(triali) == 1
-%             fig = gcf;
-%             scatter(TInfo.OoBPos(triali,1), TInfo.OoBPos(triali,2),100, 'kd','filled');
-%             legend({'Trajectory','Flag 1','Flag 2','Flag3','Triggered Position','Distance Error','Out Of Bounds'},'Location','best');
-%         end
-%         
-%     hold off;
-% %    savefig([resultsDir '/Plots/' CBcode '_B' num2str(TInfo.Block(triali)) 'T' ,num2str(TInfo.TrialNo(triali))]);
-%     figfile = [resultsDir '/Plots/' CBcode '_B' num2str(TInfo.Block(triali)) 'T' ,num2str(TInfo.TrialNo(triali)) '.jpg'];
-%     print(thisfig, '-djpeg', figfile);
-%     disp(['Saved plot for Block ' num2str(TInfo.Block(triali)) ' Trial ' ,num2str(TInfo.TrialNo(triali))]);
-% end
-% 
-% disp('Finished')
-% disp(' ');
+ for triali = 1:nTrials
+     thisfig = figure('Name', ['Trajectory_ ' num2str(triali) '_' CBcode], 'visible', 'off');                                
+     fig = plot(TrackedPositionX{triali}, TrackedPositionY{triali}, 'k-*', 'linewidth',1); 
+     hold on;
+     title(['Block ' num2str(TInfo.Block(triali)) ',Trial ' ,num2str(TInfo.TrialNo(triali)), ' Trial Type ' ,num2str(TInfo.Type(triali)), ' Environment Type ' ,num2str(TInfo.Env(triali))]);
+     
+     scatter(TInfo.Flag1(triali,1), TInfo.Flag1(triali,2),100, 'go', 'filled');
+     scatter(TInfo.Flag2(triali,1), TInfo.Flag2(triali,2),100, 'bo','filled');  
+     scatter(TInfo.Flag3(triali,1), TInfo.Flag3(triali,2),100, 'mo','filled');
+     scatter(TInfo.Trig(triali,1), TInfo.Trig(triali,2),200, 'r*');
+     plot([TInfo.Trig(triali,1), TInfo.Flag1(triali,1)], [TInfo.Trig(triali,2), TInfo.Flag1(triali,2)], 'r-');
+     legend({'Trajectory','Flag 1','Flag 2','Flag3','Triggered Position','Distance Error'},'Location','best');    
+     grid on
+     
+         if TInfo.OoB(triali) == 1
+             fig = gcf;
+             scatter(TInfo.OoBPos(triali,1), TInfo.OoBPos(triali,2),100, 'kd','filled');
+             legend({'Trajectory','Flag 1','Flag 2','Flag3','Triggered Position','Distance Error','Out Of Bounds'},'Location','best');
+         end
+         
+     hold off;
+%    savefig([resultsDir '/Plots/' CBcode '_B' num2str(TInfo.Block(triali)) 'T' ,num2str(TInfo.TrialNo(triali))]);
+     figfile = [resultsDir '/Plots/' CBcode '_B' num2str(TInfo.Block(triali)) 'T' ,num2str(TInfo.TrialNo(triali)) '.jpg'];
+     print(thisfig, '-djpeg', figfile);
+     disp(['Saved plot for Block ' num2str(TInfo.Block(triali)) ' Trial ' ,num2str(TInfo.TrialNo(triali))]);
+ end
+ 
+disp('Finished')
+disp(' ');
 
 end % of function

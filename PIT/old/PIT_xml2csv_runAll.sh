@@ -3,15 +3,15 @@
 # makes single .csv result file per subject
 
 cd slurmoutputs
-pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
+pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
 
 ## separate txt file with subject and date IDs
-#!mysubjs=${pathstem}/testsubjcode.txt
-mysubjs=${pathstem}/ENCRYPT_MasterCBcodes.txt
+mysubjs=${pathstem}/testsubjcode.txt
+#mysubjs=${pathstem}/ENCRYPT_MasterCBcodes.txt
 
 ## set paths
-xmlDir=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/task_data/PIT/raw_data
-resultsDir=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/PIT
+xmlDir=${pathstem}/task_data/PIT/raw_data
+resultsDir=${pathstem}/results/PIT
 scriptDir=${pathstem}/scripts/PIT
 submit=${scriptDir}/PIT_submit.sh
 run=${scriptDir}/PIT_xml2csv_runMatlab.sh

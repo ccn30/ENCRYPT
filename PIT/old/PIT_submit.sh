@@ -1,8 +1,8 @@
 #!/bin/bash
 #!
-#! Example SLURM job script for WBIC modified by ccn30 25.09.19 for ENCRYPT
-#! Last updated: Mon Nov 07 16:30:00 BST 2016
-#! By: Paul Browne (pfb29)
+#! Example SLURM job script for Peta4-Skylake (Skylake CPUs, OPA)
+#! Last updated: Mon 13 Nov 12:25:17 GMT 2017
+#! Edited by Coco Newton 18 June 2021
 
 #!#############################################################
 #!#### Modify the options in this section as appropriate ######
@@ -10,65 +10,76 @@
 
 #! sbatch directives begin here ###############################
 #! Name of the job:
-#SBATCH -J PIT_extract
-#! Which project should jobs run under:
-#SBATCH -A hphi
+#SBATCH -J PITanalysis
+#! Which project should be charged:
+#SBATCH -A OBRIEN-SL3-CPU
 #! How many whole nodes should be allocated?
 #SBATCH --nodes=1
-#! How many (MPI) task will there be in total? (<= nodes*24)
+#! How many (MPI) tasks will there be in total? (<= nodes*32)
+#! The skylake/skylake-himem nodes have 32 CPUs (cores) each.
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
-#!SBATCH --mem-per-cpu=16384M
 #! How much wallclock time will be required?
-#SBATCH --time=2:00:00
+#SBATCH --time=01:00:00
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=FAIL
-#!SBATCH -p skylake-himem
-#SBATCH --qos short.q
-#SBATCH --mem=7000
-
-# CHANGE ME IF YOU WANT TO BE EMAILED
-#SBATCH --mail-user=ccn30
 #! Uncomment this to prevent the job from being requeued (e.g. if
 #! interrupted by node failure or system downtime):
-#SBATCH --no-requeue
+##SBATCH --no-requeue
 
-#! Do not change:
-#SBATCH -p wbic-cs
+#! For 6GB per CPU, set "-p skylake"; for 12GB per CPU, set "-p skylake-himem": 
+#SBATCH -p skylake
 
 #! sbatch directives end here (put any additional directives above this line)
 
 #! Notes:
+#! Charging is determined by core number*walltime.
 #! The --ntasks value refers to the number of tasks to be launched by SLURM only. This
-#! usually equates to the number of MPI tasks launched. Reduce this from nodes*24 if
+#! usually equates to the number of MPI tasks launched. Reduce this from nodes*32 if
 #! demanded by memory requirements, or if OMP_NUM_THREADS>1.
-
-#! Each task is allocated 1 core by default, and each core is allocated 2500MB.
-#! If this is insufficient, also specify --cpus-per-task and/or --mem (the latter specifies
-#! MB per node).
+#! Each task is allocated 1 core by default, and each core is allocated 5980MB (skylake)
+#! and 12030MB (skylake-himem). If this is insufficient, also specify
+#! --cpus-per-task and/or --mem (the latter specifies MB per node).
 
 #! Number of nodes and tasks per node allocated by SLURM (do not change):
 numnodes=$SLURM_JOB_NUM_NODES
 numtasks=$SLURM_NTASKS
 mpi_tasks_per_node=$(echo "$SLURM_TASKS_PER_NODE" | sed -e  's/^\([0-9][0-9]*\).*$/\1/')
-
 #! ############################################################
-#! Modify the settings below to specify the application's environment, location
+#! Modify the settings below to specify the application's environment, location 
 #! and launch method:
 
 #! Optionally modify the environment seen by the application
 #! (note that SLURM reproduces the environment at submission irrespective of ~/.bashrc):
-
-
 . /etc/profile.d/modules.sh                # Leave this line (enables the module command)
 module purge                               # Removes all modules still loaded
-module load default-wbic                   # REQUIRED - loads the basic environment
-module unload matlab
-module load matlab/matlab2019a
+module load rhel7/default-peta4            # REQUIRED - loads the basic environment
+#!module load ants-2.3.4-gcc-5-lj6vm7c
+module load matlab/r2019a
+#!module load rstudio/1.3.1093
+#!module load freesurfer/7.1.0
 
+
+# directives statrt here
+
+run=${1}
+func=${2}
+scriptDir=${3}
+xmlDir=${4}
+resultsDir=${5}
+CBcode=${6}
+
+workdir=$scriptDir/slurmoutputs
+
+application="${run} ${func} ${xmlDir} ${resultsDir} ${CBcode}"
+
+#! Run options for the application:
+options=""
+
+#! Work directory (i.e. where the job will run):
+workdir=$pathstem/slurmoutputs
 
 #! Are you using OpenMP (NB this is unrelated to OpenMPI)? If so increase this
-#! safe value to no more than 16:
+#! safe value to no more than 32:
 export OMP_NUM_THREADS=1
 
 #! Number of MPI tasks to be started by the application per node and in total (do not change):
@@ -85,20 +96,18 @@ export I_MPI_PIN_ORDER=scatter # Adjacent domains have minimal sharing of caches
 #! 4. If MPI tasks perform better when sharing caches/sockets, try I_MPI_PIN_ORDER=compact.
 
 
-# directives statrt here
+#! Uncomment one choice for CMD below (add mpirun/mpiexec options if necessary):
 
-run=${1}
-func=${2}
-scriptDir=${3}
-xmlDir=${4}
-resultsDir=${5}
-CBcode=${6}
+#! Choose this for a MPI code (possibly using OpenMP) using Intel MPI.
+#CMD="mpirun -ppn $mpi_tasks_per_node -np $np $application $options"
 
-workdir=$scriptDir/slurmoutputs
+#! Choose this for a pure shared-memory OpenMP parallel program on a single node:
+#! (OMP_NUM_THREADS threads will be created):
+CMD="$application $options"
 
-application="${run} ${func} ${xmlDir} ${resultsDir} ${CBcode}"
+#! Choose this for a MPI code (possibly using OpenMP) using OpenMPI:
+#CMD="mpirun -npernode $mpi_tasks_per_node -np $np $application $options"
 
-CMD="${application}"
 
 ###############################################################
 ### You should not have to change anything below this line ####
@@ -126,4 +135,4 @@ echo -e "\nnumtasks=$numtasks, numnodes=$numnodes, mpi_tasks_per_node=$mpi_tasks
 
 echo -e "\nExecuting command:\n==================\n$CMD\n"
 
-eval $CMD
+eval $CMD 
