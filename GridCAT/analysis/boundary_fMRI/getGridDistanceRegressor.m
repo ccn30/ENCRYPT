@@ -1,6 +1,6 @@
 function getGridDistanceRegressor(subject,taskDir)
 % function to get xy/angle position per TR from grid cell task movemenEventData.csv logfile to make
-% parametric distance regressor for boundary analysis
+% parametric distance regressor and dichotomous inner/boundary label regressor for boundary analysis
 % output = csv file 'distanceRegressor_subject_block.csv' in each taskdata block dir
 % CN 18.03.21
 
@@ -13,6 +13,8 @@ WestWallX = -80;
 EastWallX = 80;
 NorthWallY = 80;
 SouthWallY = -80;
+% distance threshold for labelling inner vs boundary events
+distThresh = 60;
 
 
 for b = 1:3
@@ -35,7 +37,7 @@ for b = 1:3
         % ---
         % default init first line in regressor file - don't need this if add to
         % other data2eventtable function
-        headings = 'TR,TaskTimepoint,Phase,X,Y,HeadingDir,DistNrstWall,NrstWall,Visible';
+        headings = 'TR,TaskTimepoint,Phase,X,Y,HeadingDir,DistNrstWall,NrstWall,Visible,EventTypeTxt,EventType';
         fprintf(fp_Table,headings);
         fprintf(fp_Table,'\n');
         %---
@@ -100,6 +102,15 @@ for b = 1:3
                 error('Something weird with coorindates');
             end % of if loop
             
+            % get boundary or inner label
+            if abs(PositionX) > distThresh || abs(PositionY) > distThresh
+                eventTypeTxt = 'boundary';
+                eventType = 1;
+            elseif abs(PositionX) < distThresh || abs(PositionY) < distThresh
+                eventTypeTxt = 'inner';
+                eventType = 0;
+            end % of if loop
+                         
             % get other variables
             time = str2double(TRmovementEventDataArray{row,2});
             phase = TRmovementEventDataArray{row,3}(1:3);
@@ -122,7 +133,7 @@ for b = 1:3
             end
             
             % print current row data to results file
-            fprintf(fp_Table, '%.3f,%.3f,%s,%.3f,%.3f,%.3f,%.3f,%.3f,%.3f\n',TRvec(row),time,phase,PositionX,PositionY,orientation,distance,NrstWall,facingNrst);
+            fprintf(fp_Table, '%.3f,%.3f,%s,%.3f,%.3f,%.3f,%.3f,%.3f,%.3f,%s,%.3f\n',TRvec(row),time,phase,PositionX,PositionY,orientation,distance,NrstWall,facingNrst,eventTypeTxt,eventType);
             
         end % for row
     catch

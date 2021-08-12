@@ -18,14 +18,14 @@ require(ggsignif)
 #* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 ## import PIT data subject csv files
-resultsDir <- '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/PIT'
-scriptDir <- '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/scripts/PIT/slurmoutputs'
+resultsDir <- '/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/PIT'
+scriptDir <- '/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/PIT'
 setwd(scriptDir)
 csvFiles <- list.files(resultsDir,pattern="*.csv",full.names=1)
 
 # make master table
 filesList=lapply(csvFiles,read_csv)
-PITall <- bind_rows(filesList[1:36])
+PITall <- bind_rows(filesList[1:length(filesList)])
 PITall[1:6] <- lapply(PITall[1:6],factor)
 
 # make distance error factor variable

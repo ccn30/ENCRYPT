@@ -20,14 +20,14 @@
 #! How many many cores will be allocated per task? (for single core jobs always leave this at 1)
 #SBATCH --cpus-per-task=1
 #! Estimated runtime: hh:mm:ss (job is force-stopped after if exceeded):
-#SBATCH --time=00:01:00
+#SBATCH --time=00:30:00
 #! Estimated maximum memory needed (job is force-stopped if exceeded):
 #! RAM is allocated in ~5980mb blocks, you are charged per block used,
 #! and unused fractions of blocks will not be usable by others.
 #SBATCH --mem=5980mb
 #! How many jobs to submit (starting at 0)?
 #! NOTE: This must be a range, not a single number (i.e. 0-2 = 3 jobs, but '3' would just be one job index '3')
-#SBATCH --array=0-2
+#SBATCH --array=0-5
 
 #! This is the partition name.
 #SBATCH -p skylake
@@ -54,7 +54,8 @@ echo "Current directory: `pwd`"
 
 
 #! Command line that we want to run for each job $SLURM_ARRAY_TASK_ID (i.e.0,1,2,3...)
-subjIdx=$(($SLURM_ARRAY_TASK_ID+1))
+#subjIdx=$(($SLURM_ARRAY_TASK_ID+1))
+subjIdx=$SLURM_ARRAY_TASK_ID
 
 #! Set paths
 pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
