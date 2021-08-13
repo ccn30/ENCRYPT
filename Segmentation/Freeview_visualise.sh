@@ -2,9 +2,9 @@
 # script to visualise results in itksnap simultaenously for all subjects in different windows
 # needs to be called from graphics window sith source command run
 
-pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
+pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/PREVENT
 #mysubjs=${pathstem}/testsubjcode.txt
-mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+mysubjs=${pathstem}/PREVENTcodes.txt
 
 for subjID in `cat $mysubjs`
 do
@@ -12,9 +12,22 @@ subject="$(cut -d'/' -f1 <<<"$subjID")"
 echo "******** starting $subject ********"
 
 ## set paths to image dirs
-FreeSurfT1Dir=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1only/${subject}
+ScanDir=/home/ccn30/rds/hpc-work/WBIC_lustre/PREVENT/VisRatingScans
+#${FreeSurfT1Dir}
 
 #-----------------------------------
+
+vglrun freeview -v \
+-layout 1 \
+-viewport 'coronal' \
+${ScanDir}/RH_HA_HBT_${subject}*.nii:colormap=LUT \
+${ScanDir}/LH_HA_HBT_${subject}*.nii:colormap=LUT \
+${ScanDir}/T2Hipp_MR_${subject}*.nii
+
+
+
+#${ScanDir}/mri/T1.mgz \
+
 
 ## Freeview commands (from sintr window) ##
 
@@ -40,14 +53,14 @@ FreeSurfT1Dir=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/segmentation/Freesurfer/T1
 #${FreeSurfT1Dir}/mri/brainmask.mgz:opacity=0.8 \
 #${FreeSurfT1Dir}/mri/T1.mgz \
 
-vglrun freeview -v \
-${FreeSurfT1Dir}/mri/wm.mgz:colormap=PET:opacity=0.4 \
-${FreeSurfT1Dir}/mri/brainmask.mgz:opacity=0.8 \
-${FreeSurfT1Dir}/mri/T1.mgz \
--f ${FreeSurfT1Dir}/surf/lh.white:edgecolor=blue \
-${FreeSurfT1Dir}/surf/lh.pial:edgecolor=red \
-${FreeSurfT1Dir}/surf/rh.white:edgecolor=blue \
-${FreeSurfT1Dir}/surf/rh.pial:edgecolor=red
+#vglrun freeview -v \
+#${FreeSurfT1Dir}/mri/wm.mgz:colormap=PET:opacity=0.4 \
+#${FreeSurfT1Dir}/mri/brainmask.mgz:opacity=0.8 \
+#${FreeSurfT1Dir}/mri/T1.mgz \
+#-f ${FreeSurfT1Dir}/surf/lh.white:edgecolor=blue \
+#${FreeSurfT1Dir}/surf/lh.pial:edgecolor=red \
+#${FreeSurfT1Dir}/surf/rh.white:edgecolor=blue \
+#${FreeSurfT1Dir}/surf/rh.pial:edgecolor=red
 
 
 done
@@ -57,18 +70,18 @@ done
 
 # check output generally of completed subject
 #vglrun freeview -v \
-${FreeSurfT1Dir}/mri/T1.mgz \
-${FreeSurfT1Dir}/mri/wm.mgz \
-${FreeSurfT1Dir}/mri/brainmask.mgz \
-${FreeSurfT1Dir}/mri/aseg.mgz:colormap=lut:opacity=0.2 \
--f ${FreeSurfT1Dir}/surf/lh.white:edgecolor=blue \
-${FreeSurfT1Dir}/surf/lh.pial:edgecolor=red \
-${FreeSurfT1Dir}/surf/rh.white:edgecolor=blue \
-${FreeSurfT1Dir}/surf/rh.pial:edgecolor=red
+#${FreeSurfT1Dir}/mri/T1.mgz \
+#${FreeSurfT1Dir}/mri/wm.mgz \
+#${FreeSurfT1Dir}/mri/brainmask.mgz \
+#${FreeSurfT1Dir}/mri/aseg.mgz:colormap=lut:opacity=0.2 \
+#-f ${FreeSurfT1Dir}/surf/lh.white:edgecolor=blue \
+#${FreeSurfT1Dir}/surf/lh.pial:edgecolor=red \
+#${FreeSurfT1Dir}/surf/rh.white:edgecolor=blue \
+#${FreeSurfT1Dir}/surf/rh.pial:edgecolor=red
 
 # for direct commandline call in subject dir
 #vglrun freeview -v \
-mri/T1.mgz \
+#mri/T1.mgz \
 mri/wm.mgz \
 mri/brainmask.mgz \
 mri/aseg.mgz:colormap=lut:opacity=0.2 \

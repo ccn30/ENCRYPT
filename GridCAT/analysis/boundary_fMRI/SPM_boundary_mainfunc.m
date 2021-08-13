@@ -8,7 +8,7 @@ function SPM_boundary_mainfunc(clusterid,pathstem,subjects,subjcnt,blocksout,min
 % use these to debug (change steps in command)
 % run ENCRYPT_subjects_parameters.m
 % pathstem ='/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT';
-% SPM_boundary_mainfunc('HPC',pathstem,subjects,14,blocksout,minvols,'roi_extract')
+% SPM_boundary_mainfunc('HPC',pathstem,subjects,1,blocksout,minvols,'GLM1')
 
 % Coco Newton June 2021
 
@@ -26,7 +26,7 @@ switch clusterid
     case 'HPHI'
         spmpath = '/applications/spm/spm12_6906/';
         fsldir = '/applications/fsl/fsl-5.0.10/';
-        toolboxdir = '/home/tec31/toolboxes/'; % Needs fixing
+        toolboxdir = '/home/ccn30/toolboxes/'; % Needs fixing
         addpath(spmpath)
         addpath('/home/ccn30/GridCAT');
         spm fmri
@@ -180,9 +180,14 @@ for crun = subjcnt
         Rotation.duration{sess}(Rotation.duration{sess}==0)=[];
         
         % CONVOLVE DISTANCE USER SPECIFIED REGRESSOR + DEMEAN
-        d = distRaw.DistNrstWall; % extract distance column from distRaw table loaded in
-        distTemp = conv(d, spm_hrf(TR)); % do convolution distances with HRF
-        dist{sess} = zscore(distTemp(1:238)); % demean, scale by SD, make into nScansx1 vector and add to dist variable session
+        linearDistReg = distRaw.DistNrstWall; % extract distance column from distRaw table loaded in
+        binaryDistReg = distRaw.EventType; % extract binary distance event labels inner or boundary
+        
+        linearDistTemp = conv(linearDistReg, spm_hrf(TR)); % do convolution distances with HRF
+        linearDist{sess} = zscore(linearDistTemp(1:238)); % demean, scale by SD, make into nScansx1 vector and add to dist variable session
+        
+        binaryDistTemp = conv(binaryDistReg, spm_hrf(TR)); % do convolution distances with HRF
+        binaryDist{sess} = zscore(binaryDistTemp(1:238)); % demean, scale by SD, make into nScansx1 vector and add to dist variable session
         
     end % of run loop
     
@@ -192,7 +197,7 @@ for crun = subjcnt
         
         case 'GLM1'
             
-            jobfile = create_boundaryGLM1_SPM_job(JFlocation,TR,subjects{crun},outpath,minvols(crun),filestoanalyse,TransAligned,TransMisaligned,Rotation,dist,rpfiles);
+            jobfile = create_boundaryGLM1_SPM_job(JFlocation,TR,subjects{crun},outpath,minvols(crun),filestoanalyse,TransAligned,TransMisaligned,Rotation,linearDist,binaryDist,rpfiles);
             %jobfile = '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/gridcellpilot/scripts/SPM_univariate/SPM_jobfiles/test_job.m';
             spm('defaults', 'fMRI');
             spm_jobman('initcfg')
@@ -235,10 +240,10 @@ for crun = subjcnt
                 end
             end
             
+             % save ROI info
             filename = [ROIresultsDir '/' subjects{crun} '_bilatMTLregions_con03.mat'];
             save(filename,'ROI');
-            
-            % code to save ROI info
+                       
             
     end % of switch step
     

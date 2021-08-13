@@ -9,6 +9,9 @@ date
 func=$1
 subjs_def=$2
 nSubjects=$3
+ROIdir=$4
+nLabels=$5
+resultsDir=$6
 
 cd slurmoutputs
 
@@ -33,7 +36,7 @@ run(af2);
 addpath(pa);
 pathstem ='/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT';
 taskDir='~/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask';
-dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s)',af,'pathstem','taskDir','''${nSubjects}''','subjects','blocksout','minvols');
+dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s,%s,%s,%s)',af,'pathstem','taskDir','''${nSubjects}''','subjects','blocksout','minvols','''$ROIdir''', '''$nLabels''', '''$resultsDir''');
 disp(['Submitting the following command: ' dofunc]);
 eval(dofunc);
 ;exit

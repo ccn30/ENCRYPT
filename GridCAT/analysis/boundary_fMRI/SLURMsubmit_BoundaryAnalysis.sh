@@ -19,7 +19,7 @@
 #! The skylake/skylake-himem nodes have 32 CPUs (cores) each.
 #SBATCH --ntasks=1
 #! How much wallclock time will be required?
-#SBATCH --time=02:00:00
+#SBATCH --time=03:00:00
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=FAIL
 #! Uncomment this to prevent the job from being requeued (e.g. if
@@ -63,9 +63,13 @@ script=$pathstem/runMatlab_BoundaryAnalysis.sh
 func=$pathstem/runBoundaryAnalysis.m
 subjs_def=$pathstem/ENCRYPT_subjects_parameters.m
 nSubjects='18'
+roiDir=${pathstem}/results/boundary_fMRI/GLM1_MTL_ROIs
+nLabels='12'
+resultsDir=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/boundary_fMRI
+
 
 #! Full path to application executable: 
-application="$script $func $subjs_def $nSubjects"
+application="$script $func $subjs_def $nSubjects $roiDir $nLabels $resultsDir"
 
 #! Run options for the application:
 options=""
