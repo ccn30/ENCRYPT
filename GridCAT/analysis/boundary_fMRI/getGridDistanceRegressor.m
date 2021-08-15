@@ -14,7 +14,7 @@ EastWallX = 80;
 NorthWallY = 80;
 SouthWallY = -80;
 % distance threshold for labelling inner vs boundary events
-distThresh = 60;
+distThresh = 50;
 
 
 for b = 1:3

@@ -219,7 +219,7 @@ for crun = subjcnt
             % define S
             % include binary versions of MTL masks
             S = [];
-            S.Datafiles= {{[outpath '/con_0003.nii']}};
+            S.Datafiles= {{[outpath '/con_0003.nii']}}; % contrast for either linear or binary dist regressor
             MTLmaskR = gunzip([MTLmaskdir '/' subjects{crun} '_right_lfseg_corr_usegray_ECsubdivisions_EPI.nii.gz']);
             MTLmaskL = gunzip([MTLmaskdir '/' subjects{crun} '_left_lfseg_corr_usegray_ECsubdivisions_EPI.nii.gz']);
             %MTLmaskRwhole = gunzip([MTLmaskWholedir '/' subjects{crun} '_right_ASHSMTL_EPI_nocyst_bin.nii.gz']);
@@ -227,7 +227,7 @@ for crun = subjcnt
             S.ROIfiles{1} = MTLmaskR{1};
             S.ROIfiles{2} = MTLmaskL{1};
             S.output_raw = 1;
-            S.zero_rel_tol = 0.8;  % This is what you can increase if you have lots of missing data in some ROIs
+            S.zero_rel_tol = 0.4;  % This is what you can increase if you have lots of missing data in some ROIs
             ROI = roi_extract(S);
             
             % check for and remove erroneous label 9

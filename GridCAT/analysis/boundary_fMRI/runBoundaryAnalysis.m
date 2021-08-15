@@ -1,10 +1,10 @@
 %% Run distance regressor and boundary fMRI analysis
 % called from SLURMsubmit_BoundaryAnalysis.sh
 % calls getDistanceRegressor, SPM_boundary_mainfunc and createGLM1SPMjob
-function runBoundaryAnalysis(pathstem,taskDir,nSubjects,subjects,blocksout,minvols, ROIdir, nLabels, resultsDir)
+function runBoundaryAnalysis(pathstem,taskDir,nSubjects,subjects,blocksout,minvols, roiDir, nLabels, resultsDir)
 
-nSubjects = str2double(nSubjects);
-nLabels = str2double(nLabels);
+% nSubjects = str2double(nSubjects);
+% nLabels = str2double(nLabels);
 
 %% if running interactively:
 
@@ -42,6 +42,6 @@ end % of for loop
 %% load in roi.mat per subject
 % extract mean model fit values per ROI
 
-roi_compile(ROIdir,nLabels,resultsDir)
+roi_compile(roiDir,nLabels,resultsDir)
 
 end

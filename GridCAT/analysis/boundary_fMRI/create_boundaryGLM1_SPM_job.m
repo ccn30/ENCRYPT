@@ -65,13 +65,16 @@ for run = 1:3
     
     fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').multi = {''''};\n']);
     
-    % Regressors
+    % US regressors (choose one of two)
+    % linear distance
     linearDistances = sprintf('%f; ',linearDist{run});
     linearDistances = linearDistances(1:end-2);
-    fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').regress(1) = struct(''name'', {''Dist''}, ''val'', {[' linearDistances ']});\n']);
+    %fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').regress = struct(''name'', {''Dist''}, ''val'', {[' linearDistances ']});\n']);
+    
+    % binary distance
     binaryDistances = sprintf('%f; ',binaryDist{run});
     binaryDistances = binaryDistances(1:end-2);
-    fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').regress(2) = struct(''name'', {''DistEvents''}, ''val'', {[' binaryDistances ']});\n']);
+    fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').regress = struct(''name'', {''DistEvents''}, ''val'', {[' binaryDistances ']});\n']);
 
     fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').multi_reg = {''' rpfiles{run} '''};\n']); 
     fprintf(fileID,['matlabbatch{1}.spm.stats.fmri_spec.sess(' num2str(run) ').hpf = 128;\n']);
@@ -99,15 +102,15 @@ fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{1}.tcon.sessrep = ''none'';
 fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{2}.tcon.name = ''Translation_Aligned>Translation_Misaligned'';\n');
 fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{2}.tcon.weights = [0 1 -1 0 0 0 0 0 0 0 1 -1 0 0 0 0 0 0 0 1 -1 0 0 0 0 0 0];\n');
 fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{2}.tcon.sessrep = ''none'';\n');
-fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{3}.tcon.name = ''DistanceRegressor'';\n');
+fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{3}.tcon.name = ''BinDistanceRegressor'';\n');
 fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{3}.tcon.weights = [0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0];\n');
 fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{3}.tcon.sessrep = ''none'';\n');
-fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.tcon.name = ''EventDistanceRegressor'';\n');
-fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.tcon.weights = [0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0];\n');
-fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.tcon.sessrep = ''none'';\n');
-fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{5}.fcon.name = ''AllEffectsOfInterest'';\n');
-fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{5}.fcon.weights = kron(eye(3),[eye(3) zeros(3,6)]);\n');
-fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{5}.fcon.sessrep = ''none'';\n');
+% fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.tcon.name = ''EventDistanceRegressor'';\n');
+% fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.tcon.weights = [0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0];\n');
+% fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.tcon.sessrep = ''none'';\n');
+fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.fcon.name = ''AllEffectsOfInterest'';\n');
+fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.fcon.weights = kron(eye(3),[eye(3) zeros(3,6)]);\n');
+fprintf(fileID,'matlabbatch{3}.spm.stats.con.consess{4}.fcon.sessrep = ''none'';\n');
 fprintf(fileID,'matlabbatch{3}.spm.stats.con.delete = 0;\n');
 
 %-----end of file contents-----%
