@@ -86,7 +86,7 @@ fprintf(fileID,'matlabbatch{1}.spm.stats.fmri_spec.fact = struct(''name'', {}, '
 fprintf(fileID,'matlabbatch{1}.spm.stats.fmri_spec.bases.hrf.derivs = [0 0];\n');
 fprintf(fileID,'matlabbatch{1}.spm.stats.fmri_spec.volt = 1;\n');
 fprintf(fileID,'matlabbatch{1}.spm.stats.fmri_spec.global = ''None'';\n');
-fprintf(fileID,'matlabbatch{1}.spm.stats.fmri_spec.mthresh = 0.4;\n');
+fprintf(fileID,'matlabbatch{1}.spm.stats.fmri_spec.mthresh = 0.6;\n');
 fprintf(fileID,'matlabbatch{1}.spm.stats.fmri_spec.mask = {''''};\n');
 fprintf(fileID,'matlabbatch{1}.spm.stats.fmri_spec.cvi = ''AR(1)'';\n');
 

@@ -227,7 +227,7 @@ for crun = subjcnt
             S.ROIfiles{1} = MTLmaskR{1};
             S.ROIfiles{2} = MTLmaskL{1};
             S.output_raw = 1;
-            S.zero_rel_tol = 0.4;  % This is what you can increase if you have lots of missing data in some ROIs
+            S.zero_rel_tol = 0.6;  % This is what you can increase if you have lots of missing data in some ROIs
             ROI = roi_extract(S);
             
             % check for and remove erroneous label 9

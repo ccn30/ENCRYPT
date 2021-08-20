@@ -1,0 +1,78 @@
+Non-commercial use only - see $FSLDIR/LICENSE
+Changed directory to /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/slurmoutputs.
+
+JobID: 45705597
+======
+Time: Fri 20 Aug 15:48:52 BST 2021
+Running on master node: cpu-e-919
+Current directory: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/slurmoutputs
+
+Nodes allocated:
+================
+cpu-e-919
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/runMatlab_BoundaryAnalysis.sh /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/runBoundaryAnalysis.m /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/ENCRYPT_subjects_parameters.m 18 /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/results/boundary_fMRI/GLM1_MTL_ROIs 12 /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/boundary_fMRI 
+
+Fri 20 Aug 15:48:52 BST 2021
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/runMatlab_BoundaryAnalysis.sh: line 16: cd: slurmoutputs: No such file or directory
+inside remote MATLAB call for 18 subjects
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> Path is /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI
+>> Function is runBoundaryAnalysis
+>> >> >> >> >> >> >> >> >> Submitting the following command: runBoundaryAnalysis(pathstem,taskDir,'18',subjects,blocksout,minvols,'/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/results/boundary_fMRI/GLM1_MTL_ROIs','12','/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/boundary_fMRI')
+>> 
+ Running SPM boundary analysis for subject 25773 
+Running GLM1 for subject 25773
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:49:24 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:49:24 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:49:24 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:49:25 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:49:38 - 20/08/2021
+20-Aug-2021 15:49:38 - Done    'fMRI model specification'
+20-Aug-2021 15:49:38 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:49:39 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:49:39 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (186602 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...3.792526e+00 [+4.25]
+  ReML Iteration 2                      :        ...1.492199e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...5.509106e+00 [+4.25]
+  ReML Iteration 2                      :        ...4.241436e-05 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...5.139139e+00 [+4.25]
+  ReML Iteration 2                      :        ...1.364926e-02 [+4.50]
+
+SPM12: spm_spm (v7120)                             15:50:00 - 20/08/2021
+========================================================================

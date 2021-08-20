@@ -1,14 +1,8 @@
 ## Script to compile individual subject csv PIT files into single master table csv
 
-require(ggplot2)
-require(dplyr)
-require(tibble)
-require(readr)
-require(tidyr)
-require(RColorBrewer)
-require(ggthemes)
-require(lme4)
-require(ggsignif)
+require(tidyverse)
+
+
 
 #* * * * * * * * * * * * * * * * KEY INFO * * * * * * * * * * * * * * *  *  
 #* 12 Trials repeated in 3 blocks, with different return con/env type    *

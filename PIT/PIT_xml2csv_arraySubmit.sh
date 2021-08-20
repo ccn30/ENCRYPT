@@ -27,7 +27,7 @@
 #SBATCH --mem=5980mb
 #! How many jobs to submit (starting at 0)?
 #! NOTE: This must be a range, not a single number (i.e. 0-2 = 3 jobs, but '3' would just be one job index '3')
-#SBATCH --array=0-5
+#SBATCH --array=0-76
 
 #! This is the partition name.
 #SBATCH -p skylake
