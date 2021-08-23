@@ -42,6 +42,6 @@ end % of for loop
 %% load in roi.mat per subject
 % extract mean model fit values per ROI
 
-%roi_compile(roiDir,nLabels,resultsDir)
+roi_compile(roiDir,nLabels,resultsDir)
 
 end

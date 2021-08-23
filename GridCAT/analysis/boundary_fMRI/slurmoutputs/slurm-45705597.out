@@ -1,0 +1,1145 @@
+Non-commercial use only - see $FSLDIR/LICENSE
+Changed directory to /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/slurmoutputs.
+
+JobID: 45705597
+======
+Time: Fri 20 Aug 15:48:52 BST 2021
+Running on master node: cpu-e-919
+Current directory: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/slurmoutputs
+
+Nodes allocated:
+================
+cpu-e-919
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/runMatlab_BoundaryAnalysis.sh /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/runBoundaryAnalysis.m /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/ENCRYPT_subjects_parameters.m 18 /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/results/boundary_fMRI/GLM1_MTL_ROIs 12 /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/boundary_fMRI 
+
+Fri 20 Aug 15:48:52 BST 2021
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/runMatlab_BoundaryAnalysis.sh: line 16: cd: slurmoutputs: No such file or directory
+inside remote MATLAB call for 18 subjects
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> Path is /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI
+>> Function is runBoundaryAnalysis
+>> >> >> >> >> >> >> >> >> Submitting the following command: runBoundaryAnalysis(pathstem,taskDir,'18',subjects,blocksout,minvols,'/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/analysis/boundary_fMRI/results/boundary_fMRI/GLM1_MTL_ROIs','12','/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/boundary_fMRI')
+>> 
+ Running SPM boundary analysis for subject 25773 
+Running GLM1 for subject 25773
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:49:24 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:49:24 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:49:24 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:49:25 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:49:38 - 20/08/2021
+20-Aug-2021 15:49:38 - Done    'fMRI model specification'
+20-Aug-2021 15:49:38 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:49:39 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:49:39 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (186602 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...3.792526e+00 [+4.25]
+  ReML Iteration 2                      :        ...1.492199e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...5.509106e+00 [+4.25]
+  ReML Iteration 2                      :        ...4.241436e-05 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...5.139139e+00 [+4.25]
+  ReML Iteration 2                      :        ...1.364926e-02 [+4.50]
+
+SPM12: spm_spm (v7120)                             15:50:00 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:50:25 - 20/08/2021
+Done
+20-Aug-2021 15:50:25 - Done    'Model estimation'
+20-Aug-2021 15:50:25 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:50:25 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/25773
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:50:26 - 20/08/2021
+20-Aug-2021 15:50:26 - Done    'Contrast Manager'
+20-Aug-2021 15:50:26 - Done
+
+
+ Running SPM boundary analysis for subject 25773 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/12):.1.2(12 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+	Doing Mask 2/2 
+		Doing ROI (/12):.1.2(10 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+
+ Running SPM boundary analysis for subject 25774 
+Running GLM1 for subject 25774
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:50:37 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:50:37 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:50:37 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:50:38 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:50:48 - 20/08/2021
+20-Aug-2021 15:50:48 - Done    'fMRI model specification'
+20-Aug-2021 15:50:48 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:50:49 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:50:49 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (219027 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...8.208338e+00 [+4.25]
+  ReML Iteration 2                      :        ...6.998815e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...2.213728e+01 [+4.25]
+  ReML Iteration 2                      :        ...6.118020e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.109285e-02 [+4.75]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...1.111473e+01 [+4.25]
+  ReML Iteration 2                      :        ...8.948110e-02 [+4.50]
+
+SPM12: spm_spm (v7120)                             15:51:11 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:51:40 - 20/08/2021
+Done
+20-Aug-2021 15:51:40 - Done    'Model estimation'
+20-Aug-2021 15:51:40 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:51:40 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/25774
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:51:41 - 20/08/2021
+20-Aug-2021 15:51:41 - Done    'Contrast Manager'
+20-Aug-2021 15:51:41 - Done
+
+
+ Running SPM boundary analysis for subject 25774 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/12):.1.2(10 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+	Doing Mask 2/2 
+		Doing ROI (/13):.1.2(0 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7(2 nonzero) voxels -- FAILED (60 percent)!
+.8.9.10.11.12.13
+
+ Running SPM boundary analysis for subject 25739 
+Running GLM1 for subject 25739
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:51:50 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:51:50 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:51:50 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:51:50 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:51:59 - 20/08/2021
+20-Aug-2021 15:51:59 - Done    'fMRI model specification'
+20-Aug-2021 15:51:59 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:52:00 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:52:00 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (184165 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...1.138368e+01 [+4.25]
+  ReML Iteration 2                      :        ...2.484189e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...2.200867e+01 [+4.25]
+  ReML Iteration 2                      :        ...2.339827e-02 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...2.291581e+01 [+4.25]
+  ReML Iteration 2                      :        ...1.227546e-04 [+4.50]
+
+SPM12: spm_spm (v7120)                             15:52:20 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:52:45 - 20/08/2021
+Done
+20-Aug-2021 15:52:45 - Done    'Model estimation'
+20-Aug-2021 15:52:45 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:52:45 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/25739
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:52:46 - 20/08/2021
+20-Aug-2021 15:52:46 - Done    'Contrast Manager'
+20-Aug-2021 15:52:46 - Done
+
+
+ Running SPM boundary analysis for subject 25739 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/12):.1.2(7 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+	Doing Mask 2/2 
+		Doing ROI (/12):.1.2(9 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+
+ Running SPM boundary analysis for subject 26041 
+Running GLM1 for subject 26041
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:52:54 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:52:55 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:52:55 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:52:55 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:53:04 - 20/08/2021
+20-Aug-2021 15:53:04 - Done    'fMRI model specification'
+20-Aug-2021 15:53:04 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:53:04 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:53:05 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (257118 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...6.220842e+00 [+4.25]
+  ReML Iteration 2                      :        ...6.249612e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...5.530984e+00 [+4.25]
+  ReML Iteration 2                      :        ...1.005786e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.938525e-03 [+4.75]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...7.687185e+00 [+4.25]
+  ReML Iteration 2                      :        ...1.040393e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.593627e-03 [+4.75]
+
+SPM12: spm_spm (v7120)                             15:53:28 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:53:56 - 20/08/2021
+Done
+20-Aug-2021 15:53:56 - Done    'Model estimation'
+20-Aug-2021 15:53:56 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:53:56 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/26041
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:53:57 - 20/08/2021
+20-Aug-2021 15:53:57 - Done    'Contrast Manager'
+20-Aug-2021 15:53:57 - Done
+
+
+ Running SPM boundary analysis for subject 26041 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/13):.1.2.3.4.5.6.7(0 nonzero) voxels -- FAILED (60 percent)!
+.8.9.10.11.12.13
+	Doing Mask 2/2 
+		Doing ROI (/13):.1.2(3 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7(3 nonzero) voxels -- FAILED (60 percent)!
+.8.9.10.11.12.13
+
+ Running SPM boundary analysis for subject 26371 
+[Warning: main function failed at subject 26371] 
+[> In runBoundaryAnalysis (line 37)] 
+
+ Running SPM boundary analysis for subject 25846 
+Running GLM1 for subject 25846
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:54:07 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:54:07 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:54:07 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:54:07 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:54:17 - 20/08/2021
+20-Aug-2021 15:54:17 - Done    'fMRI model specification'
+20-Aug-2021 15:54:17 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:54:17 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:54:18 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (199581 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...1.445566e+01 [+4.25]
+  ReML Iteration 2                      :        ...1.612764e-01 [+4.50]
+  ReML Iteration 3                      :        ...7.172675e-04 [+4.75]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...1.364342e+01 [+4.25]
+  ReML Iteration 2                      :        ...1.353264e-02 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...2.328246e+01 [+4.25]
+  ReML Iteration 2                      :        ...1.343937e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.901811e-04 [+4.75]
+
+SPM12: spm_spm (v7120)                             15:54:40 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:55:08 - 20/08/2021
+Done
+20-Aug-2021 15:55:08 - Done    'Model estimation'
+20-Aug-2021 15:55:08 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:55:08 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/25846
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:55:09 - 20/08/2021
+20-Aug-2021 15:55:09 - Done    'Contrast Manager'
+20-Aug-2021 15:55:09 - Done
+
+
+ Running SPM boundary analysis for subject 25846 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/12):.1.2.3.4.5.6.7.8.9.10.11.12
+	Doing Mask 2/2 
+		Doing ROI (/12):.1.2(7 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+
+ Running SPM boundary analysis for subject 25869 
+[Warning: main function failed at subject 25869] 
+[> In runBoundaryAnalysis (line 37)] 
+
+ Running SPM boundary analysis for subject 27137 
+Running GLM1 for subject 27137
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:55:18 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:55:18 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:55:18 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:55:18 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:55:28 - 20/08/2021
+20-Aug-2021 15:55:28 - Done    'fMRI model specification'
+20-Aug-2021 15:55:28 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:55:28 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:55:29 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (178107 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...2.350198e+00 [+4.25]
+  ReML Iteration 2                      :        ...2.557418e-04 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...5.641889e+00 [+4.25]
+  ReML Iteration 2                      :        ...7.568328e-05 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...4.563137e+00 [+4.25]
+  ReML Iteration 2                      :        ...7.188383e-03 [+4.50]
+
+SPM12: spm_spm (v7120)                             15:55:48 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:56:12 - 20/08/2021
+Done
+20-Aug-2021 15:56:13 - Done    'Model estimation'
+20-Aug-2021 15:56:13 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:56:13 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/27137
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:56:13 - 20/08/2021
+20-Aug-2021 15:56:13 - Done    'Contrast Manager'
+20-Aug-2021 15:56:13 - Done
+
+
+ Running SPM boundary analysis for subject 27137 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/13):.1.2.3.4.5.6.7(0 nonzero) voxels -- FAILED (60 percent)!
+.8.9.10.11.12.13
+	Doing Mask 2/2 
+		Doing ROI (/12):.1.2(17 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+
+ Running SPM boundary analysis for subject 27136 
+[Warning: main function failed at subject 27136] 
+[> In runBoundaryAnalysis (line 37)] 
+
+ Running SPM boundary analysis for subject 26001 
+Running GLM1 for subject 26001
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:56:22 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:56:22 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:56:23 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:56:23 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:56:33 - 20/08/2021
+20-Aug-2021 15:56:33 - Done    'fMRI model specification'
+20-Aug-2021 15:56:33 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:56:33 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:56:34 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (204306 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...2.958652e+00 [+4.25]
+  ReML Iteration 2                      :        ...3.293384e-03 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...6.340301e+00 [+4.25]
+  ReML Iteration 2                      :        ...5.181158e-04 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...6.208685e+00 [+4.25]
+  ReML Iteration 2                      :        ...6.149733e-03 [+4.50]
+
+SPM12: spm_spm (v7120)                             15:56:55 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:57:21 - 20/08/2021
+Done
+20-Aug-2021 15:57:21 - Done    'Model estimation'
+20-Aug-2021 15:57:21 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:57:21 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/26001
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:57:22 - 20/08/2021
+20-Aug-2021 15:57:22 - Done    'Contrast Manager'
+20-Aug-2021 15:57:22 - Done
+
+
+ Running SPM boundary analysis for subject 26001 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/12):.1.2(16 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+	Doing Mask 2/2 
+		Doing ROI (/12):.1.2(10 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+
+ Running SPM boundary analysis for subject 26069 
+Running GLM1 for subject 26069
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:57:32 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:57:32 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:57:32 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:57:32 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:57:41 - 20/08/2021
+20-Aug-2021 15:57:41 - Done    'fMRI model specification'
+20-Aug-2021 15:57:41 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:57:41 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:57:42 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (163115 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...1.201042e+01 [+4.25]
+  ReML Iteration 2                      :        ...1.212648e-03 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...1.405634e+01 [+4.25]
+  ReML Iteration 2                      :        ...3.325797e-03 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...1.409359e+01 [+4.25]
+  ReML Iteration 2                      :        ...7.563438e-04 [+4.50]
+
+SPM12: spm_spm (v7120)                             15:58:01 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:58:25 - 20/08/2021
+Done
+20-Aug-2021 15:58:25 - Done    'Model estimation'
+20-Aug-2021 15:58:25 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:58:25 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/26069
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:58:26 - 20/08/2021
+20-Aug-2021 15:58:26 - Done    'Contrast Manager'
+20-Aug-2021 15:58:26 - Done
+
+
+ Running SPM boundary analysis for subject 26069 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/12):.1.2(14 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+	Doing Mask 2/2 
+		Doing ROI (/12):.1.2(11 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+
+ Running SPM boundary analysis for subject 25974 
+Running GLM1 for subject 25974
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:58:34 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:58:34 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:58:34 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:58:34 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     : 20-Aug-2021 15:58:41 - Failed  'fMRI model specification'
+Error using spm_global
+File too small.
+In file "/usr/local/software/spm/spm12_v7487/spm_fmri_spm_ui.m" (v7018), function "spm_fmri_spm_ui" at line 315.
+In file "/usr/local/software/spm/spm12_v7487/config/spm_run_fmri_spec.m" (v6562), function "spm_run_fmri_spec" at line 386.
+
+No executable modules, but still unresolved dependencies or incomplete module inputs.
+The following modules did not run:
+Failed: fMRI model specification
+Skipped: Model estimation
+Skipped: Contrast Manager
+
+[Warning: failed at boundary model specification for 25974] 
+[> In SPM_boundary_mainfunc (line 214)
+  In runBoundaryAnalysis (line 34)] 
+
+ Running SPM boundary analysis for subject 25974 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+[Warning: main function failed at subject 25974] 
+[> In runBoundaryAnalysis (line 37)] 
+
+ Running SPM boundary analysis for subject 26040 
+Running GLM1 for subject 26040
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:58:48 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:58:49 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:58:49 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:58:49 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:58:58 - 20/08/2021
+20-Aug-2021 15:58:58 - Done    'fMRI model specification'
+20-Aug-2021 15:58:58 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:58:58 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:58:59 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (238216 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...1.079373e+01 [+4.25]
+  ReML Iteration 2                      :        ...6.274312e-01 [+4.50]
+  ReML Iteration 3                      :        ...3.802420e-02 [+4.75]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...1.355590e+01 [+4.25]
+  ReML Iteration 2                      :        ...5.002599e-02 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...1.605930e+01 [+4.25]
+  ReML Iteration 2                      :        ...2.149130e-01 [+4.50]
+  ReML Iteration 3                      :        ...3.684767e-03 [+4.75]
+
+SPM12: spm_spm (v7120)                             15:59:21 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:59:49 - 20/08/2021
+Done
+20-Aug-2021 15:59:49 - Done    'Model estimation'
+20-Aug-2021 15:59:49 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:59:49 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/26040
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:59:50 - 20/08/2021
+20-Aug-2021 15:59:50 - Done    'Contrast Manager'
+20-Aug-2021 15:59:50 - Done
+
+
+ Running SPM boundary analysis for subject 26040 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/12):.1.2(18 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+	Doing Mask 2/2 
+		Doing ROI (/12):.1.2(10 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+
+ Running SPM boundary analysis for subject 26795 
+Running GLM1 for subject 26795
+
+
+------------------------------------------------------------------------
+20-Aug-2021 15:59:58 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 15:59:58 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:59:58 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:59:58 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          16:00:07 - 20/08/2021
+20-Aug-2021 16:00:07 - Done    'fMRI model specification'
+20-Aug-2021 16:00:07 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             16:00:07 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              16:00:08 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (227300 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...1.648319e+01 [+4.25]
+  ReML Iteration 2                      :        ...5.575757e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...8.101933e+00 [+4.25]
+  ReML Iteration 2                      :        ...1.472897e-02 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...7.132160e+00 [+4.25]
+  ReML Iteration 2                      :        ...4.023610e-01 [+4.50]
+  ReML Iteration 3                      :        ...2.548099e-02 [+4.75]
+
+SPM12: spm_spm (v7120)                             16:00:29 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          16:00:55 - 20/08/2021
+Done
+20-Aug-2021 16:00:55 - Done    'Model estimation'
+20-Aug-2021 16:00:55 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             16:00:55 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/26795
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          16:00:56 - 20/08/2021
+20-Aug-2021 16:00:56 - Done    'Contrast Manager'
+20-Aug-2021 16:00:56 - Done
+
+
+ Running SPM boundary analysis for subject 26795 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/12):.1.2.3.4.5.6(0 nonzero) voxels -- FAILED (60 percent)!
+.7.8.9(19 nonzero) voxels -- FAILED (60 percent)!
+.10.11.12
+	Doing Mask 2/2 
+		Doing ROI (/12):.1.2(2 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+
+ Running SPM boundary analysis for subject 26228 
+Running GLM1 for subject 26228
+
+
+------------------------------------------------------------------------
+20-Aug-2021 16:01:04 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 16:01:04 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     16:01:04 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     16:01:04 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          16:01:15 - 20/08/2021
+20-Aug-2021 16:01:15 - Done    'fMRI model specification'
+20-Aug-2021 16:01:15 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             16:01:15 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              16:01:16 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (234670 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...1.114979e+01 [+4.25]
+  ReML Iteration 2                      :        ...5.437061e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...1.688792e+01 [+4.25]
+  ReML Iteration 2                      :        ...7.453089e-02 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...1.882998e+01 [+4.25]
+  ReML Iteration 2                      :        ...1.546884e-01 [+4.50]
+  ReML Iteration 3                      :        ...3.443588e-04 [+4.75]
+
+SPM12: spm_spm (v7120)                             16:01:39 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          16:02:05 - 20/08/2021
+Done
+20-Aug-2021 16:02:05 - Done    'Model estimation'
+20-Aug-2021 16:02:05 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             16:02:05 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/26228
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          16:02:06 - 20/08/2021
+20-Aug-2021 16:02:06 - Done    'Contrast Manager'
+20-Aug-2021 16:02:06 - Done
+
+
+ Running SPM boundary analysis for subject 26228 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/12):.1.2(19 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+	Doing Mask 2/2 
+		Doing ROI (/12):.1.2(4 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+
+ Running SPM boundary analysis for subject 26395 
+Running GLM1 for subject 26395
+
+
+------------------------------------------------------------------------
+20-Aug-2021 16:02:14 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 16:02:15 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     16:02:15 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     16:02:15 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          16:02:26 - 20/08/2021
+20-Aug-2021 16:02:26 - Done    'fMRI model specification'
+20-Aug-2021 16:02:26 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             16:02:26 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              16:02:27 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (224974 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...1.589316e+01 [+4.25]
+  ReML Iteration 2                      :        ...2.614422e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...6.849031e+00 [+4.25]
+  ReML Iteration 2                      :        ...4.617131e-04 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...4.051426e+00 [+4.25]
+  ReML Iteration 2                      :        ...1.630587e-02 [+4.50]
+
+SPM12: spm_spm (v7120)                             16:02:51 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          16:03:18 - 20/08/2021
+Done
+20-Aug-2021 16:03:18 - Done    'Model estimation'
+20-Aug-2021 16:03:18 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             16:03:18 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/26395
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          16:03:19 - 20/08/2021
+20-Aug-2021 16:03:19 - Done    'Contrast Manager'
+20-Aug-2021 16:03:19 - Done
+
+
+ Running SPM boundary analysis for subject 26395 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/12):.1.2(11 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+	Doing Mask 2/2 
+		Doing ROI (/12):.1.2(10 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+
+ Running SPM boundary analysis for subject 27241 
+Running GLM1 for subject 27241
+
+
+------------------------------------------------------------------------
+20-Aug-2021 16:03:27 - Running job #1
+------------------------------------------------------------------------
+20-Aug-2021 16:03:27 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     16:03:27 - 20/08/2021
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     16:03:27 - 20/08/2021
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          16:03:38 - 20/08/2021
+20-Aug-2021 16:03:38 - Done    'fMRI model specification'
+20-Aug-2021 16:03:38 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             16:03:38 - 20/08/2021
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              16:03:39 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (215119 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...5.207187e+00 [+4.25]
+  ReML Iteration 2                      :        ...1.079660e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...1.541964e+01 [+4.25]
+  ReML Iteration 2                      :        ...1.205940e-02 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...9.823493e+00 [+4.25]
+  ReML Iteration 2                      :        ...3.706296e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.544490e-02 [+4.75]
+
+SPM12: spm_spm (v7120)                             16:04:01 - 20/08/2021
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          16:04:25 - 20/08/2021
+Done
+20-Aug-2021 16:04:25 - Done    'Model estimation'
+20-Aug-2021 16:04:25 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             16:04:25 - 20/08/2021
+========================================================================
+Contrasts folder                        :     ./boundary_fMRI/GLM1/27241
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	ESS image  4                    :                   ...computing       ...written ess_0004.nii
+	spm{F} image  4                 :                   ...computing      ...written spmF_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          16:04:26 - 20/08/2021
+20-Aug-2021 16:04:26 - Done    'Contrast Manager'
+20-Aug-2021 16:04:26 - Done
+
+
+ Running SPM boundary analysis for subject 27241 
+[Warning: Using voxels in data space (not mask space)] 
+[> In roi_extract (line 79)
+  In SPM_boundary_mainfunc (line 231)
+  In runBoundaryAnalysis (line 35)] 
+Doing Subject 1/1 
+	Doing Mask 1/2 
+		Doing ROI (/12):.1.2(19 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+	Doing Mask 2/2 
+		Doing ROI (/12):.1.2(14 nonzero) voxels -- FAILED (60 percent)!
+.3.4.5.6.7.8.9.10.11.12
+
+ Running SPM boundary analysis for subject 27532 
+[Warning: main function failed at subject 27532] 
+[> In runBoundaryAnalysis (line 37)] 
+>> 
