@@ -1,0 +1,94 @@
+This is job 7
+Time: Thu  2 Sep 13:51:53 BST 2021
+Running on master node: cpu-e-1015
+Current directory: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/ImagePrep/slurmoutputs
+Changed directory to /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/ImagePrep/slurmoutputs.
+
+JobID: 46056546
+======
+Time: Thu  2 Sep 13:51:53 BST 2021
+Running on master node: cpu-e-1015
+Current directory: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/ImagePrep/slurmoutputs
+
+Nodes allocated:
+================
+cpu-e-1015
+
+numtasks=, numnodes=, mpi_tasks_per_node= (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/ImagePrep/ImPrep_run.sh /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/ImagePrep/image_prepare_func.m /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/ENCRYPT_MasterRIScodes.txt 7 /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images_raw /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/ImagePrep
+
+Inside ImPrep_run...
+RUNNING IMAGE PREP FOR:	
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+
+ Made mp2rage dir. 
+
+Starting image preparation for subject 25976 ... Current dir is /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images_raw/25976/20201028_U-ID50440
+
+**STARTING NEW SERIES**
+ /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images_raw/25976/20201028_U-ID50440/Series_012_MP2RAGE_0.7_UniformSens_MAG
+Converting dicoms to nifti...
+Done dcm2niix.
+
+
+ Now working on mp2rage MAG prep...Inside mp2rage dir, copying images...
+Magnitude image going in is Series_012_MP2RAGE_0.7_UniformSens_MAG
+Done with magnitude image.
+
+**STARTING NEW SERIES**
+ /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images_raw/25976/20201028_U-ID50440/Series_013_MP2RAGE_0.7_UniformSens_PHS
+Converting dicoms to nifti...
+Done dcm2niix.
+
+
+ Now working on mp2rage PHS prep...Inside mp2rage dir, copying images...
+Phase image going in is Series_013_MP2RAGE_0.7_UniformSens_PHS
+Done with phase image.
+
+**STARTING NEW SERIES**
+ /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images_raw/25976/20201028_U-ID50440/Series_019_Highresolution_TSE_PAT2_100
+Converting dicoms to nifti...
+Done dcm2niix.
+Renamed and moved t2.nii
+
+**STARTING NEW SERIES**[Warning: Repeat scan for 25976: Series_024_cmrr_ep2d_bold_1.5x1.5x1_run1 and
+Series_026_cmrr_ep2d_bold_1.5x1.5x1_run1] 
+[> In image_prepare_func (line 90)] 
+Taking most recent version: Series_026_cmrr_ep2d_bold_1.5x1.5x1_run1
+
+ /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images_raw/25976/20201028_U-ID50440/Series_026_cmrr_ep2d_bold_1.5x1.5x1_run1
+Converting dicoms to nifti...
+Done dcm2niix.
+
+ EPIs: creating pos blip for topup 
+Chris Rorden's dcm2niiX version v1.0.20210317  (JP2:OpenJPEG) (JP-LS:CharLS) GCC5.4.0 x86-64 (64-bit Linux)
+Warning: only processing last of 5 input files (recompile with 'myEnableMultipleInputs' to recursively process multiple files)
+Found 5 DICOM file(s)
+Warning: Adjusting for negative MosaicRefAcqTimes (issue 271).
+UINT16->INT16 Future release will change default. github.com/rordenlab/dcm2niix/issues/338
+Convert 5 DICOM as /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images_raw/25976/20201028_U-ID50440/Series_026_cmrr_ep2d_bold_1.5x1.5x1_run1/topup_PosBlip/pos_topup_first5 (128x128x42x5)
+Conversion required 0.071771 seconds (0.040000 for core code).
+** pos topup done **
+EPI prep complete.
+
+**STARTING NEW SERIES**
+ /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images_raw/25976/20201028_U-ID50440/Series_022_cmrr_ep2d_bold_1.5x1.5x1_run1_inv
+Converting dicoms to nifti...
+Done dcm2niix.
+
+ EPIs: creating neg blip for topup 
+** Neg topup done **
+
+**STARTING NEW SERIES**
