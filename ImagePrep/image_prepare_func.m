@@ -34,9 +34,7 @@ cd(rawimagepath);
 % check if output folders exist
 if isfolder('mp2rage')
     warning('mp2rage dir already exits! Overwriting files');
-    cd mp2rage
-    delete *.nii.gz
-    delete *.txt
+    cd mp2rage; delete *;
     cd ..
 else
     mkdir('mp2rage');
@@ -44,18 +42,14 @@ else
 end
 
 if ~exist(outimagepath,'dir')
-    mkdir(outimagepath);
-    cd(outimagepath)
-    mkdir('T2');
-    mkdir('fMRI');
+    mkdir(outimagepath); cd(outimagepath)
+    mkdir('T2');mkdir('fMRI');
     cd(rawimagepath);
 else
     warning('Out image dir already exists! Overwriting files')
     cd(outimagepath)
-    rmdir *
-    delete *.nii
-    delete *.nii.gz
-    delete *.json
+    cd T2; delete *;
+    cd ../fMRI; delete *;
     cd(rawimagepath);
 end
 

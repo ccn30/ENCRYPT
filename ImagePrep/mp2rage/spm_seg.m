@@ -1,7 +1,8 @@
 function spm_seg(vol1,vol2,spm_folder)
 %Need the path to the spm12 folder
 %spm_folder='/home/ol/Desktop/Shared_folder/MATLAB/spm12'
-addpath(genpath(spm_folder));
+%addpath(genpath(spm_folder));
+addpath(spm_folder);
 
 vol11=strcat(vol1,',1');
 vol22=strcat(vol2,',1');
@@ -9,6 +10,7 @@ vol22=strcat(vol2,',1');
 spm('CmdLine');
 spm('defaults', 'FMRI');
 spm_jobman('initcfg');
+disp('You are in the PSIR function')
 
 % List of open inputs
 matlabbatch{1}.spm.spatial.preproc.channel.vols = {

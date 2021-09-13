@@ -13,6 +13,8 @@ function cr_spm_bet(Pt1,varargin)
 % Output files according to the the FSL naming convention
 % 1001_11655_mprage_struc.nii and m1001_11655_mprage_struc_brain.nii
 
+spm_folder='/usr/local/software/spm/spm12';
+addpath(spm_folder);
 spm('defaults','pet');
 spm_jobman('initcfg');
 

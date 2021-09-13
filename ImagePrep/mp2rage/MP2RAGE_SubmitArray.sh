@@ -4,7 +4,7 @@
 
 #! Make sure you only have comments and #SBATCH directives between here and the end of the #SBATCH directives, or things will break
 #! Name of the job:
-#SBATCH -J ImPrep
+#SBATCH -J mp2rage
 #! Account name for group, use SL2 for paying queue:
 #SBATCH -A OBRIEN-SL3-CPU
 #! Output filename:
@@ -27,9 +27,9 @@
 #SBATCH --mem=5980mb
 #! How many jobs to submit (starting at 0)?
 #! NOTE: This must be a range, not a single number (i.e. 0-2 = 3 jobs, but '3' would just be one job index '3')
-#SBATCH --array=0-1
+#SBATCH --array=0-50
 
-#! This is the partition name -p skylake or -p cclake
+#! This is the partition name - skylake or cclake
 #SBATCH -p cclake
 
 #! mail alert at start, end and abortion of execution
@@ -42,10 +42,10 @@
 #! Modify the environment seen by the application. For this example we need the default modules.
 . /etc/profile.d/modules.sh                # This line enables the module command
 module purge                               # Removes all modules still loaded
-module load rhel7/default-ccl            # REQUIRED - loads the basic environment rhel7/default-peta4 or default-ccl
-module load matlab/r2019a
-module load dcm2niix
-module load fsl/6.0.4
+module load rhel7/default-ccl            # REQUIRED - loads the basic environment /default-peta4 or default-ccl
+module load matlab/r2017b
+module load fsl/5.0.8
+module load ants/2.1.0
 
 #! The variable $SLURM_ARRAY_TASK_ID contains the array index for each job.
 #! In this example, each job will be passed its index, so each output file will contain a different value
@@ -61,18 +61,19 @@ subjIdx=$SLURM_ARRAY_TASK_ID
 
 #! Set paths
 pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
-subjects=${pathstem}/testsubjcode.txt
-rawimgdir=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images_raw
-outimgdir=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images
-scriptDir=${pathstem}/scripts/ImagePrep
+subjects=${pathstem}/ENCRYPT_MasterRIScodes.txt
+scriptDir=${pathstem}/scripts/ImagePrep/mp2rage
+MATLABPATH=/usr/local/Cluster-Apps/matlab/R2017b
+spm_folder=/usr/local/software/spm/spm12
+SUBJDIR="/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images";
+fsldir=/usr/local/Cluster-Apps/fsl/5.0.8/fsl
 
-run=${scriptDir}/ImPrep_run.sh
-func=${scriptDir}/image_prepare_func.m
+func=${scriptDir}/mp2rage_processing.sh
 
 workdir=$scriptDir/slurmoutputs
 
 # child script takes subjIdx e.g. 0 and indexes $subjects in childscript 
-CMD="$run $func $subjects $subjIdx $rawimgdir $outimgdir $scriptDir"
+CMD="$func $subjects $subjIdx $scriptDir $MATLABPATH $spm_folder $SUBJDIR $fsldir"
 
 ###############################################################
 ### You should not have to change anything below this line ####

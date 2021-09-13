@@ -9,13 +9,13 @@
 # spm script (spm_seg.m) to correct for inhomogeneity
 # bet command to get the brain mask
 # image combination to get an output XXX_PSIR_skulled ready for freesurfer
-MATLABPATH="/applications/matlab/matlab2016a/"
 
 ## Need to be specific per site:
-spm_folder=/applications/spm/spm12_7219
-script_dir=/lustre/scratch/wbic-beta/ccn30/ENCRYPT/gridcellpilot/scripts/mp2rage
-fsldir=/applications/fsl/fsl-5.0.10
-
+pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
+script_dir=${pathstem}/scripts/ImagePrep/mp2rage
+MATLABPATH=/usr/local/Cluster-Apps/matlab/R2017b
+spm_folder=/usr/local/software/spm/spm12
+FSLDIR=/usr/local/Cluster-Apps/fsl/5.0.8/fsl
 
 dflag='';m1flag='';m2flag='';p1flag='';p2flag='';cflag=1;hflag=0;split=1;
 
@@ -191,14 +191,14 @@ echo $INVM1f and $INVM2f and $INVP1f and $INVP2f are the files selected
 cd ${script_dir} 
 
 #Need to have fsl path for read_avw... for PSIR_MP2RAGE_all.m
-"$MATLABPATH"/bin/matlab.nowrap -nodesktop -nosplash -nodisplay -r "try, PSIR_MP2RAGE_all('$INVM1f','$INVM2f','$INVP1f','$INVP2f'); end ; quit"
+"$MATLABPATH"/bin/matlab -nodesktop -nosplash -nodisplay -r "try, PSIR_MP2RAGE_all('$INVM1f','$INVM2f','$INVP1f','$INVP2f'); end ; quit"
 # Copy header of INVM1 to PSIR to restore lost sform and qform informations
 "$FSLDIR"/bin/fslcpgeom ${INVM1f} ${INVM1f}_PSIR -d
 #fslmaths ${INVM1f} -mul 0 -add ${INVM1f}_PSIR ${INVM1f}_PSIR
 #Need to have spm directory defined in the spm_seg.m function
 echo $INVM1f
 
-"$MATLABPATH"/bin/matlab.nowrap -nodesktop -nosplash -nodisplay -r "try, spm_seg('$INVM1f.img','$INVM2f.img','${spm_folder}'); end ; quit"
+"$MATLABPATH"/bin/matlab -nodesktop -nosplash -nodisplay -r "try, spm_seg('$INVM1f.img','$INVM2f.img','${spm_folder}'); end ; quit"
 
 cd ${dir}
 
