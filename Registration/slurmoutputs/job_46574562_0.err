@@ -1,0 +1,18 @@
+Non-commercial use only - see $FSLDIR/LICENSE
+Non-commercial use only - see $FSLDIR/LICENSE
+ file /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/32663/mp2rage/denoise_n4mag0000_PSIR_skulled_std.nii does not exist . 
+Exception Object caught: 
+
+itk::ExceptionObject (0x3971e00)
+Location: "unknown" 
+File: /tmp/sjr20/spack-stage-ants-2.3.4-lj6vm7ccmij4yywr4ynrttcko4aoflqt/spack-build/staging/include/ITK-5.1/itkCenteredTransformInitializer.hxx
+Line: 45
+Description: itk::ERROR: CenteredTransformInitializer(0x3978ab0): Moving Image has not been set
+
+
+Exception raised during processing:
+/home/picsl/tk/bb3/Nightly/itk/v4.5.2/itk/Modules/IO/TransformMatlab/include/itkMatlabTransformIO.hxx:94:
+itk::ERROR: MatlabTransformIOTemplate(0x2b10200): The file could not be opened for read access 
+Filename: "T1WholexMagdeburgTempWhole_ANTs_0GenericAffine.mat"
+terminate called after throwing an instance of 'char const*'
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/Registration/coreg_main.sh: line 76: 239742 Aborted                 /home/ccn30/privatemodules/c3d/bin/c3d_affine_tool t1_to_template_affineMAG.mat -inv -o t1_to_template_affine_invMAG.mat

@@ -2,43 +2,37 @@
 # script to visualise results in itksnap simultaenously for all subjects in different windows
 # needs to be called from graphics window sith source command run
 
-pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
-#mysubjs=${pathstem}/testsubjcode.txt
-mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
+mysubjs=${pathstem}/testsubjcode.txt
+#mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+scriptDir=${pathstem}/scripts/Registration
+outDir=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500
+MagAtlasDir=/home/ccn30/rds/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas
 
-for subjID in `cat $mysubjs`
+for subject in `cat $mysubjs`
 do
-subject="$(cut -d'/' -f1 <<<"$subjID")"
+#subject="$(cut -d'/' -f1 <<<"$subjID")"
 echo "******** starting $subject ********"
 
 ## set paths to image dirs
+rawpathstem=$outDir/ENCRYPT_images/$subject
+regDir=$outDir/ENCRYPT_registrations/$subject
 
-#regDir=${pathstem}/registrations/6.11.20/${subject}/T2xT1
-regDir=${pathstem}/registrations/${subject}
-templateDir=${pathstem}/images/template02
-utrechtAtlasDir=/home/ccn30/ENCRYPT/atlases/utrechtatlas
-magAtlasDir=/home/ccn30/ENCRYPT/atlases/magdeburgatlas
-ASHSUtrechtDir=${pathstem}/segmentation/ASHS_Utrecht/${subject}
-ASHSMagDir=${pathstem}/segmentation/ASHS_Magdeburg2/${subject}
-rawpathstem=${pathstem}/images/${subjID}
-
-cd ${rawpathstem}
-
-T2dir=$(ls -d Series_???_Highresolution_TSE_PAT2_100)
-T2path=${rawpathstem}/${T2dir}
-
-cd ${regDir}
-
-# main images
+T2path=${rawpathstem}/T2/t2.nii
+N4T2=${rawpathstem}/T2/N4t2.nii
 wholeT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std.nii
 brainT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std_struc_brain.nii
+#epi
 DenoiseWholeT1=${rawpathstem}/mp2rage/denoise_n4mag0000_PSIR_skulled_std.nii
 DenoiseBrainT1=${rawpathstem}/mp2rage/denoise_n4mag0000_PSIR_skulled_std_struc_brain_mask.nii
-wm=${rawpathstem}/mp2rage/c2n4mag0000_PSIR_skulled_std.nii
+DenoiseN4T2=${rawpathstem}/T2/denoise_N4t2.nii
 
-T2=${T2path}/t2.nii
-N4T2=${T2path}/n4_t2.nii
-DenoiseN4T2=${T2path}/denoise_n4_t2.nii
+#UtrechtTemplate=/home/ccn30/ENCRYPT/atlases/utrechtatlas/template/template.nii.gz
+#UtrechtTempBrain=/home/ccn30/ENCRYPT/atlases/utrechtatlas/template/template_bet.nii.gz
+MagdeburgTemplate=$MagAtlasDir/template/template.nii.gz
+MagdeburgTempBrain=$MagAtlasDir/template/template_bet.nii.gz
+
+#ASHSMagDir=${pathstem}/segmentation/ASHS_Magdeburg2/${subject}
 
 # T2 x T1
 affine=${regDir}/T2xT1Warped_affine.nii.gz
@@ -64,7 +58,7 @@ utrechtTempWhole=${utrechtAtlasDir}/template/template.nii.gz
 
 # T1 to Magdeburg atlas ASHS
 warpedT1Mag=${regDir}/T1WholexMagdeburgTempWhole_ANTs_Warped.nii.gz
-MagTemp=${magAtlasDir}/template/template.nii.gz
+MagTemp=${MagAtlasDir}/template/template.nii.gz
 
 # check ASHS segmentation
 utrechtTextLabs=${utrechtAtlasDir}/snap/snaplabels.txt
@@ -82,13 +76,13 @@ MaassTemplateBrainxT2=${regDir}/MaassTemplateBrainxT2.nii.gz
 
 ## command
 
-#vglrun itksnap -g ${wholeT1} -o ${affine} &
+itksnap -g ${wholeT1} -o ${affine} &
 #vglrun itksnap -g ${n4EPI} -o ${warpedT1} &
 #vglrun itksnap -g ${template} -o ${warpedSubjT1} &
 #vglrun itksnap -g ${n4EPI} -o ${warpedTemplate} -o ${warpedT1} -s ${pmEC_right} &
 #vglrun itksnap -g ${utrechtTempBrain} -o ${warpedT1BrainUtrecht} &
 #vglrun itksnap -g ${DenoiseN4T2} -s ${usegrayLeft} -l ${utrechtTextLabs} &
-#vglrun itksnap -g ${MagTemp} -o ${warpedT1Mag} &
+#itksnap -g ${MagTemp} -o ${warpedT1Mag} &
 #vglrun itksnap -g ${DenoiseN4T2} -s ${usegrayLeft} -l ${utrechtTextLabs} &
 #vglrun itksnap -g $DenoiseN4T2 -o $MaassTemplateBrainxT2
 #vglrun itksnap -g $N4T2 -o $rightECMaassMaskxT2 -s $usegrayRightMag -l $magdeburgTextLabsECsub
@@ -96,19 +90,19 @@ MaassTemplateBrainxT2=${regDir}/MaassTemplateBrainxT2.nii.gz
 ## copy images into dir for scp to local 
 scpdir=/home/ccn30/Downloads/T2masks/$subject/
 
-if [ -f "${scpdir}" ]; then
-		echo "${scpdir} exists"
-	else
-		mkdir -p ${scpdir}
-fi
+#if [ -f "${scpdir}" ]; then
+#		echo "${scpdir} exists"
+#	else
+#		mkdir -p ${scpdir}
+#fi
 
 #cp $N4T2 $scpdir
 #cp $rightECMaassMaskxT2 $scpdir
 #cp $leftECMaassMaskxT2 $scpdir
-cp $usegrayRightUtrecht /home/ccn30/Downloads/T2masks/$subject/${subject}_right_lfseg_corr_usegray_utrecht.nii.gz
-cp $usegrayLeftUtrecht /home/ccn30/Downloads/T2masks/$subject/${subject}_left_lfseg_corr_usegray_utrecht.nii.gz
-cp $usegrayRightMag /home/ccn30/Downloads/T2masks/$subject/${subject}_right_lfseg_corr_usegray_magdeburg.nii.gz
-cp $usegrayLeftMag /home/ccn30/Downloads/T2masks/$subject/${subject}_left_lfseg_corr_usegray_magdeburg.nii.gz
+#cp $usegrayRightUtrecht /home/ccn30/Downloads/T2masks/$subject/${subject}_right_lfseg_corr_usegray_utrecht.nii.gz
+#cp $usegrayLeftUtrecht /home/ccn30/Downloads/T2masks/$subject/${subject}_left_lfseg_corr_usegray_utrecht.nii.gz
+#cp $usegrayRightMag /home/ccn30/Downloads/T2masks/$subject/${subject}_right_lfseg_corr_usegray_magdeburg.nii.gz
+#cp $usegrayLeftMag /home/ccn30/Downloads/T2masks/$subject/${subject}_left_lfseg_corr_usegray_magdeburg.nii.gz
 #cp $utrechtTextLabs $scpdir"snaplabels_Utrecht.txt"
 #cp $magdeburgTextLabsECsub $scpdir"snaplabels_Magdeburg_ECsubdivisions.txt"
 
