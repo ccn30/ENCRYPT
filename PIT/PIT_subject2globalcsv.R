@@ -29,7 +29,7 @@ PITall <- PITall %>% mutate(PDist=cut(PDerror,breaks = c(-Inf,1,Inf), labels = c
 PITall <- PITall %>% mutate(PAng=cut(PAerror,breaks = c(-Inf,1,Inf), labels = c("Under","Over")))
 
 # save to results dir
-write.csv(PITall,paste(resultsDir,'/Global_Results/PITall.csv',sep=""),row.names=FALSE)
+write.csv(PITall,paste(resultsDir,'/Global_Results/PITall_n89.csv',sep=""),row.names=FALSE)
 rm(PITall)
 
 

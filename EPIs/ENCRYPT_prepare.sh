@@ -5,7 +5,7 @@
 #PBS -k oe
  
 date
-
+func $pathstem $subjects $subjIdx $subjs_def $outDir
 func=$1
 subjs_def=$2
 this_subj=$3 

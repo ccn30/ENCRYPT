@@ -10,7 +10,7 @@
 
 #! sbatch directives begin here ###############################
 #! Name of the job:
-#SBATCH -J PITanalysis
+#SBATCH -J antsTemplate
 #! Which project should be charged:
 #SBATCH -A OBRIEN-SL3-CPU
 #! How many whole nodes should be allocated?
@@ -19,7 +19,7 @@
 #! The skylake/skylake-himem nodes have 32 CPUs (cores) each.
 #SBATCH --ntasks=1
 #! How much wallclock time will be required?
-#SBATCH --time=01:00:00
+#SBATCH --time=12:00:00
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=FAIL
 #! Uncomment this to prevent the job from being requeued (e.g. if
@@ -27,7 +27,7 @@
 ##SBATCH --no-requeue
 
 #! For 6GB per CPU, set "-p skylake"; for 12GB per CPU, set "-p skylake-himem": 
-#SBATCH -p skylake
+#SBATCH -p skylake-himem
 
 #! sbatch directives end here (put any additional directives above this line)
 
@@ -53,24 +53,44 @@ mpi_tasks_per_node=$(echo "$SLURM_TASKS_PER_NODE" | sed -e  's/^\([0-9][0-9]*\).
 . /etc/profile.d/modules.sh                # Leave this line (enables the module command)
 module purge                               # Removes all modules still loaded
 module load rhel7/default-peta4            # REQUIRED - loads the basic environment
-#!module load ants-2.3.4-gcc-5-lj6vm7c
-module load matlab/r2019a
-#!module load rstudio/1.3.1093
-#!module load freesurfer/7.1.0
+module load ants-2.3.4-gcc-5-lj6vm7c
+
 
 
 # directives statrt here
+pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
+#subjects=${pathstem}/ENCRYPT_MasterRIScodes.txt
+subjects=${pathstem}/testsubjcode.txt
+scriptdir=${pathstem}/scripts/Registration
+templatedir=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_template
 
-run=${1}
-func=${2}
-scriptDir=${3}
-xmlDir=${4}
-resultsDir=${5}
-CBcode=${6}
+echo "Making template dir"
+if [ -f "${templatedir}" ]; then
+	echo "${templatedir} exists"
+else
+	mkdir ${templatedir}
+fi 
 
-workdir=$scriptDir/slurmoutputs
+cd ${templatedir}
 
-application="${run} ${func} ${xmlDir} ${resultsDir} ${CBcode}"
+for subjID in `cat $mysubjs`
+do
+wholet1=${pathstem}/images/$subjID/mp2rage/n4mag0000_PSIR_skulled_std.nii
+subject="$(cut -d'/' -f1 <<<"$subjID")"
+cpT1=$subject"_t1.nii"
+
+cp $wholet1 $cpT1
+
+done
+
+
+
+script=${scriptdir}/antsTemplateConstruct.sh
+workdir=${scriptdir}/slurmoutputs
+
+application="${script} ${templatedir}"
+
+CMD="${application}"
 
 #! Run options for the application:
 options=""
