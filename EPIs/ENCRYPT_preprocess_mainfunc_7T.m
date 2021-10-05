@@ -1,176 +1,155 @@
-function ENCRYPT_preprocess_mainfunc_7T(step,prevStep,clusterid,preprocessedpathstem,rawpathstem,subjects,subjcnt,fullid,basedir,blocksin,blocksin_folders,blocksout,minvols,group)
+function ENCRYPT_preprocess_mainfunc_7T(step,prevStep,clusterid,fmriDir,subject)
 % A mainfunction for preprocessing 7T MRI data
 % Designed to run in a modular fashion and in parallel - i.e. pass this
 % function a single step and single subject number
 % for example:
-% Preprocessing_mainfunction_7T('SPM_uni','smooth8','HPC',preprocessedpathstem,rawpathstem,subjects,6,fullid,basedir,blocksin,blocksin_folders,blocksout,minvols,dates,group)
-% inherited from Thomas Cope by Coco Newton 8.05.19
-% edited for ENCRYPT grid cell data
+% Coco Newton via TC 8.05.19, modified CN 10/21
+
+% fmriDir = '/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images'
 
 %% Work out which file we're looking to work on now
 
-%rawpathstem ='/lustre/scratch/wbic-beta/ccn30/ENCRYPT/gridcellpilot/raw_data/images';
-%preprocessedpathstem = '/lustre/scratch/wbic-beta/ccn30/ENCRYPT/gridcellpilot/preprocessed_data/images';
-%ENCRYPT_preprocess_mainfunc_7T('realign','topup','HPHI',preprocessedpathstem,rawpathstem,subjects,1,fullid,basedir,blocksin,blocksin_folders,blocksout,minvols,dates,group)
+fprintf([ '\n\nCurrent subject = ' sprintf('%2d',subject) '...\n\n' ]);
+minvols=238;
+fMRIdir = fullfile(fmriDir,sprintf('%2d',subject), '/fMRI');
+
 
 switch prevStep
     % Here you specify the filenames that you search for after each step.
     case 'raw'
-        
-        fprintf([ '\n\nCurrent subject = ' subjects{subjcnt} '...\n\n' ]);
-        % make output directory if it doesn't exist
-        outputfolderpath = [preprocessedpathstem '/' subjects{subjcnt}];
-        if ~exist(outputfolderpath,'dir')
-            mkdir(outputfolderpath);
-        end
-        
-        % change to input directory
-        for i = 1:length(blocksin{subjcnt})
-            	%rawfilePath = [rawpathstem basedir{subjcnt} '/' fullid{subjcnt} '/' blocksin_folders{subjcnt}{i} '/' blocksin{subjcnt}{i}];
-		rawfilePath = [rawpathstem '/' subjects{subjcnt} '/' fullid{subjcnt} '/' blocksin_folders{subjcnt}{i} '/' blocksin{subjcnt}{i}];         
-		outfilePath = [outputfolderpath '/' blocksout{subjcnt}{i} '.nii'];
-            if ~exist(outfilePath,'file')
-                fprintf([ '\n\nMoving ' blocksin{subjcnt}{i} ' to ' outfilePath '...\n\n' ]);
-                copyfile(rawfilePath,outfilePath);
-            else
-                fprintf([ '\n\n ' outfilePath ' already exists, moving on...\n\n' ]);
-            end % blocks
-        end
-        
-        fprintf('\n\nRaw data copied to preprocessing directory! Now working on it.\n\n');      
         prevStep = '';
-        pathstem = [preprocessedpathstem '/' subjects{subjcnt} '/'];  
-    case 'raw_nocopy'
-        prevStep = '';
-        pathstem = [preprocessedpathstem '/' subjects{subjcnt} '/'];
-    case 'skullstrip'
-        prevStep = '';
-        pathstem = [preprocessedpathstem '/' subjects{subjcnt} '/'];
-    case 'realign'
-        prevStep = '';
-        pathstem = [preprocessedpathstem '/' subjects{subjcnt} '/'];
+    case 'reslice'
+        prevStep = 'r';
     case 'topup'
-        prevStep = 'topup_.*';
-        pathstem = [preprocessedpathstem '/' subjects{subjcnt} '/'];
+        prevStep = 'topup_';
     case 'smooth3'
-        prevStep = 's3.*';
+        prevStep = 's';
         smoothing = 3;
-        pathstem = [preprocessedpathstem '/' subjects{subjcnt} '/'];
-        
 end
 
 %% Set up environment
-global spmpath fsldir toolboxdir
+global spmpath fsldir
 switch clusterid
-        
-    case 'HPHI'
-%         rawpathstem = '/rds/user/tec31/hpc-work/SERPENT/rawdata/';
-%         preprocessedpathstem = '/rds/user/tec31/hpc-work/SERPENT/preprocessed/';
-        spmpath = '/applications/spm/spm12_6906/';
-        fsldir = '/applications/fsl/fsl-5.0.10/';
-        toolboxdir = '/home/tec31/toolboxes/'; % Needs fixing
+    
+    case 'HPC'
+        spmpath = '/usr/local/software/spm/spm12';
+        fsldir = '/usr/local/Cluster-Apps/fsl/5.0.8/fsl';
         addpath(spmpath)
-        spm fmri
-        scriptdir = '/scratch/wbic-beta/ccn30/ENCRYPT/gridcellpilot/scripts/EPIs/';
-        freesurferpath = '/applications/freesurfer/freesurfer_6.0.0/';
         
 end
 
 %% Now do the requested step
 switch step
-        
+    
     case 'topup'
         % Apply topup to distortion correct the EPI
-        nrun = 1; % enter the number of runs here - should be 1 if submitted in parallel, but retain the functionality to bundle subjects
-        %topupworkedcorrectly = zeros(1,nrun);
-        for crun = subjcnt
-            disp('running topup') 
-            base_image_path = [pathstem blocksout{crun}{find(strcmp(blocksout{crun},'Pos_topup'))} '.nii'];
-            reversed_image_path = [pathstem blocksout{crun}{find(strcmp(blocksout{crun},'Neg_topup'))} '.nii'];
-            outpath = [preprocessedpathstem '/' subjects{crun} '/'];
-            theseepis = find(strncmp(blocksout{crun},'Run',3));
-            filestocorrect = cell(1,length(theseepis));
-            json_path = [rawpathstem '/' subjects{subjcnt} '/' fullid{subjcnt} '/' blocksin_folders{subjcnt}{3}];
-            for i = 1:length(theseepis)
-                filestocorrect{i} = [outpath blocksout{crun}{theseepis(i)} '.nii']; % pathstem to outpath temp
-            end
-            module_topup_job_cluster(base_image_path, reversed_image_path, outpath, minvols(crun), filestocorrect,json_path)
-            if ~exist([outpath 'epi_topup_results_fieldcoef.nii'],'file')
-                error('Topup not successfully calculated!');
-            % globbing with star may not work
-            elseif ~exist([outpath 'topup_Run_*.nii'],'file')
-                error('Topup not successfully applied!');
-            end
-            
-%             try
-%                 module_topup_job_cluster(base_image_path, reversed_image_path, outpath, minvols(crun), filestocorrect,json_path)
-%                 topupworkedcorrectly(crun) = 1;
-%             catch
-%                 topupworkedcorrectly(crun) = 0;
-%             end
-            
+        
+        disp('running topup')
+        base_image_path = fullfile(fMRIdir,'/pos_topup.nii');
+        reversed_image_path =  fullfile(fMRIdir,'/neg_topup.nii');
+        outpath = fMRIdir;
+        theseepis = {'run1.nii','run2.nii','run3.nii'};
+        filestocorrect = cell(1,length(theseepis));
+        json_path = fullfile(fMRIdir,'run1.json'); % doesn't matter which json file used, all the same bandwidth
+        for i = 1:length(theseepis)
+            filestocorrect{i} = fullfile(fMRIdir,theseepis{i}); % pathstem to outpath temp
+        end
+        module_topup_job_cluster(base_image_path, reversed_image_path, outpath, minvols, filestocorrect,json_path)
+        if ~exist(fullfile(fMRIdir,'epi_topup_results_fieldcoef.nii'),'file')
+            error('Topup not successfully calculated!');
+        else
+            error('Topup successfully applied!');
         end
         
-%         if ~all(topupworkedcorrectly)
-%             error('failed at topup');
-%         end
         
     case 'realign'
         % Now realign the EPIs
-        nrun = 1; % enter the number of runs here - should be 1 if submitted in parallel, but retain the functionality to bundle subjects
-        realignworkedcorrectly = zeros(1,nrun);
-        for crun = subjcnt
-            disp('running realign')
-            theseepis = find(strncmp(blocksout{crun},'Run',3));
-            filestorealign = cell(1,length(theseepis));
-            outpath = [preprocessedpathstem '/' subjects{crun} '/']; 
-            for i = 1:length(theseepis)
-                filestorealign{i} = spm_select('ExtFPList',outpath,['^' prevStep blocksout{crun}{theseepis(i)} '.nii'],1:minvols(crun));
-            end
-            flags = struct;
-            flags.fhwm = 3;
-            try
-                spm_realign(filestorealign,flags)
-                realignworkedcorrectly(crun) = 1;
-            catch
-                realignworkedcorrectly(crun) = 0;
-            end
-        end
         
-        if ~all(realignworkedcorrectly)
-            error('failed at realign');
+        disp('running realign')
+        outpath = fMRIdir;
+        theseepis = {'topup_run1.nii','topup_run2.nii','topup_run3.nii'};
+        filestorealign = cell(1,length(theseepis));
+        for i = 1:length(theseepis)
+            filestorealign{i} = spm_select('ExtFPList',outpath,['^' theseepis{i}],1:minvols);
+        end
+        flags = struct;
+        flags.quality = 1;
+        flags.fhwm = [3 3 2];
+        try
+            spm_realign(filestorealign,flags)
+        catch
+            disp('SPM realign failed')
         end
         
     case 'reslice'
-        % Reslice the mean topup corrected image
-        nrun = 1; % enter the number of runs here - should be 1 if submitted in parallel, but retain the functionality to bundle subjects
+        % Reslice the mean topup corrected image     
+        
         disp('running reslice')
-        resliceworkedcorrectly = zeros(1,nrun);
-        for crun = subjcnt
-            theseepis = find(strncmp(blocksout{crun},'Run',3));
-            filestorealign = cell(1,length(theseepis));
-            outpath = [preprocessedpathstem '/' subjects{crun} '/'];  
-            for i = 1:length(theseepis)
-                filestorealign{i} = spm_select('ExtFPList',outpath,['^' prevStep blocksout{crun}{theseepis(i)} '.nii'],1:minvols(crun));
-            end
-            flags = struct;
-            % 0 = no reslice just produce mean, 1 = reslice but not first image, [2 1] =reslice all and produce mean
-            %flags.which = 0;
-            flags.which = [2 1];
-            %flags.which = 1;
-            
-            try
-                spm_reslice(filestorealign,flags)
-                resliceworkedcorrectly(crun) = 1;
-            catch
-                resliceworkedcorrectly(crun) = 0;
-            end
+        outpath = fMRIdir;
+        theseepis = {'topup_run1.nii','topup_run2.nii','topup_run3.nii'};
+        filestorealign = cell(1,length(theseepis));
+        for i = 1:length(theseepis)
+            filestorealign{i} = spm_select('ExtFPList',outpath,['^' theseepis{i}],1:minvols);
+        end
+        flags = struct; % prefix is auto 'r'
+        % 0 = no reslice just produce mean, 1 = reslice but not first image, [2 1] =reslice all and produce mean
+        %flags.which = 0;
+        flags.which = [2 1];
+        %flags.which = 1;
+        
+        try
+            spm_reslice(filestorealign,flags)
+        catch
+            rdisp('SPM reslice failed')
         end
         
-        if ~all(resliceworkedcorrectly)
-            error('failed at reslice');
-        end
+    case 'smooth'
+        % smooth the resliced topup corrected images
        
+        filestosmooth_list = [];
+        filestosmooth = {};
+        disp('running smoothing')
+        outpath = fMRIdir;
+        theseepis = {'rtopup_run1.nii','rtopup_run2.nii','rtopup_run3.nii'};
+        for i = 1:length(theseepis)
+            for j = 1:minvols
+                filestosmooth{j,1} = [outpath '/' theseepis{i} ',' num2str(j)]; % matlab batch can't take spm select based files - need nscansx1 cell
+            end
+            filestosmooth_list = [filestosmooth_list;filestosmooth];
+        end
+        
+        matlabbatch{1}.spm.spatial.smooth.data = filestosmooth_list;
+        % Other
+        matlabbatch{1}.spm.spatial.smooth.fwhm = [3 3 2];
+        matlabbatch{1}.spm.spatial.smooth.dtype = 0;
+        matlabbatch{1}.spm.spatial.smooth.im = 0;
+        matlabbatch{1}.spm.spatial.smooth.prefix = 's';
+        % Run
+        spm('defaults','fmri');
+        spm_jobman('initcfg');
+        spm_jobman('run',matlabbatch);
+        
+ case 'sliceTimeCorrection'
+        % smooth the resliced topup corrected images
+        TR = 2.53;
+        nslices = 42;
+        outpath = fMRIdir;
+        theseepis = {'rtopup_run1.nii','rtopup_run2.nii','rtopup_run3.nii'};
+        filestocorrect = cell(1,length(theseepis));
+        for i = 1:length(theseepis)
+            filestocorrect{i} = spm_select('ExtFPList',outpath,['^' theseepis{i}],1:minvols);
+        end
+        sliceorder = [2:2:42 1:2:42];
+        refslice = 2;
+        TA = TR - (TR/nslices);
+        timing(1) = TA/(nslices-1);
+        timing(2) = TR - TA;
+        prefix = 'a';
+        spm_slice_timing(filestocorrect,sliceorder,refslice,timing,prefix);
+        
+        
+end
+end
         
 %     case 'cat12'
 %         % Do cat12 normalisation of the structural to create deformation fields (works better than SPM segment deformation fields, which sometimes produce too-small brains)
@@ -412,6 +391,5 @@ switch step
 %         end
 
                
-end
-end
+
 

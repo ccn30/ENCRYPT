@@ -1,0 +1,1515 @@
+This is job 0
+Time: Mon  4 Oct 12:40:04 BST 2021
+Running on master node: cpu-p-68
+Current directory: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/Segmentation/slurmoutputs
+Changed directory to /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/Segmentation/slurmoutputs.
+
+JobID: 47065353
+======
+Time: Mon  4 Oct 12:40:04 BST 2021
+Running on master node: cpu-p-68
+Current directory: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/Segmentation/slurmoutputs
+
+Nodes allocated:
+================
+cpu-p-68
+
+numtasks=, numnodes=, mpi_tasks_per_node= (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/Segmentation/ASHS_mainfun.sh /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/testsubjcode.txt 0 /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2 /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta /home/ccn30/rds/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/Segmentation/slurmoutputs /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_registrations
+
+Beginning ASHS for:  26001
+INPUT: /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/26001/mp2rage/denoise_n4mag0000_PSIR_skulled_std.nii /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/26001/T2/denoise_N4t2.nii
+Registration copied from: /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_registrations/26001
+ashs_main execution log
+  timestamp:   Mon  4 Oct 12:40:04 BST 2021
+  invocation:  /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_main.sh -I 26001 -a /home/ccn30/rds/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas -g /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/26001/mp2rage/denoise_n4mag0000_PSIR_skulled_std.nii -f /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/26001/T2/denoise_N4t2.nii -w /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001 -m /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_registrations/26001/flirt_t2_to_t1.mat -N -T
+  directory:   /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/Segmentation/slurmoutputs
+  environment:
+    ASHS_INPUT_T2T1_MAT=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_registrations/26001/flirt_t2_to_t1.mat
+    ASHS_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images/26001/mp2rage/denoise_n4mag0000_PSIR_skulled_std.nii
+    ASHS_ROOT=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta
+    ASHS_SKIP_ANTS=1
+    ASHS_SKIP_RIGID=1
+    ASHS_SUBJID=26001
+    ASHS_TIDY=1
+    ASHS_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images/26001/T2/denoise_N4t2.nii
+    ASHS_WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
+Atlas    : /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas
+T1 Image : /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images/26001/mp2rage/denoise_n4mag0000_PSIR_skulled_std.nii
+T2 Image : /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images/26001/T2/denoise_N4t2.nii
+WorkDir  : /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
+User-supplied T2->T1 transform hint: /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_registrations/26001/flirt_t2_to_t1.mat
+Not using SGE or GNU parallel
+****************************************
+Starting stage 1: Normalization to T1 population template
+****************************************
+[0;36m
+-------------------  INFO  ---------------------
+Started stage 1: Normalization to T1 population 
+template
+------------------------------------------------
+[0m
++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_lib.sh
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_version.sh
++++ ASHS_VERSION_MAJOR=1
++++ ASHS_VERSION_MINOR=0
++++ ASHS_VERSION_PATCH=0
++++ ASHS_VERSION_NOTE=
++++ ASHS_VERSION_FULL=1.0.0
++++ ASHS_VERSION_DATE=20170915
++++ ASHS_OLDEST_COMPAT_DATE=20170810
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_common_master.sh
++++ [[ ! -n /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta ]]
+++++ uname
++++ ARCH=Linux
++++ ASHS_BIN=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin
++++ ASHS_ANTS=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042
++++ ASHS_FSL=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl
+++++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/c3d -version
+++++ grep Version
++++ [[ ! -n Version 1.1.0 ]]
++++ PATH=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/usr/local/software/itksnap/3.8.0/bin:/usr/local/software/fsl/6.0.4/bin:/usr/local/software/spack/spack-git/opt/spack/linux-rhel7-broadwell/gcc-5/ants-2.3.4-lj6vm7ccmij4yywr4ynrttcko4aoflqt/bin:/usr/local/software/master/cmake/latest/bin:/usr/local/Cluster-Apps/intel/2020.2/debugger_2020/gdb/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin/intel64:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin:/usr/local/software/global/bin:/opt/singularity/bin:/usr/local/Cluster-Apps/singularity/images:/usr/local/Cluster-Apps/vgl/2.5.1/64/bin:/usr/local/Cluster-Apps/turbovnc/2.0.1/bin:/usr/local/software/slurm/current/sbin:/usr/local/software/slurm/current/bin:/usr/lib64/qt-3.3/bin:/home/ccn30/perl5/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/dell/srvadmin/bin:/home/ccn30/bin:.
+++ [[ ! /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/ashs_user_config.sh == /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_config.sh ]]
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_config.sh
++++ ASHS_SIDES='left right'
++++ ASHS_MPRAGE_DENOISE=0
++++ ASHS_MPRAGE_SRUPSAMPLE=0
++++ ASHS_MPRAGE_SRUPSAMPLE_FACTOR='1 1 1'
++++ ASHS_TSE_DENOISE=0
++++ ASHS_TSE_SRUPSAMPLE=0
++++ ASHS_TSE_SRUPSAMPLE_FACTOR='1 1 1'
++++ ASHS_TSE_ISO_FACTOR=100x100x500%
++++ ASHS_TSE_ISO_REGION_CROP='20x20x0% 60x60x100%'
++++ ASHS_FLIRT_MULTIMODAL_OPTS='-searchrx -5 5 -searchry -5 5 -searchrz -5 5 -coarsesearch 3 -finesearch 1 -searchcost normmi'
++++ ASHS_TEMPLATE_ANTS_ITER=60x20x0
++++ ASHS_TEMPLATE_STAGES_TOTAL=4
++++ ASHS_TEMPLATE_STAGES_RIGID=1
++++ ASHS_TEMPLATE_ROI_DILATION=10x10x10vox
++++ ASHS_TEMPLATE_ROI_MARGIN=4x4x4vox
++++ ASHS_TEMPLATE_TARGET_RESOLUTION=0.4688x0.4688x0.4688mm
++++ ASHS_TEMPLATE_MASK_THRESHOLD=0.5
++++ ASHS_TARGET_ATLAS_FOR_HISTMATCH=0
++++ ASHS_HISTMATCH_CONTROLS=5
++++ ASHS_PAIRWISE_AFFINE_ITER=60x60x0
++++ ASHS_PAIRWISE_DEFORM_ITER=60x60x20
++++ ASHS_PAIRWISE_CROSSCORR_RADIUS=2x2x2
++++ ASHS_PAIRWISE_ANTS_STEPSIZE=0.25
++++ ASHS_PAIRWISE_ANTS_T1_WEIGHT=0
++++ ASHS_LABEL_SMOOTHING=0.24mm
++++ ASHS_MALF_STRATEGY='Joint[0.1,2]'
++++ ASHS_MALF_PATCHRAD=3x3x1
++++ ASHS_MALF_SEARCHRAD=3x3x1
++++ ASHS_MALF_PADDING=0x0x2
++++ ASHS_EC_DILATION=1
++++ ASHS_EC_TARGET_SAMPLES=100000
++++ ASHS_EC_DRYRUN_SAMPLE_RATE=0.01
++++ ASHS_EC_ITERATIONS=500
++++ ASHS_EC_PATCH_RADIUS=6x6x0
++++ ASHS_EC_MINIMUM_SAMPLES=100
++++ ASHS_EC_QSUB_EXTRA_OPTIONS=
+++ source /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/ashs_user_config.sh
++++ ASHS_TSE_ISO_FACTOR=100x100x252%
++++ ASHS_TEMPLATE_ANTS_ITER=60x60x20x0
++++ ASHS_TSE_ISO_REGION_CROP='10x10x0% 80x80x100%'
+++ [[ -n '' ]]
++ cat
+Script: ashs_template_qsub.sh
+Root: /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta
+Working directory: /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
+PATH: /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/usr/local/software/itksnap/3.8.0/bin:/usr/local/software/fsl/6.0.4/bin:/usr/local/software/spack/spack-git/opt/spack/linux-rhel7-broadwell/gcc-5/ants-2.3.4-lj6vm7ccmij4yywr4ynrttcko4aoflqt/bin:/usr/local/software/master/cmake/latest/bin:/usr/local/Cluster-Apps/intel/2020.2/debugger_2020/gdb/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin/intel64:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin:/usr/local/software/global/bin:/opt/singularity/bin:/usr/local/Cluster-Apps/singularity/images:/usr/local/Cluster-Apps/vgl/2.5.1/64/bin:/usr/local/Cluster-Apps/turbovnc/2.0.1/bin:/usr/local/software/slurm/current/sbin:/usr/local/software/slurm/current/bin:/usr/lib64/qt-3.3/bin:/home/ccn30/perl5/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/dell/srvadmin/bin:/home/ccn30/bin:.
+  Skip Rigid: 1
+  Skip Ants: 1
++ WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ mkdir -p /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1 /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ TEMP_T1_FULL=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/template.nii.gz
++ TEMP_T1_MASK=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/template_bet_mask.nii.gz
++ ashs_subj_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz
++ SUBJ_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz
++ SUBJ_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_AFF_T1TEMP_RESLICE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.nii.gz
++ [[ /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images/26001/mp2rage/denoise_n4mag0000_PSIR_skulled_std.nii -nt /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz ]]
++ [[ /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_images/26001/T2/denoise_N4t2.nii -nt /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz ]]
++ ashs_align_t1t2 /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001 /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_registrations/26001/flirt_t2_to_t1.mat
++ local ASHS_WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local OVERRIDE_MAT=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_registrations/26001/flirt_t2_to_t1.mat
++ local OVERRIDE_MODE=
++ ashs_subj_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz
++ SUBJ_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz
++ SUBJ_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ [[ -f /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat ]]
++ [[ -n 1 ]]
++ echo 'Skipping Rigid Registration'
+Skipping Rigid Registration
++ [[ 0 == 1 ]]
++ [[ 0 == 1 ]]
++ [[ 0 == 1 ]]
++ job_progress 0.25
++ local PROGRESS=0.25
++ local CHUNK_PSTART CHUNK_PEND
++ read CHUNK_PSTART CHUNK_PEND
+++ echo 1
+++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
++ echo 'CHUNK 0.0 0.2'
+CHUNK 0.0 0.2
++ echo 1
++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
+0 0.2
++ echo 'CHUNK 0 0.2 0.25'
+CHUNK 0 0.2 0.25
++ bash /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_default_hook.sh progress 0 0.2 0.25
+====================================
+         PROGRESS: 0               
+====================================
++ [[ -f /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat ]]
++ [[ -n 1 ]]
++ echo 'Skipping Affine Registration'
+Skipping Affine Registration
++ [[ 0 == 1 ]]
++ [[ 0 == 1 ]]
++ [[ 0 == 1 ]]
++ job_progress 0.5
++ local PROGRESS=0.5
++ local CHUNK_PSTART CHUNK_PEND
++ read CHUNK_PSTART CHUNK_PEND
+++ echo 1
+++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
++ echo 'CHUNK 0.0 0.2'
+CHUNK 0.0 0.2
++ echo 1
++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
+0 0.2
++ echo 'CHUNK 0 0.2 0.5'
+CHUNK 0 0.2 0.5
++ bash /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_default_hook.sh progress 0 0.2 0.5
+====================================
+         PROGRESS: 0               
+====================================
++ [[ -n 1 ]]
++ [[ -f /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz ]]
++ echo 'SKIPPING Deformable registration'
+SKIPPING Deformable registration
++ [[ 0 == 1 ]]
++ [[ 0 == 1 ]]
++ [[ 0 == 1 ]]
++ job_progress 0.9
++ local PROGRESS=0.9
++ local CHUNK_PSTART CHUNK_PEND
++ read CHUNK_PSTART CHUNK_PEND
+++ echo 1
+++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
++ echo 'CHUNK 0.0 0.2'
+CHUNK 0.0 0.2
++ echo 1
++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
+0 0.2
++ echo 'CHUNK 0 0.2 0.9'
+CHUNK 0 0.2 0.9
++ bash /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_default_hook.sh progress 0 0.2 0.9
+====================================
+         PROGRESS: 0               
+====================================
++ greedy -d 3 -rm /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/reslice_mprage_to_template.nii.gz -rf /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/template.nii.gz -r /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
+Executing with the default number of threads: 56
++ greedy -d 3 -rm /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/reslice_tse_to_template.nii.gz -rf /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/template.nii.gz -r /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
+Executing with the default number of threads: 56
++ ashs_reslice_to_template /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001 /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas
++ local ASHS_WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local ATLAS=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ ashs_subj_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz
++ SUBJ_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz
++ SUBJ_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ local side
++ for side in '$SIDES'
++ ashs_subj_side_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001 left
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ side=left
++ ashs_subj_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz
++ SUBJ_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz
++ SUBJ_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz
++ SUBJ_SIDE_MPRAGE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_left.nii.gz
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP_REGMASK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left_regmask.nii.gz
++ SUBJ_SIDE_TSE_NATCHUNK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_native_chunk_left.nii.gz
++ [[ -n '' ]]
++ REFSPACE=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_left.nii.gz
++ greedy -d 3 -rf /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_left.nii.gz -rm /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz -r /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
+Executing with the default number of threads: 56
++ greedy -d 3 -rf /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_left.nii.gz -rm /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_left.nii.gz -r /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
+Executing with the default number of threads: 56
++ c3d /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz -verbose -pim r -thresh 0.001% inf 1 0 -erode 0 4x4x4 /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_left.nii.gz -times -type uchar -o /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left_regmask.nii.gz
+Intensity range spec 1e-05 maps to 0.00931
+Thresholding #1
+  Mapping range [0.00931, inf] to 1
+  Values outside are mapped to 0
+Applying erosion to #1
+  Foreground value :    0
+  Ball radius      :    [4, 4, 4]
+Reading #2 from /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_left.nii.gz
+Adding #1 and 0
+Writing #1 to file /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left_regmask.nii.gz
+  Output voxel type: uchar[h]
+  Rounding off: Enabled
++ greedy -d 3 -rf /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz -rm /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left_regmask.nii.gz /tmp/ashs.VpRUlLoC/natmask.nii.gz -r /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
+Executing with the default number of threads: 56
++ c3d /tmp/ashs.VpRUlLoC/natmask.nii.gz -thresh 0.5 inf 1 0 -trim 0x0x2vox /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz -reslice-identity -type short -o /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_native_chunk_left.nii.gz
++ [[ -f /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/seg_left.nii.gz ]]
++ for side in '$SIDES'
++ ashs_subj_side_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001 right
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ side=right
++ ashs_subj_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz
++ SUBJ_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz
++ SUBJ_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_right.nii.gz
++ SUBJ_SIDE_MPRAGE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_right.nii.gz
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP_REGMASK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_right_regmask.nii.gz
++ SUBJ_SIDE_TSE_NATCHUNK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_native_chunk_right.nii.gz
++ [[ -n '' ]]
++ REFSPACE=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_right.nii.gz
++ greedy -d 3 -rf /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_right.nii.gz -rm /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_right.nii.gz -r /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
+Executing with the default number of threads: 56
++ greedy -d 3 -rf /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_right.nii.gz -rm /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_right.nii.gz -r /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
+Executing with the default number of threads: 56
++ c3d /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_right.nii.gz -verbose -pim r -thresh 0.001% inf 1 0 -erode 0 4x4x4 /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_right.nii.gz -times -type uchar -o /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_right_regmask.nii.gz
+Intensity range spec 1e-05 maps to 0.00883
+Thresholding #1
+  Mapping range [0.00883, inf] to 1
+  Values outside are mapped to 0
+Applying erosion to #1
+  Foreground value :    0
+  Ball radius      :    [4, 4, 4]
+Reading #2 from /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_right.nii.gz
+Adding #1 and 0
+Writing #1 to file /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_right_regmask.nii.gz
+  Output voxel type: uchar[h]
+  Rounding off: Enabled
++ greedy -d 3 -rf /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz -rm /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_right_regmask.nii.gz /tmp/ashs.VpRUlLoC/natmask.nii.gz -r /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
+Executing with the default number of threads: 56
++ c3d /tmp/ashs.VpRUlLoC/natmask.nii.gz -thresh 0.5 inf 1 0 -trim 0x0x2vox /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz -reslice-identity -type short -o /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_native_chunk_right.nii.gz
++ [[ -f /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/seg_right.nii.gz ]]
++ [[ -f '' ]]
++ [[ -n 1 ]]
++ rm -rf /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_histmatch.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_histmatch.nii.gz
++ for side in '$SIDES'
++ ashs_registration_qc left
++ local side=left
++ ashs_subj_side_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001 left
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ side=left
++ ashs_subj_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz
++ SUBJ_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz
++ SUBJ_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz
++ SUBJ_SIDE_MPRAGE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_left.nii.gz
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP_REGMASK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left_regmask.nii.gz
++ SUBJ_SIDE_TSE_NATCHUNK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_native_chunk_left.nii.gz
++ local TEMP=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_mprage_left.nii.gz
++ local TEMPSEG=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_meanseg_left.nii.gz
++ local SLICESPEC=16.6%:16.6%:88%
++ c3d -type uchar -int 0 /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_meanseg_left.nii.gz -swapdim RSA -trim 40x40x0mm -resample-iso min -as SS -int 1 /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_mprage_left.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 16.6%:16.6%:88% -oo /tmp/ashs.VpRUlLoC/cor_temp_%02d.png -clear -push SS /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_left.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 16.6%:16.6%:88% -oo /tmp/ashs.VpRUlLoC/cor_mprage_%02d.png -clear -push SS /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 16.6%:16.6%:88% -oo /tmp/ashs.VpRUlLoC/cor_tse_%02d.png
++ SLICESPEC=33%:33%:84%
++ c3d -type uchar -int 0 /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_meanseg_left.nii.gz -swapdim ASR -trim 40x40x0mm -resample-iso min -as SS -int 1 /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_mprage_left.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 33%:33%:84% -oo /tmp/ashs.VpRUlLoC/sag_temp_%02d.png -clear -push SS /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_left.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 33%:33%:84% -oo /tmp/ashs.VpRUlLoC/sag_mprage_%02d.png -clear -push SS /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 33%:33%:84% -oo /tmp/ashs.VpRUlLoC/sag_tse_%02d.png
+++ ls /tmp/ashs.VpRUlLoC/cor_mprage_00.png /tmp/ashs.VpRUlLoC/cor_mprage_01.png /tmp/ashs.VpRUlLoC/cor_mprage_02.png /tmp/ashs.VpRUlLoC/cor_mprage_03.png /tmp/ashs.VpRUlLoC/cor_mprage_04.png /tmp/ashs.VpRUlLoC/cor_temp_00.png /tmp/ashs.VpRUlLoC/cor_temp_01.png /tmp/ashs.VpRUlLoC/cor_temp_02.png /tmp/ashs.VpRUlLoC/cor_temp_03.png /tmp/ashs.VpRUlLoC/cor_temp_04.png /tmp/ashs.VpRUlLoC/cor_tse_00.png /tmp/ashs.VpRUlLoC/cor_tse_01.png /tmp/ashs.VpRUlLoC/cor_tse_02.png /tmp/ashs.VpRUlLoC/cor_tse_03.png /tmp/ashs.VpRUlLoC/cor_tse_04.png /tmp/ashs.VpRUlLoC/sag_mprage_00.png /tmp/ashs.VpRUlLoC/sag_mprage_01.png /tmp/ashs.VpRUlLoC/sag_temp_00.png /tmp/ashs.VpRUlLoC/sag_temp_01.png /tmp/ashs.VpRUlLoC/sag_tse_00.png /tmp/ashs.VpRUlLoC/sag_tse_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_mprage_00.png /tmp/ashs.VpRUlLoC/cor_mprage_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_mprage_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_mprage_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_mprage_01.png /tmp/ashs.VpRUlLoC/cor_mprage_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_mprage_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_mprage_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_mprage_02.png /tmp/ashs.VpRUlLoC/cor_mprage_02.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_mprage_02.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_mprage_02.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_mprage_03.png /tmp/ashs.VpRUlLoC/cor_mprage_03.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_mprage_03.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_mprage_03.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_mprage_04.png /tmp/ashs.VpRUlLoC/cor_mprage_04.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_mprage_04.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_mprage_04.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_temp_00.png /tmp/ashs.VpRUlLoC/cor_temp_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_temp_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_temp_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_temp_01.png /tmp/ashs.VpRUlLoC/cor_temp_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_temp_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_temp_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_temp_02.png /tmp/ashs.VpRUlLoC/cor_temp_02.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_temp_02.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_temp_02.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_temp_03.png /tmp/ashs.VpRUlLoC/cor_temp_03.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_temp_03.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_temp_03.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_temp_04.png /tmp/ashs.VpRUlLoC/cor_temp_04.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_temp_04.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_temp_04.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_tse_00.png /tmp/ashs.VpRUlLoC/cor_tse_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_tse_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_tse_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_tse_01.png /tmp/ashs.VpRUlLoC/cor_tse_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_tse_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_tse_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_tse_02.png /tmp/ashs.VpRUlLoC/cor_tse_02.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_tse_02.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_tse_02.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_tse_03.png /tmp/ashs.VpRUlLoC/cor_tse_03.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_tse_03.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_tse_03.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_tse_04.png /tmp/ashs.VpRUlLoC/cor_tse_04.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_tse_04.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_tse_04.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_mprage_00.png /tmp/ashs.VpRUlLoC/sag_mprage_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_mprage_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_mprage_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_mprage_01.png /tmp/ashs.VpRUlLoC/sag_mprage_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_mprage_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_mprage_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_temp_00.png /tmp/ashs.VpRUlLoC/sag_temp_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_temp_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_temp_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_temp_01.png /tmp/ashs.VpRUlLoC/sag_temp_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_temp_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_temp_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_tse_00.png /tmp/ashs.VpRUlLoC/sag_tse_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_tse_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_tse_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_tse_01.png /tmp/ashs.VpRUlLoC/sag_tse_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_tse_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_tse_01.png
++ montage -tile 7x -geometry +5+5 -mode Concatenate /tmp/ashs.VpRUlLoC/cor_temp_00.png /tmp/ashs.VpRUlLoC/cor_temp_01.png /tmp/ashs.VpRUlLoC/cor_temp_02.png /tmp/ashs.VpRUlLoC/cor_temp_03.png /tmp/ashs.VpRUlLoC/cor_temp_04.png /tmp/ashs.VpRUlLoC/sag_temp_00.png /tmp/ashs.VpRUlLoC/sag_temp_01.png /tmp/ashs.VpRUlLoC/cor_mprage_00.png /tmp/ashs.VpRUlLoC/cor_mprage_01.png /tmp/ashs.VpRUlLoC/cor_mprage_02.png /tmp/ashs.VpRUlLoC/cor_mprage_03.png /tmp/ashs.VpRUlLoC/cor_mprage_04.png /tmp/ashs.VpRUlLoC/sag_mprage_00.png /tmp/ashs.VpRUlLoC/sag_mprage_01.png /tmp/ashs.VpRUlLoC/cor_tse_00.png /tmp/ashs.VpRUlLoC/cor_tse_01.png /tmp/ashs.VpRUlLoC/cor_tse_02.png /tmp/ashs.VpRUlLoC/cor_tse_03.png /tmp/ashs.VpRUlLoC/cor_tse_04.png /tmp/ashs.VpRUlLoC/sag_tse_00.png /tmp/ashs.VpRUlLoC/sag_tse_01.png /tmp/ashs.VpRUlLoC/qa.png
++ convert /tmp/ashs.VpRUlLoC/qa.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/qa.png
++ mkdir -p /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/qa
++ montage -label 26001:left /tmp/ashs.VpRUlLoC/qa.png -geometry +1+1 /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/qa/qa_registration_left_qa.png
++ bash /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_default_hook.sh attach 'Registration QC (left)' /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/qa/qa_registration_left_qa.png
++ for side in '$SIDES'
++ ashs_registration_qc right
++ local side=right
++ ashs_subj_side_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001 right
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ side=right
++ ashs_subj_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz
++ SUBJ_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz
++ SUBJ_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_right.nii.gz
++ SUBJ_SIDE_MPRAGE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_right.nii.gz
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP_REGMASK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_right_regmask.nii.gz
++ SUBJ_SIDE_TSE_NATCHUNK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_native_chunk_right.nii.gz
++ local TEMP=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_mprage_right.nii.gz
++ local TEMPSEG=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_meanseg_right.nii.gz
++ local SLICESPEC=16.6%:16.6%:88%
++ c3d -type uchar -int 0 /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_meanseg_right.nii.gz -swapdim RSA -trim 40x40x0mm -resample-iso min -as SS -int 1 /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_mprage_right.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 16.6%:16.6%:88% -oo /tmp/ashs.VpRUlLoC/cor_temp_%02d.png -clear -push SS /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_right.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 16.6%:16.6%:88% -oo /tmp/ashs.VpRUlLoC/cor_mprage_%02d.png -clear -push SS /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_right.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 16.6%:16.6%:88% -oo /tmp/ashs.VpRUlLoC/cor_tse_%02d.png
++ SLICESPEC=33%:33%:84%
++ c3d -type uchar -int 0 /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_meanseg_right.nii.gz -swapdim ASR -trim 40x40x0mm -resample-iso min -as SS -int 1 /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/template/refspace_mprage_right.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 33%:33%:84% -oo /tmp/ashs.VpRUlLoC/sag_temp_%02d.png -clear -push SS /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_right.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 33%:33%:84% -oo /tmp/ashs.VpRUlLoC/sag_mprage_%02d.png -clear -push SS /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_right.nii.gz -stretch 0 99.5% 0 255 -clip 0 255 -reslice-identity -slice z 33%:33%:84% -oo /tmp/ashs.VpRUlLoC/sag_tse_%02d.png
+++ ls /tmp/ashs.VpRUlLoC/cor_mprage_00.png /tmp/ashs.VpRUlLoC/cor_mprage_01.png /tmp/ashs.VpRUlLoC/cor_mprage_02.png /tmp/ashs.VpRUlLoC/cor_mprage_03.png /tmp/ashs.VpRUlLoC/cor_mprage_04.png /tmp/ashs.VpRUlLoC/cor_temp_00.png /tmp/ashs.VpRUlLoC/cor_temp_01.png /tmp/ashs.VpRUlLoC/cor_temp_02.png /tmp/ashs.VpRUlLoC/cor_temp_03.png /tmp/ashs.VpRUlLoC/cor_temp_04.png /tmp/ashs.VpRUlLoC/cor_tse_00.png /tmp/ashs.VpRUlLoC/cor_tse_01.png /tmp/ashs.VpRUlLoC/cor_tse_02.png /tmp/ashs.VpRUlLoC/cor_tse_03.png /tmp/ashs.VpRUlLoC/cor_tse_04.png /tmp/ashs.VpRUlLoC/sag_mprage_00.png /tmp/ashs.VpRUlLoC/sag_mprage_01.png /tmp/ashs.VpRUlLoC/sag_temp_00.png /tmp/ashs.VpRUlLoC/sag_temp_01.png /tmp/ashs.VpRUlLoC/sag_tse_00.png /tmp/ashs.VpRUlLoC/sag_tse_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_mprage_00.png /tmp/ashs.VpRUlLoC/cor_mprage_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_mprage_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_mprage_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_mprage_01.png /tmp/ashs.VpRUlLoC/cor_mprage_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_mprage_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_mprage_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_mprage_02.png /tmp/ashs.VpRUlLoC/cor_mprage_02.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_mprage_02.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_mprage_02.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_mprage_03.png /tmp/ashs.VpRUlLoC/cor_mprage_03.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_mprage_03.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_mprage_03.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_mprage_04.png /tmp/ashs.VpRUlLoC/cor_mprage_04.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_mprage_04.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_mprage_04.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_temp_00.png /tmp/ashs.VpRUlLoC/cor_temp_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_temp_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_temp_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_temp_01.png /tmp/ashs.VpRUlLoC/cor_temp_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_temp_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_temp_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_temp_02.png /tmp/ashs.VpRUlLoC/cor_temp_02.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_temp_02.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_temp_02.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_temp_03.png /tmp/ashs.VpRUlLoC/cor_temp_03.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_temp_03.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_temp_03.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_temp_04.png /tmp/ashs.VpRUlLoC/cor_temp_04.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_temp_04.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_temp_04.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_tse_00.png /tmp/ashs.VpRUlLoC/cor_tse_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_tse_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_tse_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_tse_01.png /tmp/ashs.VpRUlLoC/cor_tse_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_tse_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_tse_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_tse_02.png /tmp/ashs.VpRUlLoC/cor_tse_02.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_tse_02.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_tse_02.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_tse_03.png /tmp/ashs.VpRUlLoC/cor_tse_03.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_tse_03.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_tse_03.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/cor_tse_04.png /tmp/ashs.VpRUlLoC/cor_tse_04.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/cor_tse_04.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/cor_tse_04.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_mprage_00.png /tmp/ashs.VpRUlLoC/sag_mprage_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_mprage_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_mprage_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_mprage_01.png /tmp/ashs.VpRUlLoC/sag_mprage_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_mprage_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_mprage_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_temp_00.png /tmp/ashs.VpRUlLoC/sag_temp_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_temp_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_temp_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_temp_01.png /tmp/ashs.VpRUlLoC/sag_temp_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_temp_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_temp_01.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_tse_00.png /tmp/ashs.VpRUlLoC/sag_tse_00.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_tse_00.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_tse_00.png
++ for MYPNG in '$(ls $TMPDIR/cor_*.png $TMPDIR/sag_*.png)'
++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh -o 0.25 -s 25 -c white /tmp/ashs.VpRUlLoC/sag_tse_01.png /tmp/ashs.VpRUlLoC/sag_tse_01.png
+Missing parameters. 
+Usage: 
+bc inputImageFile inputSegmentationFile side PathToTrainingFiles outputSegmentationFile
+side = 0 (left side) or else (right side)
+/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_grid.sh: line 158: [: -eq: unary operator expected
++ convert /tmp/ashs.VpRUlLoC/sag_tse_01.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/sag_tse_01.png
++ montage -tile 7x -geometry +5+5 -mode Concatenate /tmp/ashs.VpRUlLoC/cor_temp_00.png /tmp/ashs.VpRUlLoC/cor_temp_01.png /tmp/ashs.VpRUlLoC/cor_temp_02.png /tmp/ashs.VpRUlLoC/cor_temp_03.png /tmp/ashs.VpRUlLoC/cor_temp_04.png /tmp/ashs.VpRUlLoC/sag_temp_00.png /tmp/ashs.VpRUlLoC/sag_temp_01.png /tmp/ashs.VpRUlLoC/cor_mprage_00.png /tmp/ashs.VpRUlLoC/cor_mprage_01.png /tmp/ashs.VpRUlLoC/cor_mprage_02.png /tmp/ashs.VpRUlLoC/cor_mprage_03.png /tmp/ashs.VpRUlLoC/cor_mprage_04.png /tmp/ashs.VpRUlLoC/sag_mprage_00.png /tmp/ashs.VpRUlLoC/sag_mprage_01.png /tmp/ashs.VpRUlLoC/cor_tse_00.png /tmp/ashs.VpRUlLoC/cor_tse_01.png /tmp/ashs.VpRUlLoC/cor_tse_02.png /tmp/ashs.VpRUlLoC/cor_tse_03.png /tmp/ashs.VpRUlLoC/cor_tse_04.png /tmp/ashs.VpRUlLoC/sag_tse_00.png /tmp/ashs.VpRUlLoC/sag_tse_01.png /tmp/ashs.VpRUlLoC/qa.png
++ convert /tmp/ashs.VpRUlLoC/qa.png -bordercolor Black -border 1x1 /tmp/ashs.VpRUlLoC/qa.png
++ mkdir -p /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/qa
++ montage -label 26001:right /tmp/ashs.VpRUlLoC/qa.png -geometry +1+1 /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/qa/qa_registration_right_qa.png
++ bash /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_default_hook.sh attach 'Registration QC (right)' /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/qa/qa_registration_right_qa.png
++ job_progress 1
++ local PROGRESS=1
++ local CHUNK_PSTART CHUNK_PEND
++ read CHUNK_PSTART CHUNK_PEND
+++ echo 1
+++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
++ echo 'CHUNK 0.0 0.2'
+CHUNK 0.0 0.2
++ echo 1
++ awk -v bs=0.0 -v be=0.2 -v j=0 -v n=1 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
+0 0.2
++ echo 'CHUNK 0 0.2 1'
+CHUNK 0 0.2 1
++ bash /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_default_hook.sh progress 0 0.2 1
+====================================
+         PROGRESS: 0               
+====================================
+[0;36m
+-------------------  INFO  ---------------------
+Validity check at end of stage 1 successful
+------------------------------------------------
+[0m
+****************************************
+Starting stage 2: Initial ROI registration to all T2 atlases
+****************************************
+[0;36m
+-------------------  INFO  ---------------------
+Started stage 2: Initial ROI registration to 
+all T2 atlases
+------------------------------------------------
+[0m
++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_lib.sh
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_version.sh
++++ ASHS_VERSION_MAJOR=1
++++ ASHS_VERSION_MINOR=0
++++ ASHS_VERSION_PATCH=0
++++ ASHS_VERSION_NOTE=
++++ ASHS_VERSION_FULL=1.0.0
++++ ASHS_VERSION_DATE=20170915
++++ ASHS_OLDEST_COMPAT_DATE=20170810
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_common_master.sh
++++ [[ ! -n /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta ]]
+++++ uname
++++ ARCH=Linux
++++ ASHS_BIN=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin
++++ ASHS_ANTS=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042
++++ ASHS_FSL=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl
+++++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/c3d -version
+++++ grep Version
++++ [[ ! -n Version 1.1.0 ]]
++++ PATH=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/usr/local/software/itksnap/3.8.0/bin:/usr/local/software/fsl/6.0.4/bin:/usr/local/software/spack/spack-git/opt/spack/linux-rhel7-broadwell/gcc-5/ants-2.3.4-lj6vm7ccmij4yywr4ynrttcko4aoflqt/bin:/usr/local/software/master/cmake/latest/bin:/usr/local/Cluster-Apps/intel/2020.2/debugger_2020/gdb/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin/intel64:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin:/usr/local/software/global/bin:/opt/singularity/bin:/usr/local/Cluster-Apps/singularity/images:/usr/local/Cluster-Apps/vgl/2.5.1/64/bin:/usr/local/Cluster-Apps/turbovnc/2.0.1/bin:/usr/local/software/slurm/current/sbin:/usr/local/software/slurm/current/bin:/usr/lib64/qt-3.3/bin:/home/ccn30/perl5/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/dell/srvadmin/bin:/home/ccn30/bin:.
+++ [[ ! /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/ashs_user_config.sh == /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_config.sh ]]
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_config.sh
++++ ASHS_SIDES='left right'
++++ ASHS_MPRAGE_DENOISE=0
++++ ASHS_MPRAGE_SRUPSAMPLE=0
++++ ASHS_MPRAGE_SRUPSAMPLE_FACTOR='1 1 1'
++++ ASHS_TSE_DENOISE=0
++++ ASHS_TSE_SRUPSAMPLE=0
++++ ASHS_TSE_SRUPSAMPLE_FACTOR='1 1 1'
++++ ASHS_TSE_ISO_FACTOR=100x100x500%
++++ ASHS_TSE_ISO_REGION_CROP='20x20x0% 60x60x100%'
++++ ASHS_FLIRT_MULTIMODAL_OPTS='-searchrx -5 5 -searchry -5 5 -searchrz -5 5 -coarsesearch 3 -finesearch 1 -searchcost normmi'
++++ ASHS_TEMPLATE_ANTS_ITER=60x20x0
++++ ASHS_TEMPLATE_STAGES_TOTAL=4
++++ ASHS_TEMPLATE_STAGES_RIGID=1
++++ ASHS_TEMPLATE_ROI_DILATION=10x10x10vox
++++ ASHS_TEMPLATE_ROI_MARGIN=4x4x4vox
++++ ASHS_TEMPLATE_TARGET_RESOLUTION=0.4688x0.4688x0.4688mm
++++ ASHS_TEMPLATE_MASK_THRESHOLD=0.5
++++ ASHS_TARGET_ATLAS_FOR_HISTMATCH=0
++++ ASHS_HISTMATCH_CONTROLS=5
++++ ASHS_PAIRWISE_AFFINE_ITER=60x60x0
++++ ASHS_PAIRWISE_DEFORM_ITER=60x60x20
++++ ASHS_PAIRWISE_CROSSCORR_RADIUS=2x2x2
++++ ASHS_PAIRWISE_ANTS_STEPSIZE=0.25
++++ ASHS_PAIRWISE_ANTS_T1_WEIGHT=0
++++ ASHS_LABEL_SMOOTHING=0.24mm
++++ ASHS_MALF_STRATEGY='Joint[0.1,2]'
++++ ASHS_MALF_PATCHRAD=3x3x1
++++ ASHS_MALF_SEARCHRAD=3x3x1
++++ ASHS_MALF_PADDING=0x0x2
++++ ASHS_EC_DILATION=1
++++ ASHS_EC_TARGET_SAMPLES=100000
++++ ASHS_EC_DRYRUN_SAMPLE_RATE=0.01
++++ ASHS_EC_ITERATIONS=500
++++ ASHS_EC_PATCH_RADIUS=6x6x0
++++ ASHS_EC_MINIMUM_SAMPLES=100
++++ ASHS_EC_QSUB_EXTRA_OPTIONS=
+++ source /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/ashs_user_config.sh
++++ ASHS_TSE_ISO_FACTOR=100x100x252%
++++ ASHS_TEMPLATE_ANTS_ITER=60x60x20x0
++++ ASHS_TSE_ISO_REGION_CROP='10x10x0% 80x80x100%'
+++ [[ -n '' ]]
++ side=left
++ tid=000
++ cat
+Script: ashs_multiatlas_qsub.sh
+Root: /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta
+Working directory: /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
+PATH: /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/usr/local/software/itksnap/3.8.0/bin:/usr/local/software/fsl/6.0.4/bin:/usr/local/software/spack/spack-git/opt/spack/linux-rhel7-broadwell/gcc-5/ants-2.3.4-lj6vm7ccmij4yywr4ynrttcko4aoflqt/bin:/usr/local/software/master/cmake/latest/bin:/usr/local/Cluster-Apps/intel/2020.2/debugger_2020/gdb/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin/intel64:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin:/usr/local/software/global/bin:/opt/singularity/bin:/usr/local/Cluster-Apps/singularity/images:/usr/local/Cluster-Apps/vgl/2.5.1/64/bin:/usr/local/Cluster-Apps/turbovnc/2.0.1/bin:/usr/local/software/slurm/current/sbin:/usr/local/software/slurm/current/bin:/usr/lib64/qt-3.3/bin:/home/ccn30/perl5/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/dell/srvadmin/bin:/home/ccn30/bin:.
+Subjob ID: 
+Side: left
+Training subject: 000
++ WREG=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000
++ mkdir -p /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000
++ cd /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ ashs_ants_pairwise /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001 left 000 /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000 0
++ local SUBJDIR=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local side=left
++ local tid=000
++ local WREG=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000
++ local ATLAS_MODE=0
++ ashs_subj_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz
++ SUBJ_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz
++ SUBJ_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ ashs_subj_side_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001 left
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ side=left
++ ashs_subj_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz
++ SUBJ_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz
++ SUBJ_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz
++ SUBJ_SIDE_MPRAGE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_left.nii.gz
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP_REGMASK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left_regmask.nii.gz
++ SUBJ_SIDE_TSE_NATCHUNK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_native_chunk_left.nii.gz
++ ashs_atlas_side_vars 000 left 0
++ local tid=000
++ local side=left
++ local ATLAS_MODE=0
++ local TDIR
++ ashs_atlas_vars 000 0
++ set -e
++ local tid=000
++ local ATLAS_MODE=0
++ local TDIR
++ [[ 0 -eq 1 ]]
++ TDIR=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000
++ ATLAS_AFF_T2T1_MAT=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/flirt_t2_to_t1.mat
++ ATLAS_AFF_T1TEMP_MAT=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/t1_to_template_affine.mat
++ ATLAS_MPRAGE=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/mprage.nii.gz
++ ATLAS_TSE=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/tse.nii.gz
++ ATLAS_AFF_T2T1_INVMAT=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/flirt_t2_to_t1.mat,-1
++ ATLAS_AFF_T1TEMP_INVMAT=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/t1_to_template_affine.mat,-1
++ [[ 0 -eq 0 ]]
++ TDIR=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000
++ ATLAS_T1TEMP_WARP=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/greedy_t1_to_template_left_warp.nii.gz
++ ATLAS_T1TEMP_TRAN='/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/greedy_t1_to_template_left_warp.nii.gz /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/t1_to_template_affine.mat'
++ ATLAS_T1TEMP_INVTRAN='/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/t1_to_template_affine.mat,-1 '
++ ATLAS_T2TEMP_TRAN='/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/greedy_t1_to_template_left_warp.nii.gz /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/t1_to_template_affine.mat /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/flirt_t2_to_t1.mat,-1'
++ ATLAS_T2TEMP_INVTRAN='/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/flirt_t2_to_t1.mat /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/t1_to_template_affine.mat,-1 '
++ ATLAS_SIDE_TSE_TO_CHUNKTEMP=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/tse_to_chunktemp_left.nii.gz
++ ATLAS_SIDE_MPRAGE_TO_CHUNKTEMP=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/mprage_to_chunktemp_left.nii.gz
++ ATLAS_SIDE_TSE_TO_CHUNKTEMP_REGMASK=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/tse_to_chunktemp_left_regmask.nii.gz
++ ATLAS_SIDE_TSE_NATCHUNK=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/tse_native_chunk_left.nii.gz
++ ATLAS_SEG=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/tse_native_chunk_left_seg.nii.gz
++ local ATLAS_SUBJ_AFF_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/greedy_atlas_to_subj_affine.mat
++ local ATLAS_SUBJ_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/greedy_atlas_to_subj_warp.nii.gz
++ [[ -n 1 ]]
++ [[ -f /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/greedy_atlas_to_subj_affine.mat ]]
+++ echo 0
+++ awk '{print ($1 == 0.0)}'
++ [[ 1 -eq 1 ]]
++ local 'METRIC_TERM=-i /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/tse_to_chunktemp_left.nii.gz'
++ greedy -d 3 -a -gm /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left_regmask.nii.gz -i /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/tse_to_chunktemp_left.nii.gz -o /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/greedy_atlas_to_subj_affine.mat -m NCC 2x2x2 -n 60x60x0 -float
+Executing with the default number of threads: 56
+Noise on image 0 component 0: fixed = 0.6, moving = 0.544
+*************************************************
+  N=12   NUMBER OF CORRECTIONS=5       INITIAL VALUES F= -3686.69   GNORM= 504.924
+*************************************************
+   I   NFN    FUNC        GNORM       STEPLENGTH
+   1    3     -3773.281     224.452       0.001
+   2    4     -3794.734     137.604       1.000
+   3    5     -3815.162     165.431       1.000
+   4    6     -3836.244     165.223       1.000
+   5    7     -3959.813     184.355       1.000
+   6    9     -3979.163     135.248       0.323
+   7   10     -3990.884     124.974       1.000
+   8   11     -4000.123      93.391       1.000
+   9   12     -4016.215      73.610       1.000
+  10   14     -4018.055      47.141       0.288
+  11   15     -4019.253      31.865       1.000
+  12   16     -4020.366      36.801       1.000
+  13   18     -4022.563      49.476       0.353
+  14   19     -4023.777      19.016       1.000
+  15   20     -4024.312      17.804       1.000
+  16   21     -4024.576      18.094       1.000
+  17   23     -4024.883      21.517       0.273
+  18   24     -4025.252      16.798       1.000
+  19   25     -4025.530      22.166       1.000
+  20   26     -4025.806      15.379       1.000
+  21   27     -4025.908      11.727       1.000
+  22   28     -4026.161      11.037       1.000
+  23   30     -4026.411      23.579       0.326
+  24   31     -4026.706      12.210       1.000
+  25   32     -4027.011      24.729       1.000
+  26   33     -4027.061      19.155       1.000
+  27   34     -4027.196      10.707       1.000
+  28   36     -4027.217       7.863       0.273
+  29   37     -4027.247       6.172       1.000
+  30   38     -4027.265       4.264       1.000
+  31   39     -4027.276       3.679       1.000
+  32   40     -4027.305       4.009       1.000
+  33   41     -4027.314       4.176       1.000
+  34   43     -4027.323       1.487       0.166
+  35   44     -4027.329       1.654       1.000
+  36   45     -4027.330       3.401       1.000
+  37   47     -4027.336       2.393       0.324
+Final RAS Transform: 
+1.00106 -0.0431491 -0.0640701 -0.45616 
+-0.0301287 1.04212 0.0984596 1.28948 
+0.0231909 -0.0051735 1.05526 1.34797 
+0 0 0 1 
+
+*************************************************
+  N=12   NUMBER OF CORRECTIONS=5       INITIAL VALUES F= -3085.68   GNORM= 175.239
+*************************************************
+   I   NFN    FUNC        GNORM       STEPLENGTH
+   1    3     -3105.052     110.336       0.001
+   2    4     -3110.142      48.830       1.000
+   3    5     -3111.691      39.617       1.000
+   4    6     -3118.824      63.145       1.000
+   5    7     -3127.325      84.569       1.000
+   6    8     -3144.235      90.459       1.000
+   7   10     -3146.657      92.715       0.161
+   8   11     -3150.585      42.485       1.000
+   9   12     -3152.570      29.804       1.000
+  10   13     -3154.549      40.606       1.000
+  11   14     -3158.825      48.981       1.000
+  12   15     -3161.038      39.787       1.000
+  13   16     -3162.202      18.677       1.000
+  14   17     -3162.906      20.035       1.000
+  15   18     -3164.357      33.630       1.000
+  16   19     -3165.791      38.357       1.000
+  17   20     -3166.562      32.829       1.000
+  18   21     -3166.850      27.436       1.000
+  19   22     -3167.046      14.925       1.000
+  20   23     -3167.323      14.232       1.000
+  21   24     -3167.735      18.697       1.000
+  22   25     -3168.561      16.516       1.000
+  23   27     -3168.841      14.740       0.348
+  24   28     -3169.091       8.534       1.000
+  25   29     -3169.357       8.654       1.000
+  26   30     -3169.430       9.937       1.000
+  27   31     -3169.586       7.059       1.000
+  28   32     -3169.715       7.526       1.000
+  29   33     -3169.785       5.099       1.000
+  30   34     -3169.827       3.809       1.000
+  31   35     -3169.956      13.463       1.000
+  32   36     -3170.133      27.508       1.000
+  33   37     -3170.336      13.466       1.000
+  34   38     -3170.482       6.345       1.000
+  35   39     -3170.532       7.605       1.000
+  36   40     -3170.605       7.431       1.000
+  37   42     -3170.649      10.197       0.389
+  38   43     -3170.813       7.620       1.000
+  39   44     -3170.914      16.032       1.000
+  40   45     -3171.008       8.007       1.000
+  41   46     -3171.055       7.382       1.000
+  42   48     -3171.066       3.153       0.130
+  43   49     -3171.101       3.043       1.000
+  44   51     -3171.154       6.876       0.397
+  45   52     -3171.231       5.611       1.000
+  46   53     -3171.287       4.818       1.000
+  47   54     -3171.335       8.834       1.000
+  48   55     -3171.399       7.547       1.000
+  49   56     -3171.439       5.534       1.000
+  50   57     -3171.467       6.192       1.000
+  51   58     -3171.484       3.934       1.000
+  52   59     -3171.521       2.619       1.000
+  53   60     -3171.539       2.595       1.000
+  54   61     -3171.547       4.068       1.000
+Final RAS Transform: 
+1.02124 -0.0259474 -0.0263404 0.490618 
+0.00388491 1.04757 0.0913338 1.52427 
+-0.00958515 -0.0121801 1.05324 0.89557 
+0 0 0 1 
+
+Final RAS Transform: 
+1.02124 -0.0259474 -0.0263404 0.490618 
+0.00388491 1.04757 0.0913338 1.52427 
+-0.00958515 -0.0121801 1.05324 0.89557 
+0 0 0 1 
+
+
+real	0m4.755s
+user	0m6.327s
+sys	0m0.716s
++ greedy -d 3 -it /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/greedy_atlas_to_subj_affine.mat -gm /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left_regmask.nii.gz -i /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/tse_to_chunktemp_left.nii.gz -o /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/greedy_atlas_to_subj_warp.nii.gz -m NCC 2x2x2 -n 60x60x20 -e 0.5 -float
+Executing with the default number of threads: 56
+Noise on image 0 component 0: fixed = 0.6, moving = 0.516392
+LEVEL 1 of 3
+  Smoothing sigmas: [3.20659, 3.18383, 3.1973], [1.30909, 1.29979, 1.30529]
+Level     0,  Iter     0:    Energy =   0.1297
+Level     0,  Iter     1:    Energy =   0.1379
+Level     0,  Iter     2:    Energy =   0.1465
+Level     0,  Iter     3:    Energy =   0.1526
+Level     0,  Iter     4:    Energy =   0.1565
+Level     0,  Iter     5:    Energy =   0.1598
+Level     0,  Iter     6:    Energy =   0.1620
+Level     0,  Iter     7:    Energy =   0.1623
+Level     0,  Iter     8:    Energy =   0.1628
+Level     0,  Iter     9:    Energy =   0.1630
+Level     0,  Iter    10:    Energy =   0.1634
+Level     0,  Iter    11:    Energy =   0.1635
+Level     0,  Iter    12:    Energy =   0.1638
+Level     0,  Iter    13:    Energy =   0.1639
+Level     0,  Iter    14:    Energy =   0.1642
+Level     0,  Iter    15:    Energy =   0.1642
+Level     0,  Iter    16:    Energy =   0.1645
+Level     0,  Iter    17:    Energy =   0.1645
+Level     0,  Iter    18:    Energy =   0.1647
+Level     0,  Iter    19:    Energy =   0.1648
+Level     0,  Iter    20:    Energy =   0.1650
+Level     0,  Iter    21:    Energy =   0.1649
+Level     0,  Iter    22:    Energy =   0.1652
+Level     0,  Iter    23:    Energy =   0.1651
+Level     0,  Iter    24:    Energy =   0.1653
+Level     0,  Iter    25:    Energy =   0.1652
+Level     0,  Iter    26:    Energy =   0.1655
+Level     0,  Iter    27:    Energy =   0.1655
+Level     0,  Iter    28:    Energy =   0.1658
+Level     0,  Iter    29:    Energy =   0.1657
+Level     0,  Iter    30:    Energy =   0.1659
+Level     0,  Iter    31:    Energy =   0.1657
+Level     0,  Iter    32:    Energy =   0.1661
+Level     0,  Iter    33:    Energy =   0.1660
+Level     0,  Iter    34:    Energy =   0.1662
+Level     0,  Iter    35:    Energy =   0.1660
+Level     0,  Iter    36:    Energy =   0.1663
+Level     0,  Iter    37:    Energy =   0.1662
+Level     0,  Iter    38:    Energy =   0.1664
+Level     0,  Iter    39:    Energy =   0.1662
+Level     0,  Iter    40:    Energy =   0.1664
+Level     0,  Iter    41:    Energy =   0.1663
+Level     0,  Iter    42:    Energy =   0.1665
+Level     0,  Iter    43:    Energy =   0.1663
+Level     0,  Iter    44:    Energy =   0.1665
+Level     0,  Iter    45:    Energy =   0.1663
+Level     0,  Iter    46:    Energy =   0.1665
+Level     0,  Iter    47:    Energy =   0.1662
+Level     0,  Iter    48:    Energy =   0.1664
+Level     0,  Iter    49:    Energy =   0.1663
+Level     0,  Iter    50:    Energy =   0.1664
+Level     0,  Iter    51:    Energy =   0.1662
+Level     0,  Iter    52:    Energy =   0.1664
+Level     0,  Iter    53:    Energy =   0.1662
+Level     0,  Iter    54:    Energy =   0.1664
+Level     0,  Iter    55:    Energy =   0.1662
+Level     0,  Iter    56:    Energy =   0.1664
+Level     0,  Iter    57:    Energy =   0.1662
+Level     0,  Iter    58:    Energy =   0.1664
+Level     0,  Iter    59:    Energy =   0.1663
+END OF LEVEL     0    DetJac Range:   0.3270  to   2.2274 
+  Avg. Gradient Time  : 0.0060s  35.18% 
+  Avg. Gaussian Time  : 0.0077s  45.35% 
+  Avg. Iteration Time : 0.0169s 
+LEVEL 2 of 3
+  Smoothing sigmas: [1.6033, 1.61984, 1.59865], [0.654543, 0.661297, 0.652646]
+Level     1,  Iter     0:    Energy =   0.1179
+Level     1,  Iter     1:    Energy =   0.1237
+Level     1,  Iter     2:    Energy =   0.1285
+Level     1,  Iter     3:    Energy =   0.1327
+Level     1,  Iter     4:    Energy =   0.1360
+Level     1,  Iter     5:    Energy =   0.1389
+Level     1,  Iter     6:    Energy =   0.1413
+Level     1,  Iter     7:    Energy =   0.1434
+Level     1,  Iter     8:    Energy =   0.1455
+Level     1,  Iter     9:    Energy =   0.1461
+Level     1,  Iter    10:    Energy =   0.1462
+Level     1,  Iter    11:    Energy =   0.1467
+Level     1,  Iter    12:    Energy =   0.1467
+Level     1,  Iter    13:    Energy =   0.1472
+Level     1,  Iter    14:    Energy =   0.1472
+Level     1,  Iter    15:    Energy =   0.1478
+Level     1,  Iter    16:    Energy =   0.1477
+Level     1,  Iter    17:    Energy =   0.1484
+Level     1,  Iter    18:    Energy =   0.1482
+Level     1,  Iter    19:    Energy =   0.1490
+Level     1,  Iter    20:    Energy =   0.1487
+Level     1,  Iter    21:    Energy =   0.1495
+Level     1,  Iter    22:    Energy =   0.1492
+Level     1,  Iter    23:    Energy =   0.1500
+Level     1,  Iter    24:    Energy =   0.1496
+Level     1,  Iter    25:    Energy =   0.1505
+Level     1,  Iter    26:    Energy =   0.1501
+Level     1,  Iter    27:    Energy =   0.1509
+Level     1,  Iter    28:    Energy =   0.1504
+Level     1,  Iter    29:    Energy =   0.1514
+Level     1,  Iter    30:    Energy =   0.1509
+Level     1,  Iter    31:    Energy =   0.1515
+Level     1,  Iter    32:    Energy =   0.1509
+Level     1,  Iter    33:    Energy =   0.1520
+Level     1,  Iter    34:    Energy =   0.1515
+Level     1,  Iter    35:    Energy =   0.1519
+Level     1,  Iter    36:    Energy =   0.1513
+Level     1,  Iter    37:    Energy =   0.1520
+Level     1,  Iter    38:    Energy =   0.1515
+Level     1,  Iter    39:    Energy =   0.1519
+Level     1,  Iter    40:    Energy =   0.1513
+Level     1,  Iter    41:    Energy =   0.1521
+Level     1,  Iter    42:    Energy =   0.1516
+Level     1,  Iter    43:    Energy =   0.1521
+Level     1,  Iter    44:    Energy =   0.1516
+Level     1,  Iter    45:    Energy =   0.1524
+Level     1,  Iter    46:    Energy =   0.1518
+Level     1,  Iter    47:    Energy =   0.1526
+Level     1,  Iter    48:    Energy =   0.1520
+Level     1,  Iter    49:    Energy =   0.1527
+Level     1,  Iter    50:    Energy =   0.1522
+Level     1,  Iter    51:    Energy =   0.1527
+Level     1,  Iter    52:    Energy =   0.1521
+Level     1,  Iter    53:    Energy =   0.1528
+Level     1,  Iter    54:    Energy =   0.1524
+Level     1,  Iter    55:    Energy =   0.1528
+Level     1,  Iter    56:    Energy =   0.1523
+Level     1,  Iter    57:    Energy =   0.1530
+Level     1,  Iter    58:    Energy =   0.1525
+Level     1,  Iter    59:    Energy =   0.1530
+END OF LEVEL     1    DetJac Range:   0.1401  to   3.1092 
+  Avg. Gradient Time  : 0.0263s  35.10% 
+  Avg. Gaussian Time  : 0.0358s  47.83% 
+  Avg. Iteration Time : 0.0749s 
+LEVEL 3 of 3
+  Smoothing sigmas: [0.807767, 0.80992, 0.807085], [0.329769, 0.330649, 0.329491]
+Level     2,  Iter     0:    Energy =   0.0799
+Level     2,  Iter     1:    Energy =   0.0840
+Level     2,  Iter     2:    Energy =   0.0871
+Level     2,  Iter     3:    Energy =   0.0895
+Level     2,  Iter     4:    Energy =   0.0916
+Level     2,  Iter     5:    Energy =   0.0932
+Level     2,  Iter     6:    Energy =   0.0948
+Level     2,  Iter     7:    Energy =   0.0964
+Level     2,  Iter     8:    Energy =   0.0984
+Level     2,  Iter     9:    Energy =   0.0999
+Level     2,  Iter    10:    Energy =   0.1004
+Level     2,  Iter    11:    Energy =   0.1007
+Level     2,  Iter    12:    Energy =   0.1011
+Level     2,  Iter    13:    Energy =   0.1017
+Level     2,  Iter    14:    Energy =   0.1026
+Level     2,  Iter    15:    Energy =   0.1026
+Level     2,  Iter    16:    Energy =   0.1032
+Level     2,  Iter    17:    Energy =   0.1031
+Level     2,  Iter    18:    Energy =   0.1037
+Level     2,  Iter    19:    Energy =   0.1035
+END OF LEVEL     2    DetJac Range:   0.0855  to   5.1245 
+  Avg. Gradient Time  : 0.1220s  33.86% 
+  Avg. Gaussian Time  : 0.1877s  52.09% 
+  Avg. Iteration Time : 0.3604s 
+
+real	0m15.081s
+user	0m20.435s
+sys	0m2.691s
++ local ATLAS_RESLICE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/atlas_to_native.nii.gz
++ local ATLAS_RESLICE_SEG=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/atlas_to_native_segvote.nii.gz
++ [[ -n '' ]]
++ greedy -d 3 -rf /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_native_chunk_left.nii.gz -rm /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/tse.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/atlas_to_native.nii.gz -ri LABEL 0.24mm -rm /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/tse_native_chunk_left_seg.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/atlas_to_native_segvote.nii.gz -r /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/greedy_atlas_to_subj_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/greedy_atlas_to_subj_affine.mat /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/greedy_t1_to_template_left_warp.nii.gz /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/t1_to_template_affine.mat /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train000/flirt_t2_to_t1.mat,-1
+Executing with the default number of threads: 56
++ [[ -n 1 ]]
++ rm -rf /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/greedy_atlas_to_subj_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train000/greedy_atlas_to_subj_affine.mat
++ job_progress 1
++ local PROGRESS=1
++ local CHUNK_PSTART CHUNK_PEND
++ read CHUNK_PSTART CHUNK_PEND
+++ echo 1
+++ awk -v bs=0.2 -v be=0.5 -v j=0 -v n=70 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
++ echo 'CHUNK 0.2 0.5'
+CHUNK 0.2 0.5
++ echo 1
++ awk -v bs=0.2 -v be=0.5 -v j=0 -v n=70 '{print bs + ((be - bs) * j) / n, bs + ((be - bs) * (j+1)) / n}'
+0.2 0.204286
++ echo 'CHUNK 0.2 0.204286 1'
+CHUNK 0.2 0.204286 1
++ bash /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_default_hook.sh progress 0.2 0.204286 1
+====================================
+         PROGRESS: 0.2               
+====================================
++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_lib.sh
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_version.sh
++++ ASHS_VERSION_MAJOR=1
++++ ASHS_VERSION_MINOR=0
++++ ASHS_VERSION_PATCH=0
++++ ASHS_VERSION_NOTE=
++++ ASHS_VERSION_FULL=1.0.0
++++ ASHS_VERSION_DATE=20170915
++++ ASHS_OLDEST_COMPAT_DATE=20170810
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_common_master.sh
++++ [[ ! -n /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta ]]
+++++ uname
++++ ARCH=Linux
++++ ASHS_BIN=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin
++++ ASHS_ANTS=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042
++++ ASHS_FSL=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl
+++++ /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/c3d -version
+++++ grep Version
++++ [[ ! -n Version 1.1.0 ]]
++++ PATH=/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/usr/local/software/itksnap/3.8.0/bin:/usr/local/software/fsl/6.0.4/bin:/usr/local/software/spack/spack-git/opt/spack/linux-rhel7-broadwell/gcc-5/ants-2.3.4-lj6vm7ccmij4yywr4ynrttcko4aoflqt/bin:/usr/local/software/master/cmake/latest/bin:/usr/local/Cluster-Apps/intel/2020.2/debugger_2020/gdb/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin/intel64:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin:/usr/local/software/global/bin:/opt/singularity/bin:/usr/local/Cluster-Apps/singularity/images:/usr/local/Cluster-Apps/vgl/2.5.1/64/bin:/usr/local/Cluster-Apps/turbovnc/2.0.1/bin:/usr/local/software/slurm/current/sbin:/usr/local/software/slurm/current/bin:/usr/lib64/qt-3.3/bin:/home/ccn30/perl5/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/dell/srvadmin/bin:/home/ccn30/bin:.
+++ [[ ! /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/ashs_user_config.sh == /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_config.sh ]]
+++ source /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/bin/ashs_config.sh
++++ ASHS_SIDES='left right'
++++ ASHS_MPRAGE_DENOISE=0
++++ ASHS_MPRAGE_SRUPSAMPLE=0
++++ ASHS_MPRAGE_SRUPSAMPLE_FACTOR='1 1 1'
++++ ASHS_TSE_DENOISE=0
++++ ASHS_TSE_SRUPSAMPLE=0
++++ ASHS_TSE_SRUPSAMPLE_FACTOR='1 1 1'
++++ ASHS_TSE_ISO_FACTOR=100x100x500%
++++ ASHS_TSE_ISO_REGION_CROP='20x20x0% 60x60x100%'
++++ ASHS_FLIRT_MULTIMODAL_OPTS='-searchrx -5 5 -searchry -5 5 -searchrz -5 5 -coarsesearch 3 -finesearch 1 -searchcost normmi'
++++ ASHS_TEMPLATE_ANTS_ITER=60x20x0
++++ ASHS_TEMPLATE_STAGES_TOTAL=4
++++ ASHS_TEMPLATE_STAGES_RIGID=1
++++ ASHS_TEMPLATE_ROI_DILATION=10x10x10vox
++++ ASHS_TEMPLATE_ROI_MARGIN=4x4x4vox
++++ ASHS_TEMPLATE_TARGET_RESOLUTION=0.4688x0.4688x0.4688mm
++++ ASHS_TEMPLATE_MASK_THRESHOLD=0.5
++++ ASHS_TARGET_ATLAS_FOR_HISTMATCH=0
++++ ASHS_HISTMATCH_CONTROLS=5
++++ ASHS_PAIRWISE_AFFINE_ITER=60x60x0
++++ ASHS_PAIRWISE_DEFORM_ITER=60x60x20
++++ ASHS_PAIRWISE_CROSSCORR_RADIUS=2x2x2
++++ ASHS_PAIRWISE_ANTS_STEPSIZE=0.25
++++ ASHS_PAIRWISE_ANTS_T1_WEIGHT=0
++++ ASHS_LABEL_SMOOTHING=0.24mm
++++ ASHS_MALF_STRATEGY='Joint[0.1,2]'
++++ ASHS_MALF_PATCHRAD=3x3x1
++++ ASHS_MALF_SEARCHRAD=3x3x1
++++ ASHS_MALF_PADDING=0x0x2
++++ ASHS_EC_DILATION=1
++++ ASHS_EC_TARGET_SAMPLES=100000
++++ ASHS_EC_DRYRUN_SAMPLE_RATE=0.01
++++ ASHS_EC_ITERATIONS=500
++++ ASHS_EC_PATCH_RADIUS=6x6x0
++++ ASHS_EC_MINIMUM_SAMPLES=100
++++ ASHS_EC_QSUB_EXTRA_OPTIONS=
+++ source /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/ashs_user_config.sh
++++ ASHS_TSE_ISO_FACTOR=100x100x252%
++++ ASHS_TEMPLATE_ANTS_ITER=60x60x20x0
++++ ASHS_TSE_ISO_REGION_CROP='10x10x0% 80x80x100%'
+++ [[ -n '' ]]
++ side=left
++ tid=001
++ cat
+Script: ashs_multiatlas_qsub.sh
+Root: /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta
+Working directory: /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
+PATH: /home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/ants_1042:/home/ccn30/privatemodules/ASHS/ashs-fastashs_beta/ext/Linux/bin/fsl:/usr/local/software/itksnap/3.8.0/bin:/usr/local/software/fsl/6.0.4/bin:/usr/local/software/spack/spack-git/opt/spack/linux-rhel7-broadwell/gcc-5/ants-2.3.4-lj6vm7ccmij4yywr4ynrttcko4aoflqt/bin:/usr/local/software/master/cmake/latest/bin:/usr/local/Cluster-Apps/intel/2020.2/debugger_2020/gdb/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin/intel64:/usr/local/Cluster-Apps/intel/2020.2/compilers_and_libraries_2020.2.254/linux/bin:/usr/local/software/global/bin:/opt/singularity/bin:/usr/local/Cluster-Apps/singularity/images:/usr/local/Cluster-Apps/vgl/2.5.1/64/bin:/usr/local/Cluster-Apps/turbovnc/2.0.1/bin:/usr/local/software/slurm/current/sbin:/usr/local/software/slurm/current/bin:/usr/lib64/qt-3.3/bin:/home/ccn30/perl5/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/dell/srvadmin/bin:/home/ccn30/bin:.
+Subjob ID: 
+Side: left
+Training subject: 001
++ WREG=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train001
++ mkdir -p /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train001
++ cd /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ ashs_ants_pairwise /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001 left 001 /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train001 0
++ local SUBJDIR=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local side=left
++ local tid=001
++ local WREG=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train001
++ local ATLAS_MODE=0
++ ashs_subj_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz
++ SUBJ_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz
++ SUBJ_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ ashs_subj_side_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001 left
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ side=left
++ ashs_subj_vars /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WORK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001
++ local WANT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp
++ local WAFF=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template
++ local WFSL=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1
++ SUBJ_RAWMPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_raw.nii.gz
++ SUBJ_RAWTSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_raw.nii.gz
++ SUBJ_MPRAGE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage.nii.gz
++ SUBJ_TSE=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse.nii.gz
++ SUBJ_AFF_T2T1_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat
++ SUBJ_AFF_T2T1_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat
++ SUBJ_AFF_T1TEMP_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat
++ SUBJ_AFF_T1TEMP_INVMAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat
++ SUBJ_T1TEMP_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz
++ SUBJ_T1TEMP_INVWARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz
++ SUBJ_T1TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat'
++ SUBJ_T1TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_T2TEMP_TRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_warp.nii.gz /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1_inv.mat'
++ SUBJ_T2TEMP_INVTRAN='/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/flirt_t2_to_t1/flirt_t2_to_t1.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/affine_t1_to_template/t1_to_template_affine_inv.mat /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/ants_t1_to_temp/greedy_t1_to_template_invwarp.nii.gz'
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz
++ SUBJ_SIDE_MPRAGE_TO_CHUNKTEMP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/mprage_to_chunktemp_left.nii.gz
++ SUBJ_SIDE_TSE_TO_CHUNKTEMP_REGMASK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left_regmask.nii.gz
++ SUBJ_SIDE_TSE_NATCHUNK=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_native_chunk_left.nii.gz
++ ashs_atlas_side_vars 001 left 0
++ local tid=001
++ local side=left
++ local ATLAS_MODE=0
++ local TDIR
++ ashs_atlas_vars 001 0
++ set -e
++ local tid=001
++ local ATLAS_MODE=0
++ local TDIR
++ [[ 0 -eq 1 ]]
++ TDIR=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001
++ ATLAS_AFF_T2T1_MAT=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/flirt_t2_to_t1.mat
++ ATLAS_AFF_T1TEMP_MAT=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/t1_to_template_affine.mat
++ ATLAS_MPRAGE=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/mprage.nii.gz
++ ATLAS_TSE=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/tse.nii.gz
++ ATLAS_AFF_T2T1_INVMAT=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/flirt_t2_to_t1.mat,-1
++ ATLAS_AFF_T1TEMP_INVMAT=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/t1_to_template_affine.mat,-1
++ [[ 0 -eq 0 ]]
++ TDIR=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001
++ ATLAS_T1TEMP_WARP=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/greedy_t1_to_template_left_warp.nii.gz
++ ATLAS_T1TEMP_TRAN='/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/greedy_t1_to_template_left_warp.nii.gz /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/t1_to_template_affine.mat'
++ ATLAS_T1TEMP_INVTRAN='/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/t1_to_template_affine.mat,-1 '
++ ATLAS_T2TEMP_TRAN='/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/greedy_t1_to_template_left_warp.nii.gz /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/t1_to_template_affine.mat /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/flirt_t2_to_t1.mat,-1'
++ ATLAS_T2TEMP_INVTRAN='/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/flirt_t2_to_t1.mat /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/t1_to_template_affine.mat,-1 '
++ ATLAS_SIDE_TSE_TO_CHUNKTEMP=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/tse_to_chunktemp_left.nii.gz
++ ATLAS_SIDE_MPRAGE_TO_CHUNKTEMP=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/mprage_to_chunktemp_left.nii.gz
++ ATLAS_SIDE_TSE_TO_CHUNKTEMP_REGMASK=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/tse_to_chunktemp_left_regmask.nii.gz
++ ATLAS_SIDE_TSE_NATCHUNK=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/tse_native_chunk_left.nii.gz
++ ATLAS_SEG=/rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/tse_native_chunk_left_seg.nii.gz
++ local ATLAS_SUBJ_AFF_MAT=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train001/greedy_atlas_to_subj_affine.mat
++ local ATLAS_SUBJ_WARP=/rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train001/greedy_atlas_to_subj_warp.nii.gz
++ [[ -n 1 ]]
++ [[ -f /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train001/greedy_atlas_to_subj_affine.mat ]]
+++ echo 0
+++ awk '{print ($1 == 0.0)}'
++ [[ 1 -eq 1 ]]
++ local 'METRIC_TERM=-i /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/tse_to_chunktemp_left.nii.gz'
++ greedy -d 3 -a -gm /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left_regmask.nii.gz -i /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/tse_to_chunktemp_left.nii.gz /rds/user/ccn30/hpc-work/WBIC_home/ENCRYPT/atlases/magdeburgatlas/train/train001/tse_to_chunktemp_left.nii.gz -o /rds/project/rds-URQgmO1brZ0/p00500/ENCRYPT_ASHS_T2/26001/multiatlas/tseg_left_train001/greedy_atlas_to_subj_affine.mat -m NCC 2x2x2 -n 60x60x0 -float
+Executing with the default number of threads: 56
+Noise on image 0 component 0: fixed = 0.6, moving = 0.587
+*************************************************
+  N=12   NUMBER OF CORRECTIONS=5       INITIAL VALUES F= -3855.89   GNORM= 542.199
+*************************************************
+   I   NFN    FUNC        GNORM       STEPLENGTH
+   1    3     -3977.388     198.357       0.001
+   2    4     -3992.185     174.442       1.000
+   3    6     -4046.090     139.496       5.000
+   4    7     -4162.990     137.417       1.000
+   5    8     -4196.060     205.074       1.000
+   6    9     -4215.063      73.299       1.000
+   7   10     -4218.496      47.277       1.000
+   8   11     -4219.767      42.430       1.000
+   9   12     -4220.705      34.819       1.000
+  10   13     -4224.969      47.778       1.000
+  11   14     -4226.842      50.089       1.000
+  12   15     -4227.831      30.245       1.000
+  13   16     -4227.949      17.420       1.000
+  14   17     -4228.148       8.246       1.000
+  15   19     -4228.190      12.507       0.505
+  16   20     -4228.238       6.684       1.000
+  17   21     -4228.353       9.196       1.000
+  18   22     -4228.520      14.864       1.000
+  19   23     -4228.569       4.646       1.000
+  20   24     -4228.595       9.415       1.000
+  21   26     -4228.617      15.273       0.237
+  22   28     -4228.636       9.361       0.446
+  23   29     -4228.656       6.521       1.000
+  24   30     -4228.666       3.955       1.000
+  25   31     -4228.690       3.302       1.000
+  26   32     -4228.726       6.555       1.000
+  27   33     -4228.726      12.586       1.000
+  28   34     -4228.774       7.170       1.000
+  29   35     -4228.793       6.937       1.000
+  30   37     -4228.816       6.899       0.263
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 3 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESvnl_lbfgs: Error. Netlib routine lbfgs failed.
+Final RAS Transform: 
+1.0009 -0.0318578 -0.0651579 -0.659829 
+-0.0082466 1.01495 0.0779719 1.32667 
+0.0250431 0.0119734 1.05557 1.17709 
+0 0 0 1 
+

@@ -70,13 +70,12 @@ subjects=${pathstem}/testsubjcode.txt
 myscriptdir=${pathstem}/scripts/EPIs
 prepare=${myscriptdir}/ENCRYPT_prepare.sh
 func=${myscriptdir}/ENCRYPT_preprocess_mainfunc_7T.m
-subjs_def=${myscriptdir}/ENCRYPT_subjects_parameters.m
-outDir=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500
+fmriDir=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images
 
 workdir=$myscriptdir/slurmoutputs
 
 # child script takes subjIdx e.g. 0 and indexes $subjects in childscript 
-CMD="$prepare $func $pathstem $subjects $subjIdx $subjs_def $outDir"
+CMD="$prepare $func $pathstem $subjects $subjIdx $fmriDir"
 
 ###############################################################
 ### You should not have to change anything below this line ####

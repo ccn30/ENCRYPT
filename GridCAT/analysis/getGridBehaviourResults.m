@@ -2,10 +2,10 @@
 % coco newton 10/19 modified 05/21
 
 function getGridBehaviourResults()
-addpath('/home/ccn30/Documents/MATLAB');
+addpath('/home/ccn30/rds/hpc-work/WBIC_home/Documents/MATLAB');
 
 % list subject folders from task data dir
-pathstem = '/lustre/scratch/wbic-beta/ccn30/ENCRYPT';
+pathstem = '/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT';
 allSubjGridcatData_dir = [pathstem '/task_data/gridtask'];
 subjDirList = dir(allSubjGridcatData_dir);
 runvec = {'BlockA','BlockB','BlockC'};
@@ -42,6 +42,7 @@ for subj = 1:nSubjs
         % init file reading
         resultsrawpath = [allSubjGridcatData_dir '/' subjDirList(subj).name '/' runvec{run} '/' resultsfile];
         if ~isfile(resultsrawpath)
+            disp(['Skipping ' subjDirList(subj).name '/' runvec{run}]);
             continue
         end
         

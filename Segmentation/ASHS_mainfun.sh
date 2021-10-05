@@ -36,6 +36,7 @@ DenoiseN4T2=${imageDirSubj}/T2/denoise_N4t2.nii
 MagdeburgTemplate=$MagAtlasDir/template/template.nii.gz
 MagdeburgTempBrain=$MagAtlasDir/template/template_bet.nii.gz
 
+# manually remove existing ones 
 if [ -f "${outputpath}" ]; then
 		echo "${outputpath} exists"
 	else
@@ -48,63 +49,47 @@ fi
 #------------------------------------------------------------------------#
 # changing to reorientated T1s and updated N4 T2s after poor performance first batch ASHS
 
-#######################################################
-# 1. Running for original images (whole brain T1, raw T2)
-echo "Beginning ASHS for: " $subject
-echo "INPUT:" $wholeT1 $T2
-
-#originaloutput=${outputpath}/original
-#cd $originaloutput
-
-# run ASHS
-#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${wholeT1} -f ${T2} -w ${originaloutput}
 
 #######################################################
-# 2. Running for N4 T2 (whole T1, N4 T2)
-echo "Beginning ASHS for: " $subject
-echo "INPUT:" $wholeT1 $N4T2
+# 1. Running for denoised T1 and T2 (denoise whole T1, denoise N4 T2), manual reg for T1 to template
+#echo "Beginning ASHS for: " $subject
+#echo "INPUT:" ${DenoiseWholeT1} ${DenoiseN4T2}
+#echo "Registration copied from:" ${coregDir}
 
-#N4T2output=${outputpath}/N4T2
-#cd $N4T2output
-
-# run ASHS
-#!$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $atlasdir -g ${wholeT1} -f ${N4T2} -w ${N4T2output}
-
-#######################################################
-# 3. Running for brain T1 (brain T1, N4 T2)
-echo "Beginning ASHS for: " $subject
-echo "INPUT:" $wholeT1 $N4T2
-
-#brainT1output=${outputpath}/T1BrainN4T2
-#mkdir -p $brainT1output
-#cd $brainT1output
+#denoiseoutput=${outputpath}/DenoiseWT1DenoiseT2
+#mkdir -p $denoiseoutput
+#cd $outputpath
 #mkdir affine_t1_to_template
 #cd affine_t1_to_template
 #cp ${coregDir}/t1_to_template_affineMAG.mat t1_to_template_affine.mat
 #cp ${coregDir}/t1_to_template_affine_invMAG.mat t1_to_template_affine_inv.mat
 #cp ${coregDir}/T1WholexMagdeburgTempWhole_ANTs_Warped.nii.gz t1_to_template_affine.nii.gz
-#cd ..
+#cd $workdir
 
 # run ASHS
-#$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $Magdeburgatlasdir -g ${brainT1} -f ${N4T2} -w ${brainT1output} -N
+#$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $MagAtlasDir -g ${DenoiseWholeT1} -f ${DenoiseN4T2} -w ${outputpath} -N -T
 
 #######################################################
-# 4. Running for denoised T1 and T2 (denoise whole T1, denoise N4 T2)
+# 2. Running for denoised T1 and T2 (denoise whole T1, denoise N4 T2), manual reg for T1 to template and T1 to T2
 echo "Beginning ASHS for: " $subject
 echo "INPUT:" ${DenoiseWholeT1} ${DenoiseN4T2}
 echo "Registration copied from:" ${coregDir}
 
-#denoiseoutput=${outputpath}/DenoiseWT1DenoiseT2
-#mkdir -p $denoiseoutput
 cd $outputpath
 mkdir affine_t1_to_template
 cd affine_t1_to_template
 cp ${coregDir}/t1_to_template_affineMAG.mat t1_to_template_affine.mat
 cp ${coregDir}/t1_to_template_affine_invMAG.mat t1_to_template_affine_inv.mat
 cp ${coregDir}/T1WholexMagdeburgTempWhole_ANTs_Warped.nii.gz t1_to_template_affine.nii.gz
+cd ..
+#mkdir flirt_t2_to_t1
+#cd flirt_t2_to_t1
+/home/ccn30/privatemodules/c3d/bin/c3d_affine_tool -itk $coregDir/T1xT2_ANTs0GenericAffine.mat -o $coregDir/flirt_t2_to_t1.mat
+#/home/ccn30/privatemodules/c3d/bin/c3d_affine_tool flirt_t2_to_t1.mat -inv -o flirt_t2_to_t1_inv.mat
+T1T2reg=$coregDir/flirt_t2_to_t1.mat
 cd $workdir
 
 # run ASHS
-$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $MagAtlasDir -g ${DenoiseWholeT1} -f ${DenoiseN4T2} -w ${outputpath} -N -T
+$ASHS_ROOT/bin/ashs_main.sh -I $subject -a $MagAtlasDir -g ${DenoiseWholeT1} -f ${DenoiseN4T2} -w ${outputpath} -m $T1T2reg -M -N -T
 
 

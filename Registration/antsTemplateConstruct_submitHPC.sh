@@ -12,14 +12,14 @@
 #! Name of the job:
 #SBATCH -J antsTemplate
 #! Which project should be charged:
-#SBATCH -A OBRIEN-SL3-CPU
+#SBATCH -A OBRIEN-SL2-CPU
 #! How many whole nodes should be allocated?
 #SBATCH --nodes=1
 #! How many (MPI) tasks will there be in total? (<= nodes*32)
 #! The skylake/skylake-himem nodes have 32 CPUs (cores) each.
 #SBATCH --ntasks=1
 #! How much wallclock time will be required?
-#SBATCH --time=12:00:00
+#SBATCH --time=2-0:0:0
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=FAIL
 #! Uncomment this to prevent the job from being requeued (e.g. if
@@ -27,7 +27,7 @@
 ##SBATCH --no-requeue
 
 #! For 6GB per CPU, set "-p skylake"; for 12GB per CPU, set "-p skylake-himem": 
-#SBATCH -p skylake
+#SBATCH -p skylake-long
 
 #! sbatch directives end here (put any additional directives above this line)
 
