@@ -59,8 +59,8 @@ subjIdx=$SLURM_ARRAY_TASK_ID
 
 #! Set paths
 pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
-#!subjects=${pathstem}/ENCRYPT_MasterCBcodes.txt
-subjects=${pathstem}/testsubjcode.txt
+subjects=${pathstem}/ENCRYPT_MasterCBcodes.txt
+#!subjects=${pathstem}/testsubjcode.txt
 xmlDir=${pathstem}/task_data/PIT/raw_data
 resultsDir=${pathstem}/results/PIT
 scriptDir=${pathstem}/scripts/PIT

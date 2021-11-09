@@ -156,7 +156,7 @@ for triali = 1:nTrials
     end
     
     PAerror(triali,1) = Partic_angle/Actual_angle;
-    Adifferror(triali,1) = Actual_angle - Partic_angle;
+    Adifferror(triali,1) = (Actual_angle - Partic_angle)/Actual_angle;
     
     DistIncom(triali,1) = pdist([Flag1(triali,1), Flag1(triali,2); Flag3(triali,1), Flag3(triali,2)], 'euclidean');
     
