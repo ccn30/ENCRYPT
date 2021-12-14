@@ -37,8 +37,8 @@ denoiseN4T2=${T2path}/denoise_N4t2.nii
 
 echo "Running DenoiseImage on: " ${T1} "+" ${T2}
 
-#$antsroot/DenoiseImage -d 3 -i $brainT1 -o $denoisebrainT1 -v 1
-#$antsroot/DenoiseImage -d 3 -i $T1 -o $denoiseT1 -v 1
+$antsroot/DenoiseImage -d 3 -i $brainT1 -o $denoisebrainT1 -v 1
+$antsroot/DenoiseImage -d 3 -i $T1 -o $denoiseT1 -v 1
 
 rm $denoiseT2 # delete existing outputs, run N4 and then denoise 
 $antsroot/N4BiasFieldCorrection -d 3 -i ${T2} -o ${N4T2}

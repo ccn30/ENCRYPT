@@ -27,7 +27,7 @@
 #SBATCH --mem=5980mb
 #! How many jobs to submit (starting at 0)?
 #! NOTE: This must be a range, not a single number (i.e. 0-2 = 3 jobs, but '3' would just be one job index '3')
-#SBATCH --array=0-50
+#SBATCH --array=0-3
 
 #! This is the partition name - skylake or cclake
 #SBATCH -p cclake
@@ -61,7 +61,8 @@ subjIdx=$SLURM_ARRAY_TASK_ID
 
 #! Set paths
 pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
-subjects=${pathstem}/ENCRYPT_MasterRIScodes.txt
+#subjects=${pathstem}/ENCRYPT_MasterRIScodes.txt
+subjects=${pathstem}/testsubjcode.txt
 scriptDir=${pathstem}/scripts/ImagePrep/mp2rage
 MATLABPATH=/usr/local/Cluster-Apps/matlab/R2017b
 spm_folder=/usr/local/software/spm/spm12

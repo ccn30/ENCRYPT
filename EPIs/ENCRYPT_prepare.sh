@@ -7,6 +7,8 @@
 #-nodesktop -nosplash -nodisplay -nojvm together work
 #Some Matlab functions like gzip require java so cannot
 #use -nojvm option
+
+# copy and paste sections as you need, replace 'prevstep' and 'step'
  
 date
 
@@ -19,14 +21,15 @@ fmriDir=$5
 subjs=($(<${subjects}))
 this_subj=${subjs[${subjIdx}]}
 
-prevstep=raw
+
+## CHUNK START ##
+prevStep=raw
 step=topup
 clusterid="HPC"
 
 echo "The workspace going into this is ${func} ${this_subj} ${clusterid} ${prevStep} ${Step}"
 
-
-#MATLAB CALL
+#Matlab call
 if [ "$clusterid" == "HPC" ] || [ "$clusterid" == "HPHI" ]
 then
 matlab -nodesktop -nosplash -nodisplay <<EOF
@@ -37,22 +40,22 @@ disp(['Function is ' af])
 disp(['fMRI dir is ${fmriDir}'])
 disp(['Environment is ${clusterid}'])
 disp(['Previous step is ${prevStep}'])
-disp(['This step is ${Step}'])
-dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${Step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
+disp(['This step is ${step}'])
+dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
 disp(['Submitting the following command: ' dofunc])
 eval(dofunc)
 ;exit
 EOF
 fi
-
-prevstep=topup
+## CHUNK END ##
+## CHUNK START ##
+prevStep=topup
 step=realign
 clusterid="HPC"
 
 echo "The workspace going into this is ${func} ${this_subj} ${clusterid} ${prevStep} ${Step}"
 
-
-#MATLAB CALL
+#Matlab call
 if [ "$clusterid" == "HPC" ] || [ "$clusterid" == "HPHI" ]
 then
 matlab -nodesktop -nosplash -nodisplay <<EOF
@@ -63,22 +66,22 @@ disp(['Function is ' af])
 disp(['fMRI dir is ${fmriDir}'])
 disp(['Environment is ${clusterid}'])
 disp(['Previous step is ${prevStep}'])
-disp(['This step is ${Step}'])
-dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${Step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
+disp(['This step is ${step}'])
+dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
 disp(['Submitting the following command: ' dofunc])
 eval(dofunc)
 ;exit
 EOF
 fi
-
-prevstep=topup
+## CHUNK END ##
+## CHUNK START ##
+prevStep=topup
 step=reslice
 clusterid="HPC"
 
 echo "The workspace going into this is ${func} ${this_subj} ${clusterid} ${prevStep} ${Step}"
 
-
-#MATLAB CALL
+#Matlab call
 if [ "$clusterid" == "HPC" ] || [ "$clusterid" == "HPHI" ]
 then
 matlab -nodesktop -nosplash -nodisplay <<EOF
@@ -89,22 +92,22 @@ disp(['Function is ' af])
 disp(['fMRI dir is ${fmriDir}'])
 disp(['Environment is ${clusterid}'])
 disp(['Previous step is ${prevStep}'])
-disp(['This step is ${Step}'])
-dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${Step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
+disp(['This step is ${step}'])
+dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
 disp(['Submitting the following command: ' dofunc])
 eval(dofunc)
 ;exit
 EOF
 fi
-
-prevstep=reslice
+## CHUNK END ##
+## CHUNK START ##
+prevStep=reslice
 step=smooth
 clusterid="HPC"
 
 echo "The workspace going into this is ${func} ${this_subj} ${clusterid} ${prevStep} ${Step}"
 
-
-#MATLAB CALL
+#Matlab call
 if [ "$clusterid" == "HPC" ] || [ "$clusterid" == "HPHI" ]
 then
 matlab -nodesktop -nosplash -nodisplay <<EOF
@@ -115,13 +118,67 @@ disp(['Function is ' af])
 disp(['fMRI dir is ${fmriDir}'])
 disp(['Environment is ${clusterid}'])
 disp(['Previous step is ${prevStep}'])
-disp(['This step is ${Step}'])
-dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${Step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
+disp(['This step is ${step}'])
+dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
 disp(['Submitting the following command: ' dofunc])
 eval(dofunc)
 ;exit
 EOF
 fi
+## CHUNK END ##
+## CHUNK START ##
+prevStep=reslice
+step=STC
+clusterid="HPC"
+
+echo "The workspace going into this is ${func} ${this_subj} ${clusterid} ${prevStep} ${Step}"
+
+#Matlab call
+if [ "$clusterid" == "HPC" ] || [ "$clusterid" == "HPHI" ]
+then
+matlab -nodesktop -nosplash -nodisplay <<EOF
+[pa,af,~]=fileparts('${func}');
+addpath(pa);
+disp(['Path is ' pa])
+disp(['Function is ' af])
+disp(['fMRI dir is ${fmriDir}'])
+disp(['Environment is ${clusterid}'])
+disp(['Previous step is ${prevStep}'])
+disp(['This step is ${step}'])
+dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
+disp(['Submitting the following command: ' dofunc])
+eval(dofunc)
+;exit
+EOF
+fi
+## CHUNK END ##
+## CHUNK START ##
+prevStep=STC
+step=smooth
+clusterid="HPC"
+
+echo "The workspace going into this is ${func} ${this_subj} ${clusterid} ${prevStep} ${Step}"
+
+#Matlab call
+if [ "$clusterid" == "HPC" ] || [ "$clusterid" == "HPHI" ]
+then
+matlab -nodesktop -nosplash -nodisplay <<EOF
+[pa,af,~]=fileparts('${func}');
+addpath(pa);
+disp(['Path is ' pa])
+disp(['Function is ' af])
+disp(['fMRI dir is ${fmriDir}'])
+disp(['Environment is ${clusterid}'])
+disp(['Previous step is ${prevStep}'])
+disp(['This step is ${step}'])
+dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
+disp(['Submitting the following command: ' dofunc])
+eval(dofunc)
+;exit
+EOF
+fi
+## CHUNK END ##
+
 
 #prevstep=smooth
 #step=sliceTimeCorrection
@@ -142,7 +199,7 @@ fi
 #disp(['Environment is ${clusterid}'])
 #disp(['Previous step is ${prevStep}'])
 #disp(['This step is ${Step}'])
-#dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${Step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
+#dofunc=sprintf('%s(%s,%s,%s,%s,%s)',af,'''${step}''','''${prevStep}''','''${clusterid}''','''${fmriDir}''','${this_subj}');
 #disp(['Submitting the following command: ' dofunc])
 #eval(dofunc)
 #;exit

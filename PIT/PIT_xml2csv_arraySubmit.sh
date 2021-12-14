@@ -27,10 +27,10 @@
 #SBATCH --mem=5980mb
 #! How many jobs to submit (starting at 0)?
 #! NOTE: This must be a range, not a single number (i.e. 0-2 = 3 jobs, but '3' would just be one job index '3')
-#SBATCH --array=0-11
+#SBATCH --array=0-97
 
 #! This is the partition name.
-#SBATCH -p skylake
+#SBATCH -p cclake
 
 #! mail alert at start, end and abortion of execution
 #! emails will default to going to your email address
@@ -42,7 +42,7 @@
 #! Modify the environment seen by the application. For this example we need the default modules.
 . /etc/profile.d/modules.sh                # This line enables the module command
 module purge                               # Removes all modules still loaded
-module load rhel7/default-peta4            # REQUIRED - loads the basic environment
+module load rhel7/default-ccl              # REQUIRED - loads the basic environment
 module load matlab/r2019a
 
 #! The variable $SLURM_ARRAY_TASK_ID contains the array index for each job.

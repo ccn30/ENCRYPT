@@ -5,7 +5,7 @@
 ###########################################################################################
 
 echo "Inside ImPrep_run..."
-MATLABPATH=/usr/local/Cluster-Apps/matlab/r2019a
+MATLABPATH=/usr/local/Cluster-Apps/matlab/R2019a
 
 #! initialise parent paths
 func=${1}

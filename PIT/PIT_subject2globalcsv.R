@@ -23,13 +23,16 @@ PITall <- bind_rows(filesList[1:length(filesList)])
 PITall[1:6] <- lapply(PITall[1:6],factor)
 
 # make distance error factor variable
-MeanADerror <- mean(PITall$ADerror)
-PITall <- PITall %>% mutate(Mean_AD_error=cut(ADerror,breaks = c(-Inf, MeanADerror, Inf), labels = c("Low distance error","High distance error")))
+MedianADerror <- median(PITall$ADerror)
+PITall <- PITall %>% mutate(Median_AD_error=cut(ADerror,breaks = c(-Inf, MedianADerror, Inf), labels = c("Low distance error","High distance error")))
 PITall <- PITall %>% mutate(PDist=cut(PDerror,breaks = c(-Inf,1,Inf), labels = c("Under","Over")))
 PITall <- PITall %>% mutate(PAng=cut(PAerror,breaks = c(-Inf,1,Inf), labels = c("Under","Over")))
+PITall <- PITall %>% mutate(DdifferrorAbs=abs(Ddifferror))
+PITall <- PITall %>% mutate(AngleIncomType=case_when(AngleIncom <0 ~ "Neg",AngleIncom >0 ~ "Pos"))
+PITall <- PITall %>% mutate(AngleIncomAbs = abs(AngleIncom))
 
 # save to results dir
-write.csv(PITall,paste(resultsDir,'/Global_Results/PITall_n89.csv',sep=""),row.names=FALSE)
+write.csv(PITall,paste(resultsDir,'/Global_Results/PITall_n98_OoBAAerror.csv',sep=""),row.names=FALSE)
 rm(PITall)
 
 

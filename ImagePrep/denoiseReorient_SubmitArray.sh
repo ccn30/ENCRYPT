@@ -20,14 +20,14 @@
 #! How many many cores will be allocated per task? (for single core jobs always leave this at 1)
 #SBATCH --cpus-per-task=1
 #! Estimated runtime: hh:mm:ss (job is force-stopped after if exceeded):
-#SBATCH --time=06:00:00
+#SBATCH --time=02:00:00
 #! Estimated maximum memory needed (job is force-stopped if exceeded):
 #! RAM is allocated in ~5980mb blocks, you are charged per block used,
 #! and unused fractions of blocks will not be usable by others.
 #SBATCH --mem=5980mb
 #! How many jobs to submit (starting at 0)?
 #! NOTE: This must be a range, not a single number (i.e. 0-2 = 3 jobs, but '3' would just be one job index '3')
-#SBATCH --array=0-50
+#SBATCH --array=0-3
 
 #! This is the partition name - skylake or cclake
 #SBATCH -p cclake
@@ -60,7 +60,8 @@ subjIdx=$SLURM_ARRAY_TASK_ID
 
 #! Set paths
 pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
-subjects=${pathstem}/ENCRYPT_MasterRIScodes.txt
+#subjects=${pathstem}/ENCRYPT_MasterRIScodes.txt
+subjects=${pathstem}/testsubjcode.txt
 scriptDir=${pathstem}/scripts/ImagePrep
 imageDir="/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images";
 

@@ -1,0 +1,19 @@
+Non-commercial use only - see $FSLDIR/LICENSE
+Non-commercial use only - see $FSLDIR/LICENSE
+ file /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/25739/fMRI/meantopup_Run_1.nii does not exist . 
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/Registration/ANTs_T1xEPI.sh: line 21: 13874 Segmentation fault      N4BiasFieldCorrection -d 3 -i $fixedImage -o $fixedImageN4 -b [100] -c [200x200x200x200,0] -v 1 -s 4
+ file /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_registrations/25739/N4meanEPI.nii does not exist . 
+terminate called after throwing an instance of 'itk::ExceptionObject'
+  what():  /tmp/sjr20/spack-stage-ants-2.3.4-lj6vm7ccmij4yywr4ynrttcko4aoflqt/spack-build/ITKv5/Modules/Core/Common/src/itkProcessObject.cxx:1340:
+itk::ERROR: BinaryThresholdImageFilter(0x26d13a0): Input Primary is required but not set.
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/Registration/ANTs_T1xEPI.sh: line 23: 13931 Aborted                 ThresholdImage 3 ${fixedImageN4} ${maskImage} 100 Inf
+ file /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_registrations/25739/N4meanEPI.nii does not exist . 
+Exception Object caught: 
+
+itk::ExceptionObject (0x471ad30)
+Location: "unknown" 
+File: /tmp/sjr20/spack-stage-ants-2.3.4-lj6vm7ccmij4yywr4ynrttcko4aoflqt/spack-build/staging/include/ITK-5.1/itkCenteredTransformInitializer.hxx
+Line: 40
+Description: itk::ERROR: CenteredTransformInitializer(0x4716b50): Fixed Image has not been set
+
+

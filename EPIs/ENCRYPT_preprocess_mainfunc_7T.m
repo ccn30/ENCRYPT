@@ -13,20 +13,6 @@ fprintf([ '\n\nCurrent subject = ' sprintf('%2d',subject) '...\n\n' ]);
 minvols=238;
 fMRIdir = fullfile(fmriDir,sprintf('%2d',subject), '/fMRI');
 
-
-switch prevStep
-    % Here you specify the filenames that you search for after each step.
-    case 'raw'
-        prevStep = '';
-    case 'reslice'
-        prevStep = 'r';
-    case 'topup'
-        prevStep = 'topup_';
-    case 'smooth3'
-        prevStep = 's';
-        smoothing = 3;
-end
-
 %% Set up environment
 global spmpath fsldir
 switch clusterid
@@ -104,13 +90,17 @@ switch step
         end
         
     case 'smooth'
-        % smooth the resliced topup corrected images
+        % smooth the resliced or resliced STC topup corrected images
        
         filestosmooth_list = [];
         filestosmooth = {};
         disp('running smoothing')
-        outpath = fMRIdir;
-        theseepis = {'rtopup_run1.nii','rtopup_run2.nii','rtopup_run3.nii'};
+        outpath = fMRIdir;        
+        if strcmp(prevStep,'STC')
+            theseepis = {'artopup_run1.nii','artopup_run2.nii','artopup_run3.nii'};
+        elseif strcmp(prevStep,'reslice')
+            theseepis = {'rtopup_run1.nii','rtopup_run2.nii','rtopup_run3.nii'};
+        end
         for i = 1:length(theseepis)
             for j = 1:minvols
                 filestosmooth{j,1} = [outpath '/' theseepis{i} ',' num2str(j)]; % matlab batch can't take spm select based files - need nscansx1 cell
@@ -129,8 +119,8 @@ switch step
         spm_jobman('initcfg');
         spm_jobman('run',matlabbatch);
         
- case 'sliceTimeCorrection'
-        % smooth the resliced topup corrected images
+ case 'STC'
+        % do slice time correction on images
         TR = 2.53;
         nslices = 42;
         outpath = fMRIdir;

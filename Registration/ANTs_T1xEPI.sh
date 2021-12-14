@@ -9,6 +9,7 @@ fixedImageN4=${2}
 movingImage=${3}
 maskImage=${4}
 regDir=${5}
+outputPrefix=${6}
 
 echo " 	Fixed image ${fixedImageN4}"
 echo " 	Moving image ${movingImage}"
@@ -22,7 +23,6 @@ N4BiasFieldCorrection -d 3 -i $fixedImage -o $fixedImageN4 -b [100] -c [200x200x
 ThresholdImage 3 ${fixedImageN4} ${maskImage} 100 Inf
 
 # Register T1 to EPI slab with mask
-outputPrefix=${regDir}/T1xepiSlab
 
 antsRegistration --verbose 1 \
                  --dimensionality 3 \

@@ -19,7 +19,7 @@
 #! The skylake/skylake-himem nodes have 32 CPUs (cores) each.
 #SBATCH --ntasks=1
 #! How much wallclock time will be required?
-#SBATCH --time=2-0:0:0
+#SBATCH --time=12:00:00
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=FAIL
 #! Uncomment this to prevent the job from being requeued (e.g. if
@@ -27,7 +27,7 @@
 ##SBATCH --no-requeue
 
 #! For 6GB per CPU, set "-p skylake"; for 12GB per CPU, set "-p skylake-himem": 
-#SBATCH -p skylake-long
+#SBATCH -p cclake-himem
 
 #! sbatch directives end here (put any additional directives above this line)
 
@@ -39,6 +39,9 @@
 #! Each task is allocated 1 core by default, and each core is allocated 5980MB (skylake)
 #! and 12030MB (skylake-himem). If this is insufficient, also specify
 #! --cpus-per-task and/or --mem (the latter specifies MB per node).
+
+
+#SBATCH --mem=40000
 
 #! Number of nodes and tasks per node allocated by SLURM (do not change):
 numnodes=$SLURM_JOB_NUM_NODES
@@ -52,7 +55,7 @@ mpi_tasks_per_node=$(echo "$SLURM_TASKS_PER_NODE" | sed -e  's/^\([0-9][0-9]*\).
 #! (note that SLURM reproduces the environment at submission irrespective of ~/.bashrc):
 . /etc/profile.d/modules.sh                # Leave this line (enables the module command)
 module purge                               # Removes all modules still loaded
-module load rhel7/default-peta4            # REQUIRED - loads the basic environment
+module load rhel7/default-ccl            # REQUIRED - loads the basic environment
 module load ants-2.3.4-gcc-5-lj6vm7c
 
 
@@ -61,20 +64,24 @@ module load ants-2.3.4-gcc-5-lj6vm7c
 pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
 mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 scriptdir=${pathstem}/scripts/Registration
-templatedir=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_template
+templateDir=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_template
 
-script=${scriptdir}/antsTemplateConstruct.sh
-workdir=${scriptdir}/slurmoutputs
+script=/usr/local/software/spack/spack-git/opt/spack/linux-rhel7-broadwell/gcc-5/ants-2.3.4-lj6vm7ccmij4yywr4ynrttcko4aoflqt/bin/antsMultivariateTemplateConstruction2.sh
+workdir=${templateDir}
 
-application="${script} ${templatedir}"
+groupTempDir=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_template
+groupTemp=$groupTempDir/ENCRYPT_ants55template.nii.gz
+MaassTempDir=/home/ccn30/rds/hpc-work/WBIC_home/ENCRYPT/atlases/templates/ECtemplatemasks2015
+MaassTemp=$MaassTempDir/Study_template_wholeBrain.nii
+
+#application="${script} -d 3 -c 5 -r 1 -u 08:00:00 -o ants55 *.nii"
+
+application="antsRegistrationSyN.sh -d 3 -f $MaassTemp -m $groupTemp -o $templateDir/ENCRYPT_ants55templatexMaassTemplate_"
 
 CMD="${application}"
 
 #! Run options for the application:
 options=""
-
-#! Work directory (i.e. where the job will run):
-workdir=$scriptdir/slurmoutputs
 
 #! Are you using OpenMP (NB this is unrelated to OpenMPI)? If so increase this
 #! safe value to no more than 32:

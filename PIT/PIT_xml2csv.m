@@ -120,6 +120,7 @@ disp('Trial Information Extracted...')
 ADerror = zeros(nTrials,1); % Calculate distance (aka vector magnitude) between triggered position->flag 1 using pdist function
 PDerror = zeros(nTrials,1); % Calculate ratio of linear distances between triggered position->flag1 and flag3->flag1 (participant and actual distances respectively)
 AAerror = zeros(nTrials,1); % Calculate angle (degrees) between participant and actual trajctories (aka vectors) from flag3 using atan2d and abs to make negative angles positive (see below)
+OoB_AAerror = zeros(nTrials,1); % Calculate angle between trajectory to OOB and actual trajectory from flag 3
 PAerror = zeros(nTrials,1); % Calculate ratio of angles between participant and actual trajectories from an artifical 'north pole' vector (originating Flag3, ending due north consistently at y=2)
 Ddifferror = zeros(nTrials,1); % Calculate difference between particiapnt and true distance walked
 Adifferror = zeros(nTrials,1); % Calculate difference between participant and true angled turned
@@ -127,6 +128,7 @@ DistIncom = zeros(nTrials,1); % Calculate size of triangle (flag 3 to 1 incoming
 DistOut = zeros(nTrials,1); % Calculate distance of triangle (flag 1 to 3 outgoing path)
 TimeIncom = zeros(nTrials,1); % Calculate time taken to walk flag 3 to 1
 TimeOut = zeros(nTrials,1); % Calculate time taken to walk flag 1 to 3
+AngleIncom = zeros(nTrials,1); % Calculate size of angle flag 3 to 1 per trial
 
 anglebetween = @(va,vb) atan2d(va(:,1) .* vb(:,2) - va(:,2) .*vb (:,1), va(:,1) .*vb (:,1) + va(:,2) .* vb(:,2)); % anonymous function to calculate angles (atan2d calculates counterclockwise 0-180 degree angle between vectors (if over 180, will be negative and below 180 - use abs to make positive))
 
@@ -141,7 +143,13 @@ for triali = 1:nTrials
     
     Return_vec = [(Trig(triali,1)-Flag3(triali,1)),(Trig(triali,2)-Flag3(triali,2))];      % [(x2-x1),(y2-y1)] = x y components of vector from flag3 to triggered pos
     TrueReturn_vec = [(Flag1(triali,1)-Flag3(triali,1)), (Flag1(triali,2)-Flag3(triali,2))];   % same as above but from flag3 to flag1
+    OoBReturn_vec = [(OoBPos(triali,1)-Flag3(triali,1)),(OoBPos(triali,2)-Flag3(triali,2))]; % as above but flag 3 to OOB location
     AAerror(triali,1) = abs(anglebetween(Return_vec,TrueReturn_vec));
+    if OoB(triali,1) == 1
+        OoB_AAerror(triali,1) = abs(anglebetween(OoBReturn_vec,TrueReturn_vec));
+    else
+        OoB_AAerror(triali,1) = abs(anglebetween(Return_vec,TrueReturn_vec));
+    end
     
     F2toF3_vec = [(Flag3(triali,1)-Flag2(triali,1)), (Flag3(triali,2)-Flag2(triali,2))];
     Partic_angle = anglebetween(F2toF3_vec,Return_vec);
@@ -159,6 +167,7 @@ for triali = 1:nTrials
     Adifferror(triali,1) = Actual_angle - Partic_angle;
     
     DistIncom(triali,1) = pdist([Flag1(triali,1), Flag1(triali,2); Flag3(triali,1), Flag3(triali,2)], 'euclidean');
+    AngleIncom(triali,1) = Actual_angle;
     
     DistOut(triali,1) = pdist([Flag2(triali,1), Flag2(triali,2); Flag3(triali,1), Flag3(triali,2)], 'euclidean') + ...
         pdist([Flag1(triali,1), Flag1(triali,2); Flag2(triali,1), Flag2(triali,2)], 'euclidean');
@@ -180,7 +189,7 @@ disp('Errors and metrics Calculated...')
 
 TInfo = table(Code, Block, TrialNo, Type, Env, OoB, OoBPos, Flag1, ...
     Flag2, Flag3, Trig, ADerror, PDerror, AAerror, PAerror, Ddifferror, Adifferror, ...
-    DistIncom, DistOut, TimeIncom, TimeOut);
+    OoB_AAerror, AngleIncom, DistIncom, DistOut, TimeIncom, TimeOut);
 
 writetable(TInfo,[resultsDir '/PIT_RawResults_' CBcode '.csv']);
 disp(' ');
