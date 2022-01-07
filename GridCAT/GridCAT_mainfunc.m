@@ -7,6 +7,9 @@
 function GridCAT_mainfunc(subject,fmriDir,taskDir,regDir,outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
 
 outpathstem = ['/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/gridCAT/' subject '/' outfilename];
+addpath('/home/ccn30/rds/hpc-work/WBIC_home/GridCAT');
+addpath('/usr/local/software/spm/spm12');
+addpath('/home/ccn30/rds/hpc-work/WBIC_home/Documents/MATLAB/Add-Ons/Collections/Circular Statistics Toolbox (Directional Statistics)/code');
 
 % remove existing SPM.mat
 if exist(outpathstem,'dir') ~= 0
@@ -42,18 +45,18 @@ for run = 1:length(blocks)
 %    system(cmd);
     
     theseepis = ['artopup_run' num2str(run) '.nii'];
-    path = [fmriDir '/' subject '/'];
+    for i = 1:nScans
+        cfg.rawData.run(run).functionalScans{i,1} = spm_select('ExtFPList',fmriDir,['^' theseepis],i);
+    end
     
-    cfg.rawData.run(run).functionalScans = spm_select('ExtFPList',path,['^' theseepis],1:nScans);
-
     % specify event-table (_nr_ for no rotation events version)
-    cfg.rawData.run(run).eventTable_file = [taskDir '/' subject '/' blocks{run} '/eventTable_nr_movemenEventData.txt'] ;
+    cfg.rawData.run(run).eventTable_file = [taskDir '/' blocks{run} '/eventTable_nr_movemenEventData.txt'] ;
     
     % specify regressors file - need to combine rp.txt with phys regressors
     if strcmp(nuisance_flag,'phys') == 1
         cfg.rawData.run(run).additionalRegressors_file = [];
     elseif strcmp(nuisance_flag,'move') == 1
-        cfg.rawData.run(run).additionalRegressors_file = [fmriDir '/' subject '/rp_topup_run' num2str(run) '.txt'];
+        cfg.rawData.run(run).additionalRegressors_file = [fmriDir '/rp_topup_run' num2str(run) '.txt'];
     end
     
 end
@@ -160,23 +163,23 @@ if strcmp(warp_flag, 'main')
     if strcmp(ROI_flag, 'both')
 %       cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[]};
     elseif strcmp(ROI_flag, 'pmRightMaass')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_right_HybridMaass_EPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_right_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmLeftMaass')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_left_HybridMaass_EPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_left_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmRightDTI')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_right_HybridDTI_EPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_right_HybridDTI_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmLeftDTI')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_left_HybridDTI_EPI.nii']};    
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_left_HybridDTI_EPI.nii']};    
     end
 elseif strcmp(warp_flag,'control')
     if strcmp(ROI_flag,'HCtailR')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/ASHS_right_HCtail_EPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/ASHS_right_HCtail_EPI.nii']};
     elseif strcmp(ROI_flag,'HCtailL')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/ASHS_left_HCtail_EPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/ASHS_left_HCtail_EPI.nii']};
     elseif strcmp(ROI_flag,'alRightMaass')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_right_HybridMaass_EPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/alEC_right_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag,'alLeftMaass')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_left_HybridMaass_EPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/alEC_left_HybridMaass_EPI.nii']};
     end
 end
 
@@ -212,23 +215,23 @@ if strcmp(warp_flag, 'main')
     if strcmp(ROI_flag, 'both')
 %       ROI_masks = {[]};
     elseif strcmp(ROI_flag, 'pmRightMaass')
-        ROI_masks = {[regDir '/' subject '/pmEC_right_HybridMaass_EPI.nii']};
+        ROI_masks = {[regDir '/pmEC_right_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmLeftMaass')
-        ROI_masks = {[regDir '/' subject '/pmEC_left_HybridMaass_EPI.nii']};
+        ROI_masks = {[regDir '/pmEC_left_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmRightDTI')
-        ROI_masks = {[regDir '/' subject '/pmEC_right_HybridDTI_EPI.nii']};
+        ROI_masks = {[regDir '/pmEC_right_HybridDTI_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmLeftDTI')
-        ROI_masks = {[regDir '/' subject '/pmEC_left_HybridDTI_EPI.nii']};    
+        ROI_masks = {[regDir '/pmEC_left_HybridDTI_EPI.nii']};    
     end
 elseif strcmp(warp_flag,'control')
     if strcmp(ROI_flag,'HCtailR')
-        ROI_masks = {[regDir '/' subject '/ASHS_right_HCtail_EPI.nii']};
+        ROI_masks = {[regDir '/ASHS_right_HCtail_EPI.nii']};
     elseif strcmp(ROI_flag,'HCtailL')
-        ROI_masks = {[regDir '/' subject '/ASHS_left_HCtail_EPI.nii']};
+        ROI_masks = {[regDir '/ASHS_left_HCtail_EPI.nii']};
     elseif strcmp(ROI_flag,'alRightMaass')
-        ROI_masks = {[regDir '/' subject '/alEC_right_HybridMaass_EPI.nii']};
+        ROI_masks = {[regDir '/alEC_right_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag,'alLeftMaass')
-        ROI_masks = {[regDir '/' subject '/alEC_left_HybridMaass_EPI.nii']};
+        ROI_masks = {[regDir '/alEC_left_HybridMaass_EPI.nii']};
     end
 end
 

@@ -45,7 +45,7 @@
 module purge                               # Removes all modules still loaded
 module load rhel7/default-ccl            # REQUIRED - loads the basic environment /default-peta4 or default-ccl
 module unload matlab
-module load matlab/matlab20197b
+module load matlab/r2017b
 
 #! The variable $SLURM_ARRAY_TASK_ID contains the array index for each job.
 #! In this example, each job will be passed its index, so each output file will contain a different value
@@ -66,8 +66,8 @@ pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
 rdspathstem=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500
 scriptDir=${pathstem}/scripts/GridCAT
 taskDir=${pathstem}/task_data/gridtask
-fmriDir==${rdspathstem}/ENCRYPT_images/$subject/fMRI
-maskDir=${rdspathstem}/ENCRYPT_MTLmasks/$subject
+fmriDir=${rdspathstem}/ENCRYPT_images
+maskDir=${rdspathstem}/ENCRYPT_MTLmasks
 
 #! set files
 data2table=${scriptDir}/GCAP_logfile2eventTable.m
@@ -75,8 +75,8 @@ prepare=${scriptDir}/gridcatprepare.sh
 mainfunc=${scriptDir}/GridCAT_mainfunc.m
 
 #! set subjects
-#mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
-mysubjs=${pathstem}/testsubjcode.txt
+mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+#mysubjs=${pathstem}/testsubjcode.txt
 
 #! Work directory (i.e. where the job will run):
 workdir=$scriptdir/slurmoutputs

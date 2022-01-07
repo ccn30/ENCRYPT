@@ -3,11 +3,11 @@
 # change paths to spm and gridcat below
 
 data2table=${1}
-taskDir=${2}
+taskDirstem=${2}
 subjects=${3}
 mainfunc=${4}
-fmriDir=${5}
-regDir=${6} # is mask dir
+fmriDirstem=${5}
+regDirstem=${6} # is mask dir
 subjIdx=${7}
 
 mysubjs=($(<${subjects}))
@@ -17,9 +17,15 @@ echo "******** starting $subject ********"
 
 echo 'You are inside gridcatprepare'
 
-cd ${regDir}/${subject}	
-gunzip *
-cd ${scriptDir}/slurmoutputs
+cwd=$(pwd)
+#cd ${regDir}/${subject}	
+#gunzip *
+#cd ${cwd}
+
+# make paths subject specific
+fmriDir=${fmriDirstem}/$subject/fMRI
+regDir=${regDirstem}/$subject
+taskDir=${taskDirstem}/$subject
 
 # call matlab
 MATLABPATH=/usr/local/Cluster-Apps/matlab/R2017b
