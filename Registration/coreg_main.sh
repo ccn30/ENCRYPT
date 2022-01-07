@@ -68,6 +68,18 @@ GroupTempxMaassTempInvWarp=${groupTempDir}/ENCRYPT_ants55templatexMaassTemplateQ
 GroupTempxDTITempAffine=${groupTempDir}/ENCRYPT_ants55templatexDTITemplateQ_0GenericAffine.mat
 GroupTempxDTITempInvWarp=${groupTempDir}/ENCRYPT_ants55templatexDTITemplateQ_1InverseWarp.nii.gz
 
+# T2 ROI Masks
+#right
+ASHS_T2_R=${maskDir}/"$subject"_right_lfseg_corr_usegray_noCysts_clean.nii.gz
+HybridMaass_T2_R=${maskDir}/combinedEC_right_HybridMaass_T2.nii.gz
+HybridDTI_T2_R=${maskDir}/pmEC_right_HybridDTI_T2.nii.gz
+#left
+ASHS_T2_L=${maskDir}/"$subject"_left_lfseg_corr_usegray_noCysts_clean.nii.gz
+HybridMaass_T2_L=${maskDir}/combinedEC_left_HybridMaass_T2.nii.gz
+HybridDTI_T2_L=${maskDir}/pmEC_left_HybridDTI_T2.nii.gz
+
+
+
 ## Make dirs
 if [ -f "${maskDir}" ]; then
 	echo "${maskDir} exists"
@@ -113,14 +125,16 @@ cd ${maskDir}
 ### T1 to T2 ####
 #################
 
-#antsRegistrationSyNQuick.sh -d 3 -f ${N4T2} -m ${wholeT1} -o T1xT2_ANTs -t a
+#cd ${regDir}
+
+#antsRegistrationSyNQuick.sh -d 3 -f ${DenoiseWholeT1} -m ${DenoiseN4T2} o T1xT2_ANTs -t a
 
 #antsApplyTransforms -d 3 \
 #			-i ${N4T2} \
 #			-r ${wholeT1} \
 #			-o T2xT1Warped_affine.nii.gz \
 #			-n Linear \
-#			-t [T1xT2_ANTs0GenericAffine.mat,1] \
+#			-t [T1xT2initial.txt,1] \
 #			-v
 
 
@@ -146,48 +160,50 @@ movingImage=$brainT1
 ############################
 
 # combined EC L+R registration Maass mask to T2
+# use manual .txt file for 25869
+#T1xT2Affine=${regDir}/T1xT2_ITK.txt
 
 # outputs
 MaassLeftEC_combined_warped=$maskDir/combinedEC_left_Maass_T2.nii.gz
 MaassRightEC_combined_warped=$maskDir/combinedEC_right_Maass_T2.nii.gz
 MaassTempxT2=$regDir/MaassTempxT2_Warped.nii.gz
 		#left
-		antsApplyTransforms -d 3 \
-				-i ${Maass_combinedEC_left} \
-				-r ${N4T2} \
-				-o ${MaassLeftEC_combined_warped} \
-				-n GenericLabel \
-				-t ${T1xT2Affine} \
-				-t [${T1xGroupTempAffine},1] \
-				-t ${T1xGroupTempInvWarp} \
-				-t [$GroupTempxMaassTempAffine,1] \
-				-t $GroupTempxMaassTempInvWarp \
-				-v 1 
-		#right
-		antsApplyTransforms -d 3 \
-				-i ${Maass_combinedEC_right} \
-				-r ${N4T2} \
-				-o ${MaassRightEC_combined_warped} \
-				-n GenericLabel \
-				-t ${T1xT2Affine} \
-				-t [${T1xGroupTempAffine},1] \
-				-t ${T1xGroupTempInvWarp} \
-				-t [$GroupTempxMaassTempAffine,1] \
-				-t $GroupTempxMaassTempInvWarp \
-				-v 1 
+#		antsApplyTransforms -d 3 \
+#				-i ${Maass_combinedEC_left} \
+#				-r ${N4T2} \
+#				-o ${MaassLeftEC_combined_warped} \
+#				-n GenericLabel \
+#				-t ${T1xT2Affine} \
+#				-t [${T1xGroupTempAffine},1] \
+#				-t ${T1xGroupTempInvWarp} \
+#				-t [$GroupTempxMaassTempAffine,1] \
+#				-t $GroupTempxMaassTempInvWarp \
+#				-v 1 
+#		#right
+#		antsApplyTransforms -d 3 \
+#				-i ${Maass_combinedEC_right} \
+#				-r ${N4T2} \
+#				-o ${MaassRightEC_combined_warped} \
+#				-n GenericLabel \
+#				-t ${T1xT2Affine} \
+#				-t [${T1xGroupTempAffine},1] \
+#				-t ${T1xGroupTempInvWarp} \
+#				-t [$GroupTempxMaassTempAffine,1] \
+#				-t $GroupTempxMaassTempInvWarp \
+#				-v 1 
 
 # test warp Maass study template brain to T2
-		antsApplyTransforms -d 3 \
-				-i ${MaassTemp} \
-				-r ${N4T2} \
-				-o ${MaassTempxT2} \
-				-n Linear \
-				-t ${T1xT2Affine} \
-				-t [${T1xGroupTempAffine},1] \
-				-t ${T1xGroupTempInvWarp} \
-				-t [$GroupTempxMaassTempAffine,1] \
-				-t $GroupTempxMaassTempInvWarp \
-				-v 1 
+#		antsApplyTransforms -d 3 \
+#				-i ${MaassTemp} \
+#				-r ${N4T2} \
+#				-o ${MaassTempxT2} \
+#				-n Linear \
+#				-t ${T1xT2Affine} \
+#				-t [${T1xGroupTempAffine},1] \
+#				-t ${T1xGroupTempInvWarp} \
+#				-t [$GroupTempxMaassTempAffine,1] \
+#				-t $GroupTempxMaassTempInvWarp \
+#				-v 1 
 
 ##########################
 ### DTI EC masks to T2 ###
@@ -201,42 +217,135 @@ DTIalEC_combinedSide_warped=$maskDir/combined_alEC_DTI_T2.nii.gz
 DTITempxT2=$regDir/DTITempxT2_Warped.nii.gz
 		
 		#pmEC
-		antsApplyTransforms -d 3 \
-				-i ${DTI_pmEC} \
-				-r ${N4T2} \
-				-o ${DTIpmEC_combinedSide_warped} \
-				-n GenericLabel \
-				-t ${T1xT2Affine} \
-				-t [${T1xGroupTempAffine},1] \
-				-t ${T1xGroupTempInvWarp} \
-				-t [$GroupTempxDTITempAffine,1] \
-				-t $GroupTempxDTITempInvWarp \
-				-v 1 
+#		antsApplyTransforms -d 3 \
+#				-i ${DTI_pmEC} \
+#				-r ${N4T2} \
+#				-o ${DTIpmEC_combinedSide_warped} \
+#				-n GenericLabel \
+#				-t ${T1xT2Affine} \
+#				-t [${T1xGroupTempAffine},1] \
+#				-t ${T1xGroupTempInvWarp} \
+#				-t [$GroupTempxDTITempAffine,1] \
+#				-t $GroupTempxDTITempInvWarp \
+#				-v 1 
 		#alEC
-		antsApplyTransforms -d 3 \
-				-i ${DTI_alEC} \
-				-r ${N4T2} \
-				-o ${DTIalEC_combinedSide_warped} \
-				-n GenericLabel \
-				-t ${T1xT2Affine} \
-				-t [${T1xGroupTempAffine},1] \
-				-t ${T1xGroupTempInvWarp} \
-				-t [$GroupTempxDTITempAffine,1] \
-				-t $GroupTempxDTITempInvWarp \
-				-v 1 
+#		antsApplyTransforms -d 3 \
+#				-i ${DTI_alEC} \
+#				-r ${N4T2} \
+#				-o ${DTIalEC_combinedSide_warped} \
+#				-n GenericLabel \
+#				-t ${T1xT2Affine} \
+#				-t [${T1xGroupTempAffine},1] \
+#				-t ${T1xGroupTempInvWarp} \
+#				-t [$GroupTempxDTITempAffine,1] \
+#				-t $GroupTempxDTITempInvWarp \
+#				-v 1 
 
 # test warp DTI study template brain to T2
-		antsApplyTransforms -d 3 \
-				-i ${DTITemp} \
-				-r ${N4T2} \
-				-o ${DTITempxT2} \
-				-n Linear \
-				-t ${T1xT2Affine} \
-				-t [${T1xGroupTempAffine},1] \
-				-t ${T1xGroupTempInvWarp} \
-				-t [$GroupTempxDTITempAffine,1] \
-				-t $GroupTempxDTITempInvWarp \
-				-v 1 
+#		antsApplyTransforms -d 3 \
+#				-i ${DTITemp} \
+#				-r ${N4T2} \
+#				-o ${DTITempxT2} \
+#				-n Linear \
+#				-t ${T1xT2Affine} \
+#				-t [${T1xGroupTempAffine},1] \
+#				-t ${T1xGroupTempInvWarp} \
+#				-t [$GroupTempxDTITempAffine,1] \
+#				-t $GroupTempxDTITempInvWarp \
+#				-v 1 
+
 ##############################
 ### Hybrid T2 masks to EPI ###
 ##############################
+
+
+## if using manual .txt files
+T1xT2Affine=${regDir}/T1xT2_ITK.txt
+#T1xEPIAffine=${regDir}/T1xepiSlab0GenericAffine.txt
+
+# outputs
+#right
+ASHS_epi_R=${maskDir}/"$subject"_right_lfseg_corr_usegray_noCysts_clean_EPI.nii.gz
+ASHS_HCtail_R=${maskDir}/ASHS_right_HCtail_EPI.nii.gz
+HybridMaass_epi_R=${maskDir}/combinedEC_right_HybridMaass_EPI.nii.gz
+HybridMaassPM_epi_R=${maskDir}/pmEC_right_HybridMaass_EPI.nii.gz
+HybridMaassAL_epi_R=${maskDir}/alEC_right_HybridMaass_EPI.nii.gz
+HybridDTI_epi_R=${maskDir}/pmEC_right_HybridDTI_EPI.nii.gz
+#left
+ASHS_epi_L=${maskDir}/"$subject"_left_lfseg_corr_usegray_noCysts_clean_EPI.nii.gz
+ASHS_HCtail_L=${maskDir}/ASHS_left_HCtail_EPI.nii.gz
+HybridMaass_epi_L=${maskDir}/combinedEC_left_HybridMaass_EPI.nii.gz
+HybridMaassPM_epi_L=${maskDir}/pmEC_left_HybridMaass_EPI.nii.gz
+HybridMaassAL_epi_L=${maskDir}/alEC_left_HybridMaass_EPI.nii.gz
+HybridDTI_epi_L=${maskDir}/pmEC_left_HybridDTI_EPI.nii.gz
+
+## warp ASHS T2 to EPI
+# right
+		antsApplyTransforms -d 3 \
+				-i ${ASHS_T2_R} \
+				-r ${N4meanRun1} \
+				-o ${ASHS_epi_R}  \
+				-n GenericLabel \
+				-t ${T1xEPIAffine} \
+				-t [${T1xT2Affine},1] \
+				-v 1 
+# left
+		antsApplyTransforms -d 3 \
+				-i ${ASHS_T2_L} \
+				-r ${N4meanRun1} \
+				-o ${ASHS_epi_L}  \
+				-n GenericLabel \
+				-t ${T1xEPIAffine} \
+				-t [${T1xT2Affine},1] \
+				-v 1 
+## warp Hybrid Maass to EPI
+# right
+		antsApplyTransforms -d 3 \
+				-i ${HybridMaass_T2_R} \
+				-r ${N4meanRun1} \
+				-o ${HybridMaass_epi_R}  \
+				-n GenericLabel \
+				-t ${T1xEPIAffine} \
+				-t [${T1xT2Affine},1] \
+				-v 1 
+# left
+		antsApplyTransforms -d 3 \
+				-i ${HybridMaass_T2_L} \
+				-r ${N4meanRun1} \
+				-o ${HybridMaass_epi_L}  \
+				-n GenericLabel \
+				-t ${T1xEPIAffine} \
+				-t [${T1xT2Affine},1] \
+				-v 1 
+## warp Hybrid DTI to EPI
+# right
+		antsApplyTransforms -d 3 \
+				-i ${HybridDTI_T2_R} \
+				-r ${N4meanRun1} \
+				-o ${HybridDTI_epi_R}  \
+				-n GenericLabel \
+				-t ${T1xEPIAffine} \
+				-t [${T1xT2Affine},1] \
+				-v 1 
+# left
+		antsApplyTransforms -d 3 \
+				-i ${HybridDTI_T2_L} \
+				-r ${N4meanRun1} \
+				-o ${HybridDTI_epi_L}  \
+				-n GenericLabel \
+				-t ${T1xEPIAffine} \
+				-t [${T1xT2Affine},1] \
+				-v 1 
+
+########################
+### Label extraction ###
+########################
+
+# extract pm and alEC from Hybrid Maass and tail from ASHS
+fslmaths ${HybridMaass_epi_R} -thr 16.5 -uthr 17.5 -bin ${HybridMaassPM_epi_R} -odt char
+fslmaths ${HybridMaass_epi_R} -thr 17.5 -uthr 18.5 -bin ${HybridMaassAL_epi_R} -odt char
+fslmaths ${ASHS_epi_R} -thr 4.5 -uthr 5.5 -bin ${ASHS_HCtail_R} -odt char
+
+fslmaths ${HybridMaass_epi_L} -thr 16.5 -uthr 17.5 -bin ${HybridMaassPM_epi_L} -odt char
+fslmaths ${HybridMaass_epi_L} -thr 17.5 -uthr 18.5 -bin ${HybridMaassAL_epi_L} -odt char
+fslmaths ${ASHS_epi_L} -thr 4.5 -uthr 5.5 -bin ${ASHS_HCtail_L} -odt char

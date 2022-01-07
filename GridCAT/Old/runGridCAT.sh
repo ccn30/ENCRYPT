@@ -3,10 +3,11 @@
 
 # set dirs
 pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
+rdspathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
 scriptDir=${pathstem}/scripts/GridCAT
 taskDir=${pathstem}/task_data/gridtask
-fmriDir=${pathstem}/fMRI
-regDir=${pathstem}/registrations
+fmriDir==${rdspathstem}/ENCRYPT_images/$subject/fMRI
+maskDir=${rdspathstem}/ENCRYPT_MTLmasks/$subject
 
 # set files
 data2table=${scriptDir}/GCAP_logfile2eventTable.m
@@ -18,17 +19,17 @@ mainfunc=${scriptDir}/GridCAT_mainfunc.m
 #mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 mysubjs=${pathstem}/testsubjcode.txt
 
-for subjID in `cat $mysubjs`
-do
-	subject="$(cut -d'/' -f1 <<<"$subjID")"
-	echo "**** starting $subject ****"
+#for subjID in `cat $mysubjs`
+#do
+#	subject="$(cut -d'/' -f1 <<<"$subjID")"
+#	echo "**** starting $subject ****"
 	
 	# unzip masks
-	cd ${regDir}/${subject}	
+	cd ${maskDir}/${subject}	
 	gunzip *
 	cd ${scriptDir}/slurmoutputs
 
 	# run gridCAT
-	sbatch ${submit} ${prepare} ${data2table} ${taskDir} ${subject} ${mainfunc} ${scriptDir} ${fmriDir} ${regDir}
+	sbatch ${submit} ${prepare} ${data2table} ${taskDir} ${subject} ${mainfunc} ${scriptDir} ${fmriDir} ${maskDir}
 
 done	

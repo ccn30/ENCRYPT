@@ -1,102 +1,87 @@
 #!/bin/bash
-#!
-#! Example SLURM job script for WBIC modified by ccn30 25.09.19 for ENCRYPT
-#! Last updated: Mon Nov 07 16:30:00 BST 2016
-#! By: Paul Browne (pfb29)
 
-#!#############################################################
-#!#### Modify the options in this section as appropriate ######
-#!#############################################################
+# SLURM job array submission
+# NB CALL IN TERMINAL WITH SBATCH COMMAND
 
-#! sbatch directives begin here ###############################
+#! Make sure you only have comments and #SBATCH directives between here and the end of the #SBATCH directives, or things will break
 #! Name of the job:
-#SBATCH -J gridCAT
-#! Which project should jobs run under:
-#SBATCH -A hphi
-#! How many whole nodes should be allocated?
+#SBATCH -J girdCAT
+#! Account name for group, use SL2 for paying queue:
+#SBATCH -A OBRIEN-SL3-CPU
+#! Output filename:
+#! %A means slurm job ID and %a means array index
+#SBATCH --output=job_%A_%a.out
+#! Errors filename:
+#SBATCH --error=job_%A_%a.err
+
+#! Number of nodes to be allocated for the job (for single core jobs always leave this at 1)
 #SBATCH --nodes=1
-#! How many (MPI) task will there be in total? (<= nodes*24)
+#! Number of tasks. By default SLURM assumes 1 task per node and 1 CPU per task. (for single core jobs always leave this at 1)
 #SBATCH --ntasks=1
+#! How many many cores will be allocated per task? (for single core jobs always leave this at 1)
 #SBATCH --cpus-per-task=1
-#!SBATCH --mem-per-cpu=15000M
-#! How much wallclock time will be required?
-#SBATCH --time=02:30:00
-#! What types of email messages do you wish to receive?
-#SBATCH --mail-type=FAIL
-#!SBATCH -p skylake-himem
-#SBATCH --qos short.q
-#SBATCH --mem=6000
+#! Estimated runtime: hh:mm:ss (job is force-stopped after if exceeded):
+#SBATCH --time=03:00:00
+#! Estimated maximum memory needed (job is force-stopped if exceeded):
+#! RAM is allocated in ~5980mb blocks, you are charged per block used,
+#! and unused fractions of blocks will not be usable by others.
+#SBATCH --mem=5980mb
+#! How many jobs to submit (starting at 0)?
+#! NOTE: This must be a range, not a single number (i.e. 0-2 = 3 jobs, but '3' would just be one job index '3')
+#SBATCH --array=0-0
 
-# CHANGE ME IF YOU WANT TO BE EMAILED
-#SBATCH --mail-user=ccn30
-#! Uncomment this to prevent the job from being requeued (e.g. if
-#! interrupted by node failure or system downtime):
-#SBATCH --no-requeue
+#! This is the partition name - skylake or cclake
+#SBATCH -p cclake
 
-#! Do not change:
-#SBATCH -p wbic-cs
+#! mail alert at start, end and abortion of execution
+#! emails will default to going to your email address
+#! you can specify a different email address manually if needed.
+##SBATCH --mail-type=ALL
 
 #! sbatch directives end here (put any additional directives above this line)
 
-#! Notes:
-#! The --ntasks value refers to the number of tasks to be launched by SLURM only. This
-#! usually equates to the number of MPI tasks launched. Reduce this from nodes*24 if
-#! demanded by memory requirements, or if OMP_NUM_THREADS>1.
-
-#! Each task is allocated 1 core by default, and each core is allocated 2500MB.
-#! If this is insufficient, also specify --cpus-per-task and/or --mem (the latter specifies
-#! MB per node).
-
-#! Number of nodes and tasks per node allocated by SLURM (do not change):
-numnodes=$SLURM_JOB_NUM_NODES
-numtasks=$SLURM_NTASKS
-mpi_tasks_per_node=$(echo "$SLURM_TASKS_PER_NODE" | sed -e  's/^\([0-9][0-9]*\).*$/\1/')
-
-#! ############################################################
-#! Modify the settings below to specify the application's environment, location
-#! and launch method:
-
-#! Optionally modify the environment seen by the application
-#! (note that SLURM reproduces the environment at submission irrespective of ~/.bashrc):
-
-
-. /etc/profile.d/modules.sh                # Leave this line (enables the module command)
+#! Modify the environment seen by the application. For this example we need the default modules.
+. /etc/profile.d/modules.sh                # This line enables the module command
 module purge                               # Removes all modules still loaded
-module load default-wbic                   # REQUIRED - loads the basic environment
+module load rhel7/default-ccl            # REQUIRED - loads the basic environment /default-peta4 or default-ccl
 module unload matlab
-module load matlab/matlab2017b
+module load matlab/matlab20197b
 
-#! Are you using OpenMP (NB this is unrelated to OpenMPI)? If so increase this
-#! safe value to no more than 16:
-export OMP_NUM_THREADS=1
+#! The variable $SLURM_ARRAY_TASK_ID contains the array index for each job.
+#! In this example, each job will be passed its index, so each output file will contain a different value
+echo "This is job" $SLURM_ARRAY_TASK_ID
+echo "Time: `date`"
+echo "Running on master node: `hostname`"
+echo "Current directory: `pwd`"
 
-#! Number of MPI tasks to be started by the application per node and in total (do not change):
-np=$[${numnodes}*${mpi_tasks_per_node}]
 
-#! The following variables define a sensible pinning strategy for Intel MPI tasks -
-#! this should be suitable for both pure MPI and hybrid MPI/OpenMP jobs:
-export I_MPI_PIN_DOMAIN=omp:compact # Domains are $OMP_NUM_THREADS cores in size
-export I_MPI_PIN_ORDER=scatter # Adjacent domains have minimal sharing of caches/sockets
-#! Notes:
-#! 1. These variables influence Intel MPI only.
-#! 2. Domains are non-overlapping sets of cores which map 1-1 to MPI tasks.
-#! 3. I_MPI_PIN_PROCESSOR_LIST is ignored if I_MPI_PIN_DOMAIN is set.
-#! 4. If MPI tasks perform better when sharing caches/sockets, try I_MPI_PIN_ORDER=compact.
+#! Command line that we want to run for each job $SLURM_ARRAY_TASK_ID (i.e.0,1,2,3...)
 
-prepare=${1} 
-data2table=${2}
-taskDir=${3}
-subject=${4} 
-mainfunc=${5} 
-scriptDir=${6}
-fmriDir=${7}
-regDir=${8}
+subjIdx=$SLURM_ARRAY_TASK_ID
 
+#! Set paths
+
+#! set dirs
+pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
+rdspathstem=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500
+scriptDir=${pathstem}/scripts/GridCAT
+taskDir=${pathstem}/task_data/gridtask
+fmriDir==${rdspathstem}/ENCRYPT_images/$subject/fMRI
+maskDir=${rdspathstem}/ENCRYPT_MTLmasks/$subject
+
+#! set files
+data2table=${scriptDir}/GCAP_logfile2eventTable.m
+prepare=${scriptDir}/gridcatprepare.sh
+mainfunc=${scriptDir}/GridCAT_mainfunc.m
+
+#! set subjects
+#mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
+mysubjs=${pathstem}/testsubjcode.txt
 
 #! Work directory (i.e. where the job will run):
 workdir=$scriptdir/slurmoutputs
 
-application="${prepare} ${data2table} ${taskDir} ${subject} ${mainfunc} ${fmriDir} ${regDir}"
+application="${prepare} ${data2table} ${taskDir} ${mysubjs} ${mainfunc} ${fmriDir} ${maskDir} ${subjIdx}"
 
 CMD="${application}"
 

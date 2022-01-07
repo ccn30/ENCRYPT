@@ -2,11 +2,11 @@
 %called from gridcatprepare.sh
 
 % input images, event table and regressors to generate grid cell metrics
-% CCNewton adapted from GridCAT demo script 22/08/19
+% CCNewton adapted from GridCAT demo script 22/08/19,01/22
 
 function GridCAT_mainfunc(subject,fmriDir,taskDir,regDir,outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
 
-outpathstem = ['/lustre/scratch/wbic-beta/ccn30/ENCRYPT/results/gridCAT/' subject '/' outfilename];
+outpathstem = ['/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/gridCAT/' subject '/' outfilename];
 
 % remove existing SPM.mat
 if exist(outpathstem,'dir') ~= 0
@@ -34,16 +34,18 @@ disp(['You are inside GridCAT_mainfunc, subject ' subject]);
 for run = 1:length(blocks)
     
     % specify functional scans
+    
     % split scans
 %    fsldir='/applications/fsl/fsl-5.0.10/bin/';
 %    FOURDfile = [fmriDir '/' subject '/rtopup_Run_' num2str(run) '.nii'];
 %    cmd = [fsldir 'fslsplit ' FOURDfile ' ' FOURDfile(1:end-4) '_split -t'];
 %    system(cmd);
     
-    for scan = 1:nScans
-        cfg.rawData.run(run).functionalScans(scan,1) = {[fmriDir '/' subject '/rtopup_Run_' num2str(run) '_split' sprintf('%04d',scan-1) '.nii']};
-    end
+    theseepis = ['artopup_run' num2str(run) '.nii'];
+    path = [fmriDir '/' subject '/'];
     
+    cfg.rawData.run(run).functionalScans = spm_select('ExtFPList',path,['^' theseepis],1:nScans);
+
     % specify event-table (_nr_ for no rotation events version)
     cfg.rawData.run(run).eventTable_file = [taskDir '/' subject '/' blocks{run} '/eventTable_nr_movemenEventData.txt'] ;
     
@@ -51,7 +53,7 @@ for run = 1:length(blocks)
     if strcmp(nuisance_flag,'phys') == 1
         cfg.rawData.run(run).additionalRegressors_file = [];
     elseif strcmp(nuisance_flag,'move') == 1
-        cfg.rawData.run(run).additionalRegressors_file = [fmriDir '/' subject '/rp_topup_Run_' num2str(run) '.txt'];
+        cfg.rawData.run(run).additionalRegressors_file = [fmriDir '/' subject '/rp_topup_run' num2str(run) '.txt'];
     end
     
 end
@@ -157,18 +159,24 @@ cfg.GLM.GLM1_resultsDir = [outpathstem '/GLM1'];
 if strcmp(warp_flag, 'main')
     if strcmp(ROI_flag, 'both')
 %       cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[]};
-    elseif strcmp(ROI_flag, 'pmRight')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_right_Magdeburg_HybridMaskT2xEPI.nii']};
-    elseif strcmp(ROI_flag, 'pmLeft')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_left_Magdeburg_HybridMaskT2xEPI.nii']};
+    elseif strcmp(ROI_flag, 'pmRightMaass')
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_right_HybridMaass_EPI.nii']};
+    elseif strcmp(ROI_flag, 'pmLeftMaass')
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_left_HybridMaass_EPI.nii']};
+    elseif strcmp(ROI_flag, 'pmRightDTI')
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_right_HybridDTI_EPI.nii']};
+    elseif strcmp(ROI_flag, 'pmLeftDTI')
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/pmEC_left_HybridDTI_EPI.nii']};    
     end
 elseif strcmp(warp_flag,'control')
-    if strcmp(ROI_flag,'PosHipp')
-%        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[]};
-    elseif strcmp(ROI_flag,'alRight')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_right_Magdeburg_HybridMaskT2xEPI.nii']};
-    elseif strcmp(ROI_flag,'alLeft')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_left_Magdeburg_HybridMaskT2xEPI.nii']};
+    if strcmp(ROI_flag,'HCtailR')
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/ASHS_right_HCtail_EPI.nii']};
+    elseif strcmp(ROI_flag,'HCtailL')
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/ASHS_left_HCtail_EPI.nii']};
+    elseif strcmp(ROI_flag,'alRightMaass')
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_right_HybridMaass_EPI.nii']};
+    elseif strcmp(ROI_flag,'alLeftMaass')
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/' subject '/alEC_left_HybridMaass_EPI.nii']};
     end
 end
 
@@ -203,18 +211,24 @@ estimateGLM(cfg);
 if strcmp(warp_flag, 'main')
     if strcmp(ROI_flag, 'both')
 %       ROI_masks = {[]};
-    elseif strcmp(ROI_flag, 'pmRight')
-        ROI_masks = {[regDir '/' subject '/pmEC_right_Magdeburg_HybridMaskT2xEPI.nii']};
-    elseif strcmp(ROI_flag, 'pmLeft')
-        ROI_masks = {[regDir '/' subject '/pmEC_left_Magdeburg_HybridMaskT2xEPI.nii']};
+    elseif strcmp(ROI_flag, 'pmRightMaass')
+        ROI_masks = {[regDir '/' subject '/pmEC_right_HybridMaass_EPI.nii']};
+    elseif strcmp(ROI_flag, 'pmLeftMaass')
+        ROI_masks = {[regDir '/' subject '/pmEC_left_HybridMaass_EPI.nii']};
+    elseif strcmp(ROI_flag, 'pmRightDTI')
+        ROI_masks = {[regDir '/' subject '/pmEC_right_HybridDTI_EPI.nii']};
+    elseif strcmp(ROI_flag, 'pmLeftDTI')
+        ROI_masks = {[regDir '/' subject '/pmEC_left_HybridDTI_EPI.nii']};    
     end
 elseif strcmp(warp_flag,'control')
-    if strcmp(ROI_flag,'PosHipp')
-%        ROI_masks = {[]};
-    elseif strcmp(ROI_flag,'alRight')
-        ROI_masks = {[regDir '/' subject '/alEC_right_Magdeburg_HybridMaskT2xEPI.nii']};
-    elseif strcmp(ROI_flag,'alLeft')
-        ROI_masks = {[regDir '/' subject '/alEC_left_Magdeburg_HybridMaskT2xEPI.nii']};
+    if strcmp(ROI_flag,'HCtailR')
+        ROI_masks = {[regDir '/' subject '/ASHS_right_HCtail_EPI.nii']};
+    elseif strcmp(ROI_flag,'HCtailL')
+        ROI_masks = {[regDir '/' subject '/ASHS_left_HCtail_EPI.nii']};
+    elseif strcmp(ROI_flag,'alRightMaass')
+        ROI_masks = {[regDir '/' subject '/alEC_right_HybridMaass_EPI.nii']};
+    elseif strcmp(ROI_flag,'alLeftMaass')
+        ROI_masks = {[regDir '/' subject '/alEC_left_HybridMaass_EPI.nii']};
     end
 end
 

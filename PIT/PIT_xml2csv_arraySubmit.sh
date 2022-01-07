@@ -27,7 +27,7 @@
 #SBATCH --mem=5980mb
 #! How many jobs to submit (starting at 0)?
 #! NOTE: This must be a range, not a single number (i.e. 0-2 = 3 jobs, but '3' would just be one job index '3')
-#SBATCH --array=0-97
+#SBATCH --array=0-1
 
 #! This is the partition name.
 #SBATCH -p cclake
@@ -59,8 +59,8 @@ subjIdx=$SLURM_ARRAY_TASK_ID
 
 #! Set paths
 pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
-subjects=${pathstem}/ENCRYPT_MasterCBcodes.txt
-#!subjects=${pathstem}/testsubjcode.txt
+#!subjects=${pathstem}/ENCRYPT_MasterCBcodes.txt
+subjects=${pathstem}/testsubjcode.txt
 xmlDir=${pathstem}/task_data/PIT/raw_data
 resultsDir=${pathstem}/results/PIT
 scriptDir=${pathstem}/scripts/PIT

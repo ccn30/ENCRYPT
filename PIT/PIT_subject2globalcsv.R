@@ -32,7 +32,7 @@ PITall <- PITall %>% mutate(AngleIncomType=case_when(AngleIncom <0 ~ "Neg",Angle
 PITall <- PITall %>% mutate(AngleIncomAbs = abs(AngleIncom))
 
 # save to results dir
-write.csv(PITall,paste(resultsDir,'/Global_Results/PITall_n98_OoBAAerror.csv',sep=""),row.names=FALSE)
+write.csv(PITall,paste(resultsDir,'/Global_Results/PITall_n100.csv',sep=""),row.names=FALSE)
 rm(PITall)
 
 

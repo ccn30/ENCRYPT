@@ -19,7 +19,7 @@
 #! The skylake/skylake-himem nodes have 32 CPUs (cores) each.
 #SBATCH --ntasks=1
 #! How much wallclock time will be required?
-#SBATCH --time=6:00:00
+#SBATCH --time=2:00:00
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=FAIL
 #! Uncomment this to prevent the job from being requeued (e.g. if
@@ -41,7 +41,7 @@
 #! --cpus-per-task and/or --mem (the latter specifies MB per node).
 
 
-#SBATCH --mem=40000
+#!SBATCH --mem=40000
 
 #! Number of nodes and tasks per node allocated by SLURM (do not change):
 numnodes=$SLURM_JOB_NUM_NODES
@@ -76,9 +76,15 @@ MaassTemp=$MaassTempDir/Study_template_wholeBrain.nii
 DTITempDir=/home/ccn30/rds/hpc-work/WBIC_home/ENCRYPT/atlases/templates/ECtemplatemasks2021
 DTITemp=$DTITempDir/mni152_t1_nlin_asym_09b_hires_brain.nii.gz
 
+# temp section to run 32663 T1 x group template reg
+T1=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/32663/mp2rage/n4mag0000_PSIR_skulled_std.nii
+out=$groupTempDir/ants5532663_t110GenericAffine.mat
+
 #application="${script} -d 3 -c 5 -r 1 -u 08:00:00 -o ants55 *.nii"
 
-application="antsRegistrationSyNQuick.sh -d 3 -f $DTITemp -m $groupTemp -o $templateDir/ENCRYPT_ants55templatexDTITemplateQ_"
+#application="antsRegistrationSyNQuick.sh -d 3 -f $DTITemp -m $groupTemp -o $templateDir/ENCRYPT_ants55templatexDTITemplateQ_"
+
+application="antsRegistrationSyNQuick.sh -d 3 -f $groupTemp -m $T1 -o $out"
 
 CMD="${application}"
 

@@ -27,7 +27,7 @@
 #SBATCH --mem=5980mb
 #! How many jobs to submit (starting at 0)?
 #! NOTE: This must be a range, not a single number (i.e. 0-2 = 3 jobs, but '3' would just be one job index '3')
-#SBATCH --array=0-54
+#SBATCH --array=0-0
 
 #! This is the partition name - skylake or cclake
 #SBATCH -p cclake
@@ -60,8 +60,8 @@ subjIdx=$SLURM_ARRAY_TASK_ID
 
 #! Set paths
 pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
-subjects=${pathstem}/ENCRYPT_MasterRIScodes.txt
-#subjects=${pathstem}/testsubjcode.txt
+#subjects=${pathstem}/ENCRYPT_MasterRIScodes.txt
+subjects=${pathstem}/testsubjcode.txt
 scriptDir=${pathstem}/scripts/Registration
 outDir=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500
 
