@@ -18,19 +18,27 @@ echo "******** starting $subject ********"
 ## set paths to image dirs
 MaskDir=$pathstem/ENCRYPT_MTLmasks/$subject
 T2=$pathstem/ENCRYPT_images/$subject/T2/denoise_N4t2.nii
+T1=$pathstem/ENCRYPT_images/$subject/mp2rage/n4mag0000_PSIR_skulled_std.nii
 lut=$pathstem/ENCRYPT_MTLmasks/snaplabels_ECsubdivisions.txt
 #${FreeSurfT1Dir}
 cd $MaskDir
 #-----------------------------------
 
 #vglrun 
+#vglrun /usr/local/software/freesurfer/7.1.0/bin/freeview -v \
+#${T2} \
+#${MaskDir}/${subject}_left_lfseg_corr_usegray_noCysts.nii.gz:colormap=LUT:opacity=0.4:lut=$lut \
+#${MaskDir}/${subject}_right_lfseg_corr_usegray_noCysts.nii.gz:colormap=LUT:opacity=0.4:lut=$lut  \
+#${MaskDir}/combinedEC_right_Maass_T2.nii.gz:colormap=Jet:opacity=0.4:lut=$lut  \
+#${MaskDir}/combinedEC_left_Maass_T2.nii.gz:colormap=Jet:opacity=0.4:lut=$lut  \
+#${MaskDir}/combined_pmEC_DTI_T2.nii.gz:colormap=NIH:opacity=0.4:lut=$lut  \
+#-layout 1 \
+#-viewport 'coronal' \
+
 vglrun /usr/local/software/freesurfer/7.1.0/bin/freeview -v \
-${T2} \
-${MaskDir}/${subject}_left_lfseg_corr_usegray_noCysts.nii.gz:colormap=LUT:opacity=0.4:lut=$lut \
-${MaskDir}/${subject}_right_lfseg_corr_usegray_noCysts.nii.gz:colormap=LUT:opacity=0.4:lut=$lut  \
-${MaskDir}/combinedEC_right_Maass_T2.nii.gz:colormap=Jet:opacity=0.4:lut=$lut  \
-${MaskDir}/combinedEC_left_Maass_T2.nii.gz:colormap=Jet:opacity=0.4:lut=$lut  \
-${MaskDir}/combined_pmEC_DTI_T2.nii.gz:colormap=NIH:opacity=0.4:lut=$lut  \
+${T1} \
+${MaskDir}/combined_pmEC_DTImasked_T1.nii.gz:colormap=Jet:opacity=0.4 \
+${MaskDir}/combined_alEC_DTImasked_T1.nii.gz:colormap=Heat:opacity=0.4 \
 -layout 1 \
 -viewport 'coronal' \
 

@@ -5,7 +5,7 @@
 
 #! Make sure you only have comments and #SBATCH directives between here and the end of the #SBATCH directives, or things will break
 #! Name of the job:
-#SBATCH -J girdCAT
+#SBATCH -J gridCAT
 #! Account name for group, use SL2 for paying queue:
 #SBATCH -A OBRIEN-SL3-CPU
 #! Output filename:
@@ -28,7 +28,7 @@
 #SBATCH --mem=5980mb
 #! How many jobs to submit (starting at 0)?
 #! NOTE: This must be a range, not a single number (i.e. 0-2 = 3 jobs, but '3' would just be one job index '3')
-#SBATCH --array=0-0
+#SBATCH --array=0-54
 
 #! This is the partition name - skylake or cclake
 #SBATCH -p cclake
@@ -46,6 +46,7 @@ module purge                               # Removes all modules still loaded
 module load rhel7/default-ccl            # REQUIRED - loads the basic environment /default-peta4 or default-ccl
 module unload matlab
 module load matlab/r2017b
+module load c3d_tool
 
 #! The variable $SLURM_ARRAY_TASK_ID contains the array index for each job.
 #! In this example, each job will be passed its index, so each output file will contain a different value
@@ -79,7 +80,7 @@ mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 #mysubjs=${pathstem}/testsubjcode.txt
 
 #! Work directory (i.e. where the job will run):
-workdir=$scriptdir/slurmoutputs
+workdir=$scriptDir/slurmoutputs
 
 application="${prepare} ${data2table} ${taskDir} ${mysubjs} ${mainfunc} ${fmriDir} ${maskDir} ${subjIdx}"
 

@@ -1,0 +1,637 @@
+This is job 38
+Time: Tue 11 Jan 15:24:47 GMT 2022
+Running on master node: cpu-p-344
+Current directory: /rds/user/ccn30/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/slurmoutputs
+Changed directory to /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/slurmoutputs.
+
+JobID: 53032266
+======
+Time: Tue 11 Jan 15:24:47 GMT 2022
+Running on master node: cpu-p-344
+Current directory: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/slurmoutputs
+
+Nodes allocated:
+================
+cpu-p-344
+
+numtasks=, numnodes=, mpi_tasks_per_node= (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/gridcatprepare.sh /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/GCAP_logfile2eventTable.m /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/ENCRYPT_MasterRIScodes.txt /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/scripts/GridCAT/GridCAT_mainfunc.m /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images /home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_MTLmasks 38
+
+******** starting 32329 ********
+You are inside gridcatprepare
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017b (9.3.0.713579) 64-bit (glnxa64)
+                             September 14, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> >> Subject is 32329
+>> >> >> >> Submitting the following command: GCAP_logfile2eventTable('/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask/32329')
+>> You are inside GCAP_logfile2eventTable
+ 
+ 
+New event-table: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask/32329/BlockA/eventTable_movemenEventData.txt
+ 
+Logfile: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask/32329/BlockA/movemenEventData.csv
+ 
+New event-table: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask/32329/BlockB/eventTable_movemenEventData.txt
+ 
+Logfile: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask/32329/BlockB/movemenEventData.csv
+ 
+New event-table: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask/32329/BlockC/eventTable_movemenEventData.txt
+ 
+Logfile: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask/32329/BlockC/movemenEventData.csv
+>> Done.
+>>  
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> 
+warp_flag =
+
+    'main'
+
+>> >> >> 
+ROI_flag =
+
+    'pmRightMaass'
+
+>> >> >> 
+xFold =
+
+    '6'
+
+>> >> >> 
+mask_thresh =
+
+    '0.3'
+
+>> >> >> >> >> >> >> >> 
+regressor_flag =
+
+    'pmod'
+
+>> >> >> 
+outfilename =
+
+    'gridCAT_pmRight6_hybridMaass'
+
+>> >> >> Submitting the following command: GridCAT_mainfunc('32329','/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/32329/fMRI','/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask/32329','/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_MTLmasks/32329',outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
+>> [Warning: removed existing dir for
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/gridCAT/32329/gridCAT_pmRight6_hybridMaass] 
+[> In GridCAT_mainfunc (line 17)] 
+You are inside GridCAT_mainfunc, subject 32329
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:26:03 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:26:03 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:26:03 - 11/01/2022
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:26:04 - 11/01/2022
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:26:18 - 11/01/2022
+11-Jan-2022 15:26:18 - Done    'fMRI model specification'
+11-Jan-2022 15:26:18 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:26:27 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:26:27 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:26:27 - 11/01/2022
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:26:28 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (201398 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...7.632680e-01 [+4.25]
+  ReML Iteration 2                      :        ...2.806106e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...6.635503e-01 [+4.25]
+  ReML Iteration 2                      :        ...5.282420e-03 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...1.112206e+01 [+4.25]
+  ReML Iteration 2                      :        ...3.123419e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.272893e-02 [+4.75]
+
+SPM12: spm_spm (v7120)                             15:26:57 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:27:32 - 11/01/2022
+Done
+11-Jan-2022 15:27:32 - Done    'Model estimation'
+11-Jan-2022 15:27:32 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:27:42 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:27:42 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:27:42 - 11/01/2022
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:27:43 - 11/01/2022
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:27:53 - 11/01/2022
+11-Jan-2022 15:27:53 - Done    'fMRI model specification'
+11-Jan-2022 15:27:53 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:28:01 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:28:01 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:28:01 - 11/01/2022
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:28:02 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (203745 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...8.166694e-01 [+4.25]
+  ReML Iteration 2                      :        ...3.188574e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...6.417828e-01 [+4.25]
+  ReML Iteration 2                      :        ...4.475492e-03 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...1.106139e+01 [+4.25]
+  ReML Iteration 2                      :        ...3.119303e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.281225e-02 [+4.75]
+
+SPM12: spm_spm (v7120)                             15:28:33 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:29:07 - 11/01/2022
+Done
+11-Jan-2022 15:29:07 - Done    'Model estimation'
+11-Jan-2022 15:29:07 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:29:17 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:29:17 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:29:17 - 11/01/2022
+========================================================================
+Contrasts folder                        :                         ./GLM2
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	contrast image  4               :                   ...computing       ...written con_0004.nii
+	spm{T} image  4                 :                   ...computing      ...written spmT_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:29:18 - 11/01/2022
+11-Jan-2022 15:29:18 - Done    'Contrast Manager'
+11-Jan-2022 15:29:18 - Done
+
+Output saved to: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/gridCAT/32329/gridCAT_pmRight6_hybridMaass/GridCATmetrics_32329_xfold_6_pmRightMaass_main.txt
+>> Done
+>> >> >> >> >> >> 
+warp_flag =
+
+    'main'
+
+>> >> >> 
+ROI_flag =
+
+    'pmLeftMaass'
+
+>> >> >> 
+xFold =
+
+    '6'
+
+>> >> >> 
+mask_thresh =
+
+    '0.3'
+
+>> >> >> >> >> >> >> >> 
+regressor_flag =
+
+    'pmod'
+
+>> >> >> 
+outfilename =
+
+    'gridCAT_pmLeft6_hybridMaass'
+
+>> >> >> Submitting the following command: GridCAT_mainfunc('32329','/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/32329/fMRI','/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask/32329','/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_MTLmasks/32329',outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
+>> [Warning: removed existing dir for
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/gridCAT/32329/gridCAT_pmLeft6_hybridMaass] 
+[> In GridCAT_mainfunc (line 17)] 
+You are inside GridCAT_mainfunc, subject 32329
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:29:37 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:29:37 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:29:37 - 11/01/2022
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:29:37 - 11/01/2022
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:29:47 - 11/01/2022
+11-Jan-2022 15:29:47 - Done    'fMRI model specification'
+11-Jan-2022 15:29:47 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:29:54 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:29:54 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:29:55 - 11/01/2022
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:29:56 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (201398 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...7.632680e-01 [+4.25]
+  ReML Iteration 2                      :        ...2.806106e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...6.635503e-01 [+4.25]
+  ReML Iteration 2                      :        ...5.282420e-03 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...1.112206e+01 [+4.25]
+  ReML Iteration 2                      :        ...3.123419e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.272893e-02 [+4.75]
+
+SPM12: spm_spm (v7120)                             15:30:26 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:31:01 - 11/01/2022
+Done
+11-Jan-2022 15:31:01 - Done    'Model estimation'
+11-Jan-2022 15:31:01 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:31:11 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:31:11 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:31:11 - 11/01/2022
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:31:11 - 11/01/2022
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:31:21 - 11/01/2022
+11-Jan-2022 15:31:21 - Done    'fMRI model specification'
+11-Jan-2022 15:31:21 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:31:29 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:31:29 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:31:29 - 11/01/2022
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:31:30 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (203926 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...8.236975e-01 [+4.25]
+  ReML Iteration 2                      :        ...3.222141e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...6.402128e-01 [+4.25]
+  ReML Iteration 2                      :        ...4.480249e-03 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...1.075127e+01 [+4.25]
+  ReML Iteration 2                      :        ...2.863935e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.123237e-02 [+4.75]
+
+SPM12: spm_spm (v7120)                             15:32:00 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:32:34 - 11/01/2022
+Done
+11-Jan-2022 15:32:34 - Done    'Model estimation'
+11-Jan-2022 15:32:34 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:32:42 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:32:42 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:32:42 - 11/01/2022
+========================================================================
+Contrasts folder                        :                         ./GLM2
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	contrast image  4               :                   ...computing       ...written con_0004.nii
+	spm{T} image  4                 :                   ...computing      ...written spmT_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:32:43 - 11/01/2022
+11-Jan-2022 15:32:43 - Done    'Contrast Manager'
+11-Jan-2022 15:32:43 - Done
+
+Output saved to: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/gridCAT/32329/gridCAT_pmLeft6_hybridMaass/GridCATmetrics_32329_xfold_6_pmLeftMaass_main.txt
+>> Done
+>> >> >> >> >> >> 
+warp_flag =
+
+    'control'
+
+>> >> >> 
+ROI_flag =
+
+    'alRightMaass'
+
+>> >> >> 
+xFold =
+
+    '6'
+
+>> >> >> 
+mask_thresh =
+
+    '0.3'
+
+>> >> >> >> >> >> >> >> 
+regressor_flag =
+
+    'pmod'
+
+>> >> >> 
+outfilename =
+
+    'gridCAT_alRight6_hybridMaass'
+
+>> >> >> Submitting the following command: GridCAT_mainfunc('32329','/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/32329/fMRI','/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask/32329','/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_MTLmasks/32329',outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
+>> [Warning: removed existing dir for
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/gridCAT/32329/gridCAT_alRight6_hybridMaass] 
+[> In GridCAT_mainfunc (line 17)] 
+You are inside GridCAT_mainfunc, subject 32329
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:33:00 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:33:00 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:33:00 - 11/01/2022
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:33:00 - 11/01/2022
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:33:10 - 11/01/2022
+11-Jan-2022 15:33:10 - Done    'fMRI model specification'
+11-Jan-2022 15:33:10 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:33:18 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:33:18 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:33:18 - 11/01/2022
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:33:19 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (201398 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...7.632680e-01 [+4.25]
+  ReML Iteration 2                      :        ...2.806106e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...6.635503e-01 [+4.25]
+  ReML Iteration 2                      :        ...5.282420e-03 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...1.112206e+01 [+4.25]
+  ReML Iteration 2                      :        ...3.123419e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.272893e-02 [+4.75]
+
+SPM12: spm_spm (v7120)                             15:33:50 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:34:24 - 11/01/2022
+Done
+11-Jan-2022 15:34:24 - Done    'Model estimation'
+11-Jan-2022 15:34:24 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:34:34 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:34:34 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:34:34 - 11/01/2022
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:34:34 - 11/01/2022
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:34:44 - 11/01/2022
+11-Jan-2022 15:34:44 - Done    'fMRI model specification'
+11-Jan-2022 15:34:44 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:34:53 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:34:53 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:34:53 - 11/01/2022
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:34:54 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Temporal non-sphericity (203829 voxels) :             ...ReML estimation
+  ReML Block 1                
+  ReML Iteration 1                      :        ...8.072935e-01 [+4.25]
+  ReML Iteration 2                      :        ...3.117636e-02 [+4.50]
+  ReML Block 2                
+  ReML Iteration 1                      :        ...6.431943e-01 [+4.25]
+  ReML Iteration 2                      :        ...4.537860e-03 [+4.50]
+  ReML Block 3                
+  ReML Iteration 1                      :        ...1.100523e+01 [+4.25]
+  ReML Iteration 2                      :        ...3.074676e-01 [+4.50]
+  ReML Iteration 3                      :        ...1.254854e-02 [+4.75]
+
+SPM12: spm_spm (v7120)                             15:35:25 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing                       ...doneChunk   7/8                             :                  ...processing                       ...doneChunk   8/8                             :                  ...processing                       ...done
+Spatial non-sphericity (over scans)     :      ...estimating derivatives ...writing resels/voxel image                       ...done
+Saving SPM.mat                          :                     ...writing                       ...done
+Completed                               :          15:35:59 - 11/01/2022
+Done
+11-Jan-2022 15:35:59 - Done    'Model estimation'
+11-Jan-2022 15:35:59 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:36:07 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:36:07 - Running 'Contrast Manager'
+
+SPM12: spm_contrasts.m                             15:36:07 - 11/01/2022
+========================================================================
+Contrasts folder                        :                         ./GLM2
+	contrast image  1               :                   ...computing       ...written con_0001.nii
+	spm{T} image  1                 :                   ...computing      ...written spmT_0001.nii
+	contrast image  2               :                   ...computing       ...written con_0002.nii
+	spm{T} image  2                 :                   ...computing      ...written spmT_0002.nii
+	contrast image  3               :                   ...computing       ...written con_0003.nii
+	spm{T} image  3                 :                   ...computing      ...written spmT_0003.nii
+	contrast image  4               :                   ...computing       ...written con_0004.nii
+	spm{T} image  4                 :                   ...computing      ...written spmT_0004.nii
+	Saving SPM.mat                  :                     ...writing              ...SPM.mat saved
+Completed                               :          15:36:08 - 11/01/2022
+11-Jan-2022 15:36:08 - Done    'Contrast Manager'
+11-Jan-2022 15:36:08 - Done
+
+Output saved to: /home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/gridCAT/32329/gridCAT_alRight6_hybridMaass/GridCATmetrics_32329_xfold_6_alRightMaass_control.txt
+>> Done
+>> >> >> >> >> >> 
+warp_flag =
+
+    'control'
+
+>> >> >> 
+ROI_flag =
+
+    'alLeftMaass'
+
+>> >> >> 
+xFold =
+
+    '6'
+
+>> >> >> 
+mask_thresh =
+
+    '0.3'
+
+>> >> >> >> >> >> >> >> 
+regressor_flag =
+
+    'pmod'
+
+>> >> >> 
+outfilename =
+
+    'gridCAT_alLeft6_hybridMaass'
+
+>> >> >> Submitting the following command: GridCAT_mainfunc('32329','/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/32329/fMRI','/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/task_data/gridtask/32329','/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_MTLmasks/32329',outfilename,ROI_flag,warp_flag,xFold,mask_thresh,regressor_flag)
+>> [Warning: removed existing dir for
+/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/gridCAT/32329/gridCAT_alLeft6_hybridMaass] 
+[> In GridCAT_mainfunc (line 17)] 
+You are inside GridCAT_mainfunc, subject 32329
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:36:26 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:36:26 - Running 'fMRI model specification'
+
+SPM12: spm_fMRI_design (v7210)                     15:36:26 - 11/01/2022
+========================================================================
+Saving fMRI design                      :               ...SPM.mat saved
+
+SPM12: spm_fmri_spm_ui (v7018)                     15:36:26 - 11/01/2022
+========================================================================
+Mapping files                           :                        ...done
+Calculating globals                     :                        ...done
+Saving SPM configuration                :               ...SPM.mat saved
+Saving SPM configuration                :               ...SPM.mat saved
+Completed                               :          15:36:36 - 11/01/2022
+11-Jan-2022 15:36:36 - Done    'fMRI model specification'
+11-Jan-2022 15:36:36 - Done
+
+
+
+------------------------------------------------------------------------
+11-Jan-2022 15:36:45 - Running job #1
+------------------------------------------------------------------------
+11-Jan-2022 15:36:45 - Running 'Model estimation'
+
+SPM12: spm_spm (v7120)                             15:36:45 - 11/01/2022
+========================================================================
+
+SPM12: spm_est_non_sphericity (v6913)              15:36:46 - 11/01/2022
+========================================================================
+Chunk   1/8                             :                  ...processing                       ...doneChunk   2/8                             :                  ...processing                       ...doneChunk   3/8                             :                  ...processing                       ...doneChunk   4/8                             :                  ...processing                       ...doneChunk   5/8                             :                  ...processing                       ...doneChunk   6/8                             :                  ...processing

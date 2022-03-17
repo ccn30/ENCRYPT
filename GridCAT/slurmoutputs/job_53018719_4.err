@@ -1,0 +1,41 @@
+Non-commercial use only - see $FSLDIR/LICENSE
+gzip: 25841_left_lfseg_corr_usegray_noCysts_clean.nii.gz~: unknown suffix -- ignored
+gzip: 25841_left_lfseg_corr_usegray_noCysts_Marianna.nii.gz~: unknown suffix -- ignored
+gzip: 25841_right_lfseg_corr_usegray_noCysts_Marianna.nii.gz~: unknown suffix -- ignored
+gzip: combinedEC_left_HybridMaass_T2_Marianna.nii.gz~: unknown suffix -- ignored
+gzip: combinedEC_left_HybridMaass_T2.nii.gz~: unknown suffix -- ignored
+gzip: combinedEC_right_HybridMaass_T2.nii.gz~: unknown suffix -- ignored
+{Error using ^
+One argument must be a square matrix and the other must be a scalar. Use POWER
+(.^) for elementwise power.
+
+Error in circ_rtest (line 55)
+z = R^2 / n;
+
+Error in gridMetric_oriCoherence_betweenVox (line 45)
+        [rayleigh_p, rayleigh_z] = circ_rtest(valuesWithinMask_deg*pi/180);
+
+Error in gridMetric_export (line 105)
+    output = gridMetric_oriCoherence_betweenVox(0, roiMasks,
+    voxelwiseOriImages, xFoldSymmetry);
+
+Error in GridCAT_mainfunc (line 246)
+gridMetric_export(ROI_masks, GLM1dir, GLM2dir, output_file);
+} 
+{Error using ^
+One argument must be a square matrix and the other must be a scalar. Use POWER
+(.^) for elementwise power.
+
+Error in circ_rtest (line 55)
+z = R^2 / n;
+
+Error in gridMetric_oriCoherence_betweenVox (line 45)
+        [rayleigh_p, rayleigh_z] = circ_rtest(valuesWithinMask_deg*pi/180);
+
+Error in gridMetric_export (line 105)
+    output = gridMetric_oriCoherence_betweenVox(0, roiMasks,
+    voxelwiseOriImages, xFoldSymmetry);
+
+Error in GridCAT_mainfunc (line 246)
+gridMetric_export(ROI_masks, GLM1dir, GLM2dir, output_file);
+} 

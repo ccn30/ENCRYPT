@@ -18,9 +18,9 @@ echo "******** starting $subject ********"
 echo 'You are inside gridcatprepare'
 
 cwd=$(pwd)
-#cd ${regDir}/${subject}	
-#gunzip *
-#cd ${cwd}
+cd ${regDirstem}/${subject}	
+gunzip *
+cd ${cwd}
 
 # make paths subject specific
 fmriDir=${fmriDirstem}/$subject/fMRI
@@ -33,15 +33,15 @@ MATLABPATH=/usr/local/Cluster-Apps/matlab/R2017b
 "$MATLABPATH"/bin/matlab -nodesktop -nosplash -nodisplay <<EOF
 
 % extract data into event tables by calling GCAP_logfile2eventtable.m
-[pa,af,~]=fileparts('${data2table}');
-disp(['Subject is ${subject}']);
-addpath(pa);
-addpath(pwd);
-dofunc=sprintf('%s(%s,%s)',af,'''${subject}''','''${taskDir}''');
-disp(['Submitting the following command: ' dofunc])
-eval(dofunc)
-disp('Done.')
-disp(' ')
+%[pa,af,~]=fileparts('${data2table}');
+%disp(['Subject is ${subject}']);
+%addpath(pa);
+%addpath(pwd);
+%dofunc=sprintf('%s(%s)',af,'''${taskDir}''');
+%disp(['Submitting the following command: ' dofunc])
+%eval(dofunc)
+%disp('Done.')
+%disp(' ')
 
 % call main GridCAT function
 [pa,af,~]=fileparts('${mainfunc}');
@@ -64,7 +64,7 @@ ROI_flag = 'pmRightMaass'
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.1'
+mask_thresh = '0.3'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -95,7 +95,7 @@ ROI_flag = 'pmLeftMaass'
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.1'
+mask_thresh = '0.3'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -126,7 +126,7 @@ ROI_flag = 'alRightMaass'
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.1'
+mask_thresh = '0.3'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -157,7 +157,7 @@ ROI_flag = 'alLeftMaass'
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.1'
+mask_thresh = '0.3'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -188,7 +188,7 @@ ROI_flag = 'HCtailR'
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.1'
+mask_thresh = '0.3'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -219,7 +219,7 @@ ROI_flag = 'HCtailL'
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.1'
+mask_thresh = '0.3'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -250,7 +250,7 @@ ROI_flag = 'pmRightDTI'
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.1'
+mask_thresh = '0.3'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -261,7 +261,7 @@ mask_thresh = '0.1'
 regressor_flag = 'pmod'
 
 % Name of output file
-outfilename = 'gridCAT_pmRight6_hybridDTI'
+outfilename = 'gridCAT_pmRight6_DTImasked'
 
 dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',af,'''${subject}''','''${fmriDir}''','''${taskDir}''','''${regDir}''','outfilename','ROI_flag','warp_flag','xFold','mask_thresh','regressor_flag');
 disp(['Submitting the following command: ' dofunc]);
@@ -281,7 +281,7 @@ ROI_flag = 'pmLeftDTI'
 xFold = '6'
 
 % SPM mask threshold for GLM
-mask_thresh = '0.1'
+mask_thresh = '0.3'
 
 % Which type of regressor should be included for grid events?
     %   'pmod' ... one regressor with a parametric modulation
@@ -292,7 +292,69 @@ mask_thresh = '0.1'
 regressor_flag = 'pmod'
 
 % Name of output file
-outfilename = 'gridCAT_pmLeft6_hybridDTI'
+outfilename = 'gridCAT_pmLeft6_DTImasked'
+
+dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',af,'''${subject}''','''${fmriDir}''','''${taskDir}''','''${regDir}''','outfilename','ROI_flag','warp_flag','xFold','mask_thresh','regressor_flag');
+disp(['Submitting the following command: ' dofunc]);
+eval(dofunc);
+disp('Done');
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 9TH ITERATION
+
+% what type of mask to use - main or control?
+warp_flag = 'control'
+
+% use with main above pmLeft,pmRight or control above PosHipp,alRight,alLeft- ROI mask?
+ROI_flag = 'alRightDTI'
+
+% 4,5,6,7 or 8 fold symmetry?
+xFold = '6'
+
+% SPM mask threshold for GLM
+mask_thresh = '0.3'
+
+% Which type of regressor should be included for grid events?
+    %   'pmod' ... one regressor with a parametric modulation
+    %   'aligned_misaligned' ... one regressor for events that are aligned with the mean grid orientation
+    %                            and one regressor for misaligned events
+    %   'aligned_misaligned_multiple' ... one regressor for each orientation, for which either a positive peak (for aligned events)
+    %                                     or a negative peak (for misaligned events) in the BOLD signal is expected
+regressor_flag = 'pmod'
+
+% Name of output file
+outfilename = 'gridCAT_alRight6_DTImasked'
+
+dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',af,'''${subject}''','''${fmriDir}''','''${taskDir}''','''${regDir}''','outfilename','ROI_flag','warp_flag','xFold','mask_thresh','regressor_flag');
+disp(['Submitting the following command: ' dofunc]);
+eval(dofunc);
+disp('Done');
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 10TH ITERATION
+
+% what type of mask to use - main or control?
+warp_flag = 'control'
+
+% use with main above pmLeft,pmRight or control above PosHipp,alRight,alLeft- ROI mask?
+ROI_flag = 'alLeftDTI'
+
+% 4,5,6,7 or 8 fold symmetry?
+xFold = '6'
+
+% SPM mask threshold for GLM
+mask_thresh = '0.3'
+
+% Which type of regressor should be included for grid events?
+    %   'pmod' ... one regressor with a parametric modulation
+    %   'aligned_misaligned' ... one regressor for events that are aligned with the mean grid orientation
+    %                            and one regressor for misaligned events
+    %   'aligned_misaligned_multiple' ... one regressor for each orientation, for which either a positive peak (for aligned events)
+    %                                     or a negative peak (for misaligned events) in the BOLD signal is expected
+regressor_flag = 'pmod'
+
+% Name of output file
+outfilename = 'gridCAT_alLeft6_DTImasked'
 
 dofunc=sprintf('%s(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',af,'''${subject}''','''${fmriDir}''','''${taskDir}''','''${regDir}''','outfilename','ROI_flag','warp_flag','xFold','mask_thresh','regressor_flag');
 disp(['Submitting the following command: ' dofunc]);

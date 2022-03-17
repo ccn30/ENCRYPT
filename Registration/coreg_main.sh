@@ -32,6 +32,8 @@ brainT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std_struc_brain.nii
 DenoiseWholeT1=${rawpathstem}/mp2rage/denoise_n4mag0000_PSIR_skulled_std.nii
 DenoiseBrainT1=${rawpathstem}/mp2rage/denoise_n4mag0000_PSIR_skulled_std_struc_brain_mask.nii
 DenoiseN4T2=${rawpathstem}/T2/denoise_N4t2.nii
+#Rescaled
+rescaledWholeT1=${rawpathstem}/mp2rage/n4mag0000_PSIR_skulled_std_rescaled.nii
 
 # EPI
 meanRun1=${rawpathstem}/fMRI/meantopup_run1.nii
@@ -55,7 +57,8 @@ Maass_combinedEC_left=$MaassTempDir/leftEC_combined.nii.gz
 DTITemp=$DTITempDir/mni152_t1_nlin_asym_09b_hires_brain.nii.gz
 DTI_pmEC=$DTITempDir/MEC_combinedGroupSegmentation_unmasked_mni.nii.gz
 DTI_alEC=$DTITempDir/LEC_combinedGroupSegmentation_unmasked_mni.nii.gz
-
+DTI_pmEC_masked=$DTITempDir/MEC_combinedGroupSegmentation_masked_mni.nii.gz
+DTI_alEC_masked=$DTITempDir/LEC_combinedGroupSegmentation_masked_mni.nii.gz
 
 # Registrations
 T1xGroupTempAffine=$(ls -d ${groupTempDir}/ants55${subject}_t1*0GenericAffine.mat)
@@ -88,6 +91,11 @@ else
 fi
 
 cd ${maskDir}
+
+## Rescale T1s
+c3d ${wholeT1} -stretch 0.0% 99.99999999999% 0 65535 -clip 0 65535 -o ${rescaledWholeT1}
+
+
 
 
 ###########################
@@ -254,13 +262,73 @@ DTITempxT2=$regDir/DTITempxT2_Warped.nii.gz
 #				-t $GroupTempxDTITempInvWarp \
 #				-v 1 
 
+
+
+##########################
+### DTI EC masks to T1 ###
+##########################
+
+# combined pm/alEC DTI mask to T1 rescaled
+
+# outputs
+#DTIpmEC_combinedSide_warpedT1=$maskDir/combined_pmEC_DTI_T1.nii.gz
+#DTIalEC_combinedSide_warpedT1=$maskDir/combined_alEC_DTI_T1.nii.gz
+DTIpmEC_masked_combinedSide_warpedT1=$maskDir/combined_pmEC_DTImasked_T1.nii.gz
+DTIalEC_masked_combinedSide_warpedT1=$maskDir/combined_alEC_DTImasked_T1.nii.gz
+		
+		#pmEC unmasked
+#		antsApplyTransforms -d 3 \
+#				-i ${DTI_pmEC} \
+#				-r ${rescaledWholeT1} \
+#				-o ${DTIpmEC_combinedSide_warpedT1} \
+#				-n GenericLabel \
+#				-t [${T1xGroupTempAffine},1] \
+#				-t ${T1xGroupTempInvWarp} \
+#				-t [$GroupTempxDTITempAffine,1] \
+#				-t $GroupTempxDTITempInvWarp \
+#				-v 1 
+		#alEC unmasked
+#		antsApplyTransforms -d 3 \
+#				-i ${DTI_alEC} \
+#				-r ${rescaledWholeT1} \
+#				-o ${DTIalEC_combinedSide_warpedT1} \
+#				-n GenericLabel \
+#				-t [${T1xGroupTempAffine},1] \
+#				-t ${T1xGroupTempInvWarp} \
+#				-t [$GroupTempxDTITempAffine,1] \
+#				-t $GroupTempxDTITempInvWarp \
+#				-v 1 
+		#pmEC masked
+#		antsApplyTransforms -d 3 \
+#				-i ${DTI_pmEC_masked} \
+#				-r ${wholeT1} \
+#				-o $DTIpmEC_masked_combinedSide_warpedT1 \
+#				-n GenericLabel \
+#				-t [${T1xGroupTempAffine},1] \
+#				-t ${T1xGroupTempInvWarp} \
+#				-t [$GroupTempxDTITempAffine,1] \
+#				-t $GroupTempxDTITempInvWarp \
+#				-v 1 
+		#alEC masked
+#		antsApplyTransforms -d 3 \
+#				-i ${DTI_alEC_masked} \
+#				-r ${wholeT1} \
+#				-o ${DTIalEC_masked_combinedSide_warpedT1} \
+#				-n GenericLabel \
+#				-t [${T1xGroupTempAffine},1] \
+#				-t ${T1xGroupTempInvWarp} \
+#				-t [$GroupTempxDTITempAffine,1] \
+#				-t $GroupTempxDTITempInvWarp \
+#				-v 1 
+
+
 ##############################
 ### Hybrid T2 masks to EPI ###
 ##############################
 
 
 ## if using manual .txt files
-T1xT2Affine=${regDir}/T1xT2_ITK.txt
+#T1xT2Affine=${regDir}/T1xT2_ITK.txt
 #T1xEPIAffine=${regDir}/T1xepiSlab0GenericAffine.txt
 
 # outputs
@@ -281,71 +349,114 @@ HybridDTI_epi_L=${maskDir}/pmEC_left_HybridDTI_EPI.nii.gz
 
 ## warp ASHS T2 to EPI
 # right
-		antsApplyTransforms -d 3 \
-				-i ${ASHS_T2_R} \
-				-r ${N4meanRun1} \
-				-o ${ASHS_epi_R}  \
-				-n GenericLabel \
-				-t ${T1xEPIAffine} \
-				-t [${T1xT2Affine},1] \
-				-v 1 
+#		antsApplyTransforms -d 3 \
+#				-i ${ASHS_T2_R} \
+#				-r ${N4meanRun1} \
+#				-o ${ASHS_epi_R}  \
+#				-n GenericLabel \
+#				-t ${T1xEPIAffine} \
+#				-t [${T1xT2Affine},1] \
+#				-v 1 
 # left
-		antsApplyTransforms -d 3 \
-				-i ${ASHS_T2_L} \
-				-r ${N4meanRun1} \
-				-o ${ASHS_epi_L}  \
-				-n GenericLabel \
-				-t ${T1xEPIAffine} \
-				-t [${T1xT2Affine},1] \
-				-v 1 
+#		antsApplyTransforms -d 3 \
+#				-i ${ASHS_T2_L} \
+#				-r ${N4meanRun1} \
+#				-o ${ASHS_epi_L}  \
+#				-n GenericLabel \
+#				-t ${T1xEPIAffine} \
+#				-t [${T1xT2Affine},1] \
+#				-v 1 
 ## warp Hybrid Maass to EPI
 # right
-		antsApplyTransforms -d 3 \
-				-i ${HybridMaass_T2_R} \
-				-r ${N4meanRun1} \
-				-o ${HybridMaass_epi_R}  \
-				-n GenericLabel \
-				-t ${T1xEPIAffine} \
-				-t [${T1xT2Affine},1] \
-				-v 1 
+#		antsApplyTransforms -d 3 \
+#				-i ${HybridMaass_T2_R} \
+#				-r ${N4meanRun1} \
+#				-o ${HybridMaass_epi_R}  \
+#				-n GenericLabel \
+#				-t ${T1xEPIAffine} \
+#				-t [${T1xT2Affine},1] \
+#				-v 1 
 # left
-		antsApplyTransforms -d 3 \
-				-i ${HybridMaass_T2_L} \
-				-r ${N4meanRun1} \
-				-o ${HybridMaass_epi_L}  \
-				-n GenericLabel \
-				-t ${T1xEPIAffine} \
-				-t [${T1xT2Affine},1] \
-				-v 1 
+#		antsApplyTransforms -d 3 \
+#				-i ${HybridMaass_T2_L} \
+#				-r ${N4meanRun1} \
+#				-o ${HybridMaass_epi_L}  \
+#				-n GenericLabel \
+#				-t ${T1xEPIAffine} \
+#				-t [${T1xT2Affine},1] \
+#				-v 1 
 ## warp Hybrid DTI to EPI
 # right
-		antsApplyTransforms -d 3 \
-				-i ${HybridDTI_T2_R} \
-				-r ${N4meanRun1} \
-				-o ${HybridDTI_epi_R}  \
-				-n GenericLabel \
-				-t ${T1xEPIAffine} \
-				-t [${T1xT2Affine},1] \
-				-v 1 
+#		antsApplyTransforms -d 3 \
+#				-i ${HybridDTI_T2_R} \
+#				-r ${N4meanRun1} \
+#				-o ${HybridDTI_epi_R}  \
+#				-n GenericLabel \
+#				-t ${T1xEPIAffine} \
+#				-t [${T1xT2Affine},1] \
+#				-v 1 
 # left
-		antsApplyTransforms -d 3 \
-				-i ${HybridDTI_T2_L} \
-				-r ${N4meanRun1} \
-				-o ${HybridDTI_epi_L}  \
-				-n GenericLabel \
-				-t ${T1xEPIAffine} \
-				-t [${T1xT2Affine},1] \
-				-v 1 
+#		antsApplyTransforms -d 3 \
+#				-i ${HybridDTI_T2_L} \
+#				-r ${N4meanRun1} \
+#				-o ${HybridDTI_epi_L}  \
+#				-n GenericLabel \
+#				-t ${T1xEPIAffine} \
+#				-t [${T1xT2Affine},1] \
+#				-v 1 
+
+
+###########################
+### DTI T1 masks to EPI ###
+###########################
+
+# outputs
+DTIpmEC_masked_combinedSide_warpedT1xEPI=$maskDir/combined_pmEC_DTImasked_T1xEPI.nii.gz
+DTIalEC_masked_combinedSide_warpedT1xEPI=$maskDir/combined_alEC_DTImasked_T1xEPI.nii.gz
+DTIpmEC_masked_R_warpedT1xEPI=$maskDir/pmEC_right_DTImasked_T1xEPI.nii.gz
+DTIpmEC_masked_L_warpedT1xEPI=$maskDir/pmEC_left_DTImasked_T1xEPI.nii.gz
+DTIalEC_masked_R_warpedT1xEPI=$maskDir/alEC_right_DTImasked_T1xEPI.nii.gz
+DTIalEC_masked_L_warpedT1xEPI=$maskDir/alEC_left_DTImasked_T1xEPI.nii.gz
+
+# txt file regs
+#T1xEPIAffine=${regDir}/T1xepiSlab0GenericAffine.txt
+
+# pmEC
+#		antsApplyTransforms -d 3 \
+#				-i ${DTIpmEC_masked_combinedSide_warpedT1} \
+#				-r ${N4meanRun1} \
+#				-o ${DTIpmEC_masked_combinedSide_warpedT1xEPI}  \
+#				-n GenericLabel \
+#				-t ${T1xEPIAffine} \
+#				-v 1 
+# alEC
+#		antsApplyTransforms -d 3 \
+#				-i ${DTIalEC_masked_combinedSide_warpedT1} \
+#				-r ${N4meanRun1} \
+#				-o ${DTIalEC_masked_combinedSide_warpedT1xEPI}  \
+#				-n GenericLabel \
+#				-t ${T1xEPIAffine} \
+#				-v 1 
+
 
 ########################
 ### Label extraction ###
 ########################
 
 # extract pm and alEC from Hybrid Maass and tail from ASHS
-fslmaths ${HybridMaass_epi_R} -thr 16.5 -uthr 17.5 -bin ${HybridMaassPM_epi_R} -odt char
-fslmaths ${HybridMaass_epi_R} -thr 17.5 -uthr 18.5 -bin ${HybridMaassAL_epi_R} -odt char
-fslmaths ${ASHS_epi_R} -thr 4.5 -uthr 5.5 -bin ${ASHS_HCtail_R} -odt char
+#fslmaths ${HybridMaass_epi_R} -thr 16.5 -uthr 17.5 -bin ${HybridMaassPM_epi_R} -odt char
+#fslmaths ${HybridMaass_epi_R} -thr 17.5 -uthr 18.5 -bin ${HybridMaassAL_epi_R} -odt char
+#fslmaths ${ASHS_epi_R} -thr 4.5 -uthr 5.5 -bin ${ASHS_HCtail_R} -odt char
 
-fslmaths ${HybridMaass_epi_L} -thr 16.5 -uthr 17.5 -bin ${HybridMaassPM_epi_L} -odt char
-fslmaths ${HybridMaass_epi_L} -thr 17.5 -uthr 18.5 -bin ${HybridMaassAL_epi_L} -odt char
-fslmaths ${ASHS_epi_L} -thr 4.5 -uthr 5.5 -bin ${ASHS_HCtail_L} -odt char
+#fslmaths ${HybridMaass_epi_L} -thr 16.5 -uthr 17.5 -bin ${HybridMaassPM_epi_L} -odt char
+#fslmaths ${HybridMaass_epi_L} -thr 17.5 -uthr 18.5 -bin ${HybridMaassAL_epi_L} -odt char
+#fslmaths ${ASHS_epi_L} -thr 4.5 -uthr 5.5 -bin ${ASHS_HCtail_L} -odt char
+
+# extract L and R pm and alEC from DTI T1
+#fslmaths ${DTIalEC_masked_combinedSide_warpedT1xEPI} -thr 0.5 -uthr 1.5 -bin ${DTIalEC_masked_R_warpedT1xEPI} -odt char # right = 1
+#fslmaths ${DTIalEC_masked_combinedSide_warpedT1xEPI} -thr 1.5 -uthr 2.5 -bin ${DTIalEC_masked_L_warpedT1xEPI} -odt char # left = 2
+#c3d ${DTIalEC_masked_L_warpedT1xEPI} -thresh 1.5 2.5 1 0 ${DTIalEC_masked_L_warpedT1xEPI} # make left mask value 1
+
+#fslmaths ${DTIpmEC_masked_combinedSide_warpedT1xEPI} -thr 0.5 -uthr 1.5 -bin ${DTIpmEC_masked_R_warpedT1xEPI} -odt char # right = 1
+#fslmaths ${DTIpmEC_masked_combinedSide_warpedT1xEPI} -thr 1.5 -uthr 2.5 -bin ${DTIpmEC_masked_L_warpedT1xEPI} -odt char # left  = 2
+#c3d ${DTIpmEC_masked_L_warpedT1xEPI} -thresh 1.5 2.5 1 0 ${DTIpmEC_masked_L_warpedT1xEPI} # make left mask value 1

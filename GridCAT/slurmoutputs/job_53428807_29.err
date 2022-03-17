@@ -1,0 +1,60 @@
+Non-commercial use only - see $FSLDIR/LICENSE
+ModuleCmd_Load.c(213):ERROR:105: Unable to locate a modulefile for 'c3d_tool'
+gzip: 27628_left_lfseg_corr_usegray.nii: unknown suffix -- ignored
+gzip: 27628_left_lfseg_corr_usegray_noCysts_clean_EPI.nii: unknown suffix -- ignored
+gzip: 27628_left_lfseg_corr_usegray_noCysts_clean.nii: unknown suffix -- ignored
+gzip: 27628_left_lfseg_corr_usegray_noCysts.nii: unknown suffix -- ignored
+gzip: 27628_right_lfseg_corr_usegray.nii: unknown suffix -- ignored
+gzip: 27628_right_lfseg_corr_usegray_noCysts_clean_EPI.nii: unknown suffix -- ignored
+gzip: 27628_right_lfseg_corr_usegray_noCysts_clean.nii: unknown suffix -- ignored
+gzip: 27628_right_lfseg_corr_usegray_noCysts_clean.nii.gz~: unknown suffix -- ignored
+gzip: 27628_right_lfseg_corr_usegray_noCysts.nii: unknown suffix -- ignored
+gzip: alEC_left_HybridMaass_EPI.nii: unknown suffix -- ignored
+gzip: alEC_right_HybridMaass_EPI.nii: unknown suffix -- ignored
+gzip: ASHS_left_HCtail_EPI.nii: unknown suffix -- ignored
+gzip: ASHS_right_HCtail_EPI.nii: unknown suffix -- ignored
+gzip: combined_alEC_DTImasked_T1.nii.gz~: unknown suffix -- ignored
+gzip: combined_alEC_DTI_T2.nii: unknown suffix -- ignored
+gzip: combinedEC_left_HybridMaass_EPI.nii: unknown suffix -- ignored
+gzip: combinedEC_left_HybridMaass_T2.nii: unknown suffix -- ignored
+gzip: combinedEC_left_Maass_T2.nii: unknown suffix -- ignored
+gzip: combinedEC_right_HybridMaass_EPI.nii: unknown suffix -- ignored
+gzip: combinedEC_right_HybridMaass_T2.nii: unknown suffix -- ignored
+gzip: combinedEC_right_Maass_T2.nii: unknown suffix -- ignored
+gzip: combined_pmEC_DTImasked_T1.nii.gz~: unknown suffix -- ignored
+gzip: combined_pmEC_DTI_T2.nii: unknown suffix -- ignored
+gzip: pmEC_left_HybridDTI_EPI_bin.nii: unknown suffix -- ignored
+gzip: pmEC_left_HybridDTI_EPI.nii: unknown suffix -- ignored
+gzip: pmEC_left_HybridDTI_T2.nii: unknown suffix -- ignored
+gzip: pmEC_left_HybridMaass_EPI.nii: unknown suffix -- ignored
+gzip: pmEC_right_HybridDTI_EPI_bin.nii: unknown suffix -- ignored
+gzip: pmEC_right_HybridDTI_EPI.nii: unknown suffix -- ignored
+gzip: pmEC_right_HybridDTI_T2.nii: unknown suffix -- ignored
+gzip: pmEC_right_HybridMaass_EPI.nii: unknown suffix -- ignored
+{Error using spm_vol>spm_vol_hdr (line 80)
+File
+"/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_MTLmasks/27628/pmEC_left_DTImasked_T1xEPI_bin.nii"
+does not exist.
+
+Error in spm_vol (line 61)
+        v = spm_vol_hdr(deblank(P(i,:)));
+
+Error in loadImage_SPM (line 23)
+hdr = spm_vol(file);
+
+Error in calcMeanGridOri (line 25)
+[~, maskVol] = loadImage_SPM(maskFile);
+
+Error in generateMultiCondFile (line 96)
+                        meanGridOrientation_rad =
+                        calcMeanGridOri(cfg.GLM.xFoldSymmetry,
+                        cfg.GLM.GLM2_roiMask_calcMeanGridOri{maskIdx},
+                        GLM1_results.gridEventType(gridEventTypeIdxInGLM1).run(runIdx),
+                        cfg.GLM.GLM2_useWeightingForVoxels);
+
+Error in specifyGLM (line 39)
+cfg = generateMultiCondFile(cfg);
+
+Error in GridCAT_mainfunc (line 209)
+specifyGLM(cfg);
+} 

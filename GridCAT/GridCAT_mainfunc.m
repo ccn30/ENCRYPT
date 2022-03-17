@@ -110,7 +110,7 @@ cfg.GLM.dataDir = [outpathstem '/GLM1'];
 %	7 ... use all grid events of even runs
 %	8 ... use all grid events of all runs
 %	9 ... use specification from event-table
-cfg.GLM.eventUsageSpecifier = 2;
+cfg.GLM.eventUsageSpecifier = 4;
 
 % Include unused grid events in the model?
 %	0 ... grid events that are not used for this GLM will not be included in the model
@@ -144,7 +144,7 @@ cfg.GLM.dataDir = [outpathstem '/GLM2'];
 %	7 ... use all grid events of even runs
 %	8 ... use all grid events of all runs
 %	9 ... use specification from event-table
-cfg.GLM.eventUsageSpecifier = 3;
+cfg.GLM.eventUsageSpecifier = 5;
 
 % Include unused grid events in the model?
 %	0 ... grid events that are not used for this GLM will not be included in the model
@@ -167,9 +167,9 @@ if strcmp(warp_flag, 'main')
     elseif strcmp(ROI_flag, 'pmLeftMaass')
         cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_left_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmRightDTI')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_right_HybridDTI_EPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_right_DTImasked_T1xEPI.nii']};
     elseif strcmp(ROI_flag, 'pmLeftDTI')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_left_HybridDTI_EPI.nii']};    
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_left_DTImasked_T1xEPI.nii']};    
     end
 elseif strcmp(warp_flag,'control')
     if strcmp(ROI_flag,'HCtailR')
@@ -180,6 +180,10 @@ elseif strcmp(warp_flag,'control')
         cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/alEC_right_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag,'alLeftMaass')
         cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/alEC_left_HybridMaass_EPI.nii']};
+    elseif strcmp(ROI_flag,'alRightDTI')
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/alEC_right_DTImasked_T1xEPI.nii']};
+    elseif strcmp(ROI_flag,'alLeftDTI')
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/alEC_left_DTImasked_T1xEPI.nii']};    
     end
 end
 
@@ -219,9 +223,9 @@ if strcmp(warp_flag, 'main')
     elseif strcmp(ROI_flag, 'pmLeftMaass')
         ROI_masks = {[regDir '/pmEC_left_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmRightDTI')
-        ROI_masks = {[regDir '/pmEC_right_HybridDTI_EPI.nii']};
+        ROI_masks = {[regDir '/pmEC_right_DTImasked_T1xEPI.nii']};
     elseif strcmp(ROI_flag, 'pmLeftDTI')
-        ROI_masks = {[regDir '/pmEC_left_HybridDTI_EPI.nii']};    
+        ROI_masks = {[regDir '/pmEC_left_DTImasked_T1xEPI.nii']};    
     end
 elseif strcmp(warp_flag,'control')
     if strcmp(ROI_flag,'HCtailR')
@@ -232,6 +236,10 @@ elseif strcmp(warp_flag,'control')
         ROI_masks = {[regDir '/alEC_right_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag,'alLeftMaass')
         ROI_masks = {[regDir '/alEC_left_HybridMaass_EPI.nii']};
+    elseif strcmp(ROI_flag,'alRightDTI')
+        ROI_masks = {[regDir '/alEC_right_DTImasked_T1xEPI.nii']};
+    elseif strcmp(ROI_flag,'alLeftDTI')
+        ROI_masks = {[regDir '/alEC_left_DTImasked_T1xEPI.nii']};         
     end
 end
 

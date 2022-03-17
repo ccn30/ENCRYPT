@@ -1,7 +1,8 @@
-function GCAP_logfile2eventTable(subject,taskDir)
+function GCAP_logfile2eventTable(taskDir)
 % setAllDurationsToZero_flag, includeRotation_flag, minActiveTranslDur_sec)
+% taskDir already has subject  code
 
-includeRotation_flag = 0;
+includeRotation_flag = 1;
 setAllDurationsToZero_flag = 0;
 minActiveTranslDur_sec = 0.01;
 blocks = {'BlockA','BlockB','BlockC'};
@@ -9,11 +10,11 @@ disp('You are inside GCAP_logfile2eventTable');
 disp(' ');
 
 for b = 1:3
-    logfile = [taskDir '/' subject '/' blocks{b} '/movemenEventData.csv'];
+    logfile = [taskDir '/' blocks{b} '/movemenEventData.csv'];
     
     % open new event table file
     [fpath, fname, ~] = fileparts(logfile);
-    newFilename = [fpath filesep 'eventTable_nr_' fname '.txt'];
+    newFilename = [fpath filesep 'eventTable_' fname '.txt'];
     disp(' ');
     disp(['New event-table: ' newFilename]);
     fp_eventTable = fopen(newFilename, 'w+');
