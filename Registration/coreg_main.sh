@@ -92,8 +92,8 @@ fi
 
 cd ${maskDir}
 
-## Rescale T1s
-c3d ${wholeT1} -stretch 0.0% 99.99999999999% 0 65535 -clip 0 65535 -o ${rescaledWholeT1}
+## Rescale T1s - Xiali Chen command from Marianna help query
+#c3d ${wholeT1} -stretch 0.0% 99.99999999999% 0 65535 -clip 0 65535 -o ${rescaledWholeT1}
 
 
 
@@ -151,12 +151,12 @@ c3d ${wholeT1} -stretch 0.0% 99.99999999999% 0 65535 -clip 0 65535 -o ${rescaled
 #################
 
 # outputs
-maskImage=${rawpathstem}/fMRI/fixedEPIMask.nii
-fixedImageN4=${rawpathstem}/fMRI/N4meanEPI.nii
-outputPrefix=${regDir}/T1xepiSlab
+#maskImage=${rawpathstem}/fMRI/fixedEPIMask.nii
+#fixedImageN4=${rawpathstem}/fMRI/N4meanEPI.nii
+#outputPrefix=${regDir}/T1xepiSlab
 # inputs
-fixedImage=$meanRun1
-movingImage=$brainT1
+#fixedImage=$meanRun1
+#movingImage=$brainT1
 
 # call ANTs script
 
@@ -172,9 +172,9 @@ movingImage=$brainT1
 #T1xT2Affine=${regDir}/T1xT2_ITK.txt
 
 # outputs
-MaassLeftEC_combined_warped=$maskDir/combinedEC_left_Maass_T2.nii.gz
-MaassRightEC_combined_warped=$maskDir/combinedEC_right_Maass_T2.nii.gz
-MaassTempxT2=$regDir/MaassTempxT2_Warped.nii.gz
+#MaassLeftEC_combined_warped=$maskDir/combinedEC_left_Maass_T2.nii.gz
+#MaassRightEC_combined_warped=$maskDir/combinedEC_right_Maass_T2.nii.gz
+#MaassTempxT2=$regDir/MaassTempxT2_Warped.nii.gz
 		#left
 #		antsApplyTransforms -d 3 \
 #				-i ${Maass_combinedEC_left} \
@@ -220,9 +220,9 @@ MaassTempxT2=$regDir/MaassTempxT2_Warped.nii.gz
 # combined pm/alEC DTI mask to T2
 
 # outputs
-DTIpmEC_combinedSide_warped=$maskDir/combined_pmEC_DTI_T2.nii.gz
-DTIalEC_combinedSide_warped=$maskDir/combined_alEC_DTI_T2.nii.gz
-DTITempxT2=$regDir/DTITempxT2_Warped.nii.gz
+#DTIpmEC_combinedSide_warped=$maskDir/combined_pmEC_DTI_T2.nii.gz
+#DTIalEC_combinedSide_warped=$maskDir/combined_alEC_DTI_T2.nii.gz
+#DTITempxT2=$regDir/DTITempxT2_Warped.nii.gz
 		
 		#pmEC
 #		antsApplyTransforms -d 3 \
@@ -273,8 +273,8 @@ DTITempxT2=$regDir/DTITempxT2_Warped.nii.gz
 # outputs
 #DTIpmEC_combinedSide_warpedT1=$maskDir/combined_pmEC_DTI_T1.nii.gz
 #DTIalEC_combinedSide_warpedT1=$maskDir/combined_alEC_DTI_T1.nii.gz
-DTIpmEC_masked_combinedSide_warpedT1=$maskDir/combined_pmEC_DTImasked_T1.nii.gz
-DTIalEC_masked_combinedSide_warpedT1=$maskDir/combined_alEC_DTImasked_T1.nii.gz
+#DTIpmEC_masked_combinedSide_warpedT1=$maskDir/combined_pmEC_DTImasked_T1.nii.gz
+#DTIalEC_masked_combinedSide_warpedT1=$maskDir/combined_alEC_DTImasked_T1.nii.gz
 		
 		#pmEC unmasked
 #		antsApplyTransforms -d 3 \
@@ -335,6 +335,7 @@ DTIalEC_masked_combinedSide_warpedT1=$maskDir/combined_alEC_DTImasked_T1.nii.gz
 #right
 ASHS_epi_R=${maskDir}/"$subject"_right_lfseg_corr_usegray_noCysts_clean_EPI.nii.gz
 ASHS_HCtail_R=${maskDir}/ASHS_right_HCtail_EPI.nii.gz
+ASHS_EC_R=${maskDir}/ASHS_right_EC_EPI.nii.gz
 HybridMaass_epi_R=${maskDir}/combinedEC_right_HybridMaass_EPI.nii.gz
 HybridMaassPM_epi_R=${maskDir}/pmEC_right_HybridMaass_EPI.nii.gz
 HybridMaassAL_epi_R=${maskDir}/alEC_right_HybridMaass_EPI.nii.gz
@@ -342,6 +343,7 @@ HybridDTI_epi_R=${maskDir}/pmEC_right_HybridDTI_EPI.nii.gz
 #left
 ASHS_epi_L=${maskDir}/"$subject"_left_lfseg_corr_usegray_noCysts_clean_EPI.nii.gz
 ASHS_HCtail_L=${maskDir}/ASHS_left_HCtail_EPI.nii.gz
+ASHS_EC_L=${maskDir}/ASHS_left_EC_EPI.nii.gz
 HybridMaass_epi_L=${maskDir}/combinedEC_left_HybridMaass_EPI.nii.gz
 HybridMaassPM_epi_L=${maskDir}/pmEC_left_HybridMaass_EPI.nii.gz
 HybridMaassAL_epi_L=${maskDir}/alEC_left_HybridMaass_EPI.nii.gz
@@ -460,3 +462,9 @@ DTIalEC_masked_L_warpedT1xEPI=$maskDir/alEC_left_DTImasked_T1xEPI.nii.gz
 #fslmaths ${DTIpmEC_masked_combinedSide_warpedT1xEPI} -thr 0.5 -uthr 1.5 -bin ${DTIpmEC_masked_R_warpedT1xEPI} -odt char # right = 1
 #fslmaths ${DTIpmEC_masked_combinedSide_warpedT1xEPI} -thr 1.5 -uthr 2.5 -bin ${DTIpmEC_masked_L_warpedT1xEPI} -odt char # left  = 2
 #c3d ${DTIpmEC_masked_L_warpedT1xEPI} -thresh 1.5 2.5 1 0 ${DTIpmEC_masked_L_warpedT1xEPI} # make left mask value 1
+
+# extract EC from ASHS and combine into single mask
+ASHS_EC=${maskDir}/ASHS_EC_EPI.nii.gz
+fslmaths ${ASHS_epi_R} -thr 8.5 -uthr 9.5 -bin ${ASHS_EC_R} -odt char
+fslmaths ${ASHS_epi_L} -thr 8.5 -uthr 9.5 -bin ${ASHS_EC_L} -odt char
+c3d ${ASHS_EC_R} ${ASHS_EC_L} -add -o ${ASHS_EC}

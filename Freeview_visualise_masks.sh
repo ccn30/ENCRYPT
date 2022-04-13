@@ -18,6 +18,8 @@ echo "******** starting $subject ********"
 ## set paths to image dirs
 MaskDir=$pathstem/ENCRYPT_MTLmasks/$subject
 T2=$pathstem/ENCRYPT_images/$subject/T2/denoise_N4t2.nii
+T1=$pathstem/ENCRYPT_images/$subject/mp2rage/denoise_n4mag0000_PSIR_skulled_std_struc_brain.nii
+tSNR_EC=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT/results/tSNR/$subject/tSNR_ASHS_EC_EPI.nii.gz
 lut=$pathstem/ENCRYPT_MTLmasks/snaplabels_ECsubdivisions.txt
 #${FreeSurfT1Dir}
 cd $MaskDir
@@ -25,13 +27,8 @@ cd $MaskDir
 
 #vglrun 
 vglrun /usr/local/software/freesurfer/7.1.0/bin/freeview -v \
-${T2} \
-${MaskDir}/${subject}_left_lfseg_corr_usegray_noCysts_clean.nii.gz:colormap=LUT:opacity=0.4:lut=$lut \
-${MaskDir}/${subject}_right_lfseg_corr_usegray_noCysts_clean.nii.gz:colormap=LUT:opacity=0.4:lut=$lut  \
-${MaskDir}/combinedEC_right_HybridMaass_T2.nii.gz:colormap=Jet:opacity=0.4:lut=$lut  \
-${MaskDir}/combinedEC_left_HybridMaass_T2.nii.gz:colormap=Jet:opacity=0.4:lut=$lut  \
-${MaskDir}/pmEC_left_HybridDTI_T2.nii.gz:colormap=NIH:opacity=0.4:lut=$lut  \
-${MaskDir}/pmEC_right_HybridDTI_T2.nii.gz:colormap=NIH:opacity=0.4:lut=$lut  \
+${T1} \
+${tSNR_EC}:colormap=heat:opacity=0.4 \
 -layout 1 \
 -viewport 'coronal' &
 

@@ -110,7 +110,7 @@ cfg.GLM.dataDir = [outpathstem '/GLM1'];
 %	7 ... use all grid events of even runs
 %	8 ... use all grid events of all runs
 %	9 ... use specification from event-table
-cfg.GLM.eventUsageSpecifier = 4;
+cfg.GLM.eventUsageSpecifier = 2;
 
 % Include unused grid events in the model?
 %	0 ... grid events that are not used for this GLM will not be included in the model
@@ -144,7 +144,7 @@ cfg.GLM.dataDir = [outpathstem '/GLM2'];
 %	7 ... use all grid events of even runs
 %	8 ... use all grid events of all runs
 %	9 ... use specification from event-table
-cfg.GLM.eventUsageSpecifier = 5;
+cfg.GLM.eventUsageSpecifier = 3;
 
 % Include unused grid events in the model?
 %	0 ... grid events that are not used for this GLM will not be included in the model
@@ -162,8 +162,10 @@ cfg.GLM.GLM1_resultsDir = [outpathstem '/GLM1'];
 if strcmp(warp_flag, 'main')
     if strcmp(ROI_flag, 'both')
 %       cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[]};
+    elseif strcmp(ROI_flag, 'EC')
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/ASHS_EC_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmRightMaass')
-        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_right_HybridMaass_EPI.nii']};
+        cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_right_HybridMaass_EPI.nii']};    
     elseif strcmp(ROI_flag, 'pmLeftMaass')
         cfg.GLM.GLM2_roiMask_calcMeanGridOri = {[regDir '/pmEC_left_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmRightDTI')
@@ -218,6 +220,8 @@ estimateGLM(cfg);
 if strcmp(warp_flag, 'main')
     if strcmp(ROI_flag, 'both')
 %       ROI_masks = {[]};
+    elseif strcmp(ROI_flag, 'EC')
+        ROI_masks = {[regDir '/ASHS_EC_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmRightMaass')
         ROI_masks = {[regDir '/pmEC_right_HybridMaass_EPI.nii']};
     elseif strcmp(ROI_flag, 'pmLeftMaass')

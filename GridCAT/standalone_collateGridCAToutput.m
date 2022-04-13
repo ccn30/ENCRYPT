@@ -62,6 +62,9 @@ for subjIdx = 1:length(subjDirList)
         elseif contains(GLM2dirName, 'pmLeft6_hybridMaass')
             ROI_GLM2meanGridOriCalc = 'pmEC_left';
             dataFile = [subjDir filesep GLM2dirName filesep 'GridCATmetrics_' subjNameList{subjIdx} '_xfold_6_pmLeftMaass_main.txt'];
+        elseif contains(GLM2dirName, 'EC')
+            ROI_GLM2meanGridOriCalc = 'EC';
+            dataFile = [subjDir filesep GLM2dirName filesep 'GridCATmetrics_' subjNameList{subjIdx} '_xfold_6_EC_main.txt'];    
         elseif contains(GLM2dirName, 'pmLeft6_DTImasked')
             ROI_GLM2meanGridOriCalc = 'pmECDTI_left';
             dataFile = [subjDir filesep GLM2dirName filesep 'GridCATmetrics_' subjNameList{subjIdx} '_xfold_6_pmLeftDTI_main.txt'];
@@ -120,7 +123,9 @@ for subjIdx = 1:length(subjDirList)
                 lineData = strsplit(tline, ';');
                 
                 % interlude - get side
-                if strncmp(ROI_GLM2meanGridOriCalc(6:9),'left',4)
+                if length(ROI_GLM2meanGridOriCalc) < 3
+                    side='';
+                elseif strncmp(ROI_GLM2meanGridOriCalc(6:9),'left',4)
                     side = 'left';
                 elseif strncmp(ROI_GLM2meanGridOriCalc(6:10),'right',5)
                     side = 'right';
@@ -131,7 +136,7 @@ for subjIdx = 1:length(subjDirList)
                 elseif strncmp(ROI_GLM2meanGridOriCalc(9:12),'left',5) % for DTI masks
                     side = 'left';
                 elseif strncmp(ROI_GLM2meanGridOriCalc(9:13),'right',5)
-                    side = 'right';
+                    side = 'right'; 
                 end
                 
                 % interlude - get threshold value if thresh models 
@@ -164,6 +169,9 @@ for subjIdx = 1:length(subjDirList)
                             ROI_gridMetricMask = cellData{1};
                             strN = 4;
                         end
+                    elseif contains(GLM2dirName, 'EC') 
+                            ROI_gridMetricMask = cellData{2};
+                            strN = 2;
                     else
                         ROI_gridMetricMask = cellData{3}; % to change with new masks
                         strN = 6;
@@ -198,6 +206,9 @@ for subjIdx = 1:length(subjDirList)
                             ROI_gridMetricMask = cellData{1};
                             strN = 4;
                         end
+                    elseif contains(GLM2dirName, 'EC') 
+                            ROI_gridMetricMask = cellData{2};
+                            strN = 2;    
                     else
                         ROI_gridMetricMask = cellData{3}; % to change with new masks
                         strN = 6;
@@ -234,7 +245,10 @@ for subjIdx = 1:length(subjDirList)
                             ROI_gridMetricMask = cellData{1};
                             strN = 4;
                         end
-                    else
+                     elseif contains(GLM2dirName, 'EC') 
+                            ROI_gridMetricMask = cellData{2};
+                            strN = 2;   
+                     else
                         ROI_gridMetricMask = cellData{3}; % to change with new masks
                         strN = 6;
                     end
@@ -268,7 +282,10 @@ for subjIdx = 1:length(subjDirList)
                             ROI_gridMetricMask = cellData{1};
                             strN = 4;
                         end
-                    else
+                     elseif contains(GLM2dirName, 'EC') 
+                            ROI_gridMetricMask = cellData{2};
+                            strN = 2;   
+                     else
                         ROI_gridMetricMask = cellData{3}; % to change with new masks
                         strN = 6;
                     end

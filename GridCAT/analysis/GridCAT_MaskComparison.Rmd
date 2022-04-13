@@ -60,26 +60,10 @@ ggplot(gridmag.allruns, aes(Side,Grid_Magnitude)) +
 # Explore tSNR
 ```{bash}
 # make EC subdiv masks
-pathstem=/lustre/scratch/wbic-beta/ccn30/ENCRYPT
-MTLmaskdir=/home/ccn30/ENCRYPT/segmentation/ECsubdivisions_Mag
-echo $MTLmaskdir
+pathstem=/home/ccn30/rds/hpc-work/WBIC_lustre/ENCRYPT
 
 #mysubjs=${pathstem}/ENCRYPT_MasterRIScodes.txt
 mysubjs=${pathstem}/testsubjcode.txt
-
-## extract T2 pm/alEC masks
-#for subjID in `cat $mysubjs`
-#do
-#subject="$(cut -d'/' -f1 <<<"$subjID")"
-#echo "******** starting $subject ********"
-
-## make hybrid al/pmEC masks in T2 space
-#fslmaths ${MTLmaskdir}/"$subject"_right_lfseg_corr_usegray_ECsubdivisions.nii.gz -thr 16.5 -uthr 17.5 -bin ${MTLmaskdir}/"$subject"_hybridmask_right_pmEC_T2.nii -odt char
-#fslmaths ${MTLmaskdir}/"$subject"_right_lfseg_corr_usegray_ECsubdivisions.nii.gz -thr 17.5 -uthr 18.5 -bin ${MTLmaskdir}/"$subject"_hybridmask_right_alEC_T2.nii -odt char
-#done 
-
-## call script to warp hybrid masks (as MTL) into EPI space and extract pm/alEC (currently only for Magdeburg right) into /lustre/scratch subject coregsitration dir
-#./coreg_MasksxSubjectSpace.sh
 
 ## make tSNR images for each subject
 for subjID in `cat $mysubjs`
@@ -88,38 +72,60 @@ subject="$(cut -d'/' -f1 <<<"$subjID")"
 echo "******** starting $subject ********"
 
 # set paths to inputs
-regDir=${pathstem}/registrations/"${subject}"
-EPI=${pathstem}/fMRI/"${subject}"/rtopup_Run_1.nii
-rightpmECT2xEPI=${regDir}/pmEC_right_Magdeburg_HybridMaskT2xEPI.nii
-rightalECT2xEPI=${regDir}/alEC_right_Magdeburg_HybridMaskT2xEPI.nii
-rightpmMaassxEPI=${regDir}/pmEC_right_MaassMaskxEPI.nii
-rightalMaassxEPI=${regDir}/alEC_right_MaassMaskxEPI.nii
+maskDir=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_MTLmasks/"${subject}"
+echo $maskDir
+#regDir=${pathstem}/registrations/"${subject}"
+EPI=/home/ccn30/rds/rds-p00500_encrypt-URQgmO1brZ0/p00500/ENCRYPT_images/"${subject}"/fMRI/rtopup_run1.nii
+#rightpmECT2xEPI=${regDir}/pmEC_right_Magdeburg_HybridMaskT2xEPI.nii
+#rightalECT2xEPI=${regDir}/alEC_right_Magdeburg_HybridMaskT2xEPI.nii
+#rightpmMaassxEPI=${regDir}/pmEC_right_MaassMaskxEPI.nii
+#rightalMaassxEPI=${regDir}/alEC_right_MaassMaskxEPI.nii
+ASHS_EC=${maskDir}/ASHS_EC_EPI.nii.gz
+HybridDTI_epi_R=${maskDir}/pmEC_right_HybridDTI_EPI.nii.gz
+HybridMaass_epi_R=${maskDir}/combinedEC_right_HybridMaass_EPI.nii.gz
 
 # make tSNR images
 tSNRdir=${pathstem}/results/tSNR/"${subject}"
-#mkdir -p $tSNRdir
+mkdir -p $tSNRdir
 EPI_mean=$tSNRdir/EPI_mean.nii
 EPI_SD=$tSNRdir/EPI_SD.nii
 EPI_tSNR=$tSNRdir/EPI_tSNR.nii
-#fslmaths $EPI -Tmean $EPI_mean
-#fslmaths $EPI -Tstd $EPI_SD
-#fslmaths $EPI_mean -div $EPI_SD $EPI_tSNR
+fslmaths $EPI -Tmean $EPI_mean 
+fslmaths $EPI -Tstd $EPI_SD
+fslmaths $EPI_mean -div $EPI_SD $EPI_tSNR
 
-# extract pm/alEC values for different masks
-pmECR_hybridMag_tSNR=$tSNRdir/tSNR_pmEC_right_hybridmaskMag.nii
-alECR_hybridMag_tSNR=$tSNRdir/tSNR_alEC_right_hybridmaskMag.nii
-pmECR_Maass_tSNR=$tSNRdir/tSNR_pmEC_right_Maassmask.nii
-alECR_Maass_tSNR=$tSNRdir/tSNR_alEC_right_Maassmask.nii
+# extract values for different masks
+ASHS_EC_tSNR=$tSNRdir/tSNR_ASHS_EC_EPI.nii
+HybridDTI_epi_R_tSNR=$tSNRdir/tSNR_pmEC_right_HybridDTI_EPI.nii
+HybridMaass_epi_R_tSNR=$tSNRdir/tSNR_combinedEC_right_HybridMaass_EPI.nii
+fslmaths $EPI_tSNR -mas $ASHS_EC $ASHS_EC_tSNR
+fslmaths $EPI_tSNR -mas $HybridDTI_epi_R $HybridDTI_epi_R_tSNR
+fslmaths $EPI_tSNR -mas $HybridMaass_epi_R $HybridMaass_epi_R_tSNR
+
+#pmECR_hybridMag_tSNR=$tSNRdir/tSNR_pmEC_right_hybridmaskMag.nii
+#alECR_hybridMag_tSNR=$tSNRdir/tSNR_alEC_right_hybridmaskMag.nii
+#pmECR_Maass_tSNR=$tSNRdir/tSNR_pmEC_right_Maassmask.nii
+#alECR_Maass_tSNR=$tSNRdir/tSNR_alEC_right_Maassmask.nii
 #fslmaths $EPI_tSNR -mas $rightpmECT2xEPI $pmECR_hybridMag_tSNR
 #fslmaths $EPI_tSNR -mas $rightalECT2xEPI $alECR_hybridMag_tSNR
 #fslmaths $EPI_tSNR -mas $rightpmMaassxEPI $pmECR_Maass_tSNR
 #fslmaths $EPI_tSNR -mas $rightalMaassxEPI $alECR_Maass_tSNR
 
+
 # use subshell to output multiple fslstats commands per mask per subject into single output file, converting spaces to commas to output as csv, use >> to append not overwrite
-#(fslstats $pmECR_hybridMag_tSNR -V -M -S -R | tr " " ",";fslstats $alECR_hybridMag_tSNR -V -M -S -R | tr " " ",";fslstats $pmECR_Maass_tSNR -V -M -S -R | tr " " ",";fslstats $alECR_Maass_tSNR -V -M -S -R | tr " " ",") >> ${pathstem}/results/tSNR/tSNR_output.csv
-# did manual adjustments to csv file to add subjects and mask types, find way to automate
+#(fslstats $ASHS_EC_tSNR -V -M -S -R | tr " " ","; fslstats $HybridDTI_epi_R_tSNR -V -M -S -R | tr " " ",";fslstats $HybridMaass_epi_R_tSNR -V -M -S -R | tr " " ",") >> ${pathstem}/results/tSNR/tSNR_output.csv
+
+fslstats $ASHS_EC_tSNR -V -M -S -R | tr " " "," >> $tSNRdir/tSNR_output_EC.csv
+fslstats $HybridDTI_epi_R_tSNR -V -M -S -R | tr " " "," >> $tSNRdir/tSNR_output_DTI.csv
+fslstats $HybridMaass_epi_R_tSNR -V -M -S -R | tr " " "," >> $tSNRdir/tSNR_output_Maass.csv
+cat $tSNRdir/tSNR_output_EC.csv $tSNRdir/tSNR_output_DTI.csv $tSNRdir/tSNR_output_Maass.csv >>  $tSNRdir/tSNR_output_all.csv
+printf "$subject,ASHS_EC\n$subject,DTI\n$subject,Maass" >> $tSNRdir/vars.csv
+paste -d , $tSNRdir/vars.csv $tSNRdir/tSNR_output_all.csv >> ${pathstem}/results/tSNR/tSNR_output.csv
+
 done 
 ```
+
+
 
 # Now read in tSNR_output.csv to visualise values
 ```{r}
