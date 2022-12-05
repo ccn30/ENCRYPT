@@ -8,13 +8,9 @@ output: pdf_document
 KEY INFO
 * 12 Trials repeated in 3 blocks, with different return condition/environment type      
 * Risk stratification either  
-  A) individual factor:  
     - Family history (FH)  
     - APOE-e4 status (apoe4)  
     - CAIDE score, continuous (DRS_noAP) or binary below/above median (CAIDELabs_noAPOE)  
-  B) multifactor:  
-    - Two-way (FH+/APOE-e4+ vs everyone else)  
-    - Four-way (FH+/APOE-e4+, FH+/APOE-e4-, FH-/APOE-e4+, FH-/APOE-e4-)  
 * When examining PIT, either used performance per trial/condition (PITall data sets) or mean performance per condition (PITtypemean data sets) or change in mean performance across conditions (PITchange data sets)
 
 
@@ -29,6 +25,7 @@ library(RColorBrewer)
 library(ggthemes)
 library(ggsignif)
 library(lme4)
+library(lmerTest)
 library(emmeans)
 library(knitr)
 library(ggpubr)
@@ -223,10 +220,16 @@ PITtypemean.PREVENTmeta.MRI <- PITtypemean.PREVENTmeta %>% filter(MRI=="y")
 PITtypemean.PREVENTmeta2.MRI <- PITtypemean.PREVENTmeta2 %>% filter(MRI=="y")
 PITtype3mean.MRI <- PITtype3mean.PREVENTmeta2 %>% filter(MRI=="y")
 PITchangeOOB.PREVENTmeta.MRI <- filter(PITchangeOOB.PREVENTmeta, MRI=="y")
+
+# median split change performance
+medianChange <- median(PITchange.PREVENTmeta$meanADerror)
+PITchange.PREVENTmeta <- PITchange.PREVENTmeta %>% mutate(PITLabs = case_when(meanADerror <= medianChange ~ "Low", 
+                                                            meanADerror > medianChange ~ "High"))
+PITchange.PREVENTmeta<- PITchange.PREVENTmeta %>% mutate(PITLabs=factor(PITLabs,levels=c("Low","High"),ordered = T))
 ```
 
 # Compound risk variable
-(this is a four way split of risk, and is in addition to a two-way split of risk already present in PREVENTmeta which is 'high' - FH+/APOE+ and 'low' - any other combination. This four-way split is included for more fine grained analysis of indepedent and additive effects of hereditary factors)
+(this is a four way split of risk for visualisation purposes only)
 ```{r}
 risk <- select(PREVENTmeta,"subjectID","FH","apoe4") %>% mutate("Multi-hereditary risk" = case_when(FH == 1 & apoe4 == 1 ~ "FH+/APOE-e4+",
                                                                                                     FH == 1 & apoe4 == 0 ~ "FH+/APOE-e4-",
@@ -235,8 +238,10 @@ risk <- select(PREVENTmeta,"subjectID","FH","apoe4") %>% mutate("Multi-hereditar
 
 risk <- select(risk,"subjectID","Multi-hereditary risk")
 PITchange.PREVENTmeta <- left_join(PITchange.PREVENTmeta,risk,by = c("Code"="subjectID"))
+PITchange2.PREVENTmeta <- left_join(PITchange2.PREVENTmeta,risk,by = c("Code"="subjectID"))
 PITchangeOOB.PREVENTmeta  <- left_join(PITchangeOOB.PREVENTmeta,risk,by = c("Code"="subjectID"))
 PITchange.PREVENTmeta$`Multi-hereditary risk` = factor(PITchange.PREVENTmeta$`Multi-hereditary risk`, levels=c("FH-/APOE-e4-","FH-/APOE-e4+","FH+/APOE-e4-","FH+/APOE-e4+"),ordered = T)
+PITchange2.PREVENTmeta$`Multi-hereditary risk` = factor(PITchange2.PREVENTmeta$`Multi-hereditary risk`, levels=c("FH-/APOE-e4-","FH-/APOE-e4+","FH+/APOE-e4-","FH+/APOE-e4+"),ordered = T)
 PITchangeOOB.PREVENTmeta$`Multi-hereditary risk` = factor(PITchangeOOB.PREVENTmeta$`Multi-hereditary risk`, levels=c("FH-/APOE-e4-","FH-/APOE-e4+","FH+/APOE-e4-","FH+/APOE-e4+"),ordered = T)
 
 PITchange.PREVENTmeta.MRI <- filter(PITchange.PREVENTmeta, MRI=="y")
@@ -259,20 +264,32 @@ AngErrFull <-AngErrFull %>% mutate(TypeLab = case_when(Type == 1 ~ "No Change",
 AngErrFull <- AngErrFull %>% mutate(TypeLab=factor(TypeLab,levels=c("No Change","No Optic Flow","No Distal Cues"),ordered = T)) %>%
   mutate(`Multi-hereditary risk` = factor(`Multi-hereditary risk`, levels=c("FH-/APOE-e4-","FH-/APOE-e4+","FH+/APOE-e4-","FH+/APOE-e4+"),ordered = T)) 
 
-# make mean version
-AngErrMeanOOB <-  AngErr %>% group_by(subjectID, Type) %>% 
+# make mean version with OOB separate
+AngErrMeanOOB <-  AngErr %>% group_by(subjectID, Type,OutOfBound) %>% 
    summarise(meanAngErr = mean(AngleErr))
-AngErrMeanOOBFull <- left_join(AngErrMeanOOB, PREVENTvars,by="subjectID")
 
+AngErrMeanOOBFull <- left_join(AngErrMeanOOB, PREVENTvars,by="subjectID")
 AngErrMeanOOBFull <-AngErrMeanOOBFull %>% mutate(TypeLab = case_when(Type == 1 ~ "No Change", 
                                                     Type == 2 ~ "No Distal Cues",
                                                     Type == 3 ~ "No Optic Flow"))
 AngErrMeanOOBFull<- AngErrMeanOOBFull%>% mutate(TypeLab=factor(TypeLab,levels=c("No Change","No Optic Flow","No Distal Cues"),ordered = T)) %>%
   mutate(`Multi-hereditary risk` = factor(`Multi-hereditary risk`, levels=c("FH-/APOE-e4-","FH-/APOE-e4+","FH+/APOE-e4-","FH+/APOE-e4+"),ordered = T)) 
 
+# make mean version with OOB and normal trials together
+AngErrMean <-  AngErr %>% group_by(subjectID, Type) %>% 
+   summarise(meanAngErr = mean(AngleErr))
+
+AngErrMeanFull <- left_join(AngErrMean, PREVENTvars,by="subjectID")
+AngErrMeanFull <-AngErrMeanOOBFull %>% mutate(TypeLab = case_when(Type == 1 ~ "No Change", 
+                                                    Type == 2 ~ "No Distal Cues",
+                                                    Type == 3 ~ "No Optic Flow"))
+AngErrMeanFull<- AngErrMeanOOBFull%>% mutate(TypeLab=factor(TypeLab,levels=c("No Change","No Optic Flow","No Distal Cues"),ordered = T)) %>%
+  mutate(`Multi-hereditary risk` = factor(`Multi-hereditary risk`, levels=c("FH-/APOE-e4-","FH-/APOE-e4+","FH+/APOE-e4-","FH+/APOE-e4+"),ordered = T)) 
+
+
 # make change version
-PIT1 <- AngErrMeanOOB %>% filter(Type==1)
-PIT3 <- AngErrMeanOOB %>% filter(Type==2)
+PIT1 <- AngErrMean %>% filter(Type==1)
+PIT3 <- AngErrMean %>% filter(Type==2)
 PITchange.AngErr <- cbind(PIT1[,1],PIT3[,3] - PIT1[,3]) %>%
   mutate(change = case_when(meanAngErr>=0 ~"Worsen",meanAngErr<0 ~"Improve"))
 PITchange.AngErrFull <- left_join(PITchange.AngErr,PREVENTvars,by="subjectID")
@@ -298,8 +315,8 @@ PREVENTmeta.full %>%
 
 filter(PITchange.PREVENTmeta,!is.na(apoe4)) %>% 
   group_by(`Multi-hereditary risk`) %>% 
-  summarise(av = mean(encrypt_age, na.rm=FALSE), 
-            sd = sd(encrypt_age,na.rm=FALSE))
+  summarise(av = mean(DRS_noAP, na.rm=FALSE), 
+            sd = sd(DRS_noAP,na.rm=FALSE))
 
 normality <- PREVENTmeta.full %>%
   group_by(FH) %>%
@@ -317,6 +334,11 @@ wilcox.test(encrypt_age~genderLabs,
 mean(PREVENTmeta.full$EYOD,na.rm=TRUE)
 
 chisq.test(PREVENTmeta.full$genderLabs,PREVENTmeta.full$FH)
+
+lm <- lm(data=filter(PITchange.PREVENTmeta,!is.na(`Multi-hereditary risk`)), encrypt_age ~ Risk)
+lm <- lm(data=filter(PITchange.PREVENTmeta,!is.na(`Multi-hereditary risk`)), nbeduc ~ Risk)
+lm <- lm(data=filter(PITchange.PREVENTmeta,!is.na(`Multi-hereditary risk`)), DRS_noAP ~ Risk)
+anova(lm)
 ```
 
 # Exclusion of 'out of bounds' trials
@@ -337,142 +359,107 @@ summary(modAll_FH)
 anova(modAll_FH, test = "Chisq")
 ```
 
+# -  
 # - - BEHAVIOUR - -
-# 1. Family history/APOE
-(repeat all below code swapping FH with apoe4)
+# 1. PIT x risk
 
-## PIT
--Linear mixed model for all trials + conditions
--reported as not significant
+-Used linear mixed model to examine all repeated trials + conditions individually first, which was not significant  
+-Then used linear regression for change in average performance per condition
 - for location error, use ADerror
 - for angular error, use AAerror
 - for distance error, use DdifferrorAbs
+
+### LMER (individual trials)
+
 ```{r}
 # use sqrt because of skew 
-lmer.SQRTADerror_FH.controls.Interaction3way <- lmer(data=PITall.PREVENTmeta.noOoB.full, sqrt(ADerror) ~ FH * Type * genderLabs + DistIncom + AngleIncomAbs + encrypt_age + nbeduc + (Type | Code) + (1 | TrialNo), REML=FALSE)
+lmer.all <- lmer(data=PITall.PREVENTmeta.noOoB.full, sqrt(ADerror) ~ FH * apoe4 * DRS_noAP * Type * genderLabs + encrypt_age + nbeduc + (Type | Code) + (Type | TrialNo), REML=FALSE)
 
 ggqqplot(resid(lmer.SQRTADerror_FH.controls.Interaction3way))
-plot(lmer.ADerror_FH.controls.Interaction3way) # use sqrt
 
-anova(lmer.SQRTADerror_FH.controls.Interaction3way,type=3) 
-summary(lmer.SQRTADerror_FH.controls.Interaction3way) # siginifcant FH:Type and trend FH:Type:gender
-
-emmADerroTypeFH <- emmeans(lmer.SQRTADerror_FH.controls.Interaction3way, ~ Type * FH, adjust = "tukey",type="response")
-emmADerroTypeFHsex <- emmeans(lmer.SQRTADerror_FH.controls.Interaction3way, ~ Type * FH * genderLabs, adjust = "tukey",type="response")
+anova(lmer.all) 
+summary(lmer.all)
 ```
 
-Plot change in performance across trials
+## LM (change in performance)
+
+Linear regression
+- for location error change, use meanADerror
+- for angular error change, use meanAAerror
+- for distance error change, use meanDdifferrorAbs
+  
+For baseline > no distal cues, use PITchange.PREVENTmeta  
+For baseline > no optic flow, use PITchange2.PREVENTmeta  
+
+### - - All risk factors
 ```{r}
-ADerroTypeFH <- emmip(emmADerroTypeFH, Type ~ FH, CIs = TRUE, plotit=FALSE)
-ADerroTypeFH 
-ADerroTypeFH$yvar.c <- ADerroTypeFH$yvar - mean(ADerroTypeFH$yvar)
-```
- 
-```{r}
-p <- ggplot(ADerroTypeFH, aes(x=Type,y=yvar.c,fill=FH,color=FH)) +
-  geom_bar(stat="identity",position="dodge") +
-  geom_errorbar(position=position_dodge(.9), width=.25,
-                aes(ymax=yvar.c+SE,ymin=yvar.c-SE), 
-                alpha=0.8)+ # add standard error bars according to mean centred predicted values
-  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
-#  geom_signif(y_position = 0.25,
-#             xmin=1+0.23,
-#             xmax=3+0.25,
-#             annotation = "p<0.001", tip_length = 0) +
-  scale_color_manual(values=c("#0073C2","#EFC000")) +
-  scale_fill_manual(values=c("#0073C266","#EFC00066"))
-ggpar(p,
-      xlab = "Return condition type",
-      ylab = "Relative change in location error (m)",
-      legend.title = "Family history status") +
-  theme(axis.text.x = element_text(size=12),
-        axis.text.y = element_text(size=12),
-        axis.title.x = element_text(size=12),
-        axis.title.y = element_text(size=12)) +
-  theme_minimal()
-```
- 
+# baseline > no distal cues
+# location error
+lm.all <- lm(data=PITchange.PREVENTmeta, meanADerror ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc)
+anova(lm.all)
+summary(lm.all)
 
-#### -- Sex interaction
-Plot change in performance across trials by sex
-```{r}
-ADerroTypeFHsex <- emmip(lmer.SQRTADerror_FH.controls.Interaction3way, Type ~ FH  | genderLabs , CIs = TRUE, plotit=FALSE)
-ADerroTypeFHsex
-ADerroTypeFHsex.male <- ADerroTypeFHsex %>% filter(genderLabs == "Male")
-ADerroTypeFHsex.female <- ADerroTypeFHsex%>% filter(genderLabs == "Female")
-ADerroTypeFHsex.male$yvar.c <- ADerroTypeFHsex.male$yvar - mean(ADerroTypeFHsex.male$yvar)
-ADerroTypeFHsex.female$yvar.c <- ADerroTypeFHsex.female$yvar - mean(ADerroTypeFHsex.female$yvar)
-```
- Male
-```{r}
-p <- ggplot(ADerroTypeFHsex.male, aes(x=Type,y=yvar.c,fill=FH,color=FH)) +
-  geom_bar(stat="identity",position="dodge") +
-  geom_errorbar(position=position_dodge(.9), width=.25,
-                aes(ymax=yvar.c+SE,ymin=yvar.c-SE), 
-                alpha=0.8)+ # add standard error bars according to mean centred predicted values
-  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
-  #geom_signif(y_position = c(0.23,0.28),
-   #          xmin=c(2+0.25,1+0.23),
-    #         xmax=c(3+0.25,3+0.25),
-     #        annotation = c("p=0.029","p<0.001"), tip_length = 0, alpha=0.8) +
-  scale_color_manual(values=c("#0073C2","#EFC000")) +
-  scale_fill_manual(values=c("#0073C286","#EFC00086"))
-ggpar(p, 
-      xlab = "Return condition type",
-      ylab = "Relative change in location error (m)",
-      legend.title = "Family history status") +
-theme(strip.text = element_text(size=12),
-        axis.text.x = element_text(size=12),
-        axis.text.y = element_text(size=12),
-        axis.title.x = element_text(size=12),
-        axis.title.y = element_text(size=12)) +
-  theme_minimal()
-```
- Female
-```{r}
-p <- ggplot(ADerroTypeFHsex.female, aes(x=Type,y=yvar.c,fill=FH)) +
-  geom_bar(stat="identity",position="dodge") +
-  geom_errorbar(position=position_dodge(.9), width=.25,
-                aes(ymax=yvar.c+SE,ymin=yvar.c-SE), 
-                alpha=0.3)+ # add standard error bars according to mean centred predicted values
-  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
-  scale_y_continuous(limits = c(-0.15, 0.3))
+emmeans(lm.all, specs = pairwise ~ FH * apoe4, adjust = "tukey",type="response",pbkrtest.limit = 3564)
+emmeans(lm.all, specs = pairwise ~ FH * genderLabs, adjust = "tukey",type="response",pbkrtest.limit = 3564)
+emmeans(lm.all, specs = pairwise ~ apoe4 * genderLabs, adjust = "tukey",type="response",pbkrtest.limit = 3564)
+emmeans(lm.all, specs = pairwise ~ FH * apoe4 * genderLabs, adjust = "tukey",type="response",pbkrtest.limit = 3564)
 
-ggpar(p, palette = "jco",
-      xlab = "Return condition type",
-      ylab = "Relative change in location error (m)",
-      legend.title = "Family history status") +
-  theme(strip.background = element_rect(colour="black",fill="#F5F5F5"), strip.text = element_text(size=12),
-        axis.text.x = element_text(size=12),
-        axis.text.y = element_text(size=12),
-        axis.title.x = element_text(size=12),
-        axis.title.y = element_text(size=12))
+# angular error
+lm.all <- lm(data=PITchange.PREVENTmeta, meanAAerror ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc)
+anova(lm.all)
+summary(lm.all)
+
+
+# distance error
+lm.all <- lm(data=PITchange.PREVENTmeta, meanDdifferrorAbs ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc)
+anova(lm.all)
+summary(lm.all)
+
+
+# baseline > no optic flow
+# location error
+lm.all <- lm(data=PITchange2.PREVENTmeta, meanADerror ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc)
+anova(lm.all)
+summary(lm.all)
+
+emmeans(lm.all, specs = pairwise ~ FH * apoe4, adjust = "tukey",type="response",pbkrtest.limit = 3564)
+
+# angular error
+lm.all <- lm(data=PITchange2.PREVENTmeta, meanAAerror ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc)
+anova(lm.all)
+summary(lm.all)
+
+# distance error
+lm.all <- lm(data=PITchange2.PREVENTmeta, meanDdifferrorAbs ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc)
+anova(lm.all)
+summary(lm.all)
 ```
 
- plot FH by trial  and sex (white out labels for females)
-```{r}
-annotation_df <- data.frame(
-  sex = c("Male","Female",NA),
-  start=c(0.9,1.9,2.9),
-  end=c(1.1,2.1,3.1),
-  labels = c("ns","ns","p=0.085"), 
-  y = c(1.6,1.6,1.6)
-)
 
-p <- ggline(PITall.PREVENTmeta.noOoB.full,x="Type",y="ADerror",
-       color="FH", palette = "jco", add='mean_se',
-       facet.by = "genderLabs",
-       #title = "Family history group differences on location error per trial type",
-       xlab = "Return condtion type", ylab = "Location error (m)") +
-  scale_x_discrete(labels = c("No change","No optic flow", "No distal cues")) +
-    geom_signif(y_position = c(1.75,1.75,1.75),
-              xmin=c(0.9,1.9,2.9),
-              xmax=c(1.1,2.1,3.1),
-              annotation = c("ns","ns","p=0.016"), tip_length = 0.001,alpha=0.8,vjust=-0.1)
-ggpar(p,ylim=c(0.9,1.8))
+### - - CAIDE correlations
+
+```{r}
+# BASELINE > NO DISTAL CUES
+# location error
+cor.test(PITchange.PREVENTmeta$DRS_noAP,  PITchange.PREVENTmeta$meanADerror, method = "pearson")
+hist(PITchange.PREVENTmeta$DRS_noAP)
+
+# angular error
+cor.test(PITchange.PREVENTmeta$DRS_noAP, PITchange.PREVENTmeta$meanAAerror, method = "pearson")
+
+# distance error
+cor.test(PITchange.PREVENTmeta$DRS_noAP, PITchange.PREVENTmeta$meanDdifferrorAbs, method = "pearson")
+
+# BASELINE > NO OPTIC FLOW 
+# location error
+cor.test(PITchange2.PREVENTmeta$DRS_noAP, PITchange2.PREVENTmeta$meanADerror, method = "pearson")
+# angular error
+cor.test(PITchange2.PREVENTmeta$DRS_noAP, PITchange2.PREVENTmeta$meanAAerror, method = "pearson")
+# distance error
+cor.test(PITchange2.PREVENTmeta$DRS_noAP, PITchange2.PREVENTmeta$meanDdifferrorAbs, method = "pearson")
 ```
 
-#### -- EYOD
+### - - Male EYOD (no distal cues)
 For FH males only, given select behavioural findings on no distal cues condition
 ```{r}
 lm.type3EYOD <- lm(data=filter(PITtype3mean.PREVENTmeta2, FH==1), meanADerror ~ EYOD + genderLabs + encrypt_age + nbeduc)
@@ -490,379 +477,333 @@ cor.test(PITtype3mean.PREVENTmeta.male$EYOD,PITtype3mean.PREVENTmeta.male$meanDd
 cor.test(PITtype3mean.PREVENTmeta.male$encrypt_age,PITtype3mean.PREVENTmeta.male$meanDdifferrorAbs)
 ```
 
-## PIT change in performance across trials
-Linear regression
-- for location error change, use meanADerror
-- for angular error change, use meanAAerror
-- for distance error change, use meanDdifferrorAbs
+
+
+### Model comparison
+
 ```{r}
-# BASELINE > NO DISTAL CUES
-lm.change.FHgender <- lm(data=PITchange.PREVENTmeta, meanADerror ~ FH*genderLabs + encrypt_age + nbeduc)
-anova(lm.change.FHgender)
-summary(lm.change.FHgender)
-emmeans(lm.change.FHgender, specs = pairwise ~ FH * genderLabs, adjust = "tukey",type="response",pbkrtest.limit = 3564)
+# 1. model comparison, risk only
+lm.FH <- lm(data=filter(PITchange.PREVENTmeta,!is.na(FH),!is.na(apoe4),!is.na(DRS_noAP)), meanADerror ~ FH + genderLabs + encrypt_age + nbeduc)
+lm.apoe <- lm(data=filter(PITchange.PREVENTmeta,!is.na(FH),!is.na(apoe4),!is.na(DRS_noAP)), meanADerror ~ apoe4 + genderLabs + encrypt_age + nbeduc)
+lm.apoe.FH <- lm(data=filter(PITchange.PREVENTmeta,!is.na(FH),!is.na(apoe4),!is.na(DRS_noAP)), meanADerror ~ apoe4*FH + genderLabs + encrypt_age + nbeduc)
+lm.DRS <- lm(data=filter(PITchange.PREVENTmeta,!is.na(FH),!is.na(apoe4),!is.na(DRS_noAP)), meanADerror ~ DRS_noAP + genderLabs + encrypt_age + nbeduc)
+lm.all.compare <- lm(data=filter(PITchange.PREVENTmeta,!is.na(FH),!is.na(apoe4),!is.na(DRS_noAP)), meanADerror ~ FH*apoe4*DRS_noAP + genderLabs + encrypt_age + nbeduc)
 
-fisher.test(PITchange.PREVENTmeta$change,PITchange.PREVENTmeta$FH)
+summary(lm.FH)
+summary(lm.apoe)
+summary(lm.apoe.FH)
+summary(lm.DRS)
+summary(lm.all.compare)
 
-## angular error
-lm.changeAA.FHgender <- lm(data=PITchange.PREVENTmeta, meanAAerror ~ FH*genderLabs + encrypt_age + nbeduc)
-anova(lm.changeAA.FHgender)
-summary(lm.changeAA.FHgender)
-emmeans(lm.changeAA.FHgender, specs = pairwise ~ FH * genderLabs, adjust = "tukey",type="response",pbkrtest.limit = 3564)
+anova(lm.FH,lm.all.compare)
+anova(lm.apoe,lm.all.compare)
+anova(lm.apoe.FH,lm.all.compare)
+anova(lm.DRS,lm.all.compare)
 
-## distance error
-lm.changeD.FHgender <- lm(data=PITchange.PREVENTmeta, meanDdifferrorAbs ~ FH*genderLabs + encrypt_age + nbeduc)
-anova(lm.changeD.FHgender)
-summary(lm.changeD.FHgender)
-emmeans(lm.changeD.FHgender, specs = pairwise ~ FH * genderLabs, adjust = "tukey",type="response",pbkrtest.limit = 3564)
+# 2. model comparison, risk * gender
+lm.FH.gender <- lm(data=filter(PITchange.PREVENTmeta,!is.na(FH),!is.na(apoe4),!is.na(DRS_noAP)), meanADerror ~ FH * genderLabs + encrypt_age + nbeduc)
+lm.apoe.gender <- lm(data=filter(PITchange.PREVENTmeta,!is.na(FH),!is.na(apoe4),!is.na(DRS_noAP)), meanADerror ~ apoe4 * genderLabs + encrypt_age + nbeduc)
+lm.apoe.FH.gender <- lm(data=filter(PITchange.PREVENTmeta,!is.na(FH),!is.na(apoe4),!is.na(DRS_noAP)), meanADerror ~ apoe4 * FH * genderLabs + encrypt_age + nbeduc)
+lm.DRS.gender <- lm(data=filter(PITchange.PREVENTmeta,!is.na(FH),!is.na(apoe4),!is.na(DRS_noAP)), meanADerror ~ DRS_noAP * genderLabs + encrypt_age + nbeduc)
+lm.all.compare.gender <- lm(data=filter(PITchange.PREVENTmeta,!is.na(FH),!is.na(apoe4),!is.na(DRS_noAP)), meanADerror ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc)
+lm.all.compare.gender2 <- lm(data=filter(PITchange.PREVENTmeta,!is.na(FH),!is.na(apoe4),!is.na(DRS_noAP)), meanADerror ~ FH*apoe4*genderLabs + DRS_noAP + encrypt_age + nbeduc)
 
-# BASELINE > NO OPTIC FLOW
-lm.change2.FHgender <- lm(data=PITchange2.PREVENTmeta, meanADerror ~ FH*genderLabs + encrypt_age + nbeduc)
-anova(lm.change2.FHgender)
-summary(lm.change2.FHgender)
-emmeans(lm.change.FHgender, specs = pairwise ~ FH | genderLabs, adjust = "tukey",type="response",pbkrtest.limit = 3564)
+summary(lm.FH.gender)
+summary(lm.apoe.gender)
+summary(lm.apoe.FH.gender)
+summary(lm.DRS.gender)
+summary(lm.all.compare.gender)
+summary(lm.all.compare.gender2)
 
-## angular error
-lm.change2AA.FHgender <- lm(data=PITchange2.PREVENTmeta, meanAAerror ~ FH*genderLabs + encrypt_age + nbeduc)
-anova(lm.change2AA.FHgender)
-summary(lm.change2AA.FHgender)
-emmeans(lm.change2AA.FHgender, specs = pairwise ~ FH | genderLabs, adjust = "tukey",type="response",pbkrtest.limit = 3564)
+anova(lm.FH.gender,lm.all.compare.gender)
+anova(lm.apoe.gender,lm.all.compare.gender)
+anova(lm.apoe.FH.gender,lm.all.compare.gender) # FH*APOE vs all with * DRS - no different
+anova(lm.apoe.FH.gender,lm.all.compare.gender2) # FH*APOE vs all with + DRS - different
+anova(lm.DRS.gender,lm.all.compare.gender)
 
-## distance error
-lm.change2D.FHgender <- lm(data=PITchange2.PREVENTmeta, meanDdifferrorAbs ~ FH*genderLabs + encrypt_age + nbeduc)
-anova(lm.change2D.FHgender)
-summary(lm.change2D.FHgender)
-emmeans(lm.change2D.FHgender, specs = pairwise ~ FH | genderLabs, adjust = "tukey",type="response",pbkrtest.limit = 3564)
+# 3. compare models with and without gender interactions
+anova(lm.all.compare,lm.all.compare.gender)
+
+anova(lm.FH,lm.FH.gender)
+anova(lm.apoe,lm.apoe.gender)
+anova(lm.apoe.FH,lm.apoe.FH.gender)
+anova(lm.DRS,lm.DRS.gender)
+
+anova(lm.FH,lm.all.compare.gender)
+anova(lm.apoe,lm.all.compare.gender)
+anova(lm.apoe.FH,lm.all.compare.gender)
+anova(lm.DRS,lm.all.compare.gender)
+
 ```
 
+## Overturning
+```{r}
+ggboxplot(filter(AngErrMeanOOBFull,OutOfBound == 0),x="TypeLab",y="meanAngErr",
+       palette = "jco", add='jitter',
+       xlab = "Return condtion type", ylab = "All trial signed angular error (deg)",ggtheme=theme_minimal()) +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+```
+
+## Out of bounds
+
+```{r}
+lm.all <- lm(data=PITchange.AngErrFull, meanAngErr ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc)
+anova(lm.all)
+summary(lm.all)
+```
+
+
+
+```{r}
+p <- ggboxplot(AngErrMeanOOBFull,x="TypeLab",y="meanAngErr",
+       palette = "jco", add='jitter',facet.by = "OutOfBound",
+       xlab = "Return condtion type", ylab = "All trial signed angular error (deg)",ggtheme=theme_minimal()) +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+
+ggpar(p, ylim = c(-70,70))
+```
+
+
+```{r}
+p <- ggboxplot(AngErrMeanFull,x="TypeLab",y="meanAngErr",
+       palette = "jco", add='jitter',
+       xlab = "Return condtion type", ylab = "All trial signed angular error (deg)",ggtheme=theme_minimal()) +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+ggpar(p, ylim = c(-70,70))
+```
+
+# 2. Comparator tests x risk
 ## Allocentric
 ```{r}
-lm.4MT.FH <- lm(data=PREVENTmeta.full, 
-                mount_task_total ~ FH*genderLabs + encrypt_age + nbeduc + date_vi)
-lm.4MT.FH <- lm(data=PITchange.PREVENTmeta, 
-                mount_task_total ~ `Multi-hereditary risk` + genderLabs + encrypt_age + nbeduc + date_vi)
-plot(lm.4MT.FH)
-anova(lm.4MT.FH)
-summary(lm.4MT.FH)
-emmeans(lm.4MT.FH, pairwise ~ FH, adjust="tukey")
-emmeans(lm.4MT.FH, pairwise ~ FH:genderLabs, adjust="tukey")
-emmeans(lm.4MT.FH, pairwise ~ `Multi-hereditary risk`, adjust="tukey")
+lm.4MT <- lm(data=PREVENTmeta.full, 
+                mount_task_total ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc + date_vi)
+plot(lm.4MT)
+anova(lm.4MT)
+emmeans(lm.4MT, pairwise ~ FH, adjust="tukey",type="response")
 ```
 ## Egocentric
 ```{r}
-lm.VRSTT.FH <- lm(data=PREVENTmeta.full, 
-                supm_task_total ~ FH * genderLabs + encrypt_age + nbeduc + date_vi)
-lm.VRSTT.FH <- lm(data=PITchange.PREVENTmeta, 
-                supm_task_total ~ `Multi-hereditary risk`+genderLabs + encrypt_age + nbeduc + date_vi)
-plot(lm.VRSTT.FH)
-anova(lm.VRSTT.FH)
-summary(lm.VRSTT.FH)
-emmeans(lm.VRSTT.FH, pairwise ~ FH, adjust="tukey")
-emmeans(lm.VRSTT.FH, pairwise ~ FH*genderLabs, adjust="tukey")
-emmeans(lm.VRSTT.FH, pairwise ~ `Multi-hereditary risk`, adjust="tukey") # just effect of FH for women
+lm.VRSTT <- lm(data=PREVENTmeta.full, 
+                supm_task_total ~ FH * apoe4 * DRS_noAP * genderLabs + encrypt_age + nbeduc + date_vi)
+plot(lm.VRSTT)
+anova(lm.VRSTT)
 ```
 ## Episodic memory
 narrative recall
 ```{r}
-lm.NarRec.FH <- lm(data=PREVENTmeta.full, 
-                EP21T ~ FH*genderLabs + encrypt_age + nbeduc)
-lm.NarRec.FH <- lm(data=PITchange.PREVENTmeta, 
-                EP21T ~ `Multi-hereditary risk` + genderLabs + encrypt_age + nbeduc)
-plot(lm.NarRec.FH)
-anova(lm.NarRec.FH)
-emmeans(lm.NarRec.FH, pairwise ~ `Multi-hereditary risk`, adjust="tukey")
-emmeans(lm.NarRec.FH, pairwise ~ FH:genderLabs, adjust="tukey")
+lm.NarRec <- lm(data=PREVENTmeta.full, 
+                EP21T ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc)
+anova(lm.NarRec)
 ```
 
 name-face association
 ```{r}
-lm.NarRec.FH <- lm(data=PREVENTmeta.full, 
-                EP18BN ~ FH*genderLabs + encrypt_age + nbeduc)
-lm.NarRec.FH <- lm(data=PITchange.PREVENTmeta, 
-                EP18BN ~ `Multi-hereditary risk` + genderLabs + encrypt_age + nbeduc)
-plot(lm.NarRec.FH)
-anova(lm.NarRec.FH)
-emmeans(lm.NarRec.FH, pairwise ~ `Multi-hereditary risk`, adjust="tukey")
-emmeans(lm.NarRec.FH, pairwise ~ FH, adjust="tukey")
-emmeans(lm.NarRec.FH, pairwise ~ FH:genderLabs, adjust="tukey")
+lm.NameFace <- lm(data=PREVENTmeta.full, 
+                EP18BN ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc)
+
+anova(lm.NameFace)
+summary(lm.NameFace)
+cor.test(PREVENTmeta.full$DRS_noAP,PREVENTmeta.full$EP18BN)
 ```
 
 ## Visual short term binding
 ```{r}
-lm.VSTBT.FH <- lm(data=PREVENTmeta.full, 
-                SHPCOLBINDING_PCR ~ FH*genderLabs + encrypt_age + nbeduc + date_vi)
-lm.VSTBT.FH <- lm(data=PITchange.PREVENTmeta, 
-                SHPCOLBINDING_PCR ~ `Multi-hereditary risk` + genderLabs + encrypt_age + nbeduc)
-plot(lm.VSTBT.FH)
-anova(lm.VSTBT.FH)
-emmeans(lm.VSTBT.FH, pairwise ~ FH, adjust="tukey")
-emmeans(lm.VSTBT.FH, pairwise ~ FH:genderLabs, adjust="tukey")
-emmeans(lm.VSTBT.FH, pairwise ~ `Multi-hereditary risk`, adjust="tukey")
+lm.VSTBT <- lm(data=PREVENTmeta.full, 
+                SHPCOLBINDING_PCR ~ FH*apoe4*DRS_noAP*genderLabs + encrypt_age + nbeduc + date_vi)
+anova(lm.VSTBT)
 ```
 
-# 2. CAIDE
-Did not end up using sex interactions because sex is encoded in score
-## PIT
-Linear mixed model for all conditions/trials
-- for location error, use ADerror
-- for angular error, use AAerror
-- for distance error, use DdifferrorAbs
-```{r}
-lmer.ADerrorSQRT_CAIDEnoAP.controlsC <- lmer(data=PITall.PREVENTmeta.clean.noOoB, sqrt(ADerror) ~ Type*DRS_noAP*genderLabs + DistIncom + AngleIncomAbs + (Type | Code) + (1 | TrialNo), REML=FALSE,control = lmerControl(optimizer ="Nelder_Mead"))
 
-anova(lmer.ADerrorSQRT_CAIDEnoAP.controlsC)
-summary(lmer.ADerrorSQRT_CAIDEnoAP.controlsC)
-
-emtrends(lmer.ADerrorSQRT_CAIDEnoAP.controlsC,pairwise~Type,var="DRS_noAP",type="response",adjust="tukey") # KEEP
-emtrends(lmer.ADerrorSQRT_CAIDEnoAP.controlsC,pairwise~Type|genderLabs,var="DRS_noAP",type="response",adjust="tukey")
-
-mylist <- list(DRS_noAP = c(3,5,7,9,11,13,15,17),Type=c("1","2","3"),genderLabs = c("Male","Female"),AngleIncomAbs = c(60,100,140,180), DistIncom = c(3.6,3.7,3.8,3.9,4.0))
-```
+# 3. ROC analysis on all tests
 
 ```{r}
-emmip(lmer.ADerrorSQRT_CAIDEnoAP.controlsC,Type~DRS_noAP,at=mylist,CIs=TRUE)
-DRSnoAPtypegender <- emmip(lmer.ADerrorSQRT_CAIDEnoAP.controlsC,Type~DRS_noAP,at=mylist,CIs=TRUE,plotit = FALSE)
-levels(DRSnoAPtypegender$Type)[levels(DRSnoAPtypegender$Type)=="1"] <- "No change"
-levels(DRSnoAPtypegender$Type)[levels(DRSnoAPtypegender$Type)=="2"] <- "No optic flow cues"
-levels(DRSnoAPtypegender$Type)[levels(DRSnoAPtypegender$Type)=="3"] <- "No distal cues"
-```
+library(mice)
+library(glmnet)
 
-```{r}
-scaleFUN <- function(x) sprintf("%.1f", x)
-p <- ggplot(data=DRSnoAPtypegender,aes(x=DRS_noAP,y=yvar,color=Type)) + 
-  geom_line(linetype=1,size=1) +
-  geom_ribbon(aes(ymax=UCL,ymin=LCL,color=Type,fill=Type),alpha=0.4,size=0.01)
-ggpar(p, palette = "jco",xlab = "CAIDE DRS",
-      ylab = "Location Error (m)",
-      legend.title = "Return condition") +
-  rremove("grid") +
-  bgcolor("#FFFFFF") +
-  border("#000000") +
-  scale_y_continuous(labels=scaleFUN) +
-  theme(axis.text.x = element_text(size=12),
-        axis.text.y = element_text(size=12),
-        axis.title.x = element_text(size=12),
-        axis.title.y = element_text(size=12))
-```
+dat <- PITchange.PREVENTmeta
+dat$Risk<-factor(dat$Risk, levels = c("Low","High"))
 
-## PIT change in performance across trials
-Linear regression
-- for location error change, use meanADerror
-- for angular error change, use meanAAerror
-- for distance error change, use meanDdifferrorAbs
-```{r}
-# BASELINE > NO DISTAL CUES
-lm.changeAD.DRS <- lm(data=PITchange.PREVENTmeta, meanADerror ~ DRS_noAP*genderLabs + encrypt_age + nbeduc)
-anova(lm.changeAD.DRS)
-summary(lm.changeAD.DRS)
+# fit Risk https://glmnet.stanford.edu/articles/glmnet.html
 
-cor.test(PITchange.PREVENTmeta$DRS_noAP,  PITchange.PREVENTmeta$meanADerror, method = "spearman")
-cor.test(PITchange.PREVENTmeta$DRS_noAP,  PITchange.PREVENTmeta$meanADerror)
-hist(PITchange.PREVENTmeta$DRS_noAP)
+NumVal <- 1000
 
-# angular error
-lm.changeAA.DRS <- lm(data=PITchange.PREVENTmeta, meanAAerror ~ DRS_noAP*genderLabs + encrypt_age + nbeduc)
-lm.changeAA.DRS <- lm(data=PITchange.PREVENTmeta, meanAAerror ~ DRS_noAP)
-anova(lm.changeAA.DRS)
-summary(lm.changeAA.DRS)
+#predictors <- cbind(dat$encrypt_age,dat$gender,dat$nbeduc,dat$meanADerror,dat$EP21T,dat$mount_task_total,dat$supm_task_total, dat$SHPCOLBINDING_PCR)
+predictors <- cbind(dat$encrypt_age,dat$gender,dat$nbeduc)
 
-cor.test(PITchange.PREVENTmeta$DRS_noAP, PITchange.PREVENTmeta$meanAAerror, method = "spearman")
-cor.test(PITchange.PREVENTmeta$DRS_noAP, PITchange.PREVENTmeta$meanDdifferrorAbs, method = "spearman")
+NumPrd <- ncol(predictors)
 
-# BASELINE > NO OPTIC FLOW 
-# correlation first to explore relationship
-# location error
-cor.test(PITchange2.PREVENTmeta$DRS_noAP, PITchange2.PREVENTmeta$meanADerror, method = "spearman")
-# angular error
-cor.test(PITchange2.PREVENTmeta$DRS_noAP, PITchange2.PREVENTmeta$meanAAerror, method = "spearman")
-# distance error
-cor.test(PITchange2.PREVENTmeta$DRS_noAP, PITchange2.PREVENTmeta$meanDdifferrorAbs, method = "spearman")
-```
+auc <- matrix(data=NA, nrow=NumVal, ncol=1)
+beta <- matrix(data=NA, nrow=NumVal, ncol=NumPrd+1) # +1 is intercept
 
+for (val in 1:NumVal)
+{
+  set.seed(val*NumVal) 
+  cfit <- cv.glmnet(predictors, dat$Risk, family = "binomial", type.measure = "auc", keep = TRUE, nfolds = 5)
+#  plot(cfit)
+#  print(cfit, label=T)
+  print(val)
+  ind <- which(cfit$cvm == max(cfit$cvm))
+  auc[val] <- cfit$cvm[ind[1]]
+  tmp <- coef(cfit) #, s = cfit$lambda[ind[1]])
+  beta[val,] <- tmp[1:(NumPrd+1),1]
+}
 
+mauc <- mean(auc)
+if (mauc < 0.5) {mauc <- 1 - mauc} # Assume labels inverted?
+mauc
 
-```{r}
-ggscatter(PITchange.PREVENTmeta, x="DRS_noAP",y="meanADerror",
-          add = "reg.line",conf.int = TRUE,color="#3B3B3B",
-          title = "CAIDE association with change in location error",
-          xlab = "CAIDE DRS", ylab = "Change in location error (m)",ggtheme=theme_minimal()) +
-  stat_cor(method="spearman") +
-theme(strip.text = element_text(size=12),
-        axis.text.x = element_text(size=12),
-        axis.text.y = element_text(size=12),
-        axis.title.x = element_text(size=12),
-        axis.title.y = element_text(size=12))
-```
+num <- matrix(data=NA, nrow = 1, ncol = NumPrd)
+for (val in 1:NumPrd)
+{
+  num[1,val] <- length(which(beta[,val+1]!=0)) # +1 to ignore constant term
+}
+barplot(num)
+num*100/NumVal
+
+val <- which.min(abs(auc - mean(auc)))
+set.seed(val*NumVal) 
+cfit <- cv.glmnet(predictors, dat$Risk, family = "binomial", type.measure = "auc", keep = TRUE, nfolds = 5)
+plot(cfit)
+print(cfit, label=T)
+
+rocs <- roc.glmnet(cfit$fit.preval, newy = dat$Risk)
+# # roc.glmnet returns a list of cross-validated ROC data, one for each model along the path. The code below demonstrates how one can plot the output. The first line identifies the lambda value giving the best area under the curve (AUC). Then we plot all the ROC curves in grey and the ?winner? in red.
+best <- cfit$index["min",]
+plot(rocs[[best]], type = "l") #, asp = 1, xlim = c(0,1))
+# invisible(sapply(rocs, lines, col="grey"))
+lines(rocs[[best]], lwd = 2, col = "red")
+lines(cbind(seq(0,1,0.01),seq(0,1,0.01)), lwd = 1, col = "black")
+
+set.seed(5)
+
+# Impute NA values
+mtt <- mice(cbind(dat$mount_task_total, dat$encrypt_age, dat$gender, dat$nbedu)) # must not use variables of interest below
+mtt <- complete(mtt,1) # Assume 1st imputation sufficient here
+dat$mount_task_total <- mtt[,1]
+
+mtt <- mice(cbind(dat$supm_task_total, dat$encrypt_age, dat$gender, dat$nbedu)) # must not use variables of interest below
+mtt <- complete(mtt,1) # Assume 1st imputation sufficient here
+dat$supm_task_total <- mtt[,1]
 
 
-## Allocentric
-```{r}
-lm.4MT.caide <- lm(data=PREVENTmeta.full, 
-                mount_task_total ~ DRS_noAP + genderLabs + encrypt_age + nbeduc)
-lm.4MT.caideNOCONTROL <- lm(data=PREVENTmeta.full, 
-                mount_task_total ~ DRS_noAP)
-plot(lm.4MT.caide)
-anova(lm.4MT.caide)
-summary(lm.4MT.caide)
-summary(lm.4MT.caideNOCONTROL)
-test(emtrends(lm.4MT.caide, ~ genderLabs,var="DRS_noAP", adjust="tukey"))
-emtrends(lm.4MT.caide, pairwise~ genderLabs,var="DRS_noAP")
-```
+glm1 <- glm(Risk ~ encrypt_age + gender + nbeduc, data= dat, family = binomial)
+glm2 <- glm(Risk ~ encrypt_age + gender + nbeduc + meanADerror, data= dat,family = binomial)
+glm4 <- glm(Risk ~ encrypt_age + gender + nbeduc + EP21T, data= dat,family = binomial)
+glm5 <- glm(Risk~ encrypt_age + gender + nbeduc + mount_task_total, data= dat,family = binomial)
+glm6 <- glm(Risk~ encrypt_age + gender + nbeduc + supm_task_total, data= dat,family = binomial)
+glm7 <- glm(Risk~ encrypt_age + gender + nbeduc + SHPCOLBINDING_PCR, data= dat,family = binomial)
 
-## Egocentric
-```{r}
-lm.VRSTT.caide <- lm(data=PREVENTmeta.full, 
-                log(supm_task_total) ~ DRS_noAP*genderLabs)
-plot(lm.VRSTT.caide)
-anova(lm.VRSTT.caide)
-summary(lm.VRSTT.caide)
-test(emtrends(lm.VRSTT.caide, ~ genderLabs,var="DRS_noAP", adjust="tukey",type="response"))
-```
+null <- predict(glm1, newdata= dat)
+LocationError <- predict(glm2, newdata= dat)
+EpisodicMemory <- predict(glm4, newdata= dat)
+Allocentric <- predict(glm5, newdata= dat)
+Egocentric <- predict(glm6, newdata= dat)
+VisualMemoryBinding <- predict(glm7, newdata= dat)
 
-## Episodic
-```{r}
-# narrartive recall
-lm.NarRec.DRSap <- lm(data=PREVENTmeta.full, 
-                EP21T ~ DRS_noAP)
-plot(lm.NarRec.DRSap)
-anova(lm.NarRec.DRSap)
-summary(lm.NarRec.DRSap)
+true.auc <- colAUC(cbind(null, LocationError, EpisodicMemory, Allocentric, Egocentric,VisualMemoryBinding),  dat$Risk, plotROC = T, alg = "ROC")
 
-# name-face
-lm.NarRec.DRS <- lm(data=PREVENTmeta.full, 
-                EP18BN ~ DRS_noAP)
-plot(lm.NarRec.DRS)
-anova(lm.NarRec.DRS)
-summary(lm.NarRec.DRS)
-```
-## Visual short term binding
-```{r}
-lm.VSTBT.caide <- lm(data=PREVENTmeta.full, 
-                SHPCOLBINDING_PCR ~ DRS_noAP*genderLabs)
-plot(lm.4MT.caide)
-anova(lm.VSTBT.caide)
-summary(lm.VSTBT.caide)
-test(emtrends(lm.VSTBT.caide, ~ genderLabs, var="DRS_noAP", adjust="tukey"))
+## Null permutation
+
+NumVal <- 1000
+
+null.auc <- matrix(data=NA, nrow=NumVal, ncol=6)
+
+for (val in 1:NumVal)
+{
+  dat$SampRisk <- sample(dat$Risk)
+
+  null                <- predict(glm(SampRisk ~ encrypt_age + gender + nbeduc, data = dat, family = binomial), newdata = dat)
+  LocationError       <- predict(glm(SampRisk ~ encrypt_age + gender + nbeduc + meanADerror, data = dat, family = binomial), newdata = dat)
+  EpisodicMemory      <- predict(glm(SampRisk ~ encrypt_age + gender + nbeduc + EP21T, data = dat, family = binomial), newdata = dat)
+  Allocentric         <- predict(glm(SampRisk ~ encrypt_age + gender + nbeduc + mount_task_total, data = dat, family = binomial), newdata = dat)
+  Egocentric          <- predict(glm(SampRisk ~ encrypt_age + gender + nbeduc + supm_task_total, data = dat, family = binomial), newdata = dat)
+  VisualMemoryBinding <- predict(glm(SampRisk ~ encrypt_age + gender + nbeduc + SHPCOLBINDING_PCR, data = dat, family = binomial), newdata = dat)
+  
+  null.auc[val,1:6] <- colAUC(cbind(null, LocationError, EpisodicMemory, Allocentric, Egocentric, VisualMemoryBinding),  dat$SampRisk, plotROC = F, alg = "ROC")
+  }
+
+boxplot(null.auc)
+summary(null.auc)
+true.auc
+
+for (val in 1:6)
+  {
+  print(val)
+  print(quantile(null.auc[,val],.95))
+  print(ecdf(null.auc[,val])(true.auc[,val]))
+}
+
 ```
 
 
-# 3. Multifactor risk
-Two variables explored: 'Multi-hereditary risk' (four way stratification of FH and APOE status) or 'Risk' (two-way stratification, FH+/APOE+ vs everyone else) - the latter was used for binary ROC and smaller group size neuroimaging analysis
 
-## PIT change in performance, baseline > no distal cues
-- for location error change, use meanADerror
-- for angular error change, use meanAAerror
-- for distance error change, use meanDdifferrorAbs
-```{r}
-# four way
-lm.change.multi <- lm(data=PITchange.PREVENTmeta, meanADerror ~ `Multi-hereditary risk`* genderLabs + encrypt_age + nbeduc)
-
-anova(lm.change.multi)
-summary(lm.change.multi)
-emmeans(lm.change.multi, specs = pairwise ~ `Multi-hereditary risk`*genderLabs , adjust = "tukey",type="response",pbkrtest.limit = 3564)
-emmeans(lm.change.multi, specs = pairwise ~ `Multi-hereditary risk`, adjust = "tukey",type="response",pbkrtest.limit = 3564)
-
-# four way x CAIDE
-lm.change.multi <- lm(data=PITchange.PREVENTmeta, meanADerror ~ `Multi-hereditary risk`*DRS_noAP + genderLabs + encrypt_age + nbeduc)
-
-anova(lm.change.multi)
-summary(lm.change.multi)
-emmeans(lm.change.multi, specs = pairwise ~ `Multi-hereditary risk`*genderLabs , adjust = "tukey",type="response",pbkrtest.limit = 3564)
-
-# two way
-lm.change.multi <- lm(data=PITchange.PREVENTmeta, meanADerror ~ Risk * genderLabs + encrypt_age + nbeduc)
-
-anova(lm.change.multi)
-summary(lm.change.multi)
-emmeans(lm.change.multi, specs = pairwise ~ Risk*genderLabs , adjust = "tukey",type="response",pbkrtest.limit = 3564)
-
-# two-way * CAIDE
-lm.change.multi <- lm(data=PITchange.PREVENTmeta, meanADerror ~ Risk * DRS_noAP + genderLabs + encrypt_age + nbeduc)
-
-anova(lm.change.multi)
-summary(lm.change.multi)
-emmeans(lm.change.multi, specs = pairwise ~ Risk*genderLabs , adjust = "tukey",type="response",pbkrtest.limit = 3564)
-```
-
-
-```{r}
-ggbarplot(filter(PITchange.PREVENTmeta, !is.na(apoe4)), x="Multi-hereditary risk",y="meanADerror",color="Multi-hereditary risk",fill="Multi-hereditary risk",add=c("mean_se","jitter"),ylab = "Change in location error (m)",ggtheme=theme_minimal()) +
-  scale_color_manual(values=c("#4A6990","#7AA6DC","#003C67","#EFC000")) +
-  scale_fill_manual(values=c("#003C6766","#4A699066","#7AA6DC66","#EFC00066")) +
-theme(strip.text = element_text(size=12),
-        axis.text.x = element_text(size=12),
-        axis.text.y = element_text(size=12),
-        axis.title.x = element_text(size=12),
-        axis.title.y = element_text(size=12))
-```
-
-```{r}
-ggbarplot(filter(PITchange.PREVENTmeta, !is.na(apoe4)), x="Risk",y="meanADerror",
-          color="Risk",fill="Risk",
-          add=c("mean_se","jitter"),ylab = "Change in location error (m)",ggtheme=theme_minimal()) +
-  scale_color_manual(values=c("#4A6990","#7AA6DC")) +
-  scale_fill_manual(values=c("#003C6766","#4A699066")) +
-theme(strip.text = element_text(size=12),
-        axis.text.x = element_text(size=12),
-        axis.text.y = element_text(size=12),
-        axis.title.x = element_text(size=12),
-        axis.title.y = element_text(size=12))
-```
-
-```{r}
-ggbarplot(filter(PITchange.PREVENTmeta, !is.na(apoe4)), x="Risk",y="meanADerror",
-          color="Risk",fill="Risk",facet.by = "genderLabs",
-          add=c("mean_se","jitter"),ylab = "Change in location error (m)",ggtheme=theme_minimal()) +
-  scale_color_manual(values=c("#4A6990","#7AA6DC")) +
-  scale_fill_manual(values=c("#003C6766","#4A699066")) +
-theme(strip.text = element_text(size=12),
-        axis.text.x = element_text(size=12),
-        axis.text.y = element_text(size=12),
-        axis.title.x = element_text(size=12),
-        axis.title.y = element_text(size=12))
-```
-
-## Other assessments
-As above for FH/APOE factors, but swapping in four-way risk variable instead of FH/APOE
-
+#-
 # - - MRI STRUCTURE - -
 
-## Risk factors
-A series of linear regression models exploring each ROI as a response and each risk factor as a predictor e.g. swapping FH for APOE or CAIDE or two-way multifactor risk
+## 1. Risk factors
+A series of linear regression models exploring each ROI as a response and each risk factor as a predictor e.g. swapping FH for APOE or CAIDE or all
 ```{r}
-modelsList <- list(lm.pmEC.FH = lm(data=MRIsubsample,pmEC_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.alEC.FH = lm(data=MRIsubsample,alEC_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.CA1.FH = lm(data=MRIsubsample,CA1_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.CA2.FH = lm(data=MRIsubsample,CA2_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.CA3.FH = lm(data=MRIsubsample,CA3_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.DG.FH = lm(data=MRIsubsample,DG_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.Tail.FH = lm(data=MRIsubsample,Tail_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.PrC.FH = lm(data=MRIsubsample,PrC_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.Sub.FH = lm(data=MRIsubsample,Sub_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.PhC.FH = lm(data=MRIsubsample,PhC_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.RSC.FH = lm(data=MRIsubsample,isthm_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.PCC.FH = lm(data=MRIsubsample,post_volume_cor ~ FH + genderLabs + encrypt_age + nbeduc),
-               lm.Total.FH = lm(data=MRIsubsample,BrainSegVolNotVent ~ FH + genderLabs + encrypt_age + nbeduc))
+modelsList <- list(lm.pmEC.FH = lm(data=MRIsubsample,pmEC_volume_cor ~ FH*apoe4*genderLabs + encrypt_age + nbeduc),
+               lm.alEC.FH = lm(data=MRIsubsample,alEC_volume_cor ~ FH*apoe4*genderLabs + encrypt_age + nbeduc),
+               lm.CA1.FH = lm(data=MRIsubsample,CA1_volume_cor ~ FH*apoe4*genderLabs + encrypt_age + nbeduc),
+               lm.CA2.FH = lm(data=MRIsubsample,CA2_volume_cor ~ FH*apoe4*genderLabs + encrypt_age + nbeduc),
+               lm.CA3.FH = lm(data=MRIsubsample,CA3_volume_cor ~ FH*apoe4*genderLabs + encrypt_age + nbeduc),
+               lm.DG.FH = lm(data=MRIsubsample,DG_volume_cor ~ FH*apoe4*genderLabs + encrypt_age + nbeduc),
+               lm.PrC.FH = lm(data=MRIsubsample,PrC_volume_cor ~ FH*apoe4*genderLabs + encrypt_age + nbeduc),
+               lm.Sub.FH = lm(data=MRIsubsample,Sub_volume_cor ~ FH*apoe4*genderLabs + encrypt_age + nbeduc),
+               lm.PhC.FH = lm(data=MRIsubsample,PhC_volume_cor ~ FH*apoe4*genderLabs + encrypt_age + nbeduc),
+               lm.RSC.FH = lm(data=MRIsubsample,isthm_volume_cor ~ FH*apoe4*genderLabs + encrypt_age + nbeduc),
+               lm.PCC.FH = lm(data=MRIsubsample,post_volume_cor ~ FH*apoe4*genderLabs + encrypt_age + nbeduc))
 modelsAnova <- lapply(modelsList,anova)
 lapply(modelsList,summary)
 # cumbersome manual extraction of p value for risk factor into vector, I know it is terrible
-pvec.FH = c(0.35,0.14,0.84,0.68,0.72,0.38,0.57,0.78,0.11,0.88,0.32)
+pvec.FH = c(0.28,0.25,0.40,0.73,0.86,0.44,0.39,0.04,0.04,0.05,0.94)
 pvec.FH.correct <- p.adjust(pvec.FH,"BH")
 pvec.FH.correct
 ```
 
-## PIT change in location error * risk factors
 
 ```{r}
-modelsListPIT <- list(lm.pmEC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanAAerror ~ pmEC_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
-               lm.alEC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanAAerror ~ alEC_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
-               lm.EC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanAAerror ~ EC_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
-               lm.CA1.FH = lm(data=PITchange.PREVENTmeta.MRI,meanAAerror ~ CA1_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
-               lm.Sub.FH = lm(data=PITchange.PREVENTmeta.MRI,meanAAerror ~ Sub_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
-               lm.RSC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanAAerror ~ isthm_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
-               lm.PCC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanAAerror ~ post_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
-               lm.PrC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanAAerror ~ PrC_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
-               lm.PhC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanAAerror ~ PhC_volume_cor*FH*genderLabs + encrypt_age + nbeduc))
+MRIsubsample %>% group_by(FH,apoe4) %>% summarise(pmEC = mean(pmEC_volume_cor,na.rm=TRUE),
+                                                  alEC = mean(alEC_volume_cor,na.rm=TRUE),
+                                                  CA1 = mean(CA1_volume_cor,na.rm=TRUE),
+                                                  CA2 = mean(CA2_volume_cor,na.rm=TRUE),
+                                                  CA3 = mean(CA3_volume_cor,na.rm=TRUE),
+                                                  DG = mean(DG_volume_cor,na.rm=TRUE),
+                                                  PrC = mean(PrC_volume_cor,na.rm=TRUE),
+                                                  Sub = mean(Sub_volume_cor,na.rm=TRUE),
+                                                  PhC = mean(PhC_volume_cor,na.rm=TRUE),
+                                                  RSC = mean(isthm_volume_cor,na.rm=TRUE),
+                                                  PCC =mean(post_volume_cor,na.rm=TRUE))
+```
+
+
+## 2. Individual ROI x risk factors x PIT
+
+```{r}
+modelsListPIT <- list(lm.pmEC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanADerror ~ pmEC_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
+               lm.alEC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanADerror ~ alEC_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
+               lm.CA1.FH = lm(data=PITchange.PREVENTmeta.MRI,meanADerror ~ CA1_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
+               lm.CA2.FH = lm(data=PITchange.PREVENTmeta.MRI,meanADerror ~ CA2_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
+               lm.CA3.FH = lm(data=PITchange.PREVENTmeta.MRI,meanADerror ~ CA3_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
+               lm.DG.FH = lm(data=PITchange.PREVENTmeta.MRI,meanADerror ~ DG_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
+               lm.Sub.FH = lm(data=PITchange.PREVENTmeta.MRI,meanADerror ~ Sub_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
+               lm.RSC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanADerror ~ isthm_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
+               lm.PCC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanADerror ~ post_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
+               lm.PrC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanADerror ~ PrC_volume_cor*FH*genderLabs + encrypt_age + nbeduc),
+               lm.PhC.FH = lm(data=PITchange.PREVENTmeta.MRI,meanADerror ~ PhC_volume_cor*FH*genderLabs + encrypt_age + nbeduc))
 
 modelsSummary <- lapply(modelsListPIT,summary)
 modelsAnova<- lapply(modelsListPIT,anova)
@@ -870,25 +811,39 @@ modelsAnova<- lapply(modelsListPIT,anova)
 # same as above - manually extract p values and correct
 ```
 
-
-# - - fMRI GRID ACTIVITY - -
-
-## Grid cell metrics
+## 3. Multiple ROIs x PIT
 ```{r}
+lm.allROIs <- lm(data=filter(PITchange.PREVENTmeta.MRI,!is.na(pmEC_volume_cor)), meanADerror ~ pmEC_volume_cor + 
+                   alEC_volume_cor + CA1_volume_cor + CA2_volume_cor + CA3_volume_cor +
+                   post_volume_cor + PrC_volume_cor + PhC_volume_cor + isthm_volume_cor +
+                   Sub_volume_cor + DG_volume_cor + encrypt_age + nbeduc + genderLabs)
+summary(lm.allROIs)
+
+lm.null <- lm(data=filter(PITchange.PREVENTmeta.MRI,!is.na(pmEC_volume_cor)), meanADerror ~ encrypt_age + nbeduc + genderLabs)
+anova(lm.allROIs,lm.null)
+```
+
+
+#-
+# - - fMRI GRID ACTIVITY - -
+## 1. Function x risk
+```{r}
+hist(MRIsubsample$GCmagnitude_allRuns_pmECDTI_right_6)
+
+## Basic metrics of grid activity
 # magnitude
-t.test(MRIsubsample$GCmagnitude_allRuns_pmECDTI_right_6, mu = 0)
+t.test(MRIsubsample$GCmagnitude_allRuns_pmECDTI_right_6, mu = 0,alternative="greater")
 # temporal stability
-t.test(MRIsubsample$tStability_pmECDTI_right_6_av, mu = 50)
+t.test(MRIsubsample$tStability_pmECDTI_right_6_av, mu = 50,alternative="greater")
 # spatial stability
-t.test(MRIsubsample$sStability_pmECDTI_right_6_av, mu = 0)
+t.test(MRIsubsample$sStability_pmECDTI_right_6_av, mu = 0,alternative="greater")
 
-# risk factors -FH/APOE
-t.test(GCmagnitude_allRuns_pmECDTI_right_6~FH, data=MRIsubsample)
+# risk factors -multi
+lm.multi <- lm(data = MRIsubsample, GCmagnitude_allRuns_pmECDTI_right_6 ~ FH * apoe4 * DRS_noAP * genderLabs + encrypt_age + nbeduc)
+anova(lm.multi)
 
-# risk factors CAIDE
-ggscatter(MRIsubsample, y="GCmagnitude_allRuns_pmECDTI_right_6",x="DRS_noAP",add="reg.line",conf.int = TRUE,palette = "jco",
-            ylab = "Magnitude of grid-cell-like representations",xlab="CAIDE DRS") +
-  stat_cor(method="pearson")
+lm.multi <- lm(data = MRIsubsample, tStability_pmECDTI_right_6_av ~ FH * apoe4 * DRS_noAP * genderLabs + encrypt_age + nbeduc)
+anova(lm.multi)
 
 # volume control
 ggscatter(MRIsubsample, x="rh_pmECDTI_volume", y="GCmagnitude_allRuns_pmEC_right_6",
@@ -903,7 +858,17 @@ ggscatter(MRIsubsample, x="tSNR_pmECDTI_right_6", y="GCmagnitude_allRuns_pmECDTI
 
 ```
 
-## PIT * grid cell metrics
+```{r}
+PITchangelow <- filter(PITchange.PREVENTmeta, PITLabs == "Low",MRI=="y")
+PITchangelow.male <- filter(PITchange.PREVENTmeta, PITLabs == "Low",MRI=="y",genderLabs == "Male")
+PITchangehigh <- filter(PITchange.PREVENTmeta, PITLabs == "High",MRI=="y")
+t.test(PITchangelow$GCmagnitude_allRuns_pmECDTI_right_6, mu = 0,alternative="greater")
+t.test(PITchangehigh$GCmagnitude_allRuns_pmECDTI_right_6, mu = 0,alternative="greater")
+
+t.test(data=filter(PITchange.PREVENTmeta, MRI=="y"), GCmagnitude_allRuns_pmECDTI_right_6~PITLabs)
+```
+
+## 2. Function x PIT
 
 ```{r}
 lm.GCchange <- lm(data=PITchange.PREVENTmeta.MRI,meanADerror~GCmagnitude_allRuns_pmECDTI_right_6 + 
@@ -919,33 +884,30 @@ ggscatter(PITchange.PREVENTmeta.MRI, x="GCmagnitude_allRuns_pmECDTI_right_6",y="
   stat_cor(method="spearman")
 ```
 
-## Risk * PIT * grid cell metrics
+## 3. Function x PIT x Risk
 
 Again exchange below FH factor for apoe4 or Risk (multifactor two-way)
 
 #### Linear regression
 
 ```{r}
-lm.GCchange.FH <- lm(data=PITchange.PREVENTmeta.MRI,meanADerror~GCmagnitude_allRuns_pmECDTI_right_6*FH*genderLabs + nbeduc + encrypt_age)
-summary(lm.GCchange.FH)
+lm.GCchange <- lm(data=PITchange.PREVENTmeta.MRI,meanADerror~GCmagnitude_allRuns_pmECDTI_right_6*FH*apoe4*DRS_noAP*genderLabs + nbeduc + encrypt_age)
+summary(lm.GCchange)
+anova(lm.GCchange)
+# no effect in full model
+
+lm.GCchange.FH<- lm(data=PITchange.PREVENTmeta.MRI,meanADerror~GCmagnitude_allRuns_pmECDTI_right_6*FH*genderLabs + nbeduc + encrypt_age)
 anova(lm.GCchange.FH)
 
-emtrends(lm.GCchange.FH,pairwise ~FH*genderLabs,var="GCmagnitude_allRuns_pmECDTI_right_6", type="response",adjust="tukey" )
-# male and female FH+ significantly different
+lm.GCchange.apoe4<- lm(data=PITchange.PREVENTmeta.MRI,meanADerror~GCmagnitude_allRuns_pmECDTI_right_6*apoe4*genderLabs + nbeduc + encrypt_age)
+anova(lm.GCchange.apoe4)
 ```
 
-```{r}
-ggscatter(PITchange.PREVENTmeta.MRI, x="GCmagnitude_allRuns_pmECDTI_right_6",y="meanADerror",
-          add = "reg.line",conf.int = TRUE,palette="jco",color="FH",facet.by = "genderLabs",
-          title = "Association of pmEC Grid signal with change in location error",
-          xlab = "Magnitude of grid cell like representations", ylab = "Change in location error (m)") +
-  stat_cor(aes(color=FH),method="pearson",label.y= c(1.6,1.8))
-```
 
-##### CAIDE interactions code
+### CAIDE interactions
 
 ```{r}
-lm_ADerror<-lm(data=PITchange.PREVENTmeta.MRI, meanADerror ~ GCmagnitude_allRuns_pmECDTI_right_6 * DRS_noAP)
+lm_ADerror<-lm(data=PITchange.PREVENTmeta.MRI, meanADerror ~ GCmagnitude_allRuns_pmECDTI_right_6 * DRS_noAP + encrypt_age + nbeduc + genderLabs)
 summary(lm_ADerror)
 anova(lm_ADerror)
 
@@ -978,10 +940,23 @@ sim_slopes(lm_ADerror, pred = GCmagnitude_allRuns_pmECDTI_right_6 , modx = DRS_n
 #### Model comparison
 
 ```{r}
+# FH
 lm.changeFH <- lm(data=filter(PITchange.PREVENTmeta.MRI,!is.na(GCmagnitude_allRuns_pmECDTI_right_6)), meanADerror ~ FH * genderLabs + encrypt_age + nbeduc) #null model, no fMRI
 lm.GCchange.FH <- lm(data=PITchange.PREVENTmeta.MRI,meanADerror~GCmagnitude_allRuns_pmECDTI_right_6*FH*genderLabs + nbeduc + encrypt_age) # model of interest with fMRI
 
 anova(lm.changeFH, lm.GCchange.FH)
+
+# APOE
+lm.changeAPOE <- lm(data=filter(PITchange.PREVENTmeta.MRI,!is.na(GCmagnitude_allRuns_pmECDTI_right_6)), meanADerror ~ apoe4 * genderLabs + encrypt_age + nbeduc) #null model, no fMRI
+lm.GCchange.apoe4<- lm(data=PITchange.PREVENTmeta.MRI,meanADerror~GCmagnitude_allRuns_pmECDTI_right_6*apoe4*genderLabs + nbeduc + encrypt_age)
+
+anova(lm.changeAPOE, lm.GCchange.apoe4)
+
+# CAIDE
+lm.change.DRS <-lm(data=filter(PITchange.PREVENTmeta.MRI,!is.na(GCmagnitude_allRuns_pmECDTI_right_6)), meanADerror ~ DRS_noAP + encrypt_age + nbeduc + genderLabs)
+lm.GCchange.DRS <-lm(data=filter(PITchange.PREVENTmeta.MRI,!is.na(GCmagnitude_allRuns_pmECDTI_right_6)), meanADerror ~ GCmagnitude_allRuns_pmECDTI_right_6 * DRS_noAP + encrypt_age + nbeduc + genderLabs)
+
+anova(lm.change.DRS, lm.GCchange.DRS)
 ```
 
 #### Control models
@@ -1012,4 +987,151 @@ ggscatter(filter(PITchange.PREVENTmeta.MRI,!is.na(CAIDELabs_noAPOE)), x="GCmagni
           xlab = "GLRs magnitude", ylab = "Change in angular error (deg)") +
   stat_cor(method="pearson")
 ```
+
+#-
+# - - PLOTS - - 
+
+## Panel 1
+
+```{r}
+ggscatter(PITchange.PREVENTmeta, x="DRS_noAP",y="meanADerror",
+          add = "reg.line",conf.int = TRUE,color="#3B3B3B",
+          xlab = "CAIDE DRS", ylab = "Change in location error (m)",ggtheme=theme_minimal()) +
+  stat_cor(method="pearson") +
+  theme(strip.text = element_text(size=18),
+        axis.text.x = element_text(size=15),
+        axis.text.y = element_text(size=15),
+        axis.title.x = element_text(size=18),
+        axis.title.y = element_text(size=18))
+```
+
+
+
+```{r}
+p <- ggbarplot(filter(PITchange.PREVENTmeta, !is.na(apoe4)), x="Multi-hereditary risk",y="meanADerror",color="Multi-hereditary risk",fill="Multi-hereditary risk",add=c("mean_se","jitter"),ylab = "Change in location error, no distal cues (m)",ggtheme=theme_minimal()) +
+  scale_color_manual(values=c("#4A6990","#7AA6DC","#003C67","#EFC000")) +
+  scale_fill_manual(values=c("#003C6766","#4A699066","#7AA6DC66","#EFC00066")) +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+ggpar(p,ylim=c(-1,1.9))
+```
+
+```{r}
+p <- ggbarplot(filter(PITchange2.PREVENTmeta, !is.na(apoe4)), x="Multi-hereditary risk",y="meanADerror",color="Multi-hereditary risk",fill="Multi-hereditary risk",add=c("mean_se","jitter"),ylab = "Change in location error, no optic flow (m)",ggtheme=theme_minimal()) +
+  scale_color_manual(values=c("#4A6990","#7AA6DC","#003C67","#EFC000")) +
+  scale_fill_manual(values=c("#003C6766","#4A699066","#7AA6DC66","#EFC00066")) +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+ggpar(p,ylim=c(-1,1.9))
+```
+
+
+```{r}
+p <- ggbarplot(filter(PITchange.PREVENTmeta, !is.na(apoe4)), x="Multi-hereditary risk",y="meanADerror",color="Multi-hereditary risk",fill="Multi-hereditary risk",add=c("mean_se","jitter"),ylab = "Change in location error, no distal cues (m)",facet.by="genderLabs",ggtheme=theme_minimal()) +
+  scale_color_manual(values=c("#4A6990","#7AA6DC","#003C67","#EFC000")) +
+  scale_fill_manual(values=c("#003C6766","#4A699066","#7AA6DC66","#EFC00066")) +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+ggpar(p,ylim=c(-1,1.9))
+```
+
+## Panel 2
+
+```{r}
+ggscatter(PITchange.PREVENTmeta, x="DRS_noAP",y="meanAAerror",
+          add = "reg.line",conf.int = TRUE,color="#3B3B3B",
+          title = "CAIDE association with change in angular error",
+          xlab = "CAIDE DRS", ylab = "Change in angular error, no distal cues (deg)",ggtheme=theme_minimal()) +
+  stat_cor(method="pearson") +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+```
+```{r}
+ggscatter(PITchange.PREVENTmeta, x="DRS_noAP",y="meanDdifferrorAbs",
+          add = "reg.line",conf.int = TRUE,color="#3B3B3B",
+          title = "CAIDE association with change in distance error",
+          xlab = "CAIDE DRS", ylab = "Change in distance error, no distal cues (m)",ggtheme=theme_minimal()) +
+  stat_cor(method="pearson") +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+```
+
+```{r}
+ggbarplot(filter(PITchange.PREVENTmeta, !is.na(apoe4)), x="Multi-hereditary risk",y="meanAAerror",color="Multi-hereditary risk",fill="Multi-hereditary risk",add=c("mean_se","jitter"),ylab = "Change in angular error, no distal cues (deg)",facet.by="genderLabs",ggtheme=theme_minimal()) +
+  scale_color_manual(values=c("#4A6990","#7AA6DC","#003C67","#EFC000")) +
+  scale_fill_manual(values=c("#003C6766","#4A699066","#7AA6DC66","#EFC00066")) +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+
+```
+
+```{r}
+ggbarplot(filter(PITchange.PREVENTmeta, !is.na(apoe4)), x="Multi-hereditary risk",y="meanDdifferrorAbs",color="Multi-hereditary risk",fill="Multi-hereditary risk",add=c("mean_se","jitter"),ylab = "Change in distance error, no distal cues (m)",facet.by="genderLabs",ggtheme=theme_minimal()) +
+  scale_color_manual(values=c("#4A6990","#7AA6DC","#003C67","#EFC000")) +
+  scale_fill_manual(values=c("#003C6766","#4A699066","#7AA6DC66","#EFC00066")) +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12))
+
+```
+
+## Panel 3
+
+```{r}
+ggscatter(filter(PITchange.PREVENTmeta,MRI=="y"), x="GCmagnitude_allRuns_pmECDTI_right_6",y="meanADerror",
+          add = "reg.line",conf.int = TRUE,palette="jco",color="Risk", facet.by = "genderLabs",
+          title = "Association of pmEC Grid signal with change in location error",
+          xlab = "Magnitude of fMRI grid-like representations", ylab = "Change in location error (m)") +
+  stat_cor(aes(color=Risk),method="pearson",label.y.npc = "top",label.x.npc="middle")
+```
+
+```{r}
+lm_ADerror<-lm(data=PITchange.PREVENTmeta.MRI, meanADerror ~ GCmagnitude_allRuns_pmECDTI_right_6 * DRS_noAP + encrypt_age + nbeduc + genderLabs)
+summary(lm_ADerror)
+anova(lm_ADerror)
+
+interact_plot(lm_ADerror, pred = GCmagnitude_allRuns_pmECDTI_right_6 , modx = DRS_noAP, interval = TRUE,
+              x.label = "fMRI grid cell activity magnitude",
+              y.label = "Change in location error (m)",
+              legend.main = "CAIDE") +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12),
+      legend.title = element_text(size=12),
+      legend.text = element_text(size=12))
+
+object <- johnson_neyman(model = lm_ADerror,pred = GCmagnitude_allRuns_pmECDTI_right_6 , modx = DRS_noAP) 
+object$plot + xlab("CAIDE") + ylab("Beta regression value") +
+theme(strip.text = element_text(size=12),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12),
+      legend.title = element_text(size=12),
+      legend.text = element_text(size=12))
+```
+
+
 
